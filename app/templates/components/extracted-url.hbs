@@ -5,10 +5,12 @@
     {{#if didError}}
       {{!-- {{-ion 'alert-circled' class="text-danger mr-1"}} --}}
       {{!-- {{#-bs/tooltip tagName='ins' title=errorMessage}}Server Error{{/-bs/tooltip}} --}}
+      Server Error: {{errorMessage}}
     {{else}}
-      {{#if model.didError}}
+      {{#if model.errorMessage}}
         {{!-- {{-ion 'alert-circled' class="text-warning mr-1"}} --}}
         {{!-- {{#-bs/tooltip tagName='ins' title=model.errorMessage}}Crawl Warning{{/-bs/tooltip}} --}}
+        Crawl Warning: {{model.errorMessage}}
       {{else}}
         {{!-- {{-ion 'link' class="mr-1"}} --}}
         <a href="{{model.values.resolved}}" target="_blank">
@@ -19,13 +21,7 @@
           {{/if}}
         </a>
       {{/if}}
-      <small>
-        {{!-- {{#if (not-eq model.values.original.host model.values.resolved.host)}}
-          ({{model.values.original.host}} {{-ion 'android-arrow-forward'}} {{model.values.resolved.host}})
-        {{else}}
-          ({{ model.values.resolved.host }})
-        {{/if}} --}}
-      </small>
+      <small>({{model.host.value}})</small>
     {{/if}}
   {{/if}}
 </div>
@@ -36,12 +32,12 @@
     {{progress-bar class="mb-0"}}
   {{else}}
     <div class="form-group mb-3">
-      {{!-- {{extracted-url/url
+      {{extracted-url/url
         settingsDisabled=false
-        original=model.values.original.url
-        resolved=model.values.resolved.url
-        on-settings-toggle="toggleSettings"
-      }} --}}
+        original=model.values.original
+        resolved=model.values.resolved
+        on-settings-toggle=(action "toggleSettings")
+      }}
     </div>
 
     <div class="row mb-3">
