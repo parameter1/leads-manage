@@ -2,16 +2,16 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
   crawlUrl(url: $url, cache: $cache) {
     id
     title
-    # lastCrawledDate
+    lastCrawledDate
     errorMessage
-    # linkType
+    linkType
     values {
       original
       resolved
     }
-    # meta {
-    #   description
-    # }
+    meta {
+      description
+    }
     host {
       value
     }

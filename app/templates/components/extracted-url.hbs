@@ -13,7 +13,7 @@
         Crawl Warning: {{model.errorMessage}}
       {{else}}
         {{!-- {{-ion 'link' class="mr-1"}} --}}
-        <a href="{{model.values.resolved}}" target="_blank">
+        <a href="{{model.values.resolved}}" title={{model.meta.description}} target="_blank" rel="noopener noreferer">
           {{#if model.title}}
             {{{ model.title }}}
           {{else}}
