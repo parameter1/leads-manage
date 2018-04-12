@@ -17,7 +17,7 @@ export default Controller.extend({
    * The loading service
    */
   // loading: service(),
-  // errorProcessor: service('error-processor'),
+  errorProcessor: inject(),
 
   /**
    * Determines if the pasted/entered HTML is currently being processed by the backend.
@@ -82,7 +82,7 @@ export default Controller.extend({
       loading.show();
       this.get('urlProcessor').insertTrackedLinks(this.get('html'))
         .then(results => this.set('trackedResult', results.html))
-        .catch((json) => this.get('errorProcessor').notify(json.errors || []))
+        .catch(e => this.get('errorProcessor').show(e))
         .finally(() => loading.hide())
       ;
     },
@@ -116,14 +116,14 @@ export default Controller.extend({
       this._clearValuesForPreProcess();
 
       this.get('urlProcessor').extractFrom(this.get('html'))
-        .then(urls => {
+        .then((urls) => {
           this.set('results', urls);
           if (!this.get('results.length')) {
             this.set('noResults', true);
           }
         })
-        .catch(json => {
-          this.get('errorProcessor').notify(json.errors || []);
+        .catch((e) => {
+          this.get('errorProcessor').show(e);
           this.set('noResults', true);
         })
         .finally(() => {

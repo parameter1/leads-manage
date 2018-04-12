@@ -11,7 +11,7 @@ export default Component.extend({
    */
   // loading: service(),
   urlProcessor: inject(),
-  // errorProcessor: service('error-processor'),
+  errorProcessor: inject(),
 
   /**
    * Public properties.
@@ -43,20 +43,9 @@ export default Component.extend({
       this.set('isLoading', true);
       this.get('urlProcessor').crawl(this.get('url'), cache)
         .then(extractedUrl => this.set('model', extractedUrl))
-        // .catch((json) => {
-        //     let errors = isArray(json.errors) ? json.errors : [];
-        //     this.set('errorMessage', this.get('errorProcessor').extractErrorMessage(errors[0]));
-        //   })
+        .catch(e => this.get('errorProcessor').show(e))
         .finally(() => this.set('isLoading', false))
-
-      // this.get('urlProcessor').crawl(this.get('url'), disableCache)
-      //   .then((extracted) => this.set('_extracted', extracted))
-      //   .catch((json) => {
-      //     let errors = isArray(json.errors) ? json.errors : [];
-      //     this.set('errorMessage', this.get('errorProcessor').extractErrorMessage(errors[0]));
-      //   })
-      //   .finally(() => this.set('isLoading', false))
-      // ;
+      ;
     },
     toggleSettings() {
       this.set('showSettings', !this.get('showSettings'));
@@ -65,7 +54,7 @@ export default Component.extend({
       // const loading = this.get('loading');
       // loading.show();
       // this.get('_extracted').save()
-      //   .catch(adapterError => this.get('errorProcessor').notify(adapterError.errors))
+      //   .catch(e => this.get('errorProcessor').show(e))
       //   .finally(() => loading.hide())
       // ;
     },
