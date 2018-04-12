@@ -3,19 +3,18 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
     id
     title
     # lastCrawledDate
-    # errorMessage
+    errorMessage
     # linkType
-    # values {
-    #   original
-    #   resolved
-    # }
+    values {
+      original
+      resolved
+    }
     # meta {
     #   description
     # }
-    # host {
-    #   id
-    #   value
-    # }
+    host {
+      value
+    }
     # customer {
     #   id
     #   name
