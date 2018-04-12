@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label class="mr-2">Link Type</label>
+  {{#power-select
+    options=options
+    selected=selected
+    onchange=(action "setType") as |linkType|}}
+      {{linkType}}
+  {{/power-select}}
+</div>
