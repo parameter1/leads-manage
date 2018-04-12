@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-// import { inject } from '@ember/service';
+import { inject } from '@ember/service';
 
 export default Controller.extend({
   /**
@@ -47,7 +47,7 @@ export default Controller.extend({
   /**
    * The URL processing service.
    */
-  // urlProcessor: service(),
+  urlProcessor: inject(),
 
   init() {
     this._super(...arguments);
