@@ -1,0 +1,72 @@
+<div class="row mt-3">
+  <div class="col">
+    <div class="form-group">
+      {{textarea
+        rows="5"
+        class="form-control"
+        value=html
+        id="html"
+        aria-describedby="htmlHelp"
+        paste=(action 'handlePaste')
+        focusIn=(action 'selectAll')
+        disabled=processing
+      }}
+      <small id="htmlHelp" class="form-text">Paste HTML to process and track links.</small>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <button class="btn btn-success mr-2" disabled={{eq canProcess false}} {{action "process"}}>
+    Process
+  </button>
+  <button class="btn btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
+    Clear
+  </button>
+  {{!-- {{#-bs/button 'success' class="mr-2" disabled=(eq canProcess false) click=(action 'process')}}
+    {{-ion 'android-upload'}} Process
+  {{/-bs/button}}
+  {{#-bs/button 'warning' disabled=(eq canProcess false) click=(action 'clear')}}
+    {{-ion 'android-close'}} Clear
+  {{/-bs/button}} --}}
+</div>
+{{#if processing}}
+  <small class="text-muted">Processing, please wait...</small>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+  </div>
+{{/if}}
+
+{{#if trackedResult}}
+  <div class="form-group">
+    <label for="trackedHtml">Tracked HTML</label>
+    {{textarea
+      rows="8"
+      class="form-control"
+      value=trackedResult
+      id="trackedHtml"
+      aria-describedby="trackedHtmlHelp"
+      readonly=true
+      focusIn=(action 'selectAll')
+      disabled=processing
+    }}
+    <small id="trackedHtmlHelp" class="form-text">Copy this HTML and place in your email client.</small>
+  </div>
+{{else}}
+  {{#if hasFinished}}
+    <h5>
+      {{#if results.length}}Found {{results.length}} Link(s){{else}}No links found.{{/if}}
+    </h5>
+    {{#each results as |url|}}
+      {{extracted-url url=url}}
+    {{/each}}
+    {{#if results.length}}
+      <div class="form-group">
+        <button class="btn btn-success" {{action "createdTrackedHtml"}}>Generate HTML</button>
+        {{!-- {{#-bs/button 'success' click=(action 'createTrackedHtml')}}
+          {{-ion 'android-create'}} Generate HTML
+        {{/-bs/button}} --}}
+      </div>
+    {{/if}}
+  {{/if}}
+{{/if}}
