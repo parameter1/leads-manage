@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    tty: true
+    image: danlynn/ember-cli:3.0.0
+    ports:
+      - "${EMBER_SERVE_PORT-8285}:${EMBER_SERVE_PORT-8285}"
+      - "${EMBER_LIVER_PORT-8286}:${EMBER_LIVER_PORT-8286}"
+      - "${EMBER_TESTS_PORT-8287}:${EMBER_TESTS_PORT-8287}"
+    volumes:
+      - .:/myapp:cached
+      - node_modules:/myapp/node_modules
+      - tmp:/myapp/tmp
+    restart: on-failure
+    entrypoint: "./node_modules/.bin/ember server --port ${EMBER_SERVE_PORT-8285} --live-reload-port ${EMBER_LIVER_PORT-8286} --proxy ${EMBER_GRAPH_PROXY-http://docker.for.mac.host.internal:8288}"
+volumes:
+  node_modules: {}
+  tmp:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
