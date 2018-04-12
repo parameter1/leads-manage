@@ -43,7 +43,7 @@ export default Component.extend({
       this.set('isLoading', true);
       this.get('urlProcessor').crawl(this.get('url'), cache)
         .then(extractedUrl => this.set('model', extractedUrl))
-        .catch(e => this.get('errorProcessor').show(e))
+        .catch(e => this.set('errorMessage', this.get('errorProcessor').handle(e).message))
         .finally(() => this.set('isLoading', false))
       ;
     },
