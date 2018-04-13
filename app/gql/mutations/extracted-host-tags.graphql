@@ -1,0 +1,5 @@
+mutation extractedHostTags($input: ExtractedHostTagsInput!) {
+	extractedHostTags(input: $input) {
+		id
+	}
+}

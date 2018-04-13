@@ -1,0 +1,5 @@
+mutation extractedUrlCustomer($input: ExtractedUrlCustomerInput!) {
+	extractedUrlCustomer(input: $input) {
+		id
+	}
+}

@@ -13,6 +13,7 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
       description
     }
     host {
+      id
       value
       customer {
         id
