@@ -3,16 +3,16 @@
     Crawling...
   {{else}}
     {{#if didError}}
-      {{!-- {{-ion 'alert-circled' class="text-danger mr-1"}} --}}
+      {{entypo-icon "warning" class="text-danger"}}
       {{!-- {{#-bs/tooltip tagName='ins' title=errorMessage}}Server Error{{/-bs/tooltip}} --}}
       Server Error: {{errorMessage}}
     {{else}}
       {{#if model.errorMessage}}
-        {{!-- {{-ion 'alert-circled' class="text-warning mr-1"}} --}}
+        {{entypo-icon "warning" class="text-warning"}}
         {{!-- {{#-bs/tooltip tagName='ins' title=model.errorMessage}}Crawl Warning{{/-bs/tooltip}} --}}
         Crawl Warning: {{model.errorMessage}}
       {{else}}
-        {{!-- {{-ion 'link' class="mr-1"}} --}}
+        {{entypo-icon "link"}}
         <a href="{{model.values.resolved}}" title={{model.meta.description}} target="_blank" rel="noopener noreferer">
           {{#if model.title}}
             {{{ model.title }}}

@@ -18,17 +18,11 @@
 
 <div class="form-group">
   <button class="btn btn-success" disabled={{eq canProcess false}} {{action "process"}}>
-    Process
+    {{entypo-icon "upload-to-cloud"}} Process
   </button>
   <button class="btn btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
-    Clear
+    {{entypo-icon "cross"}} Clear
   </button>
-  {{!-- {{#-bs/button 'success' class="mr-2" disabled=(eq canProcess false) click=(action 'process')}}
-    {{-ion 'android-upload'}} Process
-  {{/-bs/button}}
-  {{#-bs/button 'warning' disabled=(eq canProcess false) click=(action 'clear')}}
-    {{-ion 'android-close'}} Clear
-  {{/-bs/button}} --}}
 </div>
 {{#if processing}}
   <small class="text-muted">Processing, please wait...</small>
@@ -60,10 +54,9 @@
     {{/each}}
     {{#if results.length}}
       <div class="form-group">
-        <button class="btn btn-success" {{action "createdTrackedHtml"}}>Generate HTML</button>
-        {{!-- {{#-bs/button 'success' click=(action 'createTrackedHtml')}}
-          {{-ion 'android-create'}} Generate HTML
-        {{/-bs/button}} --}}
+        <button class="btn btn-success" {{action "createdTrackedHtml"}}>
+          {{entypo-icon "edit"}} Generate HTML
+        </button>
       </div>
     {{/if}}
   {{/if}}
