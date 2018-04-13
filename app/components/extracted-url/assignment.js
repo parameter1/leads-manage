@@ -75,7 +75,6 @@ export default Component.extend(ComponentQueryManager, {
       const promise = this.get('scope') === 'url' ? this.setUrlCustomer(customer) : this.setHostCustomer(customer);
       promise
         .then(() => this.get('notify').info('Customer successfully assigned.'))
-        .then(() => this.set('model.customer', customer))
         .catch(e => this.get('errorProcessor').show(e))
       ;
     },
@@ -83,7 +82,6 @@ export default Component.extend(ComponentQueryManager, {
       const promise = this.get('scope') === 'url' ? this.setUrlTags(tags) : this.setHostTags(tags);
       promise
         .then(() => this.get('notify').info('Tags successfully assigned.'))
-        .then(() => this.set('model.tags', tags))
         .catch(e => this.get('errorProcessor').show(e))
       ;
     },

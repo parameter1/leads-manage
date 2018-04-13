@@ -78,7 +78,6 @@ export default Component.extend(ComponentQueryManager, {
       const input = { urlId: this.get('model.id'), type };
       const variables = { input };
       this.get('apollo').mutate({ mutation: urlLinkTypeMutation, variables }, 'extractedUrlLinkType')
-        .then(() => this.set('model.linkType', type))
         .then(() => this.get('notify').info('Link type successfully set.'))
         .catch(e => this.get('errorProcessor').show(e))
       ;
