@@ -45,8 +45,15 @@ export default Component.extend(ComponentQueryManager, {
     return this.get('model.host.customer');
   }),
 
-  hasAssignments: computed('activeCustomers.length', 'activeCampaigns.length', 'mergedTags.length', function() {
-    return (this.get('activeCustomers.length') || this.get('activeCampaigns.length') || this.get('mergedTags.length'));
+  hasAssignments: computed('assignmentCount', function() {
+    return this.get('assignmentCount') > 0;
+  }),
+
+  assignmentCount: computed('activeCustomer.id', 'mergedTags.length', function() {
+    let count = 0;
+    if (this.get('activeCustomer.id')) count += 1;
+    count += this.get('mergedTags.length');
+    return count;
   }),
 
   init() {
