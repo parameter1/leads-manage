@@ -14,14 +14,22 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
     }
     host {
       value
+      customer {
+        id
+        name
+      }
+      tags {
+        id
+        name
+      }
     }
-    # customer {
-    #   id
-    #   name
-    # }
-    # tags {
-    #   id
-    #   name
-    # }
+    customer {
+      id
+      name
+    }
+    tags {
+      id
+      name
+    }
   }
 }

@@ -1,0 +1,35 @@
+<div class="card-header">
+  <strong>{{headerText}}</strong><br>
+  <small class="truncate">{{value}}</small>
+</div>
+<div class="card-body">
+  <label>Customer</label>
+  {{type-ahead
+    type="customer"
+    selected=model.customer
+  }}
+
+  {{!-- {{-autocomplete
+    modelType="customer"
+    value=extracted.customers
+    criteria=queryCriteria
+    multiple=true
+    displayField="name"
+    placeholder="Begin typing to find a customer..."
+    on-item-added="saveAssignment"
+    on-item-removed="saveAssignment"
+    delay=400
+  }} --}}
+  <label>Tags</label>
+  {{!-- {{-autocomplete
+    modelType="tag"
+    value=extracted.tags
+    criteria=queryCriteria
+    multiple=true
+    displayField="name"
+    placeholder="Begin typing to find a tag..."
+    on-item-added="saveAssignment"
+    on-item-removed="saveAssignment"
+    delay=400
+  }} --}}
+</div>

@@ -51,6 +51,7 @@ export default Component.extend({
       this.set('showSettings', !this.get('showSettings'));
     },
     save() {
+      alert('SAVE!');
       // const loading = this.get('loading');
       // loading.show();
       // this.get('_extracted').save()
