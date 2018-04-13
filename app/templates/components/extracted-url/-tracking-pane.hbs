@@ -1,0 +1,56 @@
+<div class="row mt-3 mb-3">
+  <div class="col">
+    {{#if model.hasAssignments}}
+      {{#each model.activeCustomers as |customer|}}
+        <span class="badge badge-pill badge-info">Customer: {{customer.name}}</span>
+      {{/each}}
+      {{#each model.activeCampaigns as |campaign|}}
+        <span class="badge badge-pill badge-info">Campaign: {{campaign.fullName}}</span>
+      {{/each}}
+      {{#each model.mergedTags as |tag|}}
+        <span class="badge badge-pill badge-info">Tag: {{tag.name}}</span>
+      {{/each}}
+    {{else}}
+      <span class="text-info">No tracking currently assigned.</span>
+    {{/if}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary btn-sm" {{action 'toggleSettings' true}}>
+      {{entypo-icon "cog"}}
+      {{#if showSettings}}{{entypo-icon 'chevron-small-down'}}{{else}}{{entypo-icon 'chevron-small-up'}}{{/if}}
+    </button>
+  </div>
+</div>
+
+{{#if showSettings}}
+  <div class="row mt-3">
+    <div class="col-12 col-lg-6 mb-3">
+      {{!-- {{extracted-url/assignment
+        class='mnh-100'
+        extracted=_extracted.resolvedHost.content
+        value=_extracted.resolvedHost.value
+      }} --}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      {{!-- {{extracted-url/assignment
+        class='mnh-100'
+        extracted=_extracted
+        value=_extracted.values.resolved.url
+      }} --}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-secondary btn-sm" {{action 'crawl' false}}>
+        {{entypo-icon "cycle"}} Crawl Again
+      </button>
+      <br>
+      <small class="text-muted">
+        Last retrieved: {{ moment-from-now model.lastCrawledDate }}
+      </small>
+    </div>
+  </div>
+{{/if}}
