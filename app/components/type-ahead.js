@@ -11,6 +11,7 @@ import tagQuery from 'leads-manage/gql/queries/search-tags';
 export default Component.extend(ComponentQueryManager, {
   errorProcessor: inject(),
 
+  closeOnSelect: true,
   allowClear: true,
   multiple: false,
   timeout: 600,
