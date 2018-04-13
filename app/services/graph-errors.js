@@ -1,9 +1,17 @@
 import Service, { inject } from '@ember/service';
+import { isPresent } from '@ember/utils';
 
 export default Service.extend({
   notify: inject(),
 
   handle(e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    if (isPresent(e.errors) && isPresent(e.errors[0])) {
+      const error = e.errors[0];
+      return this.handleNetworkError(error);
+    }
+
     if (e.networkError) {
       return this.handleNetworkError(e.networkError);
     }
@@ -24,6 +32,6 @@ export default Service.extend({
 
   show(e) {
     const error = this.handle(e);
-    this.get('notify').error(error.message);
+    this.get('notify').error(error.message, { closeAfter: null });
   }
 });
