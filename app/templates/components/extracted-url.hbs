@@ -4,13 +4,11 @@
   {{else}}
     {{#if didError}}
       {{entypo-icon "warning" class="text-danger"}}
-      {{!-- {{#-bs/tooltip tagName="ins" title=errorMessage}}Server Error{{/-bs/tooltip}} --}}
-      Server Error: {{errorMessage}}
+      {{errorMessage}}
     {{else}}
       {{#if model.errorMessage}}
         {{entypo-icon "warning" class="text-warning"}}
-        {{!-- {{#-bs/tooltip tagName="ins" title=model.errorMessage}}Crawl Warning{{/-bs/tooltip}} --}}
-        Crawl Warning: {{model.errorMessage}}
+        {{model.errorMessage}}
       {{else}}
         {{entypo-icon "link"}}
         <a href="{{model.values.resolved}}" title={{model.meta.description}} target="_blank" rel="noopener noreferer">
