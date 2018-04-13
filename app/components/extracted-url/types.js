@@ -11,11 +11,4 @@ export default Component.extend({
   options: computed('linkTypes.types.[]', function() {
     return this.get('linkTypes.types');
   }),
-
-  actions: {
-    setType(type) {
-      this.set('selected', type);
-      this.get('onChange')();
-    },
-  },
 });

@@ -1,8 +1,11 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
 import { computed } from '@ember/object';
+import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
-export default Component.extend({
+import urlLinkTypeMutation from 'leads-manage/gql/mutations/extracted-url-link-type';
+
+export default Component.extend(ComponentQueryManager, {
   tagName: 'div',
   classNames: ['card', 'mb-3'],
 
@@ -10,6 +13,7 @@ export default Component.extend({
    * Services.
    */
   // loading: service(),
+  notify: inject(),
   urlProcessor: inject(),
   errorProcessor: inject(),
 
@@ -50,14 +54,14 @@ export default Component.extend({
     toggleSettings() {
       this.set('showSettings', !this.get('showSettings'));
     },
-    save() {
-      alert('SAVE!');
-      // const loading = this.get('loading');
-      // loading.show();
-      // this.get('_extracted').save()
-      //   .catch(e => this.get('errorProcessor').show(e))
-      //   .finally(() => loading.hide())
-      // ;
+    setLinkType(type) {
+      const input = { urlId: this.get('model.id'), type };
+      const variables = { input };
+      this.get('apollo').mutate({ mutation: urlLinkTypeMutation, variables }, 'extractedUrlLinkType')
+        .then(() => this.set('model.linkType', type))
+        .then(() => this.get('notify').info('Link type successfully set.'))
+        .catch(e => this.get('errorProcessor').show(e))
+      ;
     },
   },
 });

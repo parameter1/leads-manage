@@ -1,0 +1,5 @@
+mutation extractedUrlLinkType($input: ExtractedUrlLinkTypeInput!) {
+	extractedUrlLinkType(input: $input) {
+		id
+	}
+}
