@@ -4,6 +4,8 @@ mutation extractedHostParams($input: ExtractedHostParamsInput!) {
 		urlParams {
 			key
       value
+			isMergeVar
+      encodedValue
 		}
 	}
 }

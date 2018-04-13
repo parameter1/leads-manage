@@ -4,6 +4,8 @@ mutation extractedUrlParams($input: ExtractedUrlParamsInput!) {
 		urlParams {
 			key
       value
+			isMergeVar
+      encodedValue
 		}
 	}
 }

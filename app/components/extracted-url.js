@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
 import urlLinkTypeMutation from 'leads-manage/gql/mutations/extracted-url-link-type';
@@ -55,6 +55,23 @@ export default Component.extend(ComponentQueryManager, {
     if (this.get('activeCustomer.id')) count += 1;
     count += this.get('mergedTags.length');
     return count;
+  }),
+
+  mergedParams: computed('model.{urlParams.[],host.urlParams.[]}', function() {
+    let params = {};
+    const merged = [];
+    this.get('model.host.urlParams').forEach(param => params[get(param, 'key')] = param);
+    this.get('model.urlParams').forEach(param => params[get(param, 'key')] = param);
+    for (var prop in params) {
+      if (params.hasOwnProperty(prop)) {
+        merged.pushObject(params[prop]);
+      }
+    }
+    return merged;
+  }),
+
+  paramsCount: computed('mergedParams.length', function() {
+    return this.get('mergedParams.length');
   }),
 
   init() {

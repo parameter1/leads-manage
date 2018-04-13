@@ -26,6 +26,8 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
       urlParams {
         key
         value
+        isMergeVar
+        encodedValue
       }
     }
     customer {
@@ -39,6 +41,8 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
     urlParams {
       key
       value
+      isMergeVar
+      encodedValue
     }
   }
 }
