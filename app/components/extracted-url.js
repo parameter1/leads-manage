@@ -15,7 +15,7 @@ export default Component.extend(ComponentQueryManager, {
   // loading: service(),
   notify: inject(),
   urlProcessor: inject(),
-  errorProcessor: inject(),
+  graphErrors: inject(),
 
   /**
    * Public properties.
@@ -67,7 +67,7 @@ export default Component.extend(ComponentQueryManager, {
       this.set('isLoading', true);
       this.get('urlProcessor').crawl(this.get('url'), cache)
         .then(extractedUrl => this.set('model', extractedUrl))
-        .catch(e => this.set('errorMessage', this.get('errorProcessor').handle(e).message))
+        .catch(e => this.set('errorMessage', this.get('graphErrors').handle(e).message))
         .finally(() => this.set('isLoading', false))
       ;
     },
@@ -79,7 +79,7 @@ export default Component.extend(ComponentQueryManager, {
       const variables = { input };
       this.get('apollo').mutate({ mutation: urlLinkTypeMutation, variables }, 'extractedUrlLinkType')
         .then(() => this.get('notify').info('Link type successfully set.'))
-        .catch(e => this.get('errorProcessor').show(e))
+        .catch(e => this.get('graphErrors').show(e))
       ;
     },
   },
