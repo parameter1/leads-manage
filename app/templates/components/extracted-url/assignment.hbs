@@ -3,18 +3,26 @@
   <small class="truncate">{{value}}</small>
 </div>
 <div class="card-body">
-  <label>Customer</label>
-  {{type-ahead
-    type="customer"
-    selected=model.customer
-    onChange=(action "setCustomer")
-  }}
 
-  <label>Tags</label>
-  {{type-ahead
-    type="tag"
-    multiple=true
-    selected=model.tags
-    onChange=(action "setTags")
-  }}
+  <div class="form-group">
+    <label>Customer</label>
+    {{type-ahead
+      placeholder="Begin typing to find a customer..."
+      type="customer"
+      selected=model.customer
+      onChange=(action "setCustomer")
+    }}
+  </div>
+
+  <div class="form-group mb-0">
+    <label>Tags</label>
+    {{type-ahead
+      placeholder="Begin typing to find a ag..."
+      type="tag"
+      multiple=true
+      selected=model.tags
+      onChange=(action "setTags")
+    }}
+  </div>
+
 </div>
