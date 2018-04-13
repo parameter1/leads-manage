@@ -36,6 +36,19 @@ export default Component.extend(ComponentQueryManager, {
     return this.get('errorMessage.length') ? true : false;
   }),
 
+  // Disabled because, when using brace expansion on `union`, ember throws an error saying it should be used.
+  // eslint-disable-next-line ember/use-brace-expansion
+  mergedTags: computed.union('model.tags', 'model.host.tags'),
+
+  activeCustomer: computed('model.{customer.id,host.customer.id}', function() {
+    if (this.get('model.customer.id')) return this.get('model.customer');
+    return this.get('model.host.customer');
+  }),
+
+  hasAssignments: computed('activeCustomers.length', 'activeCampaigns.length', 'mergedTags.length', function() {
+    return (this.get('activeCustomers.length') || this.get('activeCampaigns.length') || this.get('mergedTags.length'));
+  }),
+
   init() {
     this._super(...arguments);
     this.set('model', {});
