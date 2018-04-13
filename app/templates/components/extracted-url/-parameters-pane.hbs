@@ -1,0 +1,41 @@
+<div class="row mt-3 mb-3">
+  <div class="col">
+    {{#if model.paramsCount}}
+      {{#each model.mergedParams as |param|}}
+        <span class="badge badge-pill badge-info">
+          {{param.key}}={{param.encodedValue}}
+        </span>
+      {{/each}}
+    {{else}}
+      <span class="text-info">No URL parameters currently set.</span>
+    {{/if}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary btn-sm" {{action "toggleSettings" true}}>
+      {{entypo-icon "cog"}}
+      {{#if showSettings}}{{entypo-icon "chevron-small-down"}}{{else}}{{entypo-icon "chevron-small-up"}}{{/if}}
+    </button>
+  </div>
+</div>
+
+{{#if showSettings}}
+  <div class="row mt-3">
+    <div class="col-12 col-lg-6 mb-3">
+      {{!-- {{extracted-url/params
+        class="mnh-100"
+        urlParams=_extracted.resolvedHost.urlParams
+        value=_extracted.resolvedHost.value
+      }} --}}
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+      {{!-- {{extracted-url/params
+        class="mnh-100"
+        urlParams=_extracted.urlParams
+        value=_extracted.values.resolved.url
+      }} --}}
+    </div>
+  </div>
+{{/if}}
