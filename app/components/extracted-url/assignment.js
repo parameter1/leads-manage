@@ -39,14 +39,15 @@ export default Component.extend(ComponentQueryManager, {
     return 0 === value.indexOf('http') ? 'url' : 'host';
   }),
 
-  doSet(mutation, input, resultKey, cb) {
+  doSet(mutation, input, resultKey) {
     const variables = { input };
     return this.get('apollo').mutate({ mutation, variables }, resultKey);
   },
 
   setUrlCustomer(customer) {
+    const customerId = customer ? get(customer, 'id') : null;
     const resultKey = 'extractedUrlCustomer';
-    const input = { urlId: this.get('model.id'), customerId: get(customer, 'id') };
+    const input = { urlId: this.get('model.id'), customerId };
     return this.doSet(urlCustomerMutation, input, resultKey);
   },
 
@@ -57,8 +58,9 @@ export default Component.extend(ComponentQueryManager, {
   },
 
   setHostCustomer(customer) {
+    const customerId = customer ? get(customer, 'id') : null;
     const resultKey = 'extractedHostCustomer';
-    const input = { hostId: this.get('model.id'), customerId: get(customer, 'id') };
+    const input = { hostId: this.get('model.id'), customerId, };
     return this.doSet(hostCustomerMutation, input, resultKey);
   },
 
