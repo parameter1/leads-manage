@@ -39,6 +39,7 @@ export default Component.extend(ComponentQueryManager, {
   // Disabled because, when using brace expansion on `union`, ember throws an error saying it should be used.
   // eslint-disable-next-line ember/use-brace-expansion
   mergedTags: computed.union('model.tags', 'model.host.tags'),
+  uniqueTags: computed.uniqBy('mergedTags', 'id'),
 
   activeCustomer: computed('model.{customer.id,host.customer.id}', function() {
     if (this.get('model.customer.id')) return this.get('model.customer');

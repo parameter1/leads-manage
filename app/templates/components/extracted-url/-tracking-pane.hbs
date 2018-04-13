@@ -4,7 +4,7 @@
       {{#if activeCustomer}}
         <span class="badge badge-pill badge-info">Customer: {{activeCustomer.name}}</span>
       {{/if}}
-      {{#each mergedTags as |tag|}}
+      {{#each uniqueTags as |tag|}}
         <span class="badge badge-pill badge-info">Tag: {{tag.name}}</span>
       {{/each}}
     {{else}}
