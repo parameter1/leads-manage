@@ -16,7 +16,7 @@ export default Component.extend(ComponentQueryManager, {
    */
   // loading: service(),
   notify: inject(),
-  errorProcessor: inject(),
+  graphErrors: inject(),
 
   /**
    * Public properties
@@ -75,14 +75,14 @@ export default Component.extend(ComponentQueryManager, {
       const promise = this.get('scope') === 'url' ? this.setUrlCustomer(customer) : this.setHostCustomer(customer);
       promise
         .then(() => this.get('notify').info('Customer successfully assigned.'))
-        .catch(e => this.get('errorProcessor').show(e))
+        .catch(e => this.get('graphErrors').show(e))
       ;
     },
     setTags(tags) {
       const promise = this.get('scope') === 'url' ? this.setUrlTags(tags) : this.setHostTags(tags);
       promise
         .then(() => this.get('notify').info('Tags successfully assigned.'))
-        .catch(e => this.get('errorProcessor').show(e))
+        .catch(e => this.get('graphErrors').show(e))
       ;
     },
   },

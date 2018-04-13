@@ -23,6 +23,10 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
         id
         name
       }
+      urlParams {
+        key
+        value
+      }
     }
     customer {
       id
@@ -31,6 +35,10 @@ query CrawlUrl($url: String!, $cache: Boolean = true) {
     tags {
       id
       name
+    }
+    urlParams {
+      key
+      value
     }
   }
 }
