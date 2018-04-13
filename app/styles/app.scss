@@ -4,6 +4,11 @@
 
 @import "ember-power-select";
 
+// Entypo Icons
+$icon-font-path: "../fonts/";
+$icon-font-name: "toolkit-entypo";
+@import "vendor/entypo.scss";
+
 
 .z-depth-0 {
   box-shadow: none !important;
