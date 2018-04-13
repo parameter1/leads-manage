@@ -1,15 +1,15 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
 import { computed, set } from '@ember/object';
+import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   classNames: ['card'],
 
    /**
    * Services
    */
   // loading: service(),
-  apollo: inject(),
   errorProcessor: inject(),
 
   /**
