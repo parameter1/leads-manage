@@ -7,29 +7,14 @@
   {{type-ahead
     type="customer"
     selected=model.customer
+    onChange=(action "setCustomer")
   }}
 
-  {{!-- {{-autocomplete
-    modelType="customer"
-    value=extracted.customers
-    criteria=queryCriteria
-    multiple=true
-    displayField="name"
-    placeholder="Begin typing to find a customer..."
-    on-item-added="saveAssignment"
-    on-item-removed="saveAssignment"
-    delay=400
-  }} --}}
   <label>Tags</label>
-  {{!-- {{-autocomplete
-    modelType="tag"
-    value=extracted.tags
-    criteria=queryCriteria
+  {{type-ahead
+    type="tag"
     multiple=true
-    displayField="name"
-    placeholder="Begin typing to find a tag..."
-    on-item-added="saveAssignment"
-    on-item-removed="saveAssignment"
-    delay=400
-  }} --}}
+    selected=model.tags
+    onChange=(action "setTags")
+  }}
 </div>

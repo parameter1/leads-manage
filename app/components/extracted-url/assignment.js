@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, set } from '@ember/object';
 
 export default Component.extend({
   classNames: ['card'],
@@ -16,7 +16,7 @@ export default Component.extend({
    * Public properties
    */
   value: null, // The extracted value, either a full URL or hostname.
-  extracted: null, // The extracted assignment model (either a `extracted-url` or `extracted-host`)
+  model: null, // The extracted assignment model (either a `extracted-url` or `extracted-host`)
 
   /**
    * Computed (private) properties
@@ -34,6 +34,16 @@ export default Component.extend({
   }),
 
   actions: {
+    setCustomer(customer) {
+      this.set('model.customer', customer);
+      console.info('setCustomer', customer);
+      alert('send setCustomer action for URL');
+    },
+    setTags(tags) {
+      this.set('model.tags', tags);
+      console.info('setTags', tags);
+      alert('send setTags action for URL');
+    },
     saveAssignment() {
       alert('saveAssignment');
       // const loading = this.get('loading');
