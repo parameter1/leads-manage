@@ -10,6 +10,10 @@ Router.map(function() {
   this.route('link-tracking', function() {
 
   });
+  this.route('customer', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
 });
 
 export default Router;
