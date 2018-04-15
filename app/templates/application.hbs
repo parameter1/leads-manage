@@ -1,7 +1,3 @@
-<div id="loading-trigger" style="display:none; opacity:0.8">
-  {{partial "loading"}}
-</div>
-
 {{ember-notify messageStyle="bootstrap"}}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top z-depth-1-half">
@@ -28,5 +24,9 @@
       {{outlet}}
     </div>
   </div>
+</div>
+
+<div id="loading-trigger" style="display:none; opacity:0.8">
+  {{partial "loading"}}
 </div>
 
