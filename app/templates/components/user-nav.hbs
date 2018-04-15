@@ -19,31 +19,44 @@
     </div>
   </li>
 
-  {{!-- {{#-bs/modal show=isUpdateProfileOpen as |modal|}}
-    {{modal.header title="Update Profile"}}
+  {{#bs-modal show=isUpdateProfileOpen as |modal|}}
+    {{#modal.header}}
+      <h5 class="modal-title">Update Profile</h5>
+      <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
     {{#modal.body}}
       <div class="row">
         <div class="col">
           <div class="form-group">
             <label for="name">First Name</label>
-            {{input class="form-control" value=userManager.user.givenName}}
+            {{input class="form-control" value=user.model.givenName}}
           </div>
           <div class="form-group">
             <label for="name">Last Name</label>
-            {{input class="form-control" value=userManager.user.familyName}}
+            {{input class="form-control" value=user.model.familyName}}
           </div>
         </div>
       </div>
     {{/modal.body}}
-    {{#modal.footer}}
-      {{#-bs/button "success" click=(action "saveProfile")}}
-        {{-ion "checkmark-round"}} Save
-      {{/-bs/button}}
-    {{/modal.footer}}
-  {{/-bs/modal}}
 
-  {{#-bs/modal show=isChangePasswordOpen onHidden=(action 'clearPassword') as |modal|}}
-    {{modal.header title="Change Password"}}
+    {{#modal.footer}}
+      <button class="btn btn-success" {{action "saveProfile"}}>
+        {{entypo-icon "check"}} Save
+      </button>
+    {{/modal.footer}}
+  {{/bs-modal}}
+
+  {{#bs-modal show=isChangePasswordOpen onHidden=(action 'clearPassword') as |modal|}}
+    {{#modal.header}}
+      <h5 class="modal-title">Change Password</h5>
+      <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
     {{#modal.body}}
       <div class="row">
         <div class="col">
@@ -61,11 +74,12 @@
         </div>
       </div>
     {{/modal.body}}
+
     {{#modal.footer}}
-      {{#-bs/button "success" disabled=(eq canChangePassword false) click=(action "changePassword")}}
-        {{-ion "checkmark-round"}} Change
-      {{/-bs/button}}
+      <button class="btn btn-success" disabled={{eq canChangePassword false}} {{action "changePassword"}}>
+        {{entypo-icon "check"}} Change
+      </button>
     {{/modal.footer}}
-  {{/-bs/modal}} --}}
+  {{/bs-modal}}
 
 {{/if}}
