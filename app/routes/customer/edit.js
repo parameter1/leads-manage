@@ -17,7 +17,7 @@ export default Route.extend(RouteQueryManager, {
       const payload = { name, description, website };
       const input = { id, payload };
       const variables = { input };
-      return this.get('apollo').mutate({ mutation, variables })
+      return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')
         .then(() => this.get('notify').success('Customer successfully updated.'))
         .catch(e => this.get('graphErrors').show(e))
       ;
@@ -25,7 +25,7 @@ export default Route.extend(RouteQueryManager, {
     delete(id, routeName) {
       const mutation = deleteCustomer;
       const variables = { input: { id } };
-      return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')
+      return this.get('apollo').mutate({ mutation, variables }, 'deleteCustomer')
         .then(() => this.transitionTo(routeName))
         .catch(e => this.get('graphErrors').show(e))
       ;

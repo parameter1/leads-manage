@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col">
+    <h3 class="mb-0 float-left">
+      Manage Tag &quot;{{ model.name }}&quot;
+    </h3>
+    <button class="btn btn-outline-danger btn-sm float-right" {{action (route-action "delete" model.id "tag.index")}}>
+      {{entypo-icon "cross"}} Delete
+    </button>
+  </div>
+</div>
+<hr>
+
+{{ partial "tag/form" }}
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-success" {{action (route-action "update" model)}}>
+      {{entypo-icon "check"}} Save
+    </button>
+  </div>
+</div>

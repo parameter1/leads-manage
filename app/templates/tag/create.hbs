@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col">
+    <h3 class="mb-0">
+      Create Tag
+    </h3>
+  </div>
+</div>
+<hr>
+
+{{partial "tag/form"}}
+
+
+<div class="row">
+  <div class="col">
+    <button class="btn btn-success" {{action (route-action "create" model)}}>
+      {{entypo-icon "check"}} Save
+    </button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col">
+    <h3 class="mb-0">
+      Tags
+    </h3>
+  </div>
+</div>
+<hr>
+
+{{#paginate-models
+  models=model
+  routeName='tag.index'
+  totalCount=totalCount
+  hasNextPage=hasNextPage
+  endCursor=endCursor
+  first=first
+  after=after
+  ascending=ascending
+  sortBy=sortBy
+  sortOptions=sortOptions
+  as |model|
+}}
+  {{partial 'tag/list'}}
+{{/paginate-models}}
+
+<button class="btn btn-success create float-right fixed-bottom" {{action (route-action "transitionTo" "tag.create")}}>
+  {{entypo-icon "pencil"}} Create
+</button>
