@@ -11,6 +11,8 @@ $icon-font-path: "../fonts/";
 $icon-font-name: "toolkit-entypo";
 @import "vendor/entypo.scss";
 
+@import "loading";
+
 
 .mnh-100 {
   min-height: 100%;
