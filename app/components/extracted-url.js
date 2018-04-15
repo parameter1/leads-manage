@@ -12,7 +12,6 @@ export default Component.extend(ComponentQueryManager, {
   /**
    * Services.
    */
-  // loading: service(),
   notify: inject(),
   urlProcessor: inject(),
   graphErrors: inject(),

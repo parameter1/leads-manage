@@ -14,7 +14,6 @@ export default Component.extend(ComponentQueryManager, {
    /**
    * Services
    */
-  // loading: service(),
   notify: inject(),
   graphErrors: inject(),
 
