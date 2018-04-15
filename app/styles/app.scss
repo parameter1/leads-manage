@@ -13,6 +13,10 @@ $icon-font-name: "toolkit-entypo";
 
 @import "loading";
 
+a[data-ember-action]:not(:disabled),
+.clickable {
+    cursor: pointer;
+}
 
 .mnh-100 {
   min-height: 100%;
