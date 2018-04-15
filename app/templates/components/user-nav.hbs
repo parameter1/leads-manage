@@ -1,0 +1,71 @@
+{{#if session.isAuthenticated}}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button">
+      {{entypo-icon "cog"}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+
+      <a class="dropdown-item" {{action 'displayUpdateProfile'}}>
+        {{entypo-icon "user"}} {{user.model.givenName}} {{user.model.familyName}}
+      </a>
+      <a class="dropdown-item" title="Change Password" {{action 'displayChangePassword'}}>
+        {{entypo-icon "key"}} Change Password
+      </a>
+
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" title="Logout" {{action 'logout'}}>
+        {{entypo-icon "log-out"}} Logout
+      </a>
+    </div>
+  </li>
+
+  {{!-- {{#-bs/modal show=isUpdateProfileOpen as |modal|}}
+    {{modal.header title="Update Profile"}}
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">First Name</label>
+            {{input class="form-control" value=userManager.user.givenName}}
+          </div>
+          <div class="form-group">
+            <label for="name">Last Name</label>
+            {{input class="form-control" value=userManager.user.familyName}}
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#-bs/button "success" click=(action "saveProfile")}}
+        {{-ion "checkmark-round"}} Save
+      {{/-bs/button}}
+    {{/modal.footer}}
+  {{/-bs/modal}}
+
+  {{#-bs/modal show=isChangePasswordOpen onHidden=(action 'clearPassword') as |modal|}}
+    {{modal.header title="Change Password"}}
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">New Password</label>
+            {{input type="password" class="form-control" value=password.value placeholder="Must be a minimum length of six characters"}}
+          </div>
+          <div class="form-group">
+            <label for="name">Confirm Password</label>
+            {{input type="password" class="form-control" value=password.confirm placeholder="Confirm the password from above"}}
+          </div>
+          {{#if (eq canChangePassword false)}}
+            <small class="text-info">In order to save, {{ reasonForPreventChange }}</small>
+          {{/if}}
+        </div>
+      </div>
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#-bs/button "success" disabled=(eq canChangePassword false) click=(action "changePassword")}}
+        {{-ion "checkmark-round"}} Change
+      {{/-bs/button}}
+    {{/modal.footer}}
+  {{/-bs/modal}} --}}
+
+{{/if}}
