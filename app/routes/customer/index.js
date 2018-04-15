@@ -31,7 +31,7 @@ export default Route.extend(RouteQueryManager, {
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
     const variables = { pagination, sort };
     if (!sortBy) delete variables.sort.field;
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'no-cache' }, 'allCustomers')
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allCustomers')
       .then(pagination => this.setPagination(pagination))
       .catch(e => this.get('graphErrors').show(e))
     ;

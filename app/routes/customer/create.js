@@ -9,7 +9,7 @@ export default Route.extend(RouteQueryManager, {
   },
 
   actions: {
-    save({ name, description, website }) {
+    create({ name, description, website }) {
       const payload = { name, description, website };
       const variables = { input: { payload } };
       return this.get('apollo').mutate({ mutation, variables }, 'createCustomer')
