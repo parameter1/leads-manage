@@ -22,3 +22,7 @@
 }}
   {{partial 'customer/list'}}
 {{/paginate-models}}
+
+<button class="btn btn-success create float-right fixed-bottom" {{action (route-action "transitionTo" "customer.create")}}>
+  {{entypo-icon "pencil"}} Create
+</button>

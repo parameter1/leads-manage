@@ -1,1 +1,13 @@
-{{outlet}}
+<div class="row">
+  <div class="col">
+    <h3 class="mb-0 float-left">
+      Manage {{ model.name }}
+      {{#if model.externalSource}}(Read Only){{/if}}
+    </h3>
+    <button class="btn btn-outline-danger btn-sm float-right" disabled={{model.externalSource.identifier}} {{action (route-action "delete" model.id "customer.index")}}>
+      {{entypo-icon "cross"}} Delete
+    </button>
+  </div>
+</div>
+<hr>
+{{ partial "customer/form" }}

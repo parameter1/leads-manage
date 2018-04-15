@@ -20,6 +20,10 @@ $icon-font-name: "toolkit-entypo";
   min-width: 100%;
 }
 
+.fixed-bottom.create {
+  left: inherit;
+}
+
 .z-depth-0 {
   box-shadow: none !important;
 }

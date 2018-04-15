@@ -9,7 +9,12 @@ export default Service.extend({
     console.error(e);
     if (isPresent(e.errors) && isPresent(e.errors[0])) {
       const error = e.errors[0];
-      return this.handleNetworkError(error);
+      if (error.result) {
+        return this.handleNetworkError(error);
+      }
+      if (error.message) {
+        return new Error(error.message);
+      }
     }
 
     if (e.networkError) {
