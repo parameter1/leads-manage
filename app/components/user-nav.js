@@ -1,8 +1,12 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
 import { computed } from '@ember/object';
+import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
-export default Component.extend({
+import changeCurrentUserPassword from 'leads-manage/gql/mutations/change-current-user-password';
+import updateCurrentUserProfile from 'leads-manage/gql/mutations/update-current-user-profile';
+
+export default Component.extend(ComponentQueryManager, {
   session: inject(),
 
   isChangePasswordOpen: false,
@@ -22,6 +26,10 @@ export default Component.extend({
 
   isUpdateProfileOpen: false,
 
+  didInsertElement() {
+    this.set('password', { value: '', confirm: '' });
+  },
+
   actions: {
     logout() {
       const loading = this.get('loadingDisplay');
@@ -35,55 +43,35 @@ export default Component.extend({
       this.set('isUpdateProfileOpen', true);
     },
     changePassword() {
-      alert('changePassword');
-      // const loading = this.get('loading');
-      // loading.show();
-
-      // const options = {
-      //   url: '/api/auth/change-password',
-      //   data: this.get('password'),
-      // };
-      // const promise = new Promise(function(resolve, reject) {
-      //   $.getJSON(options)
-      //     .done(response => resolve(response))
-      //     .fail(error => reject(error.responseJSON || {}))
-      //   ;
-      // });
-
-      // promise
-      //   .then(() => {
-      //     this.set('isChangePasswordOpen', false);
-      //     this.get('notify').success({
-      //       closeAfter: 2500,
-      //       html: 'Password successfully changed!',
-      //     });
-      //   })
-      //   .catch((json) => this.get('errorProcessor').notify(json.errors || []))
-      //   .finally(() => loading.hide())
-      // ;
+      const mutation = changeCurrentUserPassword;
+      const { value, confirm } = this.get('password');
+      const input = { value, confirm };
+      const variables = { input };
+      return this.get('apollo').mutate({ mutation, variables }, 'changeCurrentUserPassword')
+        .then(() => {
+          this.set('isChangePasswordOpen', false);
+          this.get('notify').success('Password successfully changed.');
+        })
+        .catch(e => this.get('graphErrors').show(e))
+      ;
     },
+
     clearPassword() {
       this.set('password.value', null);
       this.set('password.confirm', null);
     },
     saveProfile() {
-      alert('saveProfile');
-      // const user = this.userManager.get('user');
-      // if (user) {
-      //   const loading = this.get('loading');
-      //   loading.show();
-      //   user.save()
-      //     .then(() => {
-      //       this.set('isUpdateProfileOpen', false);
-      //       this.get('notify').success({
-      //         closeAfter: 2500,
-      //         html: 'Profile successfully updated!',
-      //       });
-      //     })
-      //     .catch((json) => this.get('errorProcessor').notify(json.errors || []))
-      //     .finally(() => loading.hide())
-      //   ;
-      // }
+      const mutation = updateCurrentUserProfile;
+      const { givenName, familyName } = this.get('user.model');
+      const input = { givenName, familyName };
+      const variables = { input };
+      return this.get('apollo').mutate({ mutation, variables }, 'updateCurrentUserProfile')
+        .then(() => {
+          this.set('isUpdateProfileOpen', false);
+          this.get('notify').success('User profile successfully updated.');
+        })
+        .catch(e => this.get('graphErrors').show(e))
+      ;
     },
   },
 

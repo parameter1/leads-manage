@@ -1,9 +1,7 @@
+#import 'leads-manage/gql/fragments/current-user-fragment'
+
 query currentUser {
   currentUser {
-    id
-    email
-    familyName
-    givenName
-    photoURL
+    ...CurrentUserFragment
   }
 }

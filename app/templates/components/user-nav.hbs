@@ -20,66 +20,76 @@
   </li>
 
   {{#bs-modal show=isUpdateProfileOpen as |modal|}}
-    {{#modal.header}}
-      <h5 class="modal-title">Update Profile</h5>
-      <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
-        {{entypo-icon "cross"}}
-      </button>
-    {{/modal.header}}
+    <form {{action "saveProfile" on="submit"}}>
+      {{#modal.header}}
+        <h5 class="modal-title">Update Profile</h5>
+        <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+          {{entypo-icon "cross"}}
+        </button>
+      {{/modal.header}}
 
-    {{#modal.body}}
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="name">First Name</label>
-            {{input class="form-control" value=user.model.givenName}}
-          </div>
-          <div class="form-group">
-            <label for="name">Last Name</label>
-            {{input class="form-control" value=user.model.familyName}}
+      {{#modal.body}}
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="name">First Name</label>
+              {{input class="form-control" value=user.model.givenName}}
+            </div>
+            <div class="form-group">
+              <label for="name">Last Name</label>
+              {{input class="form-control" value=user.model.familyName}}
+            </div>
           </div>
         </div>
-      </div>
-    {{/modal.body}}
+      {{/modal.body}}
 
-    {{#modal.footer}}
-      <button class="btn btn-success" {{action "saveProfile"}}>
-        {{entypo-icon "check"}} Save
-      </button>
-    {{/modal.footer}}
+      {{#modal.footer}}
+        <button class="btn btn-success">
+          {{entypo-icon "check"}} Save
+        </button>
+      {{/modal.footer}}
+    </form>
   {{/bs-modal}}
+
 
   {{#bs-modal show=isChangePasswordOpen onHidden=(action 'clearPassword') as |modal|}}
-    {{#modal.header}}
-      <h5 class="modal-title">Change Password</h5>
-      <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
-        {{entypo-icon "cross"}}
-      </button>
-    {{/modal.header}}
+    <form {{action "changePassword" on="submit"}}>
+      {{#modal.header}}
+        <h5 class="modal-title">Change Password</h5>
+        <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+          {{entypo-icon "cross"}}
+        </button>
+      {{/modal.header}}
 
-    {{#modal.body}}
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label for="name">New Password</label>
-            {{input type="password" class="form-control" value=password.value placeholder="Must be a minimum length of six characters"}}
+      {{#modal.body}}
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="name">Email Address</label>
+              {{input type="email" autocomplete="username email" class="form-control" value=user.model.email disabled=true}}
+            </div>
+            <div class="form-group">
+              <label for="name">New Password</label>
+              {{input type="password" autocomplete="new-password" class="form-control" value=password.value placeholder="Must be a minimum length of six characters"}}
+            </div>
+            <div class="form-group">
+              <label for="name">Confirm Password</label>
+              {{input type="password" autocomplete="new-password" class="form-control" value=password.confirm placeholder="Confirm the password from above"}}
+            </div>
+            {{#if (eq canChangePassword false)}}
+              <small class="text-info">In order to save, {{ reasonForPreventChange }}</small>
+            {{/if}}
           </div>
-          <div class="form-group">
-            <label for="name">Confirm Password</label>
-            {{input type="password" class="form-control" value=password.confirm placeholder="Confirm the password from above"}}
-          </div>
-          {{#if (eq canChangePassword false)}}
-            <small class="text-info">In order to save, {{ reasonForPreventChange }}</small>
-          {{/if}}
         </div>
-      </div>
-    {{/modal.body}}
+      {{/modal.body}}
 
-    {{#modal.footer}}
-      <button class="btn btn-success" disabled={{eq canChangePassword false}} {{action "changePassword"}}>
-        {{entypo-icon "check"}} Change
-      </button>
-    {{/modal.footer}}
+      {{#modal.footer}}
+        <button class="btn btn-success" type="submit" disabled={{eq canChangePassword false}}>
+          {{entypo-icon "check"}} Change
+        </button>
+      {{/modal.footer}}
+    </form>
   {{/bs-modal}}
+
 
 {{/if}}
