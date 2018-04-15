@@ -21,14 +21,10 @@ export default ApolloService.extend({
       return {};
     }
     return new Promise((resolve) => {
-      this.get('session').authorize(
-        'authorizer:application',
-        (headerName, headerContent) => {
-          const headers = {};
-          headers[headerName] = headerContent;
-          resolve({ headers });
-        }
-      );
+      const headers = {
+        'Authorization': `Bearer ${this.get('session.data.authenticated.token')}`,
+      }
+      resolve({ headers })
     });
   }
 
