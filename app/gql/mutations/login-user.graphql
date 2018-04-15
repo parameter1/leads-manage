@@ -1,0 +1,9 @@
+#import 'leads-manage/gql/fragments/session-fragment'
+
+mutation loginUser($input: LoginInput!) {
+	loginUser(input: $input) {
+		session {
+			...SessionFragment
+		}
+	}
+}
