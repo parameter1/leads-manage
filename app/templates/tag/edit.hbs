@@ -3,9 +3,12 @@
     <h3 class="mb-0 float-left">
       Manage Tag &quot;{{ model.name }}&quot;
     </h3>
-    <button class="btn btn-outline-danger btn-sm float-right" {{action (route-action "delete" model.id "tag.index")}}>
-      {{entypo-icon "cross"}} Delete
-    </button>
+    {{#confirm-button
+      class="btn btn-sm btn-outline-danger d-inline float-right clickable"
+      onConfirm=(route-action "delete" model.id "tag.index") as |button|
+    }}
+      {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
+    {{/confirm-button}}
   </div>
 </div>
 <hr>

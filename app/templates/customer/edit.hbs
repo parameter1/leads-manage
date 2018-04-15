@@ -4,9 +4,13 @@
       Manage Customer &quot;{{ model.name }}&quot;
       {{#if model.externalSource}}(Read Only){{/if}}
     </h3>
-    <button class="btn btn-outline-danger btn-sm float-right" disabled={{model.externalSource.identifier}} {{action (route-action "delete" model.id "customer.index")}}>
-      {{entypo-icon "cross"}} Delete
-    </button>
+    {{#confirm-button
+      class="btn btn-sm btn-outline-danger d-inline float-right clickable"
+      disabled=model.externalSource.identifier
+      onConfirm=(route-action "delete" model.id "customer.index") as |button|
+    }}
+      {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
+    {{/confirm-button}}
   </div>
 </div>
 <hr>
