@@ -2,6 +2,7 @@ import AbstractPaginable from '../abstract-paginable';
 
 export default AbstractPaginable.extend({
   init() {
+    this._super(...arguments);
     this.set('queryParams', ['first', 'after', 'sortBy', 'ascending']);
     // Sort options are specific to the model in question.
     this.set('sortOptions', [
@@ -11,6 +12,7 @@ export default AbstractPaginable.extend({
       { key: 'givenName', label: 'First Name' },
       { key: 'familyName', label: 'Last Name' },
     ]);
-    this._super(...arguments);
+    this.set('sortBy', 'email');
+    this.set('ascending', true);
   },
 });
