@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      {{input type="email" value=model.email class="form-control" id="email" placeholder="Email Address"}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="givenName">First Name</label>
+      {{input type="text" value=model.givenName class="form-control" id="givenName" placeholder="First Name"}}
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="familyName">Last Name</label>
+      {{input type="text" value=model.familyName class="form-control" id="familyName" placeholder="Last Name"}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="password">Password</label>
+      {{input type="password" autocomplete="new-password" value=model.password class="form-control" id="password" placeholder="Password"}}
+      <small class="form-text text-muted">Must be at least six characters long.</small>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      {{input type="password" autocomplete="new-password" value=model.confirmPassword class="form-control" id="confirmPassword" placeholder="Confirm Password"}}
+      <small class="form-text text-muted">Must match the inputted password.</small>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    {{!-- {{-bs/forms/custom-radio name="roles" value="Admin" checked=model.currentRole label="Administrator"}}
+    {{-bs/forms/custom-radio name="roles" value="Member" checked=model.currentRole label="Restricted User"}} --}}
+  </div>
+</div>

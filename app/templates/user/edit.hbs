@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <h3 class="mb-0 float-left">
+      Manage User &quot;{{ model.name }}&quot;
+    </h3>
+    {{#confirm-button
+      class="btn btn-sm btn-outline-danger d-inline float-right clickable"
+      onConfirm=(route-action "delete" model.id "user.index") as |button|
+    }}
+      {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
+    {{/confirm-button}}
+  </div>
+</div>
+<hr>
+
+{{ partial "user/form" }}

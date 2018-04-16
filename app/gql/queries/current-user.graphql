@@ -1,7 +1,7 @@
-#import 'leads-manage/gql/fragments/current-user-fragment'
+#import 'leads-manage/gql/fragments/user-fragment'
 
 query currentUser {
   currentUser {
-    ...CurrentUserFragment
+    ...UserFragment
   }
 }
