@@ -23,6 +23,11 @@ Router.map(function() {
     this.route('edit', { path: ':id' });
     this.route('create');
   });
+  this.route('email', function() {
+    this.route('deployment', function() {
+      this.route('view', { path: ':id' });
+    });
+  });
 });
 
 export default Router;
