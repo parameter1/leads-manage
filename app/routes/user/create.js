@@ -5,7 +5,9 @@ import mutation from 'leads-manage/gql/mutations/create-user';
 
 export default Route.extend(RouteQueryManager, {
   model() {
-    return {};
+    return {
+      role: 'Restricted',
+    };
   },
 
   actions: {
@@ -15,6 +17,7 @@ export default Route.extend(RouteQueryManager, {
       familyName,
       password,
       confirmPassword,
+      role,
     }) {
       const payload = {
         email,
@@ -22,6 +25,7 @@ export default Route.extend(RouteQueryManager, {
         familyName,
         password,
         confirmPassword,
+        role,
       };
       const variables = { input: { payload } };
       return this.get('apollo').mutate({ mutation, variables }, 'createUser')
