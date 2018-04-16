@@ -24,7 +24,15 @@
 
 <div class="row">
   <div class="col">
-    {{!-- {{-bs/forms/custom-radio name="roles" value="Admin" checked=model.currentRole label="Administrator"}}
-    {{-bs/forms/custom-radio name="roles" value="Member" checked=model.currentRole label="Restricted User"}} --}}
+    <div class="form-group">
+      <label>Role/Permissions</label>
+      {{#power-select
+        options=userRoles.roles
+        selected=model.role
+        searchEnabled=false
+        onchange=(action (mut model.role)) as |role|}}
+        {{role}}
+      {{/power-select}}
+    </div>
   </div>
 </div>

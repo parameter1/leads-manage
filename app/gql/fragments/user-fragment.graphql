@@ -6,4 +6,5 @@ fragment UserFragment on User {
   photoURL
   createdAt
   updatedAt
+  role
 }

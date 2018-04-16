@@ -13,8 +13,8 @@ export default Route.extend(RouteQueryManager, {
   actions: {
     update(model) {
       const mutation = updateUser;
-      const { id, email, givenName, familyName } = model;
-      const payload = { email, givenName, familyName };
+      const { id, email, givenName, familyName, role } = model;
+      const payload = { email, givenName, familyName, role };
       const input = { id, payload };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateUser')
