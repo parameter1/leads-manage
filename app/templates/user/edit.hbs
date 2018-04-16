@@ -3,12 +3,17 @@
     <h3 class="mb-0 float-left">
       Manage User &quot;{{ model.email }}&quot;
     </h3>
-    {{#confirm-button
-      class="btn btn-sm btn-outline-danger d-inline float-right clickable"
-      onConfirm=(route-action "delete" model.id "user.index") as |button|
-    }}
-      {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
-    {{/confirm-button}}
+    <div class="float-right d-inline">
+      <button class="btn btn-sm btn-outline-info clickable" {{action "displayChangePassword"}}>
+        {{entypo-icon "key"}} Change Password
+      </button>
+      {{#confirm-button
+        class="btn btn-sm btn-outline-danger clickable"
+        onConfirm=(route-action "delete" model.id "user.index") as |button|
+      }}
+        {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
+      {{/confirm-button}}
+    </div>
   </div>
 </div>
 <hr>
@@ -24,4 +29,6 @@
     </div>
   </div>
 </form>
+
+{{change-password-modal isChangePasswordOpen=isChangePasswordOpen model=model}}
 
