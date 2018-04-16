@@ -15,12 +15,15 @@
 </div>
 <hr>
 
-{{ partial "customer/form" }}
+<form {{action (route-action "update" model) on="submit"}}>
+  {{ partial "customer/form" }}
 
-<div class="row">
-  <div class="col">
-    <button class="btn btn-success" disabled={{model.externalSource.identifier}} {{action (route-action "update" model)}}>
-      {{entypo-icon "check"}} Save
-    </button>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" disabled={{model.externalSource.identifier}} type="submit">
+        {{entypo-icon "check"}} Save
+      </button>
+    </div>
   </div>
-</div>
+</form>
+

@@ -13,12 +13,15 @@
 </div>
 <hr>
 
-{{ partial "tag/form" }}
+<form {{action (route-action "update" model) on="submit"}}>
+  {{ partial "tag/form" }}
 
-<div class="row">
-  <div class="col">
-    <button class="btn btn-success" {{action (route-action "update" model)}}>
-      {{entypo-icon "check"}} Save
-    </button>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" type="submit">
+        {{entypo-icon "check"}} Save
+      </button>
+    </div>
   </div>
-</div>
+</form>
+

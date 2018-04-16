@@ -2,7 +2,7 @@
   <div class="col">
     <div class="form-group">
       <label for="name">Name</label>
-      {{input type="text" value=model.name class="form-control" id="name" aria-describedby="nameHelp" placeholder="Customer Name" disabled=model.externalSource}}
+      {{input type="text" required=true value=model.name class="form-control" id="name" aria-describedby="nameHelp" placeholder="Customer Name" disabled=model.externalSource}}
       <small id="nameHelp" class="form-text text-muted hide">Customer Name.</small>
     </div>
     {{!-- <div class="form-group">
