@@ -1,4 +1,6 @@
-{{#route-header}}Users{{/route-header}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}Users{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 {{#paginate-models
   models=model

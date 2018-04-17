@@ -1,20 +1,15 @@
-<div class="row">
-  <div class="col">
-    <h3 class="mb-0">
-      Create Customer
-    </h3>
-  </div>
-</div>
-<hr>
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "customer.index"}}Customers{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}Create New{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 <form {{action (route-action "create" model) on="submit"}}>
-  {{partial "customer/form"}}
-
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-success" disabled={{model.externalSource.identifier}} type="submit">
-        {{entypo-icon "check"}} Save
-      </button>
+  <div class="card model-form">
+    <div class="card-body">
+      {{ partial "customer/form" }}
+    </div>
+    <div class="card-footer">
+      {{model-save-button}}
     </div>
   </div>
 </form>

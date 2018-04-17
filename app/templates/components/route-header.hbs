@@ -1,5 +1,9 @@
 <div class="col">
-  <h2 class="mb-3">
-    {{yield}}
-  </h2>
+  {{#if (has-block)}}
+    {{yield (hash
+      title=(component 'route-header/title')
+    )}}
+  {{else}}
+    {{#route-header/title}}{{title}}{{/route-header/title}}
+  {{/if}}
 </div>

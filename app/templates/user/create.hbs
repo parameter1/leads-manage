@@ -1,41 +1,33 @@
-<div class="row">
-  <div class="col">
-    <h3 class="mb-0">
-      Create User
-    </h3>
-  </div>
-</div>
-<hr>
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "user.index"}}Users{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}Create New{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 <form {{action (route-action "create" model) on="submit"}}>
-  {{partial "user/form"}}
+  <div class="card model-form">
+    <div class="card-body">
+      {{ partial "user/form" }}
 
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label for="password">Password</label>
-        {{input type="password" required="true" minlength="6" autocomplete="new-password" value=model.password class="form-control" id="password" placeholder="Password"}}
-        <small class="form-text text-muted">Must be at least six characters long.</small>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group mb-3 mb-sm-0">
+            <label for="password">Password</label>
+            {{input type="password" required="true" minlength="6" autocomplete="new-password" value=model.password class="form-control" id="password" placeholder="Password"}}
+            <small class="form-text text-muted">Must be at least six characters long.</small>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mb-0">
+            <label for="confirmPassword">Confirm Password</label>
+            {{input type="password" required="true" minlength="6" autocomplete="new-password" value=model.confirmPassword class="form-control" id="confirmPassword" placeholder="Confirm Password"}}
+            <small class="form-text text-muted">Must match the inputted password.</small>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        {{input type="password" required="true" minlength="6" autocomplete="new-password" value=model.confirmPassword class="form-control" id="confirmPassword" placeholder="Confirm Password"}}
-        <small class="form-text text-muted">Must match the inputted password.</small>
-      </div>
-    </div>
-  </div>
 
-
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-success" type="submit">
-        {{entypo-icon "check"}} Save
-      </button>
+    </div>
+    <div class="card-footer">
+      {{model-save-button}}
     </div>
   </div>
 </form>
-
-
-

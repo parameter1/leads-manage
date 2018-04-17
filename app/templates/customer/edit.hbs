@@ -1,29 +1,29 @@
-<div class="row">
-  <div class="col">
-    <h3 class="mb-0 float-left">
-      Manage Customer &quot;{{ model.name }}&quot;
-      {{#if model.externalSource}}(Read Only){{/if}}
-    </h3>
-    {{#confirm-button
-      class="btn btn-sm btn-outline-danger d-inline float-right clickable"
-      disabled=model.externalSource.identifier
-      onConfirm=(route-action "delete" model.id "customer.index") as |button|
-    }}
-      {{entypo-icon "cross"}} {{#unless button.hasConfirmed}}Delete{{else}}You Sure?{{/unless}}
-    {{/confirm-button}}
-  </div>
-</div>
-<hr>
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "customer.index"}}Customers{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 <form {{action (route-action "update" model) on="submit"}}>
-  {{ partial "customer/form" }}
-
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-success" disabled={{model.externalSource.identifier}} type="submit">
-        {{entypo-icon "check"}} Save
-      </button>
+  <div class="card model-form">
+    <div class="card-body">
+      {{ partial "customer/form" }}
     </div>
+    <div class="card-footer d-flex justify-content-between">
+      {{model-save-button disabled=model.externalSource.identifier}}
+
+      <div class="btn-group btn pr-0">
+        {{confirm-button
+          icon="trash"
+          label="Delete"
+          class="btn-danger"
+          onConfirm=(route-action "delete" model.id "customer.index")
+        }}
+      </div>
+    </div>
+
+    {{!-- <div class="progress" style="height: 0.75rem;">
+      <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div> --}}
+
   </div>
 </form>
-

@@ -1,4 +1,6 @@
-{{#route-header}}Tags{{/route-header}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}Tags{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 {{#paginate-models
   models=model

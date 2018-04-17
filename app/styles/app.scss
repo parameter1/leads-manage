@@ -29,6 +29,16 @@ nav.navbar {
   border: none !important;
 }
 
+.card.model-form {
+  box-shadow: $z-depth-1;
+  border: none !important;
+}
+
+form .progress {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
 .mnh-100 {
   min-height: 100%;
 }

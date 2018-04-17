@@ -2,17 +2,22 @@ import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'button',
-  classNames: ['btn'],
+  classNames: ['btn', 'clickable'],
   attributeBindings: ['disabled', 'type'],
 
   disabled: false,
   type: 'button',
 
+  icon: '',
+  label: 'Action',
+  confirmLabel: 'You Sure?',
+  onConfirm: null,
+
   hasConfirmed: false,
 
   click() {
     if (this.get('hasConfirmed')) {
-      this.sendAction('onConfirm');
+      this.get('onConfirm')();
     } else {
       this.set('hasConfirmed', true);
     }
