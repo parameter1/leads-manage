@@ -7,7 +7,7 @@ import urlLinkTypeMutation from 'leads-manage/gql/mutations/extracted-url-link-t
 
 export default Component.extend(ComponentQueryManager, {
   tagName: 'div',
-  classNames: ['card', 'mb-3'],
+  classNames: ['card', 'my-4', 'list-index'],
 
   /**
    * Services.

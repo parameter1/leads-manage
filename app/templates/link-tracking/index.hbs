@@ -1,6 +1,7 @@
-<div class="row mt-3">
-  <div class="col">
-    <div class="form-group">
+<div class="card list-index">
+  {{ partial "link-tracking/navigation" }}
+  <div class="card-body">
+    <div class="form-group mb-0">
       {{textarea
         rows="5"
         class="form-control"
@@ -14,20 +15,17 @@
       <small id="htmlHelp" class="form-text">Paste HTML to process and track links.</small>
     </div>
   </div>
+
+  <div class="card-footer">
+    <button class="btn btn-lg btn-success" disabled={{eq canProcess false}} {{action "process"}}>
+      {{entypo-icon "upload-to-cloud"}} Process
+    </button>
+    <button class="btn btn-lg btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
+      {{entypo-icon "cross"}} Clear
+    </button>
+  </div>
 </div>
 
-<div class="form-group">
-  <button class="btn btn-success" disabled={{eq canProcess false}} {{action "process"}}>
-    {{entypo-icon "upload-to-cloud"}} Process
-  </button>
-  <button class="btn btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
-    {{entypo-icon "cross"}} Clear
-  </button>
-</div>
-{{#if processing}}
-  <small class="text-muted">Processing, please wait...</small>
-  {{progress-bar}}
-{{/if}}
 
 {{#if trackedResult}}
   <div class="form-group">
@@ -46,18 +44,21 @@
   </div>
 {{else}}
   {{#if hasFinished}}
-    <h5>
-      {{#if results.length}}Found {{results.length}} Link(s){{else}}No links found.{{/if}}
-    </h5>
+
+    <h4 class="pl-3 mt-4">{{#if results.length}}Found {{results.length}} Link(s){{else}}No links found.{{/if}}</h4>
     {{#each results as |url|}}
       {{extracted-url url=url}}
     {{/each}}
+
+
     {{#if results.length}}
-      <div class="form-group">
-        <button class="btn btn-success" {{action "createdTrackedHtml"}}>
-          {{entypo-icon "edit"}} Generate HTML
-        </button>
-      </div>
+      <button class="btn btn-lg btn-success" {{action "createdTrackedHtml"}}>
+        {{entypo-icon "edit"}} Generate HTML
+      </button>
     {{/if}}
+
   {{/if}}
 {{/if}}
+
+
+

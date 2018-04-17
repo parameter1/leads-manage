@@ -15,7 +15,7 @@
 
 <div class="row">
   <div class="col">
-    <button class="btn btn-primary btn-sm" {{action "toggleSettings" true}}>
+    <button class="btn btn-primary" {{action "toggleSettings" true}}>
       {{entypo-icon "cog"}}
       {{#if showSettings}}{{entypo-icon "chevron-small-down"}}{{else}}{{entypo-icon "chevron-small-up"}}{{/if}}
     </button>
@@ -41,11 +41,11 @@
   </div>
   <div class="row">
     <div class="col">
-      <button class="btn btn-outline-secondary btn-sm" {{action "crawl" false}}>
+      <button class="btn btn-secondary" {{action "crawl" false}}>
         {{entypo-icon "cycle"}} Crawl Again
       </button>
       <br>
-      <small class="text-muted">
+      <small>
         Last retrieved: {{ moment-from-now model.lastCrawledDate }}
       </small>
     </div>

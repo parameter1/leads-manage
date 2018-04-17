@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
+import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 
-export default Controller.extend({
+export default Controller.extend(LoadingMixin, {
   /**
    * Determines if the processor has finished.
    */
@@ -112,6 +113,7 @@ export default Controller.extend({
       if (!this.get('canProcess')) {
         return;
       }
+      this.showLoading();
       this.set('processing', true);
       this._clearValuesForPreProcess();
 
@@ -129,6 +131,7 @@ export default Controller.extend({
         .finally(() => {
           this.set('hasFinished', true);
           this.set('processing', false);
+          this.hideLoading();
         })
       ;
     },
