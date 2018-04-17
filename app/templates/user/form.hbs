@@ -1,13 +1,4 @@
 <div class="row">
-  <div class="col">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      {{input type="email" required="true" autocomplete="email" value=model.email class="form-control" id="email" placeholder="Email Address"}}
-    </div>
-  </div>
-</div>
-
-<div class="row">
   <div class="col-sm-6">
     <div class="form-group">
       <label for="givenName">First Name</label>
@@ -24,6 +15,10 @@
 
 <div class="row">
   <div class="col">
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      {{input type="email" required="true" autocomplete="email" value=model.email class="form-control" id="email" placeholder="Email Address"}}
+    </div>
     <div class="form-group">
       <label>Role/Permissions</label>
       {{#power-select
