@@ -5,15 +5,15 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right">
 
-      <a class="dropdown-item" {{action "displayUpdateProfile"}}>
+      <a class="dropdown-item" href="javascript:void(0)" {{action "displayUpdateProfile"}}>
         {{entypo-icon "user"}} {{user.model.givenName}} {{user.model.familyName}}
       </a>
-      <a class="dropdown-item" title="Change Password" {{action "displayChangePassword"}}>
+      <a class="dropdown-item" href="javascript:void(0)" title="Change Password" {{action "displayChangePassword"}}>
         {{entypo-icon "key"}} Change Password
       </a>
 
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" title="Logout" {{action "logout"}}>
+      <a class="dropdown-item" href="javascript:void(0)" title="Logout" {{action "logout"}}>
         {{entypo-icon "log-out"}} Logout
       </a>
     </div>

@@ -2,10 +2,11 @@
   <div class="col">
     <h3>{{ model.name }}</h3>
     <h5>{{ model.subject }}</h5>
-    <h6 class="mb-0">
-      Total Jobs Sent: {{model.sendCount}}
-    </h6>
+    <h6 class="mb-0">Jobs Sent: {{model.sendCount}}</h6>
   </div>
 </div>
 
 <hr>
+
+<small class="text-muted">Loading sent jobs, please wait...</small>
+{{progress-bar class="mb-0"}}

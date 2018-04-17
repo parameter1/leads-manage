@@ -1,11 +1,4 @@
-<div class="row">
-  <div class="col">
-    <h3 class="mb-0">
-      Customers
-    </h3>
-  </div>
-</div>
-<hr>
+{{#route-header}}Customers{{/route-header}}
 
 {{#paginate-models
   models=model
@@ -23,6 +16,4 @@
   {{partial 'customer/list'}}
 {{/paginate-models}}
 
-<button class="btn btn-success create float-right fixed-bottom" {{action (route-action "transitionTo" "customer.create")}}>
-  {{entypo-icon "pencil"}} Create
-</button>
+{{model-create-button click=(route-action "transitionTo" "customer.create")}}
