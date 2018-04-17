@@ -4,6 +4,6 @@ export default Component.extend({
   tagName: 'button',
   classNames: ['btn', 'btn-lg', 'btn-success', 'create', 'fixed-bottom', 'float-right'],
   attributeBindings: ['title'],
-  label: 'Create',
+  icon: '',
   title: 'Create New Record',
 });
