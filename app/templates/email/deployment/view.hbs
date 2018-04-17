@@ -1,12 +1,15 @@
-<div class="row">
-  <div class="col">
-    <h3>{{ model.name }}</h3>
-    <h5>{{ model.subject }}</h5>
-    <h6 class="mb-0">Jobs Sent: {{model.sendCount}}</h6>
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "email.deployment.index"}}Email Deployments{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<div class="card model-form">
+  <div class="card-body">
+    <h4 class="card-title">{{ model.subject }}</h4>
+    <h5>Jobs Sent: {{model.sendCount}}</h5>
+
+    <small class="text-muted">Loading sent jobs, please wait...</small>
+    {{progress-bar class="mb-0"}}
   </div>
 </div>
 
-<hr>
-
-<small class="text-muted">Loading sent jobs, please wait...</small>
-{{progress-bar class="mb-0"}}

@@ -1,4 +1,6 @@
-{{route-header title="Email Deployments"}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}Email Deployments{{/crumbs.item}}
+{{/nav-breadcrumbs}}
 
 {{#paginate-models
   models=model
