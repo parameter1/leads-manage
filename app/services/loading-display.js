@@ -1,13 +1,13 @@
 import Service from '@ember/service';
-import $ from 'jquery';
-
-const target = '#loading-trigger';
 
 export default Service.extend({
+  isShowing: false,
   show() {
-    $(target).show();
+    if (!this.get('isShowing')) {
+      this.set('isShowing', true);
+    }
   },
   hide() {
-    window.setTimeout(() => $(target).hide(), 250);
+    window.setTimeout(() => this.set('isShowing', false), 100);
   },
 });

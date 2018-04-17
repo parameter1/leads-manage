@@ -20,9 +20,14 @@ a[data-ember-action]:not(:disabled),
     cursor: pointer;
 }
 
-nav.navbar {
-  box-shadow: $z-depth-1-half;
+.main.progress {
+  border-radius: 0 !important;
+  height: 0.3rem;
 }
+
+// nav.navbar {
+//   box-shadow: $z-depth-1-half;
+// }
 
 .card.list-index {
   box-shadow: $z-depth-1;

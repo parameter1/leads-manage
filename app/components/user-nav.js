@@ -1,10 +1,11 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 
 import updateCurrentUserProfile from 'leads-manage/gql/mutations/update-current-user-profile';
 
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend(LoadingMixin, ComponentQueryManager, {
   session: inject(),
 
   isUpdateProfileOpen: false,
@@ -15,14 +16,14 @@ export default Component.extend(ComponentQueryManager, {
       this.set('isChangePasswordOpen', true);
     },
     logout() {
-      const loading = this.get('loadingDisplay');
-      loading.show();
-      this.get('session').invalidate().finally(() => loading.hide());
+      this.showLoading();
+      this.get('session').invalidate().finally(() => this.hideLoading());
     },
     displayUpdateProfile() {
       this.set('isUpdateProfileOpen', true);
     },
     saveProfile() {
+      this.showLoading();
       const mutation = updateCurrentUserProfile;
       const { givenName, familyName } = this.get('user.model');
       const input = { givenName, familyName };
@@ -33,6 +34,7 @@ export default Component.extend(ComponentQueryManager, {
           this.get('notify').success('User profile successfully updated.');
         })
         .catch(e => this.get('graphErrors').show(e))
+        .finally(() => this.hideLoading())
       ;
     },
   },

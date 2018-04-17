@@ -37,4 +37,10 @@ export default Route.extend(RouteQueryManager, {
     ;
   },
 
+  actions: {
+    // loading() {
+    //   console.info('loading in customer.index');
+    // },
+  },
+
 });

@@ -2,8 +2,9 @@ import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 
-export default Route.extend(ApplicationRouteMixin, RouteQueryManager, {
+export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManager, {
   session: inject(),
 
   beforeModel() {
@@ -34,6 +35,10 @@ export default Route.extend(ApplicationRouteMixin, RouteQueryManager, {
      */
     transitionTo(name) {
       this.transitionTo(name);
+    },
+    loading(transition) {
+      this.showLoading();
+      transition.finally(() => this.hideLoading());
     },
   },
 });
