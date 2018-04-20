@@ -21,7 +21,7 @@ export default Service.extend({
       return this.handleNetworkError(e.networkError);
     }
     if (e.graphQLErrors) {
-      return new Error('Handling of graphQLError objects is not yet implemented.');
+      return e;
     }
     if (e.message) {
       return e;
