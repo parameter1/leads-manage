@@ -13,6 +13,7 @@
   "scripts": {
     "prestart": "$npm_package_docker_dev_install",
     "start": "$npm_package_docker_dev_up",
+    "start:local": "ember s --proxy=http://localhost:8288 --port=4206",
     "stop": "$npm_package_docker_dev_down",
     "terminal": "docker exec -it leadsmanage_app_1 /bin/bash",
     "build": "ember build",
