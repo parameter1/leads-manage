@@ -13,14 +13,23 @@ a[data-ember-action]:not(:disabled),
     cursor: pointer;
 }
 
+// Add styling to ember-notify alerts
+.ember-notify.alert {
+  box-shadow: $z-depth-2;
+  border: none !important;
+  min-width: 300px;
+  width: inherit !important;
+}
+
 .main.progress {
   border-radius: 0 !important;
   height: 0.3rem;
 }
 
-// nav.navbar {
-//   box-shadow: $z-depth-1-half;
-// }
+.dropdown-menu {
+  box-shadow: $z-depth-2;
+  border: none !important;
+}
 
 .card.list-index {
   box-shadow: $z-depth-1;
