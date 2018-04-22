@@ -36,11 +36,4 @@ export default Route.extend(RouteQueryManager, {
       .catch(e => this.get('graphErrors').show(e))
     ;
   },
-
-  actions: {
-    // loading() {
-    //   console.info('loading in customer.index');
-    // },
-  },
-
 });
