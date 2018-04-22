@@ -1,1 +1,45 @@
-{{outlet}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "email.send.index"}}Email Sends{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<div class="card model-form">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h5 class="card-title">Subject: {{ model.subject }} (<a href="{{model.url}}" target="_blank" rel="noopener noreferrer">Preview</a>)</h5>
+    <p class="mb-1">From: {{model.fromName}}</p>
+    <p class="mb-1">Sent: {{moment-format model.sentDate 'MMM Do, YYYY h:mm a'}}</p>
+    <p class="mb-0">Master Deployment: {{#link-to "email.deployment.view" model.deployment.id}}{{model.deployment.name}}{{/link-to}}</p>
+    <hr>
+    <h5 class="card-title">Metrics</h5>
+    <table class="table table-sm table-responsive">
+      <thead>
+        <tr>
+          <th>Sent</th>
+          <th>Delivered</th>
+          <th>Delivery Rate</th>
+          <th>Unique Opens</th>
+          <th>Unique Clicks</th>
+          <th>Open Rate</th>
+          <th>Click Rate (O / D)</th>
+          <th>Unsubscribes</th>
+          <th>Bounces</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ format-number model.metrics.sent format="0,0" }}</td>
+          <td>{{ format-number model.metrics.delivered format="0,0" }}</td>
+          <td>{{ format-number model.metrics.deliveryRate format="00.0%" }}</td>
+          <td>{{ format-number model.metrics.uniqueOpens format="0,0" }}</td>
+          <td>{{ format-number model.metrics.uniqueClicks format="0,0" }}</td>
+          <td>{{ format-number model.metrics.openRate format="00.0%" }}</td>
+          <td>{{ format-number model.metrics.clickToOpenRate format="00.0%" }} / {{ format-number model.metrics.clickToDeliveredRate format="00.0%" }}</td>
+          <td>{{ format-number model.metrics.unsubscribes format="0,0" }}</td>
+          <td>{{ format-number model.metrics.bounces format="0,0" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer"></div>
+</div>

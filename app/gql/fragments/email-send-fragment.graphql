@@ -1,16 +1,24 @@
+#import 'leads-manage/gql/fragments/email-send-list'
+
 fragment EmailSendFragment on EmailSend {
-  id
-  name
-  subject
-  sentDate
-  fromName
-  fromEmail
+  ...EmailSendListFragment
   url
-  externalSource {
-    identifier
-    namespace
-    lastRetrievedAt
-    createdAt
-    updatedAt
+  deployment {
+    id
+    name
+    sendCount
+  }
+  metrics {
+    sent
+    delivered
+    deliveryRate
+    uniqueOpens
+    uniqueClicks
+    unsubscribes
+    openRate
+    clickToOpenRate
+    clickToDeliveredRate
+    forwards
+    bounces
   }
 }
