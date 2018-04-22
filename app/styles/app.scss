@@ -17,8 +17,6 @@ a[data-ember-action]:not(:disabled),
 .ember-notify.alert {
   box-shadow: $z-depth-2;
   border: none !important;
-  min-width: 300px;
-  width: inherit !important;
 }
 
 .main.progress {
