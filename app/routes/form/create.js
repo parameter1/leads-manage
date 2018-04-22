@@ -19,7 +19,9 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
     create({ customer, externalSource }) {
       this.showLoading();
       const customerId = customer ? get(customer, 'id') : undefined;
-      const payload = { customerId, externalSource };
+      const { identifier, namespace } = externalSource;
+
+      const payload = { customerId, externalSource: { identifier, namespace } };
       const variables = { input: { payload } };
       return this.get('apollo').mutate({ mutation, variables }, 'createForm')
         .then(response => this.transitionTo('form.edit', response.id))
