@@ -2,18 +2,22 @@
   {{#crumbs.item active=true}}Email Deployments{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
-{{#paginate-models
-  models=model
-  routeName='email.deployment.index'
-  totalCount=totalCount
-  hasNextPage=hasNextPage
-  endCursor=endCursor
-  first=first
-  after=after
-  ascending=ascending
-  sortBy=sortBy
-  sortOptions=sortOptions
-  as |model|
-}}
-  {{partial 'email/deployment/list'}}
-{{/paginate-models}}
+<div class="row">
+  <div class="col">
+    <div class="card list-index">
+      <div class="card-header"></div>
+      <div class="card-body">
+        {{partial "list-controls"}}
+      </div>
+      <div class="list-group list-group-flush">
+        {{#each model as |item|}}
+          {{partial "email/deployment/list-item"}}
+        {{else}}
+          <h5 class="list-group-item mb-0">No results.</h5>
+        {{/each}}
+      </div>
+      <div class="card-footer border-0"></div>
+    </div>
+  </div>
+</div>
+

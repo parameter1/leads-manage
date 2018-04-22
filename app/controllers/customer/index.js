@@ -1,14 +1,13 @@
-import AbstractPaginable from '../abstract-paginable';
+import ListController from '../abstract-list';
 
-export default AbstractPaginable.extend({
+export default ListController.extend({
   init() {
-    this.set('queryParams', ['first', 'after', 'sortBy', 'ascending']);
-    // Sort options are specific to the model in question.
+    this._super(...arguments);
     this.set('sortOptions', [
-      { key: null, label: 'Created' },
+      { key: 'createdAt', label: 'Created' },
       { key: 'updatedAt', label: 'Updated' },
       { key: 'name', label: 'Name' },
     ]);
-    this._super(...arguments);
+    this.set('sortBy', 'updatedAt');
   },
 });
