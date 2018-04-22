@@ -4,6 +4,10 @@ fragment FormListFragment on Form {
   id
   name
   description
+  customer {
+    id
+    name
+  }
   externalSource {
     ...ExternalSourceFragment
   }

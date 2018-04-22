@@ -3,8 +3,4 @@
 fragment FormFragment on Form {
   ...FormListFragment
   previewUrl
-  customer {
-    id
-    name
-  }
 }
