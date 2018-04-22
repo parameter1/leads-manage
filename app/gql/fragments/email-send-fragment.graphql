@@ -1,4 +1,5 @@
 #import 'leads-manage/gql/fragments/email-send-list'
+#import 'leads-manage/gql/fragments/email-send-metrics'
 
 fragment EmailSendFragment on EmailSend {
   ...EmailSendListFragment
@@ -14,16 +15,6 @@ fragment EmailSendFragment on EmailSend {
     lastRetrievedAt
   }
   metrics {
-    sent
-    delivered
-    deliveryRate
-    uniqueOpens
-    uniqueClicks
-    unsubscribes
-    openRate
-    clickToOpenRate
-    clickToDeliveredRate
-    forwards
-    bounces
+    ...EmailSendMetricsFragment
   }
 }

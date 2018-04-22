@@ -1,17 +1,16 @@
+#import 'leads-manage/gql/fragments/email-deployment-list'
+#import 'leads-manage/gql/fragments/email-send-metrics'
+
 fragment EmailDeploymentFragment on EmailDeployment {
-  id
-  name
-  subject
-  sendCount
-  category {
-    identifier
-    folder
+  ...EmailDeploymentListFragment
+  sends {
+    id
+    sentDate
+    metrics {
+      ...EmailSendMetricsFragment
+    }
   }
-  externalSource {
-    identifier
-    namespace
-    lastRetrievedAt
-    createdAt
-    updatedAt
+  metrics {
+    ...EmailSendMetricsFragment
   }
 }

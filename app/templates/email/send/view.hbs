@@ -15,7 +15,7 @@
     <p class="mb-0">Master Deployment: {{#link-to "email.deployment.view" model.deployment.id}}{{model.deployment.name}}{{/link-to}}</p>
     <hr>
     <h5 class="card-title">Metrics</h5>
-    <table class="table table-sm table-responsive">
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th>Sent</th>
@@ -25,7 +25,7 @@
           <th>Unique Clicks</th>
           <th>Open Rate</th>
           <th>Click Rate (O / D)</th>
-          <th>Unsubscribes</th>
+          <th>Unsubs</th>
           <th>Bounces</th>
         </tr>
       </thead>
@@ -54,7 +54,7 @@
     </p>
   </div>
   <div class="card-footer">
-    <button class="btn btn-primary" disabled={{isRefreshing}} {{action (route-action "refresh" model.id)}}>
+    <button class="btn btn-primary" disabled={{isRefreshing}} {{action "refresh" model.id}}>
       {{entypo-icon "cycle"}} Refresh Send Data
     </button>
   </div>
