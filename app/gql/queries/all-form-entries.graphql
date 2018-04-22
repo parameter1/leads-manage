@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/form-entry-list'
+
+query allFormEntries($formId: String!, $pagination: PaginationInput, $sort: FormEntrySortInput) {
+  allFormEntries(formId: $formId, pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...FormEntryListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

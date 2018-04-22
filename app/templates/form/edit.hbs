@@ -4,7 +4,7 @@
 {{/nav-breadcrumbs}}
 
 <form {{action (route-action "update" model) on="submit"}}>
-  <div class="card model-form">
+  <div class="card model-form mb-4">
     <div class="card-header"></div>
     <div class="card-body">
       {{ partial "form/form" }}
@@ -24,3 +24,13 @@
     </div>
   </div>
 </form>
+
+<div class="card model-form">
+  <div class="card-header">
+    <h5 class="mb-0">{{entypo-icon "v-card" class="text-primary"}} Manage Leads for &quot;{{ model.name }}&quot;</h5>
+  </div>
+  <div class="card-body">{{outlet}}</div>
+  <div class="card-footer">
+    {{#link-to "form.edit.entries" class="btn btn-info"}}{{entypo-icon "download"}} Load Entries{{/link-to}}
+  </div>
+</div>

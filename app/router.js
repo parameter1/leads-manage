@@ -32,7 +32,9 @@ Router.map(function() {
     });
   });
   this.route('form', function() {
-    this.route('edit', { path: ':id' });
+    this.route('edit', { path: ':id' }, function() {
+      this.route('entries');
+    });
     this.route('create');
   });
 });
