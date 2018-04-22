@@ -22,7 +22,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
       const payload = { customerId, externalSource: { identifier, namespace } };
       const variables = { input: { id, payload } };
       return this.get('apollo').mutate({ mutation, variables }, 'updateForm')
-        .then(() => this.get('notify').success('Form successfully updated.'))
+        .then(() => this.get('notify').info('Form successfully updated.'))
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => this.hideLoading())
       ;
@@ -32,6 +32,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
       const mutation = deleteForm;
       const variables = { input: { id } };
       return this.get('apollo').mutate({ mutation, variables }, 'deleteForm')
+        .then(() => this.get('notify').info('Form successfully deleted.'))
         .then(() => this.transitionTo(routeName))
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => this.hideLoading())

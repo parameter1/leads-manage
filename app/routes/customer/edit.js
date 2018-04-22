@@ -20,7 +20,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
       const input = { id, payload };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')
-        .then(() => this.get('notify').success('Customer successfully updated.'))
+        .then(() => this.get('notify').info('Customer successfully updated.'))
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => this.hideLoading())
       ;
@@ -30,6 +30,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
       const mutation = deleteCustomer;
       const variables = { input: { id } };
       return this.get('apollo').mutate({ mutation, variables }, 'deleteCustomer')
+        .then(() => this.get('notify').info('Customer successfully deleted.'))
         .then(() => this.transitionTo(routeName))
         .catch(e => this.get('graphErrors').show(e))
         .finally(() => this.hideLoading())
