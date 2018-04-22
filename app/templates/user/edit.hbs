@@ -1,5 +1,5 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item}}{{#link-to "user.index"}}Users{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "user.index"}}{{entypo-icon "user"}} Users{{/link-to}}{{/crumbs.item}}
   {{#crumbs.item active=true}}{{ model.givenName }} {{ model.familyName }}{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
