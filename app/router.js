@@ -31,6 +31,10 @@ Router.map(function() {
       this.route('view', { path: ':id' });
     });
   });
+  this.route('form', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
 });
 
 export default Router;
