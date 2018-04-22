@@ -22,7 +22,7 @@ export default Route.extend(RouteQueryManager, {
   setPagination(pagination) {
     const { totalCount } = pagination;
     const { hasNextPage, endCursor } = pagination.pageInfo;
-    this.controllerFor('form.index').setProperties({ totalCount, hasNextPage, endCursor });
+    this.controllerFor('form.edit.entries').setProperties({ totalCount, hasNextPage, endCursor });
     return pagination.edges.map(node => node.node);
   },
 
