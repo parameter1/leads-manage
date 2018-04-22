@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
-import LoadingMixin from 'leads-manage/mixins/loading-mixin';
+import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import mutation from 'leads-manage/gql/mutations/create-user';
 
-export default Route.extend(LoadingMixin, RouteQueryManager, {
+export default Route.extend(FormMixin, RouteQueryManager, {
   model() {
     return {
       role: 'Restricted',
@@ -20,7 +20,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
       confirmPassword,
       role,
     }) {
-      this.showLoading();
+      this.startRouteAction();
       const payload = {
         email,
         givenName,
@@ -34,7 +34,7 @@ export default Route.extend(LoadingMixin, RouteQueryManager, {
         .then(response => this.transitionTo('user.edit', response.id))
         .then(() => this.get('notify').info('User created successfully.'))
         .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.hideLoading())
+        .finally(() => this.endRouteAction())
       ;
     },
   },

@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
-import LoadingMixin from 'leads-manage/mixins/loading-mixin';
+import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import mutation from 'leads-manage/gql/mutations/create-form';
 
-export default Route.extend(RouteQueryManager, LoadingMixin, {
+export default Route.extend(RouteQueryManager, FormMixin, {
   model() {
     return {
       externalSource: {
@@ -17,7 +17,7 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
 
   actions: {
     create({ customer, externalSource }) {
-      this.showLoading();
+      this.startRouteAction();
       const customerId = customer ? get(customer, 'id') : undefined;
       const { identifier, namespace } = externalSource;
 
@@ -27,7 +27,7 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
         .then(response => this.transitionTo('form.edit', response.id))
         .then(() => this.get('notify').info('Form created successfully.'))
         .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.hideLoading())
+        .finally(() => this.endRouteAction())
       ;
     },
   },
