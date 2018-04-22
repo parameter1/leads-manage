@@ -5,7 +5,7 @@
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{item.name}}</h5>
     {{#if item.externalSource.createdAt}}
-      <small>Created: {{moment-format item.externalSource.createdAt 'MMM Do, YYYY h:mm a'}}</small>
+      <small>{{entypo-icon "clock "}} Created {{moment-format item.externalSource.createdAt 'MMM Do, YYYY h:mm a'}}</small>
     {{/if}}
   </div>
 

@@ -4,7 +4,9 @@
 }}
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{item.givenName}} {{item.familyName}}</h5>
-    <small>{{#if item.updatedAt}}{{moment-format item.updatedAt "MMM Do, YYYY h:mm a"}}{{/if}}</small>
+    {{#if item.updatedAt}}
+      <small>{{entypo-icon "clock "}} Updated {{moment-format item.updatedAt "MMM Do, YYYY h:mm a"}}</small>
+    {{/if}}
   </div>
   <div class="mb-1">{{item.email}}</div>
 
