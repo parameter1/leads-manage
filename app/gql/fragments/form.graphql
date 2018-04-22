@@ -1,0 +1,10 @@
+#import 'leads-manage/gql/fragments/form-list'
+
+fragment FormListFragment on Form {
+  ...FormListFragment
+  previewUrl
+  customer {
+    id
+    name
+  }
+}

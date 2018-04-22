@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/form'
+
+query form($input: ModelIdInput!) {
+  form(input: $input) {
+    ...FormFragment
+  }
+}

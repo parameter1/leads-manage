@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/form-list'
+
+query allForms($pagination: PaginationInput, $sort: FormSortInput) {
+  allForms(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...FormListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
