@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
 import MenuMixin from 'leads-manage/components/list-controls/menu-mixin';
 
 export default Component.extend(MenuMixin, {

@@ -42,12 +42,16 @@ export default Component.extend({
         return;
       }
       this.set('isShowing', true);
-      this.sendAction('onShowing')
+      if (this.get('onShowing')) {
+        this.get('onShowing')();
+      }
       const instance = this.$();
       instance.on('shown.bs.modal', () => {
         this.set('isShowing', false);
         this.set('isShown', true);
-        this.sendAction('onShown');
+        if (this.get('onShown')) {
+          this.get('onShown')();
+        }
       });
 
       instance.modal('show');
@@ -76,7 +80,9 @@ export default Component.extend({
       instance.on('hidden.bs.modal', () => {
         if (!this.get('isDestroyed')) {
           this.set('isHidden', true);
-          this.sendAction('onHidden');
+          if (this.get('onHidden')) {
+            this.get('onHidden')();
+          }
           this.set('show', false);
         }
       });

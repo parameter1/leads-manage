@@ -51,10 +51,7 @@ export default Service.extend({
     };
     return this.get('apollo')
       .mutate({ mutation: loginUser, variables }, "loginUser")
-      .then(auth => {
-        console.info('submit then')
-        return auth.session
-      })
+      .then(auth => auth.session)
     ;
   },
 

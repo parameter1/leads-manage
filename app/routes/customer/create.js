@@ -18,7 +18,7 @@ export default Route.extend(RouteQueryManager, LoadingMixin, {
         .then(response => this.transitionTo('customer.edit', response.id))
         .then(() => this.get('notify').info('Customer created successfully.'))
         .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.hideLoading());
+        .finally(() => this.hideLoading())
       ;
     },
   },
