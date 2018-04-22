@@ -8,6 +8,11 @@ fragment EmailSendFragment on EmailSend {
     name
     sendCount
   }
+  externalSource {
+    identifier
+    namespace
+    lastRetrievedAt
+  }
   metrics {
     sent
     delivered
