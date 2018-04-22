@@ -1,6 +1,6 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item}}{{#link-to "form.index"}}Forms{{/link-to}}{{/crumbs.item}}
-  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "form.index"}}{{entypo-icon "text-document"}} Forms{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }} (<a href="{{model.previewUrl}}" target="_blank" rel="noopener noreferrer">view</a>){{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
 <form {{action (route-action "update" model) on="submit"}}>
