@@ -1,0 +1,23 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}Email Sends{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<div class="row">
+  <div class="col">
+    <div class="card list-index">
+      <div class="card-header"></div>
+      <div class="card-body">
+        {{partial "list-controls"}}
+      </div>
+      <div class="list-group list-group-flush">
+        {{#each model as |item|}}
+          {{partial "email/send/list-item"}}
+        {{else}}
+          <h5 class="list-group-item mb-0">No results.</h5>
+        {{/each}}
+      </div>
+      <div class="card-footer border-0"></div>
+    </div>
+  </div>
+</div>
+

@@ -1,12 +1,11 @@
-fragment EmailDeploymentFragment on EmailDeployment {
+fragment EmailSendFragment on EmailSend {
   id
   name
   subject
-  sendCount
-  category {
-    identifier
-    folder
-  }
+  sentDate
+  fromName
+  fromEmail
+  url
   externalSource {
     identifier
     namespace

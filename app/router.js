@@ -27,6 +27,9 @@ Router.map(function() {
     this.route('deployment', function() {
       this.route('view', { path: ':id' });
     });
+    this.route('send', function() {
+      this.route('view', { path: ':id' });
+    });
   });
 });
 

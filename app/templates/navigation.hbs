@@ -18,6 +18,7 @@
             Email
           </a>
           <div class="dropdown-menu" aria-labelledby="navEmailDropdown">
+            {{#link-to "email.send" class="dropdown-item"}}Sends{{/link-to}}
             {{#link-to "email.deployment" class="dropdown-item"}}Deployments{{/link-to}}
           </div>
         </li>

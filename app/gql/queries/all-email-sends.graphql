@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/email-send-fragment'
+
+query allEmailSends($pagination: PaginationInput, $sort: EmailSendSortInput) {
+  allEmailSends(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...EmailSendFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
