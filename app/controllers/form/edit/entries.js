@@ -8,6 +8,7 @@ export default ListController.extend(LoadingMixin, {
       { key: 'identifier', label: 'Form ID' },
     ]);
     this.set('sortBy', 'identifier');
+    this.set('first', 50);
     this.set('ascending', true);
   },
 });
