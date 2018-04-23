@@ -1,0 +1,5 @@
+{{yield nodes}}
+
+{{#if hasNextPage}}
+  <button class="btn btn-primary" {{action "fetchMore"}}>Load More</button>
+{{/if}}
