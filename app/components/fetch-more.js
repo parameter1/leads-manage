@@ -14,6 +14,8 @@ export default Component.extend({
   endCursor: null,
   resultKey: null,
 
+  isFetching: false,
+
   nodes: computed('edges.@each.node', function() {
     return this.get('edges').map(edge => edge.node);
   }),
@@ -33,6 +35,7 @@ export default Component.extend({
      * @see https://www.apollographql.com/docs/react/features/pagination.html
      */
     fetchMore() {
+      this.set('isFetching', true);
       this.sendEvent('on-fetch-start');
       const observable = this.get('query');
       const endCursor = this.get('endCursor');
@@ -64,7 +67,10 @@ export default Component.extend({
         } else {
           throw e;
         }
-      }).finally(() => this.sendEvent('on-fetch-end'));
+      }).finally(() => {
+        this.set('isFetching', false);
+        this.sendEvent('on-fetch-end');
+      });
     },
   },
 });
