@@ -26,11 +26,14 @@
 </form>
 
 <div class="card model-form">
-  <div class="card-header">
-    <h5 class="mb-0">{{entypo-icon "v-card" class="text-primary"}} Manage Leads for &quot;{{ model.name }}&quot;</h5>
+  <div class="card-header"></div>
+  <div class="card-body">
+    <h5 class="mb-0">
+      {{#link-to "form.edit.entries"}}
+        {{entypo-icon "v-card"}} Manage Leads for &quot;{{ model.name }}&quot;
+      {{/link-to}}
+    </h5>
+    {{outlet}}
   </div>
-  <div class="card-body">{{outlet}}</div>
-  <div class="card-footer">
-    {{#link-to "form.edit.entries" class="btn btn-info"}}{{entypo-icon "download"}} Load Entries{{/link-to}}
-  </div>
+  <div class="card-footer"></div>
 </div>
