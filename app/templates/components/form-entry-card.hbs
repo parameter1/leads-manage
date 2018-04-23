@@ -18,5 +18,15 @@
         </div>
       {{/if}}
     {{/each}}
+    {{#if canEdit}}
+      <div class="btn-group dropup float-right">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{entypo-icon "cog"}}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          {{identity-card/action labelSuffix="for Form" inactive=entry.inactive click=(action 'toggleActivation')}}
+        </div>
+      </div>
+    {{/if}}
   </div>
 </div>

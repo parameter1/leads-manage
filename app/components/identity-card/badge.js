@@ -12,6 +12,6 @@ export default Component.extend({
   }),
 
   _typeClass: computed('inactive', function() {
-    return this.get('inactive') ? 'badge-warning' : 'badge-success';
+    return this.get('inactive') ? 'badge-danger' : 'badge-success';
   }),
 });

@@ -20,4 +20,10 @@ export default Component.extend({
       return 0 === id.indexOf('Field');
     });
   }),
+
+  actions: {
+    toggleActivation() {
+      this.toggleProperty('entry.inactive');
+    },
+  },
 });
