@@ -8,7 +8,8 @@
   <div class="card-body">
     <h5 class="card-title">Subject: {{ model.subject }}</h5>
 
-    <p class="mb-0">Jobs Sent: {{model.sendCount}}</p>
+    <p class="mb-1">Jobs Sent: {{model.sendCount}}</p>
+    <p class="mb-0">Category: {{#link-to "email.category.view" model.category.id}}{{model.category.fullName}}{{/link-to}}</p>
     <hr>
     <h5 class="card-title">Sends</h5>
     <table class="table table-striped table-responsive mb-0">
