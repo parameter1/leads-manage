@@ -11,6 +11,8 @@
   edges=model.edges
   hasNextPage=model.pageInfo.hasNextPage
   endCursor=model.pageInfo.endCursor
+  on-fetch-start=(action showLoading)
+  on-fetch-end=(action hideLoading)
   resultKey="allFormEntries" as |fetch|
 }}
   <ul>
@@ -19,6 +21,8 @@
     {{/each}}
   </ul>
   {{#if fetch.hasNextPage}}
-    <button class="btn btn-primary" {{action fetch.actions.loadMore}}>Load More</button>
+    <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+      {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+    </button>
   {{/if}}
 {{/fetch-more}}
