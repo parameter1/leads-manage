@@ -1,5 +1,7 @@
-{{yield nodes}}
-
-{{#if hasNextPage}}
-  <button class="btn btn-primary" {{action "fetchMore"}}>Load More</button>
-{{/if}}
+{{yield (hash
+  nodes=nodes
+  hasNextPage=hasNextPage
+  actions=(hash
+    loadMore=(action "fetchMore")
+  )
+)}}

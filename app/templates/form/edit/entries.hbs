@@ -11,11 +11,14 @@
   edges=model.edges
   hasNextPage=model.pageInfo.hasNextPage
   endCursor=model.pageInfo.endCursor
-  resultKey="allFormEntries" as |nodes|
+  resultKey="allFormEntries" as |fetch|
 }}
   <ul>
-    {{#each nodes as |node|}}
+    {{#each fetch.nodes as |node|}}
       <li>Entry #: {{node.identifier}}</li>
     {{/each}}
   </ul>
+  {{#if fetch.hasNextPage}}
+    <button class="btn btn-primary" {{action fetch.actions.loadMore}}>Load More</button>
+  {{/if}}
 {{/fetch-more}}
