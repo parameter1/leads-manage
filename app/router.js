@@ -30,6 +30,9 @@ Router.map(function() {
     this.route('send', function() {
       this.route('view', { path: ':id' });
     });
+    this.route('category', function() {
+      this.route('view', { path: ':id' });
+    });
   });
   this.route('form', function() {
     this.route('edit', { path: ':id' }, function() {
