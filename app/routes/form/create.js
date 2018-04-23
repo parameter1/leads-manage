@@ -11,6 +11,7 @@ export default Route.extend(RouteQueryManager, FormMixin, {
       externalSource: {
         identifier: '',
         namespace: 'wufoo',
+        isNew: true,
       }
     };
   },

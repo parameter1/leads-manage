@@ -8,7 +8,14 @@
   <div class="col-6">
     <div class="form-group">
       <label for="form-identifier">Identifier</label>
-      {{input id="form-identifier" type="text" required=true value=model.externalSource.identifier placeholder="Example: znngl1c0ds77a2" class="form-control"}}
+      {{input id="form-identifier"
+        type="text"
+        required=true
+        value=model.externalSource.identifier
+        disabled=(eq model.isNew false)
+        placeholder="Example: znngl1c0ds77a2"
+        class="form-control"
+      }}
     </div>
   </div>
 </div>

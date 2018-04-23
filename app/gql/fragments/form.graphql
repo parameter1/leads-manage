@@ -3,4 +3,5 @@
 fragment FormFragment on Form {
   ...FormListFragment
   previewUrl
+  isNew
 }
