@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { getObservable } from 'ember-apollo-client';
 
 import query from 'leads-manage/gql/queries/all-form-entries';
 
@@ -19,13 +20,6 @@ export default Route.extend(RouteQueryManager, {
     },
   },
 
-  setPagination(pagination) {
-    const { totalCount } = pagination;
-    const { hasNextPage, endCursor } = pagination.pageInfo;
-    this.controllerFor('form.edit.entries').setProperties({ totalCount, hasNextPage, endCursor });
-    return pagination.edges.map(node => node.node);
-  },
-
   model({ first, after, sortBy, ascending }) {
     const formId = this.modelFor('form.edit').get('id');
 
@@ -34,7 +28,11 @@ export default Route.extend(RouteQueryManager, {
     const variables = { formId, pagination, sort };
     if (!sortBy) delete variables.sort.field;
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allFormEntries')
-      .then(pagination => this.setPagination(pagination))
+      .then((result) => {
+        const controller = this.controllerFor('form.edit.entries');
+        controller.set('observable', getObservable(result));
+        return result;
+      })
       .catch(e => this.get('graphErrors').show(e))
     ;
   },

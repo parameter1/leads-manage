@@ -1,3 +1,21 @@
 <h5 class="card-title">
-  Found {{totalCount}} Record{{#if (gt totalCount 1)}}s{{/if}}
+  {{#if model.totalCount}}
+    Found {{model.totalCount}} Record{{#if (gt model.totalCount 1)}}s{{/if}}
+  {{else}}
+    No Records Found
+  {{/if}}
 </h5>
+
+{{#fetch-more
+  query=observable
+  edges=model.edges
+  hasNextPage=model.pageInfo.hasNextPage
+  endCursor=model.pageInfo.endCursor
+  resultKey="allFormEntries" as |nodes|
+}}
+  <ul>
+    {{#each nodes as |node|}}
+      <li>Entry #: {{node.identifier}}</li>
+    {{/each}}
+  </ul>
+{{/fetch-more}}
