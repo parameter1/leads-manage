@@ -1,1 +1,61 @@
-{{outlet}}
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "email.category.index"}}{{entypo-icon "tag"}} Email Categories{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<form {{action (route-action "update" model) on="submit"}}>
+  <div class="card model-form">
+    <div class="card-header"></div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="category-name">Name</label>
+            {{input
+              id="category-name"
+              type="text"
+              required=true
+              value=model.name
+              disabled=true
+              class="form-control"
+            }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="category-full-name">Full Name</label>
+            {{input
+              id="category-full-name"
+              type="text"
+              value=model.fullName
+              disabled=true
+              class="form-control"
+            }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Rollup Analytics?</label>
+          <div class="form-group mb-0">
+
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-success active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Yes
+              </label>
+              <label class="btn btn-success">
+                <input type="radio" name="options" id="option2" autocomplete="off"> No
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer"></div>
+  </div>
+</form>

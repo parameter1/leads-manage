@@ -2,4 +2,5 @@
 
 fragment EmailCategoryFragment on EmailCategory {
   ...EmailCategoryListFragment
+  name
 }
