@@ -1,0 +1,22 @@
+<div class="card mnh-100">
+  <div class="card-body">
+    {{#if canEdit}}
+      <p class="card-text mb-1">
+        {{identity-card/badge inactive=entry.inactive}}
+      </p>
+    {{/if}}
+    <small class="d-block card-text text-muted">
+      <a href="{{ form.previewUrl }}" target="_blank" rel="nopener noreferrer">{{ form.name }}</a>
+    </small>
+    <small class="d-block card-text">Entry No: {{ entry.identifier }}</small>
+    <small class="d-block card-text text-muted mb-2">{{moment-format entry.createdAt 'MM/DD/YYYY h:mm a'}}</small>
+    {{#each _filteredFields as |field|}}
+      {{#if (get entry.values field.ID)}}
+        <div class="mb-2">
+          <small class="d-block">{{ field.Title }}</small>
+          <p class="card-text mb-0">{{ get entry.values field.ID }}</p>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>

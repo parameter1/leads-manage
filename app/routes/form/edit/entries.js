@@ -21,15 +21,16 @@ export default Route.extend(RouteQueryManager, {
   },
 
   model({ first, after, sortBy, ascending }) {
-    const formId = this.modelFor('form.edit').get('id');
+    const controller = this.controllerFor('form.edit.entries');
+    const form = this.modelFor('form.edit');
+    controller.set('form', form);
 
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { formId, pagination, sort };
+    const variables = { formId: form.id, pagination, sort };
     if (!sortBy) delete variables.sort.field;
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allFormEntries')
       .then((result) => {
-        const controller = this.controllerFor('form.edit.entries');
         controller.set('observable', getObservable(result));
         return result;
       })

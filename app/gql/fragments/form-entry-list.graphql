@@ -4,4 +4,5 @@ fragment FormEntryListFragment on FormEntry {
   identifier
   inactive
   values
+  createdAt
 }

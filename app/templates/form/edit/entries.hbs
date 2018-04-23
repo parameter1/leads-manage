@@ -15,13 +15,13 @@
   on-fetch-end=(action hideLoading)
   resultKey="allFormEntries" as |fetch|
 }}
-  <ul>
+  <div class="row">
     {{#each fetch.nodes as |node|}}
-      <li>Entry #: {{node.identifier}}</li>
+      {{form-entry-card entry=node form=form canEdit=true class="mb-3"}}
     {{/each}}
-  </ul>
+  </div>
   {{#if fetch.hasNextPage}}
-    <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+    <button class="btn btn-primary btn-block btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
       {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
     </button>
   {{/if}}
