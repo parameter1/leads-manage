@@ -18,12 +18,22 @@ export default Component.extend({
     return this.get('edges').map(edge => edge.node);
   }),
 
+  hasEvent(name) {
+    const fn = this.get(name);
+    return fn && typeof fn === 'function';
+  },
+
+  sendEvent(name, ...args) {
+    if (this.hasEvent(name)) this.get(name)(...args, this);
+  },
+
   actions: {
     /**
      * Fetches more results using the observable from the original query.
      * @see https://www.apollographql.com/docs/react/features/pagination.html
      */
     fetchMore() {
+      this.sendEvent('on-fetch-start');
       const observable = this.get('query');
       const endCursor = this.get('endCursor');
       const resultKey = this.get('resultKey');
@@ -44,7 +54,17 @@ export default Component.extend({
       };
       const pagination = assign({}, observable.variables.pagination, { after: endCursor });
       const variables = { pagination };
-      observable.fetchMore({ updateQuery, variables })
+      observable.fetchMore({ updateQuery, variables }).then((result) => {
+        this.sendEvent('on-fetch-success', result);
+        return result;
+      }).catch((e) => {
+        const evt = 'on-fetch-error';
+        if (this.hasEvent(evt)) {
+          this.sendEvent(evt, e);
+        } else {
+          throw e;
+        }
+      }).finally(() => this.sendEvent('on-fetch-end'));
     },
   },
 });
