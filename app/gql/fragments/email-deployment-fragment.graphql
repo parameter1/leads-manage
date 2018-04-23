@@ -13,4 +13,8 @@ fragment EmailDeploymentFragment on EmailDeployment {
   metrics {
     ...EmailSendMetricsFragment
   }
+  category {
+    id
+    fullName
+  }
 }
