@@ -39,23 +39,22 @@
 
       <div class="row">
         <div class="col">
-          <label>Rollup Deployment Metrics?</label>
-          <div class="form-group mb-0">
-
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-success active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> Yes
-              </label>
-              <label class="btn btn-success">
-                <input type="radio" name="options" id="option2" autocomplete="off"> No
-              </label>
-            </div>
-
+          <div class="custom-control custom-checkbox">
+            {{input
+              id="rollup-metrics"
+              type="checkbox"
+              class="custom-control-input"
+              name="rollupMetrics"
+              checked=model.rollupMetrics
+            }}
+            <label class="custom-control-label" for="rollup-metrics">Rollup Deployment Metrics?</label>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card-footer"></div>
+    <div class="card-footer">
+      {{model-save-button disabled=isActionRunning}}
+    </div>
   </div>
 </form>
