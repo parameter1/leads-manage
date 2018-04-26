@@ -13,6 +13,14 @@ export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManag
   },
 
   actions: {
+    showLoading() {
+      this.showLoading();
+    },
+
+    hideLoading() {
+      this.hideLoading();
+    },
+
     /**
      *
      * @param {string} name The route name to transition to.
