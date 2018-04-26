@@ -25,7 +25,7 @@ export default Component.extend(LoadingMixin, ComponentQueryManager, {
     saveProfile() {
       this.showLoading();
       const mutation = updateCurrentUserProfile;
-      const { givenName, familyName } = this.get('user.model');
+      const { givenName, familyName } = this.get('model');
       const input = { givenName, familyName };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateCurrentUserProfile')

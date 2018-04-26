@@ -1,5 +1,5 @@
 import ApolloService from 'ember-apollo-client/services/apollo';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { inject } from '@ember/service';
 import { setContext } from 'apollo-link-context';
 import { Promise } from 'rsvp';
@@ -21,8 +21,9 @@ export default ApolloService.extend({
       return {};
     }
     return new Promise((resolve) => {
+      const data = this.get('session.data.authenticated.session');
       const headers = {
-        'Authorization': `Bearer ${this.get('session.data.authenticated.token')}`,
+        'Authorization': `Bearer ${get(data, 'token')}`,
       }
       resolve({ headers })
     });

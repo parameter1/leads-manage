@@ -1,59 +1,25 @@
 import Service, { inject } from '@ember/service';
 import { computed } from '@ember/object';
-import { isEmpty } from '@ember/utils';
-import { Promise } from 'rsvp';
+import ObjectQueryManager from 'ember-apollo-client/mixins/object-query-manager';
 
-import currentUser from 'leads-manage/gql/queries/current-user';
-
-export default Service.extend({
-  session: inject(),
-  apollo: inject(),
+export default Service.extend(ObjectQueryManager, {
   loadingDisplay: inject(),
+  session: inject(),
+  auth: inject(),
 
-  /**
-   * The user model from graph.
-   *
-   * @type {DS.Model}
-   */
-  model: null,
+  model: computed.reads('auth.response.user'),
 
-  /**
-   * The user id. Will be `null` if the there is not authenticated user.
-   *
-   * @type {?string}
-   */
-  uid: computed.reads('auth.uid'),
-
-  /**
-   * The auth object, or `null` if not authenticated.
-   *
-   * @type {?object}
-   */
-  auth: computed('isAuthenticated', 'session.currentUser.@each', function() {
-    if (!this.get('isAuthenticated')) {
-      return;
-    }
-    return this.get('session.currentUser');
-  }),
-
-  /**
-   * Determines if the user is authenticated, based on the session.
-   * Does not check whether a user model is present, or if the session is verified.
-   *
-   * @type {boolean}
-   */
   isAuthenticated: computed.reads('session.isAuthenticated'),
 
-  load() {
-    return new Promise((resolve) => {
-      const userId = this.get('session.data.authenticated.id');
-      if (isEmpty(userId)) return resolve();
+  role: computed('isAuthenticated', 'model.role', function() {
+    if (!this.get('isAuthenticated')) return null;
+    return this.get('model.role');
+  }),
 
-      return this.get('apollo').watchQuery({ query: currentUser }, 'currentUser')
-        .then(user => this.set('model', user))
-        .then(() => resolve())
-      ;
-    });
+  roleIs(...roles) {
+    const role = this.get('role');
+    if (!role) return false;
+    return roles.includes(role);
   },
 
   logout() {

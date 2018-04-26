@@ -1,9 +1,7 @@
-#import 'leads-manage/gql/fragments/session-fragment'
+#import 'leads-manage/gql/fragments/authentication'
 
 mutation loginUser($input: LoginInput!) {
 	loginUser(input: $input) {
-		session {
-			...SessionFragment
-		}
+		...AuthenticationFragment
 	}
 }

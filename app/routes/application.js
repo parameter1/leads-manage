@@ -7,25 +7,9 @@ import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManager, {
   session: inject(),
 
-  beforeModel() {
-    return this._loadCurrentUser();
-  },
-
-  sessionAuthenticated() {
-    this._super(...arguments);
-    this._loadCurrentUser().catch((e) => {
-      this.get('graphErrors').show(e);
-      this.get('session').invalidate();
-    });
-  },
-
   setupController(controller, model) {
     controller.set('session', this.get('session'));
     this._super(controller, model);
-  },
-
-  _loadCurrentUser() {
-    return this.get('user').load();
   },
 
   actions: {

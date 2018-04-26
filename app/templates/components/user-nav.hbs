@@ -6,7 +6,7 @@
     <div class="dropdown-menu dropdown-menu-right">
 
       <a class="dropdown-item" href="javascript:void(0)" {{action "displayUpdateProfile"}}>
-        {{entypo-icon "user"}} {{user.model.givenName}} {{user.model.familyName}}
+        {{entypo-icon "user"}} {{model.givenName}} {{model.familyName}}
       </a>
       <a class="dropdown-item" href="javascript:void(0)" title="Change Password" {{action "displayChangePassword"}}>
         {{entypo-icon "key"}} Change Password
@@ -33,11 +33,11 @@
           <div class="col">
             <div class="form-group">
               <label for="name">First Name</label>
-              {{input class="form-control" value=user.model.givenName}}
+              {{input class="form-control" value=model.givenName}}
             </div>
             <div class="form-group">
               <label for="name">Last Name</label>
-              {{input class="form-control" value=user.model.familyName}}
+              {{input class="form-control" value=model.familyName}}
             </div>
           </div>
         </div>
@@ -51,6 +51,6 @@
     </form>
   {{/bs-modal}}
 
-  {{change-password-modal isChangePasswordOpen=isChangePasswordOpen model=user.model}}
+  {{change-password-modal isChangePasswordOpen=isChangePasswordOpen model=model}}
 
 {{/if}}
