@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { assign } from '@ember/polyfills';
+import { isArray } from '@ember/array';
 
 export default Component.extend({
 
@@ -17,7 +18,9 @@ export default Component.extend({
   isFetching: false,
 
   nodes: computed('edges.@each.node', function() {
-    return this.get('edges').map(edge => edge.node);
+    const edges = this.get('edges');
+    if (!isArray(edges)) return [];
+    return edges.map(edge => edge.node);
   }),
 
   hasEvent(name) {
@@ -34,7 +37,7 @@ export default Component.extend({
      * Fetches more results using the observable from the original query.
      * @see https://www.apollographql.com/docs/react/features/pagination.html
      */
-    fetchMore() {
+    async fetchMore() {
       this.set('isFetching', true);
       this.sendEvent('on-fetch-start');
       const observable = this.get('query');
@@ -57,20 +60,21 @@ export default Component.extend({
       };
       const pagination = assign({}, observable.variables.pagination, { after: endCursor });
       const variables = { pagination };
-      observable.fetchMore({ updateQuery, variables }).then((result) => {
+      try {
+        const result = await observable.fetchMore({ updateQuery, variables });
         this.sendEvent('on-fetch-success', result);
         return result;
-      }).catch((e) => {
+      } catch (e) {
         const evt = 'on-fetch-error';
         if (this.hasEvent(evt)) {
           this.sendEvent(evt, e);
         } else {
           throw e;
         }
-      }).finally(() => {
+      } finally {
         this.set('isFetching', false);
         this.sendEvent('on-fetch-end');
-      });
+      }
     },
   },
 });
