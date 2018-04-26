@@ -16,78 +16,122 @@ export default Component.extend({
   isShown: false,
   isHiding: false,
   isHidden: true,
+  isTransitioning: false,
 
   didInsertElement() {
+    const $obj = this.$();
+    // Set the modal options.
+    this.setModalOptions($obj);
+    // Replace Bootstraps native dismiss with the internal action.
+    this.replaceDismiss($obj);
+    // Set modal event hooks
+    this.setModalHooks($obj);
+    // Show the modal, if directed to.
+    if (this.get('show')) this.send('show');
+  },
+
+  willDestroyElement() {
+    const $obj = this.$();
+    if (this.get('isShown')) {
+      // The modal was closed by sending `show=false` and it's still open.
+      // Remove internal events and then natively hide the modal and disposed once hidden.
+      $obj.off('hidden.bs.modal')
+      $obj.on('hidden.bs.modal', () => {
+        this.sendEvent('onHidden');
+        $obj.modal('dispose');
+      });
+      $obj.modal('hide');
+    } else {
+      $obj.modal('dispose');
+    }
+  },
+
+  actions: {
+    show() {
+      if (this.get('isTransitioning')) return;
+      this.$().modal('show');
+    },
+
+    hide() {
+      if (this.get('isTransitioning')) return;
+      this.$().modal('hide');
+    },
+  },
+
+  setModalOptions($obj) {
     const keys = ['backdrop', 'keyboard', 'focus'];
     const options = keys.reduce((opts, key) => {
       const value = this.get(key);
       if (isPresent(value)) opts[key] = value;
       return opts;
     }, { show: false });
-    this.$().modal(options);
-    this.send('show');
+    $obj.modal(options);
   },
 
-  willDestroyElement() {
-    const instance = this.$();
-    instance.on('hidden.bs.modal', () => {
-      instance.modal('dispose');
+  replaceDismiss($obj) {
+    // Turn off Bootstrap's native dismissing of the modal (via a click from a`[data-dismiss="modal"]` element or by clicking the backdrop)
+    $obj.off('click.dismiss.bs.modal');
+    // Replace with the Ember hide() action.
+    $obj.on('click.dismiss.bs.modal', (event) => {
+      if ($(event.currentTarget).is(event.target) && true === this.get('backdrop')) {
+        this.send('hide');
+      }
     });
-    this.send('hide');
   },
 
-  actions: {
-    show() {
-      if (this.get('isShowing')) {
-        return;
-      }
+  resetShowing() {
+    this.set('isShowing', false);
+    this.set('isShown', false);
+  },
+
+  resetHiding() {
+    this.set('isHiding', false);
+    this.set('isHidden', false);
+  },
+
+  setModalHooks($obj) {
+    // This event fires immediately when the show instance method is called.
+    // If caused by a click, the clicked element is available as the relatedTarget property of the event.
+    $obj.on('show.bs.modal', () => {
+      this.resetHiding();
+      this.set('isTransitioning', true);
       this.set('isShowing', true);
-      if (this.get('onShowing')) {
-        this.get('onShowing')();
-      }
-      const instance = this.$();
-      instance.on('shown.bs.modal', () => {
-        this.set('isShowing', false);
-        this.set('isShown', true);
-        if (this.get('onShown')) {
-          this.get('onShown')();
-        }
-      });
+      this.set('isShown', false);
+      this.sendEvent('onShow');
 
-      instance.modal('show');
+    });
 
-      // Turn off Bootstrap's native dismissing of the modal (via a click from a`[data-dismiss="modal"]` element or by clicking the backdrop)
-      instance.off('click.dismiss.bs.modal');
+    // This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete).
+    // If caused by a click, the clicked element is available as the relatedTarget property of the event.
+    $obj.on('shown.bs.modal', () => {
+      this.set('isShown', true);
+      this.set('isShowing', false);
+      this.set('isTransitioning', false);
+      this.sendEvent('onShown');
+    });
 
-      // Add a new handler to send the Ember hide() action.
-      instance.on('click.dismiss.bs.modal', (event) => {
-        if ($(event.currentTarget).is(event.target) && true === this.get('backdrop')) {
-          this.send('hide');
-        }
-      });
-    },
+    // This event is fired immediately when the hide instance method has been called.
+    $obj.on('hide.bs.modal', () => {
+      this.resetShowing();
+      this.set('isTransitioning', true);
+      this.set('isHiding', true);
+      this.set('isHidden', false);
+      this.sendEvent('onHide');
+    });
 
-    hide() {
-      if (this.get('isHiding')) {
-        return;
-      }
+    // This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete).
+    $obj.on('hidden.bs.modal', () => {
+      this.set('isHidden', true);
+      this.set('isHiding', false);
+      this.set('isTransitioning', false);
+      this.sendEvent('onHidden');
+      if (!this.get('isDestroyed')) this.set('show', false);
+    });
+  },
 
-      const instance = this.$();
-      if (!this.get('isDestroyed')) {
-        this.set('isHiding', true);
-      }
-      // @todo Add support for preventing close on false;
-      instance.on('hidden.bs.modal', () => {
-        if (!this.get('isDestroyed')) {
-          this.set('isHidden', true);
-          if (this.get('onHidden')) {
-            this.get('onHidden')();
-          }
-          this.set('show', false);
-        }
-      });
-      instance.modal('hide');
-    },
+  sendEvent(name) {
+    const fn = this.get(name);
+    if (fn && typeof fn === 'function') return fn();
   },
 
 });
