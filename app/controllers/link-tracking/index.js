@@ -78,14 +78,16 @@ export default Controller.extend(LoadingMixin, {
       this._clearValuesForPreProcess();
     },
 
-    createTrackedHtml() {
-      const loading = this.get('loading');
-      loading.show();
-      this.get('urlProcessor').insertTrackedLinks(this.get('html'))
-        .then(results => this.set('trackedResult', results.html))
-        .catch(e => this.get('errorProcessor').show(e))
-        .finally(() => loading.hide())
-      ;
+    async createTrackedHtml() {
+      this.showLoading();
+      try {
+        const result = await this.get('urlProcessor').generateTrackedHtml(this.get('html'));
+        this.set('trackedResult', result);
+      } catch (e) {
+        this.get('errorProcessor').show(e);
+      } finally {
+        this.hideLoading();
+      }
     },
 
     /**
