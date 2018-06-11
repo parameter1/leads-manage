@@ -2,13 +2,17 @@
   <div class="col">
     {{#if hasAssignments}}
       {{#if activeCustomer}}
-        <span class="badge badge-pill badge-info">Customer: {{activeCustomer.name}}</span>
+        <span class="badge badge-pill badge-info">
+          <span class="h6 d-block m-1">Customer: {{activeCustomer.name}}</span>
+        </span>
       {{/if}}
       {{#each uniqueTags as |tag|}}
-        <span class="badge badge-pill badge-info">Tag: {{tag.name}}</span>
+        <span class="badge badge-pill badge-info">
+          <span class="h6 d-block m-1">Tag: {{tag.name}}</span>
+        </span>
       {{/each}}
     {{else}}
-      <span class="text-info">No tracking currently assigned.</span>
+      <h6 class="text-info mb-0">No tracking currently assigned.</h6>
     {{/if}}
   </div>
 </div>

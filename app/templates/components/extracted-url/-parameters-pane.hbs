@@ -3,11 +3,11 @@
     {{#if paramsCount}}
       {{#each mergedParams as |param|}}
         <span class="badge badge-pill badge-info">
-          {{param.key}}={{param.encodedValue}}
+          <span class="h6 d-block m-1">{{param.key}}={{param.encodedValue}}</span>
         </span>
       {{/each}}
     {{else}}
-      <span class="text-info">No URL parameters currently set.</span>
+      <h6 class="text-info mb-0">No URL parameters currently set.</h6>
     {{/if}}
   </div>
 </div>
