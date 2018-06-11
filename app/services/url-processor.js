@@ -17,7 +17,7 @@ export default Service.extend({
   crawl(url, cache = true) {
     const variables = { url, cache };
     const resultKey = 'crawlUrl';
-    return this.get('apollo').watchQuery({ query: crawlUrl, variables }, resultKey);
+    return this.get('apollo').watchQuery({ query: crawlUrl, variables, fetchPolicy: 'network-only' }, resultKey);
   },
 
   /**
@@ -29,6 +29,6 @@ export default Service.extend({
   extractFrom(html) {
     const variables = { html };
     const resultKey = 'extractUrlsFromHtml';
-    return this.get('apollo').watchQuery({ query: extractUrlsFromHtml, variables }, resultKey);
+    return this.get('apollo').watchQuery({ query: extractUrlsFromHtml, variables, fetchPolicy: 'network-only' }, resultKey);
   },
 });
