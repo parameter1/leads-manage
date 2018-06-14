@@ -16,6 +16,7 @@
       <thead>
         <tr>
           <th>Sent Date</th>
+          <th>Test?</th>
           <th>Sent</th>
           <th>Delivered</th>
           <th>Delivery Rate</th>
@@ -30,7 +31,8 @@
       <tbody>
         {{#each model.sends as |send|}}
           <tr>
-            <td>{{#link-to "email.send.view" send.id}}{{ moment-format send.sentDate 'MMM Do, YYYY @ h:mm a' }}{{/link-to}}</td>
+            <td>{{#link-to "email.send.view" send.id}}{{ moment-format send.sentDate 'MM/DD/YYYY h:mma' }}{{/link-to}}</td>
+            <td>{{#if send.isTestSend}}Yes{{else}}No{{/if}}</td>
             <td>{{ format-number send.metrics.sent format="0,0" }}</td>
             <td>{{ format-number send.metrics.delivered format="0,0" }}</td>
             <td>{{ format-number send.metrics.deliveryRate format="00.0%" }}</td>
@@ -51,6 +53,7 @@
         <tfoot>
           <tr>
             <th>Totals:</th>
+            <th>&nbsp;</th>
             <th>{{ format-number model.metrics.sent format="0,0" }}</th>
             <th>{{ format-number model.metrics.delivered format="0,0" }}</th>
             <th>{{ format-number model.metrics.deliveryRate format="00.0%" }}</th>

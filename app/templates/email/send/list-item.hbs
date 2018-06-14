@@ -11,6 +11,9 @@
 
   <p class="mb-1">{{item.subject}}</p>
   <p class="mb-1">From {{item.fromName}}</p>
+  {{#if item.isTestSend}}
+    <p class="mb-1 text-info">Test Send</p>
+  {{/if}}
   <small class="d-block">ID: {{item.id}}</small>
   {{#if item.externalSource.identifier}}
     <small class="d-block">From {{item.externalSource.namespace}}: {{item.externalSource.identifier}}</small>

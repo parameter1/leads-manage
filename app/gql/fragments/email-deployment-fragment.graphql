@@ -6,6 +6,7 @@ fragment EmailDeploymentFragment on EmailDeployment {
   sends {
     id
     sentDate
+    isTestSend
     metrics {
       ...EmailSendMetricsFragment
     }
