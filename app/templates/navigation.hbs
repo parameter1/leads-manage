@@ -8,29 +8,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          {{#link-to "customer" class="nav-link"}}Customers{{/link-to}}
+          {{#link-to "customer" class="nav-link"}}{{entypo-icon "v-card"}} Customers{{/link-to}}
         </li>
         <li class="nav-item">
-          {{#link-to "link-tracking" class="nav-link"}}Link Tracking{{/link-to}}
+          {{#link-to "link-tracking" class="nav-link"}}{{entypo-icon "link"}} Link Tracking{{/link-to}}
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navEmailDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Email
+            {{entypo-icon "email"}} Email
           </a>
           <div class="dropdown-menu" aria-labelledby="navEmailDropdown">
-            {{#link-to "email.send" class="dropdown-item"}}Sends{{/link-to}}
-            {{#link-to "email.deployment" class="dropdown-item"}}Deployments{{/link-to}}
-            {{#link-to "email.category" class="dropdown-item"}}Categories{{/link-to}}
+            {{#link-to "email.send" class="dropdown-item d-flex justify-content-between"}}Sends {{entypo-icon "paper-plane"}}{{/link-to}}
+            {{#link-to "email.deployment" class="dropdown-item d-flex justify-content-between"}}Deployments {{entypo-icon "mail"}}{{/link-to}}
+            {{#link-to "email.category" class="dropdown-item d-flex justify-content-between"}}Categories {{entypo-icon "tag"}}{{/link-to}}
           </div>
         </li>
         <li class="nav-item">
-          {{#link-to "tag" class="nav-link"}}Tags{{/link-to}}
+          {{#link-to "tag" class="nav-link"}}{{entypo-icon "price-tag"}} Tags{{/link-to}}
         </li>
         <li class="nav-item">
-          {{#link-to "form" class="nav-link"}}Forms{{/link-to}}
+          {{#link-to "form" class="nav-link"}}{{entypo-icon "text-document"}} Forms{{/link-to}}
         </li>
         <li class="nav-item">
-          {{#link-to "user" class="nav-link"}}Users{{/link-to}}
+          {{#link-to "user" class="nav-link"}}{{entypo-icon "user"}} Users{{/link-to}}
         </li>
       </ul>
       <ul class="navbar-nav float-lg-right">
