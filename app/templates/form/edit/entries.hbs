@@ -1,28 +1,30 @@
-<h5 class="card-title mt-3">
-  {{#if model.totalCount}}
-    Found {{model.totalCount}} Record{{#if (gt model.totalCount 1)}}s{{/if}}
-  {{else}}
-    No Records Found
-  {{/if}}
-</h5>
+<div class="card-body">
+  <h5 class="card-title">
+    {{#if model.totalCount}}
+      Found {{model.totalCount}} Record{{#if (gt model.totalCount 1)}}s{{/if}}
+    {{else}}
+      No Records Found
+    {{/if}}
+  </h5>
 
-{{#fetch-more
-  query=observable
-  edges=model.edges
-  hasNextPage=model.pageInfo.hasNextPage
-  endCursor=model.pageInfo.endCursor
-  on-fetch-start=(action showLoading)
-  on-fetch-end=(action hideLoading)
-  resultKey="allFormEntries" as |fetch|
-}}
-  <div class="row">
-    {{#each fetch.nodes as |node|}}
-      {{form-entry-card entry=node form=form canEdit=true class="mb-3"}}
-    {{/each}}
-  </div>
-  {{#if fetch.hasNextPage}}
-    <button class="btn btn-primary btn-block btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
-      {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
-    </button>
-  {{/if}}
-{{/fetch-more}}
+  {{#fetch-more
+    query=observable
+    edges=model.edges
+    hasNextPage=model.pageInfo.hasNextPage
+    endCursor=model.pageInfo.endCursor
+    on-fetch-start=(action showLoading)
+    on-fetch-end=(action hideLoading)
+    resultKey="allFormEntries" as |fetch|
+  }}
+    <div class="row">
+      {{#each fetch.nodes as |node|}}
+        {{form-entry-card entry=node form=form canEdit=true class="mb-3"}}
+      {{/each}}
+    </div>
+    {{#if fetch.hasNextPage}}
+      <button class="btn btn-primary btn-block btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+        {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+      </button>
+    {{/if}}
+  {{/fetch-more}}
+</div>
