@@ -19,6 +19,7 @@ export default Component.extend(ComponentQueryManager, {
   field: 'name',
   selected: null,
   placeholder: null,
+  disabled: false,
 
   _query: computed('type', function() {
     const type = this.get('type');

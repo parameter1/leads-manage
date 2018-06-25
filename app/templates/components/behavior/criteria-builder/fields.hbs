@@ -1,0 +1,35 @@
+<div class="card-body">
+  <div class="form-group">
+    {{#power-select
+      placeholder="Select criteria type..."
+      options=types
+      selected=model.type
+      searchEnabled=false
+      onchange=(action "setType") as |type|}}
+      {{type}}
+    {{/power-select}}
+  </div>
+
+  <div class="form-group">
+    {{#type-ahead
+      placeholder="Begin typing to search..."
+      type=searchType
+      multiple=true
+      closeOnSelect=false
+      disabled=searchDisabled
+      selected=model.items as |item|
+    }}
+      <span class="font-weight-bold">{{item.name}}</span> <span class="text-muted">[{{item.id}}]</span>
+    {{/type-ahead}}
+    <small class="form-text text-muted">All selections in this group are treated as "ORs."</small>
+  </div>
+
+  {{confirm-button
+    icon="cross"
+    label="Remove"
+    class="btn-danger"
+    disabled=loadingDisplay.isShowing
+    onConfirm=(action destroy)
+  }}
+
+</div>

@@ -5,6 +5,7 @@
     placeholder=placeholder
     onchange=(if onChange onChange (action (mut selected)))
     closeOnSelect=closeOnSelect
+    disabled=disabled
     as |model|}}
     {{#if (has-block)}}
       {{ yield model }}
@@ -19,6 +20,7 @@
     placeholder=placeholder
     allowClear=allowClear
     closeOnSelect=closeOnSelect
+    disabled=disabled
     onchange=(if onChange onChange (action (mut selected)))
     as |model|}}
       {{#if (has-block)}}
