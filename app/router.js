@@ -40,6 +40,9 @@ Router.map(function() {
     });
     this.route('create');
   });
+  this.route('behavior', function() {
+
+  });
 });
 
 export default Router;
