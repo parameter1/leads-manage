@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/behavior-query/list'
+
+query AllBehaviorQueries($pagination: PaginationInput, $sort: BehaviorQuerySortInput) {
+  allBehaviorQueries(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...BehaviorQueryListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

@@ -41,7 +41,8 @@ Router.map(function() {
     this.route('create');
   });
   this.route('behavior', function() {
-
+    this.route('edit', { path: ':id' });
+    this.route('create');
   });
 });
 
