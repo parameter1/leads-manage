@@ -14,6 +14,11 @@ export default Service.extend({
     return JSON.parse(value);
   },
 
+  getPropertyId() {
+    const { propertyId } = config.behaviorAPI;
+    return propertyId;
+  },
+
   async retrieve(useCache = false) {
     const fromStorage = this.getFromStorage();
     if (useCache && fromStorage) {

@@ -2,7 +2,6 @@ import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import FormMixin from 'leads-manage/mixins/form-mixin';
-import config from 'leads-manage/config/environment';
 
 import mutation from 'leads-manage/gql/mutations/behavior/content-query/create';
 
@@ -17,7 +16,7 @@ export default Route.extend(RouteQueryManager, FormMixin, {
     async create({ name, criteria }) {
       this.startRouteAction();
 
-      const { propertyId } = config.behaviorAPI;
+      const propertyId = this.get('ohBehaveToken').getPropertyId();
       const formatted = criteria.reduce((agg, group) => {
         const { type, items } = group;
         const ids = items.map(item => item.id);

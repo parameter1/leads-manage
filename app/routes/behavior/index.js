@@ -2,7 +2,6 @@ import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import { getObservable } from 'ember-apollo-client';
 import { inject } from '@ember/service';
-import config from 'leads-manage/config/environment';
 
 import query from 'leads-manage/gql/queries/behavior/content-query/all';
 
@@ -29,7 +28,7 @@ export default Route.extend(RouteQueryManager, {
 
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const { propertyId } = config.behaviorAPI;
+    const propertyId = this.get('ohBehaveToken').getPropertyId();
     const variables = { propertyId, pagination, sort };
 
     const ohBehaveToken = await this.get('ohBehaveToken').retrieve();
