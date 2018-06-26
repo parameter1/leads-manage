@@ -16,15 +16,18 @@ export default ApolloService.extend({
     return authLink.concat(httpLink);
   }),
 
-  _runAuthorize() {
+  _runAuthorize(request, context) {
+    const headers = {};
+    const { ohBehaveToken } = context;
+    if (ohBehaveToken) {
+      headers['X-Behavior-Token'] = ohBehaveToken;
+    }
     if (!this.get('session.isAuthenticated')) {
-      return {};
+      return { headers };
     }
     return new Promise((resolve) => {
       const data = this.get('session.data.authenticated.session');
-      const headers = {
-        'Authorization': `Bearer ${get(data, 'token')}`,
-      }
+      headers['Authorization'] = `Bearer ${get(data, 'token')}`;
       resolve({ headers })
     });
   }
