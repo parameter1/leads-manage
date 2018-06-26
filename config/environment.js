@@ -24,6 +24,10 @@ module.exports = function(environment) {
     apollo: {
       apiURL: '/graph',
     },
+    behaviorAPI : {
+      propertyId: '5ae0d9270f265f923a9a72c4',
+      key: 'bc2d3d2b-9e2c-40fb-addb-a454ded7bb80',
+    },
   };
 
   if (environment === 'development') {
