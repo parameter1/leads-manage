@@ -11,16 +11,26 @@
   </div>
 
   <div class="form-group">
-    {{#type-ahead
+    {{#auto-complete
       placeholder="Begin typing to search..."
-      type=searchType
+      on-search=(action "search")
       multiple=true
       closeOnSelect=false
       disabled=searchDisabled
       selected=model.items as |item|
     }}
-      <span class="font-weight-bold">{{item.name}}</span> <span class="text-muted">[{{item.id}}]</span>
-    {{/type-ahead}}
+
+      {{#if (eq model.type "Taxonomy")}}
+        <span class="font-weight-bold">{{item.name}}</span> ({{item.type}}) <span class="text-muted">[{{item.id}}]</span>
+      {{/if}}
+      {{#if (eq model.type "Section")}}
+        <span class="font-weight-bold">{{item.name}}</span> ({{item.alias}}) <span class="text-muted">[{{item.id}}]</span>
+      {{/if}}
+      {{#if (eq model.type "Company")}}
+        <span class="font-weight-bold">{{item.name}}</span> <span class="text-muted">[{{item.id}}]</span>
+      {{/if}}
+
+    {{/auto-complete}}
     <small class="form-text text-muted">All selections in this group are treated as "ORs."</small>
   </div>
 
