@@ -1,10 +1,14 @@
 import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import { getObservable } from 'ember-apollo-client';
+import { inject } from '@ember/service';
+import config from 'leads-manage/config/environment';
 
-import query from 'leads-manage/gql/queries/behavior-query/all';
+import query from 'leads-manage/gql/queries/behavior/content-query/all';
 
 export default Route.extend(RouteQueryManager, {
+  ohBehaveToken: inject(),
+
   queryParams: {
     first: {
       refreshModel: true
@@ -20,14 +24,18 @@ export default Route.extend(RouteQueryManager, {
     },
   },
 
-  model({ first, after, sortBy, ascending }) {
+  async model({ first, after, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
 
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { pagination, sort };
+    const { propertyId } = config.behaviorAPI;
+    const variables = { propertyId, pagination, sort };
+
+    const ohBehaveToken = await this.get('ohBehaveToken').retrieve();
+    const context = { ohBehaveToken };
     if (!sortBy) delete variables.sort.field;
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allBehaviorQueries')
+    return this.get('apollo').watchQuery({ query, variables, context, fetchPolicy: 'network-only' }, 'behaviorAllContentQueries')
       .then((result) => {
         controller.set('observable', getObservable(result));
         return result;

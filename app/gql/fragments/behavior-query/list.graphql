@@ -1,5 +1,0 @@
-fragment BehaviorQueryListFragment on BehaviorQuery {
-  id
-  name
-  updatedAt
-}
