@@ -52,10 +52,9 @@ export default Controller.extend(FormMixin, {
         const ohBehaveToken = await this.get('ohBehaveToken').retrieve();
         const context = { ohBehaveToken };
         const ids = await this.get('apollo').query({ query, variables, context, fetchPolicy: 'no-cache' }, 'behaviorContentQueryIds');
-        const response = await this.create(ids);
-        console.info(response);
+        await this.create(ids);
         this.get('notify').success('Query result successfully created.');
-        this.transitionToRoute('behavior.view.results.rows', response.id);
+        this.transitionToRoute('behavior.view.results.rows');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
