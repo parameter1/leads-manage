@@ -45,7 +45,7 @@ Router.map(function() {
     this.route('view', { path: ':id' }, function() {
       this.route('run');
       this.route('results', function() {
-        this.route('rows', function() {
+        this.route('rows', { path: ':result_id' }, function() {
           this.route('exports');
         });
       });

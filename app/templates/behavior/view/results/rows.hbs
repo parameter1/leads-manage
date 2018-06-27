@@ -1,0 +1,69 @@
+<div class="card-body">
+  <h4 class="card-title">
+    Results for
+    {{moment-format model.result.startDate 'MMM D, YYYY'}} - {{moment-format model.result.endDate 'MMM D, YYYY'}}
+    <span class="h6">({{#link-to "behavior.view.results.index"}}see all results{{/link-to}})</span>
+  </h4>
+  <h5>
+    {{#if model.result.identityCount}}
+      Found <span class="font-weight-bold text-info">{{format-number model.result.identityCount "0,0"}}</span> Identities
+    {{else}}
+      No Identities Found
+    {{/if}}
+  </h5>
+  <p class="card-text">Content Items: {{format-number model.result.contentCount "0,0"}}</p>
+
+  <p class="card-text mb-0 text-muted">
+    Ran {{moment-from-now model.result.ranAt}} by {{model.result.ranBy.givenName}} {{model.result.ranBy.familyName}}
+  </p>
+</div>
+
+
+<div class="card-footer d-flex justify-content-between">
+  {{!-- {{#if (user-role-is "Administrator" "Member")}}
+    <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}} {{action "export" model.result.id}}>
+      {{entypo-icon "export"}} Export
+    </button>
+
+    <div class="btn-group btn pr-0">
+      {{#link-to "behavior.view.results.rows.exports" class="btn btn-info"}}
+        {{entypo-icon "eye"}} View Export Log
+      {{/link-to}}
+    </div>
+  {{/if}} --}}
+</div>
+
+
+{{#if model.rows.edges.length}}
+  <div class="card-body">
+    {{partial "list-controls"}}
+  </div>
+
+  {{#fetch-more
+    query=observable
+    edges=model.rows.edges
+    hasNextPage=model.rows.pageInfo.hasNextPage
+    endCursor=model.rows.pageInfo.endCursor
+    on-fetch-start=(action showLoading)
+    on-fetch-end=(action hideLoading)
+    resultKey="allContentQueryResultRows" as |fetch|
+  }}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.rows.totalCount}}</h5></li>
+      {{#each fetch.nodes as |node|}}
+        <li class="list-group-item">{{node.emailAddress}}</li>
+      {{/each}}
+    </ul>
+
+    <div class="card-footer border-0">
+      {{#if fetch.hasNextPage}}
+        <button class="btn btn-primary btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+          {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+        </button>
+      {{/if}}
+    </div>
+
+  {{/fetch-more}}
+{{/if}}
+
+{{outlet}}
