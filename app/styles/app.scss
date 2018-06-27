@@ -8,6 +8,10 @@
 
 @import "z-depth";
 
+.ember-power-calendar {
+  @include ember-power-calendar($cell-size: 35px);
+}
+
 a[data-ember-action]:not(:disabled),
 .clickable {
     cursor: pointer;
