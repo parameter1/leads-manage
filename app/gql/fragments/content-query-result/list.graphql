@@ -3,7 +3,7 @@ fragment ContentQueryResultListFragment on ContentQueryResult {
   startDate
   endDate
   contentCount
-  foundUserCount
+  identityCount
   ranAt
   ranBy {
     id
