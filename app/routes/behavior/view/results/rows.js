@@ -24,8 +24,6 @@ export default Route.extend(RouteQueryManager, {
     const pagination = { first, after };
     const variables = { resultId: result_id, pagination, sort };
     if (!sortBy) delete variables.sort.field;
-    console.info(variables)
-
     // This is dumb to use a hash - just do one gql operation for both at the same time.
     return hash({
       rows: this.get('apollo').watchQuery({ query: rowsQuery, variables, fetchPolicy: 'network-only' }, 'allContentQueryResultRows')
