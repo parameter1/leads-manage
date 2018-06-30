@@ -1,0 +1,10 @@
+#import 'leads-manage/gql/fragments/campaign/list'
+
+fragment CampaignViewFragment on Campaign {
+  ...CampaignListFragment
+  name
+  hash
+  maxIdentities
+  startDate
+  endDate
+}

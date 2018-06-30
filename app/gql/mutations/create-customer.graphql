@@ -1,7 +1,7 @@
 #import 'leads-manage/gql/fragments/customer-fragment'
 
 mutation createCustomer($input: CreateCustomerInput!) {
-	createCustomer(input: $input) {
+  createCustomer(input: $input) {
     ...CustomerFragment
-	}
+  }
 }
