@@ -17,12 +17,18 @@ export default Route.extend(RouteQueryManager, FormMixin, {
       this.startRouteAction();
       const customerId = get(customer || {}, 'id');
 
-      const input = { customerId, name, startDate, endDate, maxIdentities };
+      const input = {
+        customerId,
+        name,
+        startDate: startDate ? startDate.valueOf() : undefined,
+        endDate: endDate ? endDate.valueOf() : undefined,
+        maxIdentities
+      };
       const variables = { input };
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'createCampaign');
         this.get('notify').info('Customer created successfully.');
-        this.transitionTo('customer.edit', response.id);
+        this.transitionTo('campaign.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {
