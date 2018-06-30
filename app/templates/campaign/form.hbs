@@ -15,13 +15,14 @@
     </div>
 
     <div class="form-group">
-      <label for="name">Name</label>
-      {{input type="text" value=model.name class="form-control" id="name" aria-describedby="nameHelp" placeholder="Customer Name"}}
-      <small id="nameHelp" class="form-text text-muted hide">Optional. The campaign name - should be descriptive.</small>
+      <label for="campaign-name">Name</label>
+      {{input type="text" value=model.name class="form-control" id="campaign-name" aria-describedby="campaign-name-help" placeholder="Campaign name"}}
+      <small id="campaign-name-help" class="form-text text-muted hide">Optional. The campaign name - should be descriptive.</small>
     </div>
 
     <div class="form-group mb-0">
       <label for="maxIdentities">Maximum Leads</label>
+      {{!-- @todo Enable one user manager is working. --}}
       {{!-- {{#if userManager.permissions.lead-campaign.unlimitedLeads}} --}}
         {{input type="number" min=0 value=model.maxIdentities class="form-control" id="maxIdentities" aria-describedby="maxIdentitiesHelp" placeholder="Max Leads"}}
         <small id="maxIdentitiesHelp" class="form-text text-muted">A 0 value will allow unlimited leads.</small>
