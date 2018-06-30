@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { computed, get } from '@ember/object';
+import { computed } from '@ember/object';
 
 export default Service.extend({
   adminFields: computed.filterBy('fields', 'adminOnly', true),

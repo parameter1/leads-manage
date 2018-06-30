@@ -12,10 +12,11 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       tags: [],
       excludeFields: ['phoneNumber'],
       allowedLinkTypes: ['Advertising', '(Not Set)'],
+      identityFilters: [],
     };
   },
 
-  setupController(controller, model) {
+  setupController(controller) {
     this._super(...arguments);
     controller.set('identityAttributes', this.get('identityAttributes'));
     controller.set('linkTypes', this.get('linkTypes'));

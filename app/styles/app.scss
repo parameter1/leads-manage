@@ -76,3 +76,8 @@ form .progress {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}

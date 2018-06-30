@@ -1,0 +1,20 @@
+<label class="mb-0">{{ label }}</label><br>
+<div class="input-group mt-1 mb-2">
+  {{form-select options=matchOptions value=matchType}}
+  <span class="input-group-append">
+    <button class="btn btn-sm btn-outline-danger" {{action "destroy"}}>
+      {{entypo-icon "circle-with-cross" class="mx-1"}}
+    </button>
+  </span>
+</div>
+
+{{#power-select-multiple-with-create
+  selected=terms
+  searchMessage="Begin typing to create"
+  oncreate=(action "addTerm")
+  onchange=(action (mut terms))
+  placeholder="Enter values..." as |term|
+}}
+  {{term}}
+{{/power-select-multiple-with-create}}
+
