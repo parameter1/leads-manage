@@ -3,38 +3,13 @@
   {{#crumbs.item active=true}}{{ model.fullName }}{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
-<div class="row mb-4">
-  <div class="col">
-    <form {{action (route-action "update" model) on="submit"}}>
-      <div class="card model-form">
-        <div class="card-header"></div>
-        <div class="card-body">
-          {{ partial "campaign/form" }}
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-          {{model-save-button disabled=isSaveDisabled}}
-
-          <div class="btn-group btn pr-0">
-            {{confirm-button
-              icon="trash"
-              label="Delete"
-              class="btn-danger"
-              disabled=isActionRunning
-              onConfirm=(route-action "delete" model.id "campaign.index")
-            }}
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
 <div class="row mb-5">
   <div class="col">
     <div class="card model-form">
       <div class="card-header">
         <ul class="nav nav-pills card-header-pills" role="tablist">
-          <li class="nav-item">{{#link-to "campaign.edit.index" class="nav-link" role="tab"}}Email{{/link-to}}</li>
+          <li class="nav-item">{{#link-to "campaign.edit.index" class="nav-link" role="tab"}}Details{{/link-to}}</li>
+          <li class="nav-item">{{#link-to "campaign.edit.email" class="nav-link" role="tab"}}Email{{/link-to}}</li>
           <li class="nav-item">{{#link-to "campaign.edit.forms" model.id class="nav-link" role="tab"}}Forms{{/link-to}}</li>
         </ul>
       </div>

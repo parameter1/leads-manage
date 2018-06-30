@@ -1,42 +1,18 @@
-<div class="card-body">
+<form {{action (route-action "update" model) on="submit"}}>
+  <div class="card-body">
+    {{ partial "campaign/form" }}
+  </div>
+  <div class="card-footer d-flex justify-content-between">
+    {{model-save-button disabled=isSaveDisabled}}
 
-  <div class="row">
-    <div class="col-lg-5 col-xl-6">
-
-      <div class="form-group">
-        <label for="tags">Tags</label>
-        {{type-ahead
-          placeholder="Begin typing to find a tag..."
-          type="tag"
-          multiple=true
-          selected=model.tags
-          onChange=(action (mut model.tags))
-        }}
-      </div>
-
-      <div class="form-group">
-        <label for="excludeFields">Fields to Exclude</label>
-        <div class="form-inline">
-          {{#each identityAttributes.getViewableFields as |field| }}
-            {{#if (not-eq field.canExclude false)}}
-             {{excluded-field class="mr-3" field=field excluded=model.excludeFields}}
-            {{/if}}
-          {{/each}}
-          <small id="excludeFieldsHelp" class="form-text text-muted">Check all fields you wish to exclude from reports.</small>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="allowedLinkTypes">Link Types to Use</label>
-        <div class="form-inline">
-          {{#each linkTypes.types as |linkType|}}
-            {{campaign-link-type class="mr-3" type=linkType selected=model.allowedLinkTypes}}
-          {{/each}}
-          <small id="allowedLinkTypesHelp" class="form-text text-muted">Check the link types that should be included in the report.</small>
-        </div>
-      </div>
-
+    <div class="btn-group btn pr-0">
+      {{confirm-button
+        icon="trash"
+        label="Delete"
+        class="btn-danger"
+        disabled=isActionRunning
+        onConfirm=(route-action "delete" model.id "campaign.index")
+      }}
     </div>
   </div>
-
-</div>
+</form>
