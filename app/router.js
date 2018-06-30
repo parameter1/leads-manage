@@ -15,6 +15,10 @@ Router.map(function() {
     this.route('edit', { path: ':id' });
     this.route('create');
   });
+  this.route('campaign', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
   this.route('tag', function() {
     this.route('edit', { path: ':id' });
     this.route('create');
