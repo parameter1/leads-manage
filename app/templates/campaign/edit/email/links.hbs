@@ -6,7 +6,9 @@
     </button>
   {{/modal.header}}
   {{#modal.body}}
-    Body
+    {{#each campaignUrls as |campaignUrl|}}
+      <p>{{campaignUrl.deployment.name}}</p>
+    {{/each}}
   {{/modal.body}}
   {{#modal.footer}}
   {{/modal.footer}}
