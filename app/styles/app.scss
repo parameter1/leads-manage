@@ -12,6 +12,10 @@
   @include ember-power-calendar($cell-size: 35px);
 }
 
+body.transitioning {
+  cursor: progress;
+}
+
 a[data-ember-action]:not(:disabled),
 .clickable {
     cursor: pointer;
