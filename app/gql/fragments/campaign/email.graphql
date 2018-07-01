@@ -1,0 +1,16 @@
+fragment EmailCampaignFragment on EmailCampaign {
+  id
+  tags {
+    id
+    name
+  }
+  excludeFields
+  allowedLinkTypes
+  identityFilters {
+    id
+    key
+    label
+    matchType
+    terms
+  }
+}

@@ -6,4 +6,7 @@ fragment CampaignListFragment on Campaign {
     id
     name
   }
+  email {
+    id
+  }
 }

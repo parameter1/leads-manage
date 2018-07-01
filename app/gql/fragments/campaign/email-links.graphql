@@ -1,0 +1,23 @@
+fragment EmailCampaignLinksFragment on EmailCampaign {
+  id
+  campaignUrls {
+    id
+    url {
+      id
+      title
+      values {
+        resolved
+      }
+    }
+    send {
+      id
+      sentDate
+      subject
+      deployment {
+        id
+        name
+      }
+    }
+    active
+  }
+}
