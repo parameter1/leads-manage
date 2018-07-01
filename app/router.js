@@ -17,7 +17,9 @@ Router.map(function() {
   });
   this.route('campaign', function() {
     this.route('edit', { path: ':id' }, function() {
-      this.route('email');
+      this.route('email', function() {
+        this.route('links');
+      });
       this.route('forms');
     });
     this.route('create');
