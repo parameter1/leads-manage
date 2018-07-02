@@ -44,14 +44,27 @@
           Exclude Fields
         </div>
         <div class="card-body">
-          <div class="form-inline">
+          <div class="form-group mb-0">
+            <label>Hide The Selected Fields...</label>
+            {{#power-select-multiple
+              options=excludeFieldOptions
+              selected=selectedFieldOptions
+              onchange=(action "updateExcludeFields")
+              closeOnSelect=false as |field|
+            }}
+              {{field.label}}
+            {{/power-select-multiple}}
+            <small class="form-text text-muted">Check all fields you wish to exclude from reports.</small>
+          </div>
+
+          {{!-- <div class="form-inline">
             {{#each identityAttributes.getViewableFields as |field| }}
               {{#if (not-eq field.canExclude false)}}
               {{excluded-field class="mr-3" field=field excluded=model.excludeFields}}
               {{/if}}
             {{/each}}
           </div>
-          <small class="form-text text-muted">Check all fields you wish to exclude from reports.</small>
+          <small class="form-text text-muted">Check all fields you wish to exclude from reports.</small> --}}
         </div>
       </div>
 
