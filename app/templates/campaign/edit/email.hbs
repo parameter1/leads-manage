@@ -14,7 +14,8 @@
               type="tag"
               multiple=true
               selected=model.tags
-              onChange=(action (mut model.tags))
+              disabled=areTagsSaving
+              onChange=(action "updateTags")
             }}
             <small class="form-text text-muted">Leave empty to include all links.</small>
           </div>

@@ -26,7 +26,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       const variables = { input };
       try {
         await this.get('apollo').mutate({ mutation, variables }, 'updateCampaign');
-        this.get('notify').info('Customer successfully updated.');
+        this.get('notify').info('Campaign successfully updated.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
@@ -39,7 +39,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       const variables = { input: { id } };
       try {
         await this.get('apollo').mutate({ mutation, variables }, 'deleteCampaign');
-        this.get('notify').info('Customer successfully deleted.');
+        this.get('notify').info('Campaign successfully deleted.');
         this.transitionTo(routeName)
       } catch (e) {
         this.get('graphErrors').show(e);
