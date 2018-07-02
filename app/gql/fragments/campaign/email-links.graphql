@@ -1,29 +1,32 @@
 fragment EmailCampaignLinksFragment on EmailCampaign {
   id
-  campaignUrls {
+  urlGroups {
     id
-    deployment {
+    url {
       id
-      name
+      title
+      values {
+        resolved
+      }
     }
-    sendUrls {
+    deploymentGroups {
       id
-      send {
+      deployment {
         id
-        sentDate
-        subject
-        metrics {
-          sent
+        name
+      }
+      sendGroups {
+        id
+        active
+        send {
+          id
+          sentDate
+          subject
+          metrics {
+            sent
+          }
         }
       }
-      url {
-        id
-        title
-        values {
-          resolved
-        }
-      }
-      active
     }
   }
 }

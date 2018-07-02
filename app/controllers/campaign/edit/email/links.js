@@ -2,5 +2,5 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  campaignUrls: computed.reads('model.campaignUrls.[]'),
+  urlGroups: computed.reads('model.urlGroups.[]'),
 });
