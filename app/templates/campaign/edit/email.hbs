@@ -14,20 +14,22 @@
               type="tag"
               multiple=true
               selected=model.tags
-              disabled=areTagsSaving
               onChange=(action "updateTags")
             }}
             <small class="form-text text-muted">Leave empty to include all links.</small>
           </div>
 
           <div class="form-group">
-            <label for="allowedLinkTypes">Only Include Links Set As...</label>
-            <div class="form-inline">
-              {{#each linkTypes.types as |linkType|}}
-                {{campaign-link-type class="mr-3" type=linkType selected=model.allowedLinkTypes}}
-              {{/each}}
-            </div>
-            <small id="allowedLinkTypesHelp" class="form-text text-muted">Check the link types that should be included in the report.</small>
+            <label>Only Include Links Set As...</label>
+            {{#power-select-multiple
+              options=linkTypeOptions
+              selected=model.allowedLinkTypes
+              onchange=(action "updateLinkTypes")
+              closeOnSelect=false as |linkType|
+            }}
+              {{linkType}}
+            {{/power-select-multiple}}
+            <small class="form-text text-muted">Check the link types that should be included in the report.</small>
           </div>
 
           {{#link-to "campaign.edit.email.links" class="btn btn-info" role="button"}}Manage Links{{/link-to}}

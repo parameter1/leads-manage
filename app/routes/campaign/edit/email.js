@@ -14,10 +14,4 @@ export default Route.extend(FormMixin, RouteQueryManager, {
     const variables = { input: { id } };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'emailCampaign');
   },
-
-  setupController(controller) {
-    this._super(...arguments);
-    controller.set('identityAttributes', this.get('identityAttributes'));
-    controller.set('linkTypes', this.get('linkTypes'));
-  },
 });
