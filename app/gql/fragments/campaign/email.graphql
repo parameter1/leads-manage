@@ -4,6 +4,7 @@ fragment EmailCampaignFragment on EmailCampaign {
     id
     name
   }
+  urlCount
   excludeFields
   allowedLinkTypes
   identityFilters {
