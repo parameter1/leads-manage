@@ -6,6 +6,7 @@ import { computed } from '@ember/object';
 import emailCampaignTags from 'leads-manage/gql/mutations/campaign/email/tags';
 import emailCampaignLinkTypes from 'leads-manage/gql/mutations/campaign/email/link-types';
 import emailCampaignExcludedFields from 'leads-manage/gql/mutations/campaign/email/excluded-fields';
+import emailCampaignIdentityFilters from 'leads-manage/gql/mutations/campaign/email/identity-filters';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
@@ -82,6 +83,34 @@ export default Controller.extend(FormMixin, {
       try {
         await this.get('apollo').mutate({ mutation: emailCampaignExcludedFields, variables }, 'emailCampaignExcludedFields');
         this.get('notify').info('Campaign fields successfully excluded.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    /**
+     *
+     */
+    async updateIdentityFilters(filters) {
+      this.startAction();
+      const id = this.get('model.id');
+      const formatted = filters.map((filter) => {
+        const { key, label, matchType, terms } = filter;
+        return {
+          key,
+          label,
+          matchType,
+          terms,
+        };
+      });
+      const input = { id, filters: formatted };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: emailCampaignIdentityFilters, variables }, 'emailCampaignIdentityFilters');
+        this.get('notify').info('Identity filters saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

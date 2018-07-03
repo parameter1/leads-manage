@@ -1,7 +1,14 @@
 <div class="card-header">Exclude Leads Where...</div>
 <div class="card-body">
   {{#each filters as |filter index|}}
-    {{campaign-identity-filter/item label=filter.label terms=filter.terms matchType=filter.matchType class="mb-3" on-destroy=(action "removeFilter" index)}}
+    {{campaign-identity-filter/item
+      label=filter.label
+      terms=filter.terms
+      matchType=filter.matchType
+      class="mb-3"
+      on-destroy=(action "removeFilter" index)
+      on-change=(action "triggerChange")
+    }}
   {{/each}}
   <div class="dropdown">
     <button class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">

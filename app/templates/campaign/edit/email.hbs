@@ -62,7 +62,10 @@
         </div>
       </div>
 
-      {{campaign-identity-filter filters=model.identityFilters}}
+      {{campaign-identity-filter
+        filters=model.identityFilters
+        on-change=(action "updateIdentityFilters")
+      }}
 
     </div>
   </div>

@@ -7,13 +7,20 @@ export default Component.extend({
   filters: null,
 
   classNames: ['card'],
+
   actions: {
     addFilter(field) {
       const { key, label } = field;
       this.get('filters').pushObject({ key, label, matchType: 'matches', terms: [] });
+      this.send('triggerChange');
     },
     removeFilter(index) {
       this.get('filters').removeAt(index);
+      this.send('triggerChange');
+    },
+    triggerChange() {
+      const filters = this.get('filters');
+      this.get('on-change')(filters);
     },
   },
 });

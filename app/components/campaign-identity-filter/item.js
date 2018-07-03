@@ -27,18 +27,30 @@ export default Component.extend({
     return term.trim().toLowerCase();
   },
 
+  sendChange() {
+    const terms = this.get('terms');
+    const matchType = this.get('matchType');
+    this.get('on-change')(matchType, terms);
+  },
+
   actions: {
+    setMatchType() {
+      this.sendChange();
+    },
     addTerm(term) {
+      const terms = this.get('terms');
       const formatted = this.formatTerm(term);
       if (formatted) {
-        this.get('terms').pushObject(formatted);
+        terms.pushObject(formatted);
+        this.sendChange();
       }
     },
     destroy() {
       this.get('on-destroy')(this.get('filter'));
     },
-    removeTerm(term) {
-      this.get('terms').removeObject(this.formatTerm(term));
+    changeTerms(terms) {
+      this.set('terms', terms);
+      this.sendChange();
     },
   },
 });
