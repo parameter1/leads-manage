@@ -19,14 +19,14 @@ export default Component.extend({
       const { checked } = target;
       const sendGroups = this.get('deploymentGroup.sendGroups');
       sendGroups.forEach(sendGroup => set(sendGroup, 'active', checked));
-      this.get('on-change')(sendGroups);
+      this.get('on-change')();
     },
     toggleSendGroupActive(index, event) {
       const { target } = event;
       const { checked } = target;
       const sendGroup = this.get(`deploymentGroup.sendGroups.${index}`);
       set(sendGroup, 'active', checked);
-      this.get('on-change')([sendGroup]);
+      this.get('on-change')();
     },
   },
 

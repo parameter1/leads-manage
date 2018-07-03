@@ -10,7 +10,6 @@ fragment EmailCampaignLinksFragment on EmailCampaign {
       }
     }
     deploymentGroups {
-      id
       deployment {
         id
         name

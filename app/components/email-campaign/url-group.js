@@ -19,10 +19,10 @@ export default Component.extend({
       const { checked } = target;
       const sendGroups = this.get('allSendGroups');
       sendGroups.forEach(sendGroup => set(sendGroup, 'active', checked));
-      this.send('sendChange', sendGroups);
+      this.send('sendChange');
     },
-    sendChange(sendGroups) {
-      this.get('on-change')(this.get('urlGroup'), sendGroups);
+    sendChange() {
+      this.get('on-change')();
     },
   },
 
