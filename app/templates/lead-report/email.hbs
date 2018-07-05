@@ -9,14 +9,7 @@
           <li class="nav-item">{{#link-to "lead-report.email.activity" class="nav-link" role="tab"}}Activity{{/link-to}}</li>
         </ul>
       </div>
-      <div class="card-body">
-        {{#if isLoading}}
-          <small class="text-muted">Loading...</small>
-          {{progress-bar show=isLoading}}
-        {{else}}
-          {{outlet}}
-        {{/if}}
-      </div>
+      {{outlet}}
     </div>
   </div>
 </div>

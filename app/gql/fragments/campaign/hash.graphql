@@ -1,6 +1,7 @@
 fragment CampaignHashFragment on Campaign {
   id
   fullName
+  hash
   customer {
     id
     name
