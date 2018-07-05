@@ -1,6 +1,18 @@
 @import "node_modules/bootswatch/dist/simplex/variables";
+
+$modal-xl: 1100px !default;
+
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/simplex/bootswatch";
+
+// Add xl modal, per https://github.com/twbs/bootstrap/pull/19925
+@include media-breakpoint-up(lg) {
+  .modal-xl { max-width: $modal-lg; }
+}
+
+@include media-breakpoint-up(xl) {
+  .modal-xl { max-width: $modal-xl; }
+}
 
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";

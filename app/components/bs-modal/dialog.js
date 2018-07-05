@@ -16,6 +16,8 @@ export default Component.extend({
         return 'modal-sm';
       case 'large':
         return 'modal-lg';
+      case 'xl':
+        return 'modal-xl';
       default:
         return null;
     }
