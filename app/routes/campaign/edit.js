@@ -9,4 +9,10 @@ export default Route.extend(FormMixin, RouteQueryManager, {
     const variables = { input: { id } };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'campaign');
   },
+
+  actions: {
+    transitionToReport(hash) {
+      return this.transitionTo('lead-report', hash);
+    },
+  },
 });
