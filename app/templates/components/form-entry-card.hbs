@@ -24,7 +24,7 @@
           {{entypo-icon "cog"}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          {{identity-card/action labelSuffix="for Form" inactive=entry.inactive click=(action 'toggleActivation')}}
+          {{identity-card/action labelSuffix="for Form" inactive=entry.inactive on-click=(action 'toggleActivation')}}
         </div>
       </div>
     {{/if}}

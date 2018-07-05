@@ -5,7 +5,18 @@ fragment IdentityViewFragment on Identity {
   familyName
   title
   companyName
+  street
+  city
   region
+  postalCode
   country
   phoneNumber
+  attributes
+  inactive
+  inactiveCustomers {
+    id
+  }
+  inactiveCampaigns {
+    id
+  }
 }

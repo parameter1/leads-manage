@@ -7,9 +7,14 @@ export default Component.extend({
   classNameBindings: ['_activeClass'],
   attributeBindings: ['href'],
 
-  href: 'javascript:void(0);',
+  href: '#',
   labelSuffix: null,
   inactive: false,
+
+  click(event) {
+    event.preventDefault();
+    this.get('on-click')();
+  },
 
   _label: computed('inactive', 'labelSuffix', function() {
     let prefix = 'Deactivate';

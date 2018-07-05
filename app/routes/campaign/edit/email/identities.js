@@ -24,6 +24,8 @@ export default Route.extend(FormMixin, RouteQueryManager, {
   model({ first, after, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
 
+    controller.set('campaign', this.modelFor('campaign.edit'));
+
     const id = this.modelFor('campaign.edit.email').get('id');
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
