@@ -1,0 +1,12 @@
+fragment CampaignHashFragment on Campaign {
+  id
+  fullName
+  customer {
+    id
+    name
+  }
+  email {
+    id
+    enabled
+  }
+}

@@ -1,0 +1,19 @@
+<div class="row mt-4">
+  <div class="col">
+    <h1>Lead Report</h1>
+    <h3>{{model.fullName}}</h3>
+  </div>
+</div>
+<hr>
+{{#if model.email.enabled}}
+  <div class="row mb-4">
+    <div class="col">
+      <h4>Email Deployment Metrics</h4>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col">
+      <h4>Leads from Email Deployments</h4>
+    </div>
+  </div>
+{{/if}}
