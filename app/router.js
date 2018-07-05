@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('edit', { path: ':id' }, function() {
       this.route('email', function() {
         this.route('links');
+        this.route('identities');
       });
       this.route('forms');
     });

@@ -32,9 +32,15 @@
             <small class="form-text text-muted">Check the link types that should be included in the report.</small>
           </div>
 
-          {{#link-to "campaign.edit.email.links" class="btn btn-info" role="button"}}
-            {{entypo-icon "link"}} Manage Links ({{model.urlCount}})
-          {{/link-to}}
+          <div class="d-flex justify-content-between">
+            {{#link-to "campaign.edit.email.links" class="btn btn-info" role="button"}}
+              {{entypo-icon "link"}} Manage Links ({{model.urlCount}})
+            {{/link-to}}
+            {{#link-to "campaign.edit.email.identities" class="btn btn-info" role="button"}}
+              {{entypo-icon "users"}} Manage Leads
+            {{/link-to}}
+          </div>
+
 
         </div>
       </div>

@@ -1,0 +1,45 @@
+{{#bs-modal show=true size="xl" onHidden=(route-action "transitionTo" "campaign.edit.email") as |modal|}}
+  {{#modal.header}}
+    <h5 class="modal-title">Manage Email Campaign Leads</h5>
+    <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+      {{entypo-icon "cross"}}
+    </button>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div class="card list-index">
+      <div class="card-header"></div>
+      <div class="card-body">
+        {{partial "list-controls"}}
+      </div>
+
+      {{#fetch-more
+        query=observable
+        edges=model.edges
+        hasNextPage=model.pageInfo.hasNextPage
+        endCursor=model.pageInfo.endCursor
+        on-fetch-start=(route-action "showLoading")
+        on-fetch-end=(route-action "hideLoading")
+        resultKey="emailCampaignIdentities" as |fetch|
+      }}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
+          {{#each fetch.nodes as |item|}}
+            {{item.emailAddress}}
+          {{/each}}
+        </ul>
+
+        <div class="card-footer border-0">
+          {{#if fetch.hasNextPage}}
+            <button class="btn btn-primary btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+              {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+            </button>
+          {{/if}}
+        </div>
+
+      {{/fetch-more}}
+
+    </div>
+  {{/modal.body}}
+  {{#modal.footer}}
+  {{/modal.footer}}
+{{/bs-modal}}

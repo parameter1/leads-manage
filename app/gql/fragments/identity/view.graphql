@@ -1,0 +1,11 @@
+fragment IdentityViewFragment on Identity {
+  id
+  emailAddress
+  givenName
+  familyName
+  title
+  companyName
+  region
+  country
+  phoneNumber
+}
