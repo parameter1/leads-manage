@@ -1,0 +1,6 @@
+mutation CampaignEditEmailStatus($input: EmailCampaignStatusInput!) {
+  emailCampaignStatus(input: $input) {
+    id
+    enabled
+  }
+}

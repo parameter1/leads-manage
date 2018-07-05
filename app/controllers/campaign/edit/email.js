@@ -7,6 +7,7 @@ import emailCampaignTags from 'leads-manage/gql/mutations/campaign/email/tags';
 import emailCampaignLinkTypes from 'leads-manage/gql/mutations/campaign/email/link-types';
 import emailCampaignExcludedFields from 'leads-manage/gql/mutations/campaign/email/excluded-fields';
 import emailCampaignIdentityFilters from 'leads-manage/gql/mutations/campaign/email/identity-filters';
+import emailCampaignStatus from 'leads-manage/gql/mutations/campaign/email/status';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
@@ -111,6 +112,27 @@ export default Controller.extend(FormMixin, {
       try {
         await this.get('apollo').mutate({ mutation: emailCampaignIdentityFilters, variables }, 'emailCampaignIdentityFilters');
         this.get('notify').info('Identity filters saved.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    /**
+     *
+     */
+    async updateStatus(event) {
+      this.startAction();
+      const { target } = event;
+      const { checked } = target;
+      const id = this.get('model.id');
+      const input = { id, enabled: checked };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: emailCampaignStatus, variables }, 'emailCampaignStatus');
+        this.get('notify').info('Campaign status set successfully.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
