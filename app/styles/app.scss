@@ -39,6 +39,11 @@ a[data-ember-action]:not(:disabled),
   border: none !important;
 }
 
+.progress-md {
+  border-radius: 0 !important;
+  height: 0.5rem;
+}
+
 .main.progress {
   border-radius: 0 !important;
   height: 0.3rem;

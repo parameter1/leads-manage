@@ -9,4 +9,12 @@ fragment CampaignHashFragment on Campaign {
     id
     enabled
   }
+  forms {
+    id
+    enabled
+  }
+  ads {
+    id
+    enabled
+  }
 }

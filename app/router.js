@@ -8,7 +8,16 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('lead-report', { path: 'lead-report/:hash' });
+  this.route('lead-report', { path: 'lead-report/:hash' }, function() {
+    this.route('email', { path: '/'}, function() {
+      this.route('metrics', { path: '/' });
+      this.route('leads');
+      this.route('activity');
+      this.route('export');
+    });
+    this.route('forms');
+    this.route('ads');
+  });
   this.route('link-tracking', function() {
 
   });

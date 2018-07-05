@@ -13,4 +13,17 @@ export default Route.extend(RouteQueryManager, {
     this._super(...arguments);
     this.controllerFor('application').set('displayNav', false);
   },
+
+  actions: {
+    /**
+     *
+     * @param {*} transition
+     */
+    loading(transition) {
+      const controller = this.controllerFor(this.get('routeName'));
+      controller.set('isLoading', true);
+      transition.finally(() => controller.set('isLoading', false));
+      return true;
+    },
+  },
 });
