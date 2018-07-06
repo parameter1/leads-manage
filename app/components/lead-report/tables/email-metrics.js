@@ -3,7 +3,7 @@ import { get } from '@ember/object';
 
 export default Component.extend({
   tagName: 'table',
-  classNames: ['table', 'table-striped', 'table-sm', 'table-responsive'],
+  classNames: ['table', 'table-striped', 'table-sm'],
 
   title: null,
 

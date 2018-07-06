@@ -14,7 +14,9 @@
         <div class="card">
           <div class="card-header font-weight-bold text-center">Lead Acquisition Share</div>
           <div class="card-body">
-            {{lead-report/charts/lead-acquisition sends=model.sends totalIdentityCount=model.totals.identities}}
+            <div class="table-responsive">
+              {{lead-report/charts/lead-acquisition sends=model.sends totalIdentityCount=model.totals.identities}}
+            </div>
           </div>
         </div>
       </div>
