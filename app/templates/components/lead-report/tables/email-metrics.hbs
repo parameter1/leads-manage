@@ -1,0 +1,51 @@
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Delivered</th>
+    <th>Unique Opens</th>
+    <th>Unique Clicks</th>
+    <th>Open Rate</th>
+    <th>Click Rate (O / D)</th>
+    <th># of Leads</th>
+  </tr>
+</thead>
+<tbody>
+  {{#each sends as |row|}}
+    <tr>
+      <td>
+        {{#if row.send.url}}
+          <a href="#" {{action 'displayIframeModal' row.send}}>{{ row.send.deployment.name }}</a>
+        {{else}}
+          {{ row.send.deployment.name }}
+        {{/if}}
+      </td>
+      <td>{{moment-format row.send.sentDate "MMM Do, YYYY @ h:mma"}}</td>
+      <td>{{ format-number row.send.metrics.delivered format="0,0" }}</td>
+      <td>{{ format-number row.send.metrics.uniqueOpens format="0,0" }}</td>
+      <td>{{ format-number row.send.metrics.uniqueClicks format="0,0" }}</td>
+      <td>{{ format-number row.send.metrics.openRate format="00.0%" }}</td>
+      <td>
+        {{ format-number row.send.metrics.clickToOpenRate format="00.0%" }} /
+        {{ format-number row.send.metrics.clickToDeliveredRate format="00.0%" }}
+      </td>
+      <td>{{ format-number row.identities format="0,0" }}</td>
+    </tr>
+  {{/each}}
+</tbody>
+<tfoot>
+  <tr>
+    <th colspan="2"></th>
+    <th>{{ format-number totals.metrics.delivered format="0,0" }}</th>
+    <th>{{ format-number totals.metrics.uniqueOpens format="0,0" }}</th>
+    <th>{{ format-number totals.metrics.uniqueClicks format="0,0" }}</th>
+    <th>{{ format-number totals.metrics.openRate format="00.0%" }}</th>
+    <th>
+      {{ format-number totals.metrics.clickToOpenRate format="00.0%" }} /
+      {{ format-number totals.metrics.clickToDeliveredRate format="00.0%" }}
+    </th>
+    <th>&nbsp;</th>
+  </tr>
+</tfoot>
+
+{{!-- {{iframe-modal show=iframe.show src=iframe.src title=iframe.title}} --}}
