@@ -5,6 +5,7 @@ query LeadReportEmailMetrics($hash: String!) {
     sends {
       send {
         id
+        url
         deployment {
           id
           name
