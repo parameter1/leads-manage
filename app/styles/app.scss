@@ -39,6 +39,10 @@ a[data-ember-action]:not(:disabled),
   border: none !important;
 }
 
+.highcharts-credits {
+  display: none !important;
+}
+
 .progress-md {
   border-radius: 0 !important;
   height: 0.5rem;
