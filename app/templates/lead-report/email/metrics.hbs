@@ -1,1 +1,22 @@
-<p>Metrics</p>
+<div class="card-body">
+
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card">
+        <div class="card-header">Activity for all Emails</div>
+        <div class="card-body">
+          {{!-- {{lead-report/section-email-deployments/chart-overview totals=_data.totals.metrics count=_data.deployments.length}} --}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <div class="card">
+        <div class="card-header">Lead Acquisition Share</div>
+        <div class="card-body">
+          {{lead-report/charts/lead-acquisition sends=model.sends totalIdentityCount=model.totals.identities}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
