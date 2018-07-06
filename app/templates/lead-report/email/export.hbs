@@ -1,1 +1,49 @@
-<p>Export</p>
+{{#fetch-more
+  query=observable
+  edges=model.edges
+  hasNextPage=model.pageInfo.hasNextPage
+  endCursor=model.pageInfo.endCursor
+  on-fetch-start=(route-action "showLoading")
+  on-fetch-end=(route-action "hideLoading")
+  resultKey="reportEmailIdentities" as |fetch|
+}}
+  <div class="card-body">
+    <h5>Total Results: {{model.totalCount}}</h5>
+    <div class="table-responsive">
+      <table class="table table-sm table-striped mb-0">
+        <thead>
+          <tr>
+            {{#each fields as |field|}}
+              <th>{{ field.label }}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each fetch.nodes as |item|}}
+            <tr>
+              {{#each fields as |field|}}
+                <td>{{get item field.key}}</td>
+              {{/each}}
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan={{fields.length}} class="text-center">No leads found.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+        {{#if fetch.hasNextPage}}
+          <tfoot>
+            <tr>
+              <th colspan={{fields.length}}>
+                <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+                  {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+                </button>
+              </th>
+            </tr>
+          </tfoot>
+        {{/if}}
+      </table>
+    </div>
+  </div>
+{{/fetch-more}}
+
