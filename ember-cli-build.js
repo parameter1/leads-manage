@@ -12,6 +12,8 @@ module.exports = function(defaults) {
   app.import('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map', { destDir: 'assets' });
   app.import('node_modules/bootstrap/dist/css/bootstrap.min.css.map', { destDir: 'assets' });
 
+  app.import('node_modules/highcharts/highcharts.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
