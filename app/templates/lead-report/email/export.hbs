@@ -7,10 +7,12 @@
   on-fetch-end=(route-action "hideLoading")
   resultKey="reportEmailIdentities" as |fetch|
 }}
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
+  </ul>
   <div class="card-body">
-    <h5>Total Results: {{model.totalCount}}</h5>
     <div class="table-responsive">
-      <table class="table table-sm table-striped">
+      <table class="table table-sm table-striped mb-0">
         <thead>
           <tr>
             <th>#</th>
@@ -38,8 +40,10 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="card-footer">
     {{#if fetch.hasNextPage}}
-      <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+      <button class="btn btn-lg btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
         {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
       </button>
     {{/if}}
