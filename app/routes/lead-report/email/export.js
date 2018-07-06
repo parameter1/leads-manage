@@ -5,6 +5,15 @@ import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import query from 'leads-manage/gql/queries/lead-report/email-identities';
 
 export default Route.extend(RouteQueryManager, {
+  queryParams: {
+    sortBy: {
+      refreshModel: true
+    },
+    ascending: {
+      refreshModel: true
+    },
+  },
+
   /**
    *
    * @param {object} params

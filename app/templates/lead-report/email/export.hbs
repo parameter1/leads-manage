@@ -10,17 +10,22 @@
   <div class="card-body">
     <h5>Total Results: {{model.totalCount}}</h5>
     <div class="table-responsive">
-      <table class="table table-sm table-striped mb-0">
+      <table class="table table-sm table-striped">
         <thead>
           <tr>
+            <th>#</th>
             {{#each fields as |field|}}
-              <th>{{ field.label }}</th>
+              <th>
+                <span>{{ field.label }}</span>
+                {{lead-report/tables/sort-field key=field.key sortBy=sortBy ascending=ascending}}
+              </th>
             {{/each}}
           </tr>
         </thead>
         <tbody>
-          {{#each fetch.nodes as |item|}}
+          {{#each fetch.nodes as |item index|}}
             <tr>
+              <td>{{add index 1}}</td>
               {{#each fields as |field|}}
                 <td>{{get item field.key}}</td>
               {{/each}}
@@ -31,19 +36,13 @@
             </tr>
           {{/each}}
         </tbody>
-        {{#if fetch.hasNextPage}}
-          <tfoot>
-            <tr>
-              <th colspan={{fields.length}}>
-                <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
-                  {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
-                </button>
-              </th>
-            </tr>
-          </tfoot>
-        {{/if}}
       </table>
     </div>
+    {{#if fetch.hasNextPage}}
+      <button class="btn btn-primary" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+        {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+      </button>
+    {{/if}}
   </div>
 {{/fetch-more}}
 
