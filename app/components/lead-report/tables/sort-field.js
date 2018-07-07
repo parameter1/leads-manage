@@ -13,10 +13,19 @@ export default Component.extend({
   sortBy: '',
   ascending: false,
 
+  init() {
+    this._super(...arguments);
+    this.set('originalSortBy', this.get('sortBy'));
+  },
+
   click(event) {
     event.preventDefault();
     if (this.get('isActive')) {
-      this.toggleProperty('ascending');
+      if (this.get('ascending') === false) {
+        this.set('sortBy', this.get('originalSortBy'));
+      } else {
+        this.toggleProperty('ascending');
+      }
     } else {
       this.set('sortBy', this.get('key'));
       this.set('ascending', true);
