@@ -12,6 +12,7 @@ fragment IdentityViewFragment on Identity {
   country
   phoneNumber
   attributes
+  fieldCount
   inactive
   inactiveCustomers {
     id
