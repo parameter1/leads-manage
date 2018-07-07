@@ -17,6 +17,7 @@ Router.map(function() {
     });
     this.route('forms');
     this.route('ads');
+    this.route('disabled');
   });
   this.route('link-tracking', function() {
 

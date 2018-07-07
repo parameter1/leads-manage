@@ -9,6 +9,13 @@ export default Route.extend(RouteQueryManager, {
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'campaignByHash');
   },
 
+  afterModel(model) {
+    if (model.get('email.enabled')) return;
+    if (model.get('forms.enabled')) return this.transitionTo('lead-report.forms');
+    if (model.get('ads.enabled')) return this.transitionTo('lead-report.ads');
+    return this.transitionTo('lead-report.disabled');
+  },
+
   setupController() {
     this._super(...arguments);
     this.controllerFor('application').set('displayNav', false);

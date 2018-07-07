@@ -7,4 +7,16 @@ fragment CampaignViewFragment on Campaign {
   maxIdentities
   startDate
   endDate
+  email {
+    id
+    enabled
+  }
+  forms {
+    id
+    enabled
+  }
+  ads {
+    id
+    enabled
+  }
 }
