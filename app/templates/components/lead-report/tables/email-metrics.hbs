@@ -15,9 +15,9 @@
     <tr>
       <td>
         {{#if row.send.url}}
-          <a href="#" {{action 'displayIframeModal' row.send}}>{{ row.send.deployment.name }}</a>
+          <a href="#" {{action 'displayIframeModal' row.send}}>{{ row.send.name }}</a>
         {{else}}
-          {{ row.send.deployment.name }}
+          {{ row.send.name }}
         {{/if}}
       </td>
       <td>{{moment-format row.send.sentDate "MMM Do, YYYY @ h:mma"}}</td>

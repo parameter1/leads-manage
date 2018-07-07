@@ -11,10 +11,7 @@ query LeadReportEmailIdentityExport($hash: String!, $pagination: PaginationInput
         sends {
           id
           sentDate
-          deployment {
-            id
-            name
-          }
+          name
         }
         urls {
           id

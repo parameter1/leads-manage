@@ -40,7 +40,7 @@
               </td>
               <td class="pt-0">
                 {{#each item.sends as |send|}}
-                  <p class="mb-0 mt-1">{{send.deployment.name}} (Sent {{moment-format send.sentDate "MMM Do, YYYY @ h:mma"}})</p>
+                  <p class="mb-0 mt-1">{{send.name}} (Sent {{moment-format send.sentDate "MMM Do, YYYY @ h:mma"}})</p>
                 {{/each}}
               </td>
             </tr>

@@ -16,27 +16,9 @@ export default Component.extend({
     });
   },
 
-  didInsertElement() {
-    // const title = this.get('title');
-    // const table = this.$().DataTable({
-    //   aaSorting: [],
-    //   buttons: [
-    //     { extend: 'excelHtml5', title: title },
-    //     { extend: 'csvHtml5', title: title },
-    //   ],
-    // });
-
-    // $(table.table().container()).addClass('px-0');
-
-    // table.buttons().container()
-    //   .addClass('float-right')
-    //   .appendTo('#' + this.$().attr('id') + '_wrapper .col-md-6:eq(1)')
-    // ;
-  },
-
   actions: {
     displayIframeModal(send) {
-      this.set('iframe.title', get(send, 'deployment.name'));
+      this.set('iframe.title', get(send, 'name'));
       this.set('iframe.src', get(send, 'url'));
       this.set('iframe.show', true);
     },
