@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <a class="btn btn-lg btn-success mb-3" role="button" href="/export/campaign/{{model.hash}}/form-leads">{{entypo-icon "download"}} Download Form Leads</a>
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs" role="tablist">
+          <li class="nav-item">{{#link-to "lead-report.forms.leads" class="nav-link" role="tab"}}Leads{{/link-to}}</li>
+          <li class="nav-item">{{#link-to "lead-report.forms.export" class="nav-link" role="tab"}}Lead Detail{{/link-to}}</li>
+        </ul>
+      </div>
+      {{outlet}}
+    </div>
+  </div>
+</div>

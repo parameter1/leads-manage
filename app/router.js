@@ -15,8 +15,14 @@ Router.map(function() {
       this.route('activity');
       this.route('export');
     });
-    this.route('forms');
-    this.route('ads');
+    this.route('forms', function() {
+      this.route('leads', { path: '/' });
+      this.route('export');
+    });
+    this.route('ads', function() {
+      this.route('leads', { path: '/' });
+      this.route('export');
+    });
     this.route('disabled');
   });
   this.route('link-tracking', function() {
