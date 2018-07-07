@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { getObservable } from 'ember-apollo-client';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 
-import query from 'leads-manage/gql/queries/lead-report/email-identities';
+import query from 'leads-manage/gql/queries/lead-report/email-identity-export';
 
 export default Route.extend(RouteQueryManager, {
   queryParams: {
@@ -30,7 +30,7 @@ export default Route.extend(RouteQueryManager, {
     const variables = { hash, pagination, sort };
     if (!sortBy) delete variables.sort.field;
 
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailIdentities')
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailIdentityExport')
       .then((result) => {
         controller.set('observable', getObservable(result));
         return result;

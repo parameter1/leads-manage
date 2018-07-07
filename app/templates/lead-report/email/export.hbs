@@ -5,7 +5,7 @@
   endCursor=model.pageInfo.endCursor
   on-fetch-start=(route-action "showLoading")
   on-fetch-end=(route-action "hideLoading")
-  resultKey="reportEmailIdentities" as |fetch|
+  resultKey="reportEmailIdentityExport" as |fetch|
 }}
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
@@ -22,6 +22,8 @@
                 {{lead-report/tables/sort-field key=field.key sortBy=sortBy ascending=ascending}}
               </th>
             {{/each}}
+            <th>URLs</th>
+            <th>Deployments</th>
           </tr>
         </thead>
         <tbody>
@@ -29,8 +31,18 @@
             <tr>
               <td>{{add index 1}}</td>
               {{#each fields as |field|}}
-                <td>{{get item field.key}}</td>
+                <td>{{get item.identity field.key}}</td>
               {{/each}}
+              <td class="pt-0">
+                {{#each item.urls as |url|}}
+                  <p class="mb-0 mt-1">{{url.values.resolved}}</p>
+                {{/each}}
+              </td>
+              <td class="pt-0">
+                {{#each item.sends as |send|}}
+                  <p class="mb-0 mt-1">{{send.deployment.name}} (Sent {{moment-format send.sentDate "MMM Do, YYYY @ h:mma"}})</p>
+                {{/each}}
+              </td>
             </tr>
           {{else}}
             <tr>
