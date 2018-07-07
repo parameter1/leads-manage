@@ -18,23 +18,13 @@
   </p>
 </div>
 
-
-<div class="card-footer d-flex justify-content-between">
-  {{!-- {{#if (user-role-is "Administrator" "Member")}}
-    <button class="btn btn-success btn-lg" disabled={{eq model.rows.edges.length 0}} {{action "export" model.result.id}}>
-      {{entypo-icon "export"}} Export
-    </button>
-
-    <div class="btn-group btn pr-0">
-      {{#link-to "behavior.view.results.rows.exports" class="btn btn-info"}}
-        {{entypo-icon "eye"}} View Export Log
-      {{/link-to}}
-    </div>
-  {{/if}} --}}
-</div>
-
-
 {{#if model.rows.edges.length}}
+  <div class="card-footer d-flex justify-content-between">
+    <a class="btn btn-success btn-lg" href="/export/behavior/{{model.result.id}}">
+      {{entypo-icon "export"}} Export
+    </a>
+  </div>
+
   <div class="card-body">
     <div class="row">
       <div class="col">
