@@ -1,0 +1,4 @@
+fragment AdCampaignFragment on AdCampaign {
+  id
+  enabled
+}

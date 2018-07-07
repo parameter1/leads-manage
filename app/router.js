@@ -39,6 +39,7 @@ Router.map(function() {
         this.route('identities');
       });
       this.route('forms');
+      this.route('ads');
     });
     this.route('create');
   });

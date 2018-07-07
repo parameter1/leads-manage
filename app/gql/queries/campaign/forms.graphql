@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/campaign/form'
+
+query CampaignEditForms($input: ModelIdInput!) {
+  formCampaign(input: $input) {
+    ...FormCampaignFragment
+  }
+}
