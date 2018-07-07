@@ -1,9 +1,32 @@
 import Route from '@ember/routing/route';
+import { getObservable } from 'ember-apollo-client';
+import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 
-export default Route.extend({
-  model() {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 500);
-    });
+import query from 'leads-manage/gql/queries/lead-report/email-activity';
+
+export default Route.extend(RouteQueryManager, {
+  /**
+   *
+   * @param {object} params
+   */
+  model({ first, sortBy, ascending }) {
+    const controller = this.controllerFor(this.get('routeName'));
+
+    controller.set('campaign', this.modelFor('lead-report'));
+
+    const hash = this.modelFor('lead-report').get('hash');
+    // const pagination = { first };
+    // const sort = { field: sortBy, order: ascending ? 1 : -1 };
+
+    const variables = { hash };
+    // if (!sortBy) delete variables.sort.field;
+
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailActivity')
+      .then((result) => {
+        controller.set('observable', getObservable(result));
+        return result;
+      })
+      .catch(e => this.get('graphErrors').show(e))
+    ;
   },
 });
