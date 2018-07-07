@@ -52,33 +52,15 @@ export default Controller.extend(FormMixin, {
         const ohBehaveToken = await this.get('ohBehaveToken').retrieve();
         const context = { ohBehaveToken };
         const ids = await this.get('apollo').query({ query, variables, context, fetchPolicy: 'no-cache' }, 'behaviorContentQueryIds');
-        await this.create(ids);
+
+        const response = await this.create(ids);
         this.get('notify').success('Query result successfully created.');
-        this.transitionToRoute('behavior.view.results.rows');
+        this.transitionToRoute('behavior.view.results.rows', response.id);
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
         this.endAction();
       }
-
-      // const payload = {
-      //   queryId: this.get('model.id'),
-      //   startDate: this.get('range.start').valueOf(),
-      //   endDate: this.get('range.end').valueOf(),
-      //   sourceType: this.get('dateType'),
-      // };
-      // const variables = { input: { payload } };
-      // return this.get('apollo').mutate({ mutation, variables }, 'createContentQueryResult')
-      //   .then((response) => {
-      //     this.get('notify').success('Query result successfully created.');
-      //     this.transitionToRoute('property.queries.view.results.rows', response.id);
-      //   })
-      //   .catch(e => this.get('graphErrors').show(e))
-      //   .finally(() => {
-      //     this.set('isRunning', false);
-      //     this.endAction();
-      //   })
-      // ;
     },
   },
 });

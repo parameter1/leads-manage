@@ -36,7 +36,18 @@
 
 {{#if model.rows.edges.length}}
   <div class="card-body">
-    {{partial "list-controls"}}
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          {{!-- Fix menu alignment, once https://github.com/twbs/bootstrap/pull/26255 is merged --}}
+          <div class="col-12 col-md-6 mt-3 mt-md-0">
+            <div class="btn-toolbar" role="toolbar" aria-label="Filter Toolbar">
+              {{list-controls/limit options=limitOptions limit=first alignment="right"}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   {{#fetch-more
