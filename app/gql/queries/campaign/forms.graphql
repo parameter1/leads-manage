@@ -8,6 +8,7 @@ query CampaignEditForms($input: ModelIdInput!) {
       form {
         id
         name
+        previewUrl
         createdAt
       }
       active

@@ -8,6 +8,9 @@ module.exports = function(defaults) {
     'ember-math-helpers': {
       only: ['add'],
     },
+    babel: {
+      plugins: ['transform-object-rest-spread'],
+    },
   });
 
   // Bootstrap JS and source maps.

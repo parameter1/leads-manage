@@ -38,7 +38,9 @@ Router.map(function() {
         this.route('links');
         this.route('identities');
       });
-      this.route('forms');
+      this.route('forms', function() {
+        this.route('submissions', { path: ':form_id' });
+      });
       this.route('ads');
     });
     this.route('create');

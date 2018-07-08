@@ -11,19 +11,29 @@
   {{#if model.enabled}}
     <div class="card mt-3">
       <div class="card-header">Forms to Include</div>
-      <div class="card-body pt-0">
+      <ul class="list-group list-group-flush">
         {{#each model.forms as |available|}}
-          <div class="form-group mb-0 mt-3">
+          <li class="list-group-item">
             <div class="custom-control custom-checkbox">
-              {{input type="checkbox" checked=available.active class="custom-control-input" id=available.form.id change=(action "updateExcludedForm" available)}}
-              <label class="custom-control-label" for={{available.form.id}}><span class="h5">{{available.form.name}}</span></label>
+              {{input type="checkbox" checked=available.active class="custom-control-input" id=available.form.id change=(action "updateExcludedForm" available.form)}}
+              <label class="custom-control-label" for={{available.form.id}}>
+                <span class="h5">
+                  {{available.form.name}}
+                  <a href={{available.form.previewUrl}} target="_blank" rel="noopener noreferer">{{entypo-icon "popup" class="ml-1"}}</a>
+                </span>
+              </label>
             </div>
             <small class="form-text text-muted">Created: {{moment-format available.form.createdAt "MMM Do, YYYY @ h:mma"}}</small>
-          </div>
+            {{#link-to "campaign.edit.forms.submissions" available.form.id class="btn btn-primary mt-2" role="button"}}
+              {{entypo-icon "users"}} Manage Submissions
+            {{/link-to}}
+          </li>
         {{else}}
-          <h5 class="card-title mb-0">No forms were found for the provided campaign criteria.</h5>
+          <li class="list-group-item h5">No forms were found for the provided campaign criteria.</li>
         {{/each}}
-      </div>
+      </ul>
     </div>
   {{/if}}
 </div>
+
+{{outlet}}

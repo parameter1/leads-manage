@@ -1,0 +1,23 @@
+#import 'leads-manage/gql/fragments/form-entry-list'
+
+query CampaignFormEntries($input: ModelIdInput!, $pagination: PaginationInput) {
+  form(input: $input) {
+    id
+    name
+    fields
+    previewUrl
+    entries(pagination: $pagination) {
+      totalCount
+      edges {
+        node {
+          ...FormEntryListFragment
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}
