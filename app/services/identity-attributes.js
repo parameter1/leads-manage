@@ -1,19 +1,17 @@
 import Service from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 export default Service.extend({
   adminFields: computed.filterBy('fields', 'adminOnly', true),
 
   getViewableFields: computed('fields.[]', function() {
-    return this.get('fields');
-    // @todo Enable once user manager service is working.
-    // return this.get('fields').filter((field) => {
-    //   if (get(field, 'adminOnly')) {
-    //     return this.get('userManager.permissions.lead-campaign.admin-fields') ? true : false;
-    //   } else {
-    //     return true;
-    //   }
-    // });
+    return this.get('fields').filter((field) => {
+      if (get(field, 'adminOnly')) {
+        return this.get('user.permissions.campaign.admin-fields') ? true : false;
+      } else {
+        return true;
+      }
+    });
   }),
 
   getFilteredFields(excluded) {
