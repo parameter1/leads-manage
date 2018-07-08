@@ -1,5 +1,4 @@
-
-fragment FormEntryListFragment on FormEntry {
+fragment FormEntryFragment on FormEntry {
   id
   identifier
   inactive

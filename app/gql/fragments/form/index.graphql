@@ -1,6 +1,6 @@
 #import 'leads-manage/gql/fragments/external-source'
 
-fragment FormListFragment on Form {
+fragment FormIndexFragment on Form {
   id
   name
   description

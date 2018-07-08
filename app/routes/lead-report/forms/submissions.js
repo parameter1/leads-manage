@@ -2,29 +2,27 @@ import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import { getObservable } from 'ember-apollo-client';
 
-import query from 'leads-manage/gql/queries/lead-report/form-entries';
+import query from 'leads-manage/gql/queries/form/edit/entries';
 
 export default Route.extend(RouteQueryManager, {
   model({ form_id }) {
     const controller = this.controllerFor(this.get('routeName'));
 
-    controller.set('form', this.modelFor('lead-report.forms'));
-
     const campaign = this.modelFor('lead-report');
+    const { maxIdentities, startDate, endDate } = campaign;
 
     const pagination = { first: 40 };
     const sort = { field: 'identifier', order: 1 };
-
-    const input = {
-      formId: form_id,
+    const input = { id: form_id, refreshEntries: true };
+    const entriesInput = {
       suppressInactives: true,
-      refresh: true,
-      max: campaign.maxIdentities,
+      max: maxIdentities,
+      startDate,
+      endDate,
     };
-    const formInput = { id: form_id };
-    const variables = { input, pagination, sort, formInput };
 
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' })
+    const variables = { input, entriesInput, pagination, sort };
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'form')
       .then((result) => {
         controller.set('observable', getObservable(result));
         return result;

@@ -1,8 +1,0 @@
-#import 'leads-manage/gql/fragments/form-list'
-
-fragment FormFragment on Form {
-  ...FormListFragment
-  previewUrl
-  isNew
-  fields
-}

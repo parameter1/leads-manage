@@ -1,11 +1,11 @@
-#import 'leads-manage/gql/fragments/form-list'
+#import 'leads-manage/gql/fragments/form/index'
 
-query allForms($pagination: PaginationInput, $sort: FormSortInput) {
+query FormIndex($pagination: PaginationInput, $sort: FormSortInput) {
   allForms(pagination: $pagination, sort: $sort) {
     totalCount
     edges {
       node {
-        ...FormListFragment
+        ...FormIndexFragment
       }
       cursor
     }

@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import { getObservable } from 'ember-apollo-client';
 
-import query from 'leads-manage/gql/queries/all-forms';
+import query from 'leads-manage/gql/queries/form/index';
 
 export default Route.extend(RouteQueryManager, {
   queryParams: {

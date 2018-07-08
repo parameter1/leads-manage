@@ -3,6 +3,8 @@ fragment CampaignHashFragment on Campaign {
   fullName
   hash
   maxIdentities
+  startDate
+  endDate
   customer {
     id
     name

@@ -2,12 +2,12 @@
   <a class="btn btn-lg btn-success mb-3" role="button" href="/export/form-entries/{{model.form.id}}">{{entypo-icon "download"}} Download Form Leads</a>
 
   <h4 class="card-title">
-    Title: {{model.form.name}}
-    <a href={{model.form.previewUrl}} target="_blank" rel="noopener noreferer">{{entypo-icon "popup" class="ml-1"}}</a>
+    Title: {{model.name}}
+    <a href={{model.previewUrl}} target="_blank" rel="noopener noreferer">{{entypo-icon "popup" class="ml-1"}}</a>
   </h4>
   <h5 class="card-title mb-0">
-    {{#if model.allFormEntries.totalCount}}
-      Found {{model.allFormEntries.totalCount}} Record{{#if (gt model.allFormEntries.totalCount 1)}}s{{/if}}
+    {{#if model.entries.totalCount}}
+      Found {{model.entries.totalCount}} Record{{#if (gt model.entries.totalCount 1)}}s{{/if}}
     {{else}}
       No Records Found
     {{/if}}
@@ -15,16 +15,17 @@
 
   {{#fetch-more
     query=observable
-    edges=model.allFormEntries.edges
-    hasNextPage=model.allFormEntries.pageInfo.hasNextPage
-    endCursor=model.allFormEntries.pageInfo.endCursor
+    edges=model.entries.edges
+    hasNextPage=model.entries.pageInfo.hasNextPage
+    endCursor=model.entries.pageInfo.endCursor
     on-fetch-start=(route-action "showLoading")
     on-fetch-end=(route-action "hideLoading")
-    resultKey="allFormEntries" as |fetch|
+    resultKey="form"
+    applyToField="entries" as |fetch|
   }}
     <div class="row mt-3">
       {{#each fetch.nodes as |node|}}
-        {{form-entry-card entry=node showTitle=false showEntryNo=false form=model.form canEdit=false class="mb-3"}}
+        {{form-entry-card entry=node showTitle=false showEntryNo=false form=model canEdit=false class="mb-3"}}
       {{/each}}
     </div>
     {{#if fetch.hasNextPage}}

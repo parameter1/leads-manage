@@ -3,7 +3,7 @@ import { get } from '@ember/object';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
-import query from 'leads-manage/gql/queries/form';
+import query from 'leads-manage/gql/queries/form/edit';
 import deleteForm from 'leads-manage/gql/mutations/delete-form';
 import updateForm from 'leads-manage/gql/mutations/update-form';
 

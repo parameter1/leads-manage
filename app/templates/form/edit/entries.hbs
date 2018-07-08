@@ -1,7 +1,7 @@
 <div class="card-body">
   <h5 class="card-title mb-0">
-    {{#if model.totalCount}}
-      Found {{model.totalCount}} Record{{#if (gt model.totalCount 1)}}s{{/if}}
+    {{#if model.entries.totalCount}}
+      Found {{model.entries.totalCount}} Record{{#if (gt model.entries.totalCount 1)}}s{{/if}}
     {{else}}
       No Records Found
     {{/if}}
@@ -9,16 +9,17 @@
 
   {{#fetch-more
     query=observable
-    edges=model.edges
-    hasNextPage=model.pageInfo.hasNextPage
-    endCursor=model.pageInfo.endCursor
+    edges=model.entries.edges
+    hasNextPage=model.entries.pageInfo.hasNextPage
+    endCursor=model.entries.pageInfo.endCursor
     on-fetch-start=(action showLoading)
     on-fetch-end=(action hideLoading)
-    resultKey="allFormEntries" as |fetch|
+    resultKey="form"
+    applyToField="entries" as |fetch|
   }}
     <div class="row mt-3">
       {{#each fetch.nodes as |node|}}
-        {{form-entry-card entry=node form=form canEdit=true class="mb-3"}}
+        {{form-entry-card entry=node form=model canEdit=true class="mb-3"}}
       {{/each}}
     </div>
     {{#if fetch.hasNextPage}}
