@@ -12,10 +12,10 @@
     <div class="card mt-3">
       <div class="card-header">Forms to Include</div>
       <ul class="list-group list-group-flush">
-        {{#each model.forms as |available|}}
+        {{#each model.forms as |available index|}}
           <li class="list-group-item">
             <div class="custom-control custom-checkbox">
-              {{input type="checkbox" checked=available.active class="custom-control-input" id=available.form.id change=(action "updateExcludedForm" available.form)}}
+              {{input type="checkbox" checked=available.active class="custom-control-input" id=available.form.id change=(action "updateExcludedForm" index)}}
               <label class="custom-control-label" for={{available.form.id}}>
                 <span class="h5">
                   {{available.form.name}}

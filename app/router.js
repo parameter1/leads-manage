@@ -16,8 +16,7 @@ Router.map(function() {
       this.route('export');
     });
     this.route('forms', function() {
-      this.route('leads', { path: '/' });
-      this.route('export');
+      this.route('submissions', { path: ':form_id' });
     });
     this.route('ads', function() {
       this.route('leads', { path: '/' });

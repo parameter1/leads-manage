@@ -27,7 +27,9 @@ export default Route.extend(RouteQueryManager, {
 
     const pagination = { first, after };
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { formId: form.id, pagination, sort };
+
+    const input = { formId: form.id };
+    const variables = { input, pagination, sort };
     if (!sortBy) delete variables.sort.field;
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allFormEntries')
       .then((result) => {

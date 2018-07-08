@@ -13,6 +13,7 @@ export default Component.extend(ComponentQueryManager, LoadingMixin, {
   canEdit: true,
   fullWidth: false,
   showTitle: false,
+  showEntryNo: true,
 
   notify: inject(),
 

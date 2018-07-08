@@ -10,7 +10,9 @@
         <a href="{{ form.previewUrl }}" target="_blank" rel="nopener noreferrer">{{ form.name }}</a>
       </small>
     {{/if}}
-    <small class="card-text">Entry No: {{ entry.identifier }}</small>
+    {{#if showEntryNo}}
+      <small class="card-text">Entry No: {{ entry.identifier }}</small>
+    {{/if}}
     <small class="card-text text-muted mb-2">{{moment-format entry.submittedAt 'MMM Do, YYYY @ h:mma'}}</small>
 
     {{#each _filteredFields as |field|}}

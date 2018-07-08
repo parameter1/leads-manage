@@ -31,12 +31,13 @@ export default Controller.extend(FormMixin, {
       }
     },
 
-    async updateExcludedForm(available, event) {
+    async updateExcludedForm(index, event) {
       this.startAction();
 
       const { target } = event;
       const { checked } = target;
-      set(available, 'active', checked);
+
+      set(this.get(`model.forms.${index}`), 'active', checked);
 
       const id = this.get('model.id');
       const excludeForms = this.get('model.forms').map(available => ({

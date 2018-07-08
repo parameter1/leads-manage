@@ -9,17 +9,13 @@ export default Route.extend(RouteQueryManager, {
    *
    * @param {object} params
    */
-  model({ first, sortBy, ascending }) {
+  model() {
     const controller = this.controllerFor(this.get('routeName'));
 
     controller.set('campaign', this.modelFor('lead-report'));
 
     const hash = this.modelFor('lead-report').get('hash');
-    // const pagination = { first };
-    // const sort = { field: sortBy, order: ascending ? 1 : -1 };
-
     const variables = { hash };
-    // if (!sortBy) delete variables.sort.field;
 
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailActivity')
       .then((result) => {
