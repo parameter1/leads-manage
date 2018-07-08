@@ -1,7 +1,9 @@
-import Service from '@ember/service';
+import Service, { inject } from '@ember/service';
 import { computed, get } from '@ember/object';
 
 export default Service.extend({
+  user: inject(),
+
   adminFields: computed.filterBy('fields', 'adminOnly', true),
 
   getViewableFields: computed('fields.[]', function() {
