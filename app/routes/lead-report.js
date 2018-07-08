@@ -28,9 +28,15 @@ export default Route.extend(RouteQueryManager, {
      */
     loading(transition) {
       const controller = this.controllerFor(this.get('routeName'));
-      controller.set('isLoading', true);
       transition.finally(() => controller.set('isLoading', false));
       return true;
+    },
+
+    willTransition(transition) {
+      const { targetName } = transition;
+      if (targetName.indexOf('lead-report') !== 0) {
+        this.controllerFor('application').set('displayNav', true);
+      }
     },
   },
 });
