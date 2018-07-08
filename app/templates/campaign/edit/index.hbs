@@ -9,13 +9,15 @@
       <button class="btn btn-info clickable" disabled={{isActionRunning}} {{action (route-action "clone" model.id)}}>
         {{entypo-icon "copy"}} Clone
       </button>
-      {{confirm-button
-        icon="trash"
-        label="Delete"
-        class="btn-danger"
-        disabled=isActionRunning
-        onConfirm=(route-action "delete" model.id "campaign.index")
-      }}
+      {{#if user.permissions.campaign.delete}}
+        {{confirm-button
+          icon="trash"
+          label="Delete"
+          class="btn-danger"
+          disabled=isActionRunning
+          onConfirm=(route-action "delete" model.id "campaign.index")
+        }}
+      {{/if}}
     </div>
   </div>
 </form>

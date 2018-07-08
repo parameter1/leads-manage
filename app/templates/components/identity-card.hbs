@@ -22,19 +22,13 @@
           {{entypo-icon "cog"}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          {{!-- @todo Enable once permissions are handled. --}}
-          {{!-- {{#if userManager.permissions.lead-campaign.deactivateGlobally}}
+          {{#if user.permissions.lead-campaign.deactivateGlobally}}
             {{identity-card/action
               labelSuffix="Globally"
               inactive=_isInactiveGlobally
-              click=(action 'toggleGlobalActivation')
+              on-click=(action 'toggleGlobalActivation')
             }}
-          {{/if}} --}}
-          {{identity-card/action
-            labelSuffix="Globally"
-            inactive=_isInactiveGlobally
-            on-click=(action 'toggleGlobalActivation')
-          }}
+          {{/if}}
           {{#if customerId}}
             {{identity-card/action labelSuffix="for Customer" inactive=_isInactiveCustomer on-click=(action 'toggleCustomerActivation')}}
           {{/if}}

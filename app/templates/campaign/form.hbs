@@ -22,14 +22,13 @@
 
     <div class="form-group mb-0">
       <label for="maxIdentities">Maximum Leads</label>
-      {{!-- @todo Enable one user manager is working. --}}
-      {{!-- {{#if userManager.permissions.lead-campaign.unlimitedLeads}} --}}
+      {{#if user.permissions.lead-campaign.unlimitedLeads}}
         {{input type="number" min=0 value=model.maxIdentities class="form-control" id="maxIdentities" aria-describedby="maxIdentitiesHelp" placeholder="Max Leads"}}
         <small id="maxIdentitiesHelp" class="form-text text-muted">A 0 value will allow unlimited leads.</small>
-      {{!-- {{else}} --}}
-        {{!-- {{input type="number" min=1 max=200 value=model.maxIdentities class="form-control" id="maxIdentities" aria-describedby="maxIdentitiesHelp" placeholder="Max Leads"}} --}}
-        {{!-- <small id="maxIdentitiesHelp" class="form-text text-muted">Maximum 200.</small> --}}
-      {{!-- {{/if}} --}}
+      {{else}}
+        {{input type="number" min=1 max=200 value=model.maxIdentities class="form-control" id="maxIdentities" aria-describedby="maxIdentitiesHelp" placeholder="Max Leads"}}
+        <small id="maxIdentitiesHelp" class="form-text text-muted">Maximum 200.</small>
+      {{/if}}
     </div>
 
   </div>
