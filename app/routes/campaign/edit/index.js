@@ -4,6 +4,7 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import { get } from '@ember/object';
 
 import deleteCampaign from 'leads-manage/gql/mutations/campaign/delete';
+import cloneCampaign from 'leads-manage/gql/mutations/campaign/clone';
 import updateCampaign from 'leads-manage/gql/mutations/campaign/update';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
@@ -12,6 +13,10 @@ export default Route.extend(FormMixin, RouteQueryManager, {
   },
 
   actions: {
+    /**
+     *
+     * @param {object} params
+     */
     async update({ id, customer, name, startDate, endDate, maxIdentities }) {
       this.startRouteAction();
       const mutation = updateCampaign;
@@ -33,6 +38,12 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         this.endRouteAction();
       }
     },
+
+    /**
+     *
+     * @param {*} id
+     * @param {*} routeName
+     */
     async delete(id, routeName) {
       this.startRouteAction();
       const mutation = deleteCampaign;
@@ -41,6 +52,25 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         await this.get('apollo').mutate({ mutation, variables }, 'deleteCampaign');
         this.get('notify').info('Campaign successfully deleted.');
         this.transitionTo(routeName)
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
+    },
+
+    /**
+     *
+     * @param {*} id
+     */
+    async clone(id) {
+      this.startRouteAction();
+      const mutation = cloneCampaign;
+      const variables = { input: { id } };
+      try {
+        const response = await this.get('apollo').mutate({ mutation, variables }, 'cloneCampaign');
+        this.get('notify').info('Campaign successfully cloned.');
+        this.transitionTo('campaign.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
