@@ -10,6 +10,7 @@ export default Route.extend(RouteQueryManager, {
 
     const campaign = this.modelFor('lead-report');
     const { maxIdentities, startDate, endDate } = campaign;
+    controller.set('campaign', campaign);
 
     const pagination = { first: 40 };
     const sort = { field: 'identifier', order: 1 };
