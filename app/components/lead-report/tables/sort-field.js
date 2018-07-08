@@ -12,6 +12,7 @@ export default Component.extend({
   key: null,
   sortBy: '',
   ascending: false,
+  reset: true,
 
   init() {
     this._super(...arguments);
@@ -21,7 +22,7 @@ export default Component.extend({
   click(event) {
     event.preventDefault();
     if (this.get('isActive')) {
-      if (this.get('ascending') === false) {
+      if (this.get('reset') && this.get('ascending') === false) {
         this.set('sortBy', this.get('originalSortBy'));
       } else {
         this.toggleProperty('ascending');

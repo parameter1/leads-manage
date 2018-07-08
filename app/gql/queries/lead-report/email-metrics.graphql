@@ -1,7 +1,7 @@
 #import 'leads-manage/gql/fragments/email-send-metrics'
 
-query LeadReportEmailMetrics($hash: String!) {
-  reportEmailMetrics(hash: $hash) {
+query LeadReportEmailMetrics($hash: String!, $sort: ReportEmailMetricsSortInput!) {
+  reportEmailMetrics(hash: $hash, sort: $sort) {
     sends {
       send {
         id
