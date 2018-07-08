@@ -10,6 +10,13 @@ import deleteContentQuery from 'leads-manage/gql/mutations/behavior/content-quer
 export default Route.extend(RouteQueryManager, FormMixin, {
   ohBehaveToken: inject(),
 
+  beforeModel(transition) {
+    if (!this.user.get('permissions.campaign.edit')) {
+     transition.abort();
+     this.transitionTo('index');
+    }
+  },
+
   async model({ id }) {
     const propertyId = this.get('ohBehaveToken').getPropertyId();
 

@@ -7,6 +7,13 @@ import deleteUser from 'leads-manage/gql/mutations/delete-user';
 import updateUser from 'leads-manage/gql/mutations/update-user';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
+  beforeModel(transition) {
+    if (!this.user.get('permissions.user.edit')) {
+     transition.abort();
+     this.transitionTo('index');
+    }
+  },
+
   model({ id }) {
     const variables = { input: { id } };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'user');

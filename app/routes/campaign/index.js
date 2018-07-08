@@ -20,6 +20,13 @@ export default Route.extend(RouteQueryManager, {
     },
   },
 
+  beforeModel(transition) {
+    if (!this.user.get('permissions.campaign.list')) {
+     transition.abort();
+     this.transitionTo('index');
+    }
+  },
+
   model({ first, after, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
 

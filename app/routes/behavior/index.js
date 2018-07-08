@@ -23,6 +23,13 @@ export default Route.extend(RouteQueryManager, {
     },
   },
 
+  beforeModel(transition) {
+    if (!this.user.get('permissions.behavior.list')) {
+     transition.abort();
+     this.transitionTo('index');
+    }
+  },
+
   async model({ first, after, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
 

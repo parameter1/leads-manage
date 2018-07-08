@@ -5,6 +5,13 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import mutation from 'leads-manage/gql/mutations/create-customer';
 
 export default Route.extend(RouteQueryManager, FormMixin, {
+  beforeModel(transition) {
+    if (!this.user.get('permissions.customer.create')) {
+     transition.abort();
+     this.transitionTo('index');
+    }
+  },
+
   model() {
     return {};
   },
