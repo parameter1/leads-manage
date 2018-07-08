@@ -19,7 +19,7 @@ export default Component.extend({
       if (countForSend && count) {
         series.data.pushObject({
           y: countForSend / count,
-          name: `${get(send, 'send.name')} (Sent: ${moment(send.sentDate).format('MMM Do, YYYY @ h:mma')})`,
+          name: `${get(send, 'send.name')} (Sent: ${moment(get(send, 'send.sentDate')).format('MMM Do, YYYY @ h:mma')})`,
           dataLabels: { enabled: false },
         });
       }
