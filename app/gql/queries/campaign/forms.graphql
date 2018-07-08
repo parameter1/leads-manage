@@ -3,5 +3,14 @@
 query CampaignEditForms($input: ModelIdInput!) {
   formCampaign(input: $input) {
     ...FormCampaignFragment
+    forms(refreshEntries: true) {
+      id
+      form {
+        id
+        name
+        createdAt
+      }
+      active
+    }
   }
 }

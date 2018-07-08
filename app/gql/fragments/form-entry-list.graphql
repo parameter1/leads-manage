@@ -5,4 +5,5 @@ fragment FormEntryListFragment on FormEntry {
   inactive
   values
   createdAt
+  submittedAt
 }

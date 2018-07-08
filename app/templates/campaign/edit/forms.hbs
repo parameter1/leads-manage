@@ -9,5 +9,21 @@
     </div>
   </div>
   {{#if model.enabled}}
+    <div class="card mt-3">
+      <div class="card-header">Forms to Include</div>
+      <div class="card-body pt-0">
+        {{#each model.forms as |available|}}
+          <div class="form-group mb-0 mt-3">
+            <div class="custom-control custom-checkbox">
+              {{input type="checkbox" checked=available.active class="custom-control-input" id=available.form.id change=(action "updateExcludedForm" available)}}
+              <label class="custom-control-label" for={{available.form.id}}><span class="h5">{{available.form.name}}</span></label>
+            </div>
+            <small class="form-text text-muted">Created: {{moment-format available.form.createdAt "MMM Do, YYYY @ h:mma"}}</small>
+          </div>
+        {{else}}
+          <h5 class="card-title mb-0">No forms were found for the provided campaign criteria.</h5>
+        {{/each}}
+      </div>
+    </div>
   {{/if}}
 </div>

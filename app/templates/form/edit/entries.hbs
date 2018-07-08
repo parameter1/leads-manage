@@ -1,5 +1,5 @@
 <div class="card-body">
-  <h5 class="card-title">
+  <h5 class="card-title mb-0">
     {{#if model.totalCount}}
       Found {{model.totalCount}} Record{{#if (gt model.totalCount 1)}}s{{/if}}
     {{else}}
@@ -16,7 +16,7 @@
     on-fetch-end=(action hideLoading)
     resultKey="allFormEntries" as |fetch|
   }}
-    <div class="row">
+    <div class="row mt-3">
       {{#each fetch.nodes as |node|}}
         {{form-entry-card entry=node form=form canEdit=true class="mb-3"}}
       {{/each}}
