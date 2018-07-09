@@ -1,0 +1,17 @@
+{{#link-to
+  "identity.view" item.id
+  class="list-group-item list-group-item-action flex-column align-items-start"
+}}
+  <div class="d-flex w-100 justify-content-between">
+    <h4 class="mb-1">{{item.givenName}} {{item.familyName}}</h4>
+    {{#if item.updatedAt}}
+      <small>{{entypo-icon "clock"}} Updated {{moment-format item.updatedAt "MMM Do, YYYY h:mm a"}}</small>
+    {{/if}}
+  </div>
+  <div class="mb-1">{{item.emailAddress}}</div>
+
+  {{#if item.externalSource.identifier}}
+    <small class="d-block mb-1">From {{item.externalSource.namespace}}: {{item.externalSource.identifier}}</small>
+  {{/if}}
+  <small class="d-block">ID: {{item.id}}</small>
+{{/link-to}}

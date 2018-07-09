@@ -31,6 +31,9 @@ Router.map(function() {
     this.route('edit', { path: ':id' });
     this.route('create');
   });
+  this.route('identity', function() {
+    this.route('view', { path: ':id' });
+  });
   this.route('campaign', function() {
     this.route('edit', { path: ':id' }, function() {
       this.route('email', function() {
