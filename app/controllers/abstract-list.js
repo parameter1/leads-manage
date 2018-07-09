@@ -6,7 +6,11 @@ export default Controller.extend({
    * Query params
    */
   queryParams: null,
+
   phrase: '',
+  searchType: 'contains',
+  searchBy: 'name',
+
   first: 20,
   after: null,
   ascending: false,
@@ -26,6 +30,11 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     this.set('queryParams', ['first', 'after', 'sortBy', 'ascending', 'phrase']);
+
+    // Should be overriden by the specific controller for different options.
+    this.set('searchFields', [
+      { key: 'name', label: 'Name' },
+    ]);
 
     // Should be overriden by the specific controller for different options.
     this.set('sortOptions', [

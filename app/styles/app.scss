@@ -20,6 +20,11 @@ $modal-xl: 1100px !default;
 
 @import "z-depth";
 
+.search-type-button {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .ember-power-calendar {
   @include ember-power-calendar($cell-size: 35px);
 }

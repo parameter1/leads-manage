@@ -3,13 +3,17 @@ import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import { getObservable } from 'ember-apollo-client';
 
 import query from 'leads-manage/gql/queries/all-customers';
+import searchCustomers from 'leads-manage/gql/queries/search-customers';
 
 export default Route.extend(RouteQueryManager, {
   queryParams: {
-    first: {
+    phrase: {
       refreshModel: true
     },
-    after: {
+    searchType: {
+      refreshModel: true
+    },
+    searchBy: {
       refreshModel: true
     },
     sortBy: {
@@ -27,14 +31,41 @@ export default Route.extend(RouteQueryManager, {
     }
   },
 
-  model({ first, after, sortBy, ascending }) {
+  search(field, term, position, pagination) {
+    const controller = this.controllerFor(this.get('routeName'));
+
+    const search = { typeahead: { field, term } };
+    const options = { position };
+    const variables = { pagination, search, options };
+
+    const resultKey = 'searchCustomers';
+    controller.set('resultKey', resultKey);
+
+    return this.get('apollo').watchQuery({ query: searchCustomers, variables, fetchPolicy: 'network-only' }, resultKey)
+      .then((result) => {
+        controller.set('observable', getObservable(result));
+        return result;
+      })
+      .catch(e => this.get('graphErrors').show(e))
+  },
+
+  model({ first, after, sortBy, ascending, phrase, searchType, searchBy }) {
     const controller = this.controllerFor(this.get('routeName'));
 
     const pagination = { first, after };
+
+    if (phrase) {
+      return this.search(searchBy, phrase, searchType, pagination);
+    }
+
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
     const variables = { pagination, sort };
     if (!sortBy) delete variables.sort.field;
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allCustomers')
+
+    const resultKey = 'allCustomers';
+    controller.set('resultKey', resultKey);
+
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, resultKey)
       .then((result) => {
         controller.set('observable', getObservable(result));
         return result;

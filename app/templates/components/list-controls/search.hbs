@@ -1,4 +1,12 @@
 <div class="input-group">
+  <div class="input-group-prepend">
+    <div class="btn-group">
+      {{list-controls/search-fields fields=fields searchBy=searchBy}}
+      {{list-controls/search-type type=searchType}}
+    </div>
+
+  </div>
+
   {{input
     type="search"
     class="form-control"

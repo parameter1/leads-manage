@@ -11,6 +11,17 @@ export default Component.extend({
   },
 
   /**
+   * The search type.
+   * E.g. `contains` or `starts-with`
+   */
+  searchType: null,
+
+  /**
+   * The field to search against.
+   */
+  searchBy: null,
+
+  /**
    * The initial search phrase input value.
    * This component will *not* directly manipulate this value.
    * Instead, the new value can be retrieve when the search control is submitted.
