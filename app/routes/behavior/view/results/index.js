@@ -1,39 +1,28 @@
 import Route from '@ember/routing/route';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
-import { getObservable } from 'ember-apollo-client';
+import ListRouteMixin from 'leads-manage/mixins/list-route-mixin';
 
 import query from 'leads-manage/gql/queries/content-query-result/all';
+import search from 'leads-manage/gql/queries/content-query-result/search';
 
-export default Route.extend(RouteQueryManager, {
-  queryParams: {
-    first: {
-      refreshModel: true
-    },
-    after: {
-      refreshModel: true
-    },
-    sortBy: {
-      refreshModel: true
-    },
-    ascending: {
-      refreshModel: true
-    },
-  },
-
-  model({ first, after, sortBy, ascending }) {
-    const controller = this.controllerFor(this.get('routeName'));
+export default Route.extend(ListRouteMixin, {
+  /**
+   *
+   * @param {object} params
+   */
+  model({ first, sortBy, ascending, phrase, searchType, searchBy }) {
+    this.getController().set('campaign', this.modelFor('campaign.edit'));
 
     const queryId = this.modelFor('behavior.view').get('id');
-    const pagination = { first, after };
-    const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { queryId, pagination, sort };
-    if (!sortBy) delete variables.sort.field;
+    const vars = { queryId };
 
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allContentQueryResults')
-      .then((result) => {
-        controller.set('observable', getObservable(result));
-        return result;
-      }).catch(e => this.get('graphErrors').show(e))
-    ;
+    return this.getResults({
+      query,
+      queryKey: 'allContentQueryResults',
+      queryVars: vars,
+    }, {
+      search,
+      searchVars: vars,
+      searchKey: 'searchContentQueryResults',
+    }, { first, sortBy, ascending, phrase, searchType, searchBy });
   },
 });

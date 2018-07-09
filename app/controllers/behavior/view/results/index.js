@@ -8,5 +8,10 @@ export default ListController.extend({
       { key: 'ranAt', label: 'Time Ran' },
     ]);
     this.set('sortBy', 'ranAt');
+
+    this.set('searchFields', [
+      { key: 'name', label: 'Name' },
+    ]);
+    this.set('searchBy', 'name');
   },
 });
