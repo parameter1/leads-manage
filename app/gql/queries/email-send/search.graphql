@@ -1,7 +1,7 @@
 #import 'leads-manage/gql/fragments/email-send-list'
 
-query allEmailSends($pagination: PaginationInput, $sort: EmailSendSortInput) {
-  allEmailSends(pagination: $pagination, sort: $sort) {
+query SearchEmailSends($pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
+  searchEmailSends(pagination: $pagination, search: $search, options: $options) {
     totalCount
     edges {
       node {

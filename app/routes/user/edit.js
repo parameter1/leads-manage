@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
-import query from 'leads-manage/gql/queries/user';
+import query from 'leads-manage/gql/queries/user/view';
 import deleteUser from 'leads-manage/gql/mutations/delete-user';
 import updateUser from 'leads-manage/gql/mutations/update-user';
 

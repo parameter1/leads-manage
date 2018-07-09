@@ -9,5 +9,10 @@ export default ListController.extend({
       { key: 'fullName', label: 'Name' },
     ]);
     this.set('sortBy', 'updatedAt');
+
+    this.set('searchFields', [
+      { key: 'fullName', label: 'Name' },
+    ]);
+    this.set('searchBy', 'fullName');
   },
 });

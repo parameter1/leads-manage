@@ -7,11 +7,10 @@ export default Mixin.create(RouteObservableMixin, {
    * @param {*} queryOptions
    * @param {*} params
    */
-  async search({ query, resultKey }, { searchBy, phrase, searchType, pagination }) {
-    const typeahead = { field: searchBy, term: phrase };
-    const search = { typeahead };
+  async search({ query, resultKey, vars }, { searchBy, phrase, searchType, pagination }) {
+    const search = { field: searchBy, phrase };
     const options = { position: searchType };
-    const variables = { pagination, search, options };
+    const variables = { pagination, search, options, ...vars };
 
     this.getController().set('resultKey', resultKey);
     try {

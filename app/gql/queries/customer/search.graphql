@@ -1,4 +1,4 @@
-query searchCustomers($pagination: PaginationInput, $search: CustomerSearchInput!, $options: TypeAheadOptionsInput) {
+query SearchCustomers($pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
   searchCustomers(pagination: $pagination, search: $search, options: $options) {
     totalCount
     edges {

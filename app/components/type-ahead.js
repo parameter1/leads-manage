@@ -5,8 +5,8 @@ import { inject } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
 
-import customerQuery from 'leads-manage/gql/queries/search-customers';
-import tagQuery from 'leads-manage/gql/queries/search-tags';
+import customerQuery from 'leads-manage/gql/queries/customer/search';
+import tagQuery from 'leads-manage/gql/queries/tag/search';
 
 export default Component.extend(ComponentQueryManager, {
   errorProcessor: inject(),
@@ -37,11 +37,14 @@ export default Component.extend(ComponentQueryManager, {
     return { first: 20 };
   }),
 
-  search: task(function* (term) {
+  search: task(function* (phrase) {
     const pagination = this.get('_pagination');
     const field = this.get('field');
-    const search = { typeahead: { field, term } };
-    const variables = { pagination, search };
+
+    const search = { field, phrase };
+    const options = { position: 'contains' };
+    const variables = { pagination, search, options };
+
     const { query, resultKey } = this.get('_query');
     const selected = this.get('selected') || [];
     const filterFrom = isArray(selected) ? selected : [ selected ];

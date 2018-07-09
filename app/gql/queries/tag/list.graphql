@@ -1,6 +1,6 @@
 #import 'leads-manage/gql/fragments/tag-fragment'
 
-query allTags($pagination: PaginationInput, $sort: TagSortInput) {
+query ListTags($pagination: PaginationInput, $sort: TagSortInput) {
   allTags(pagination: $pagination, sort: $sort) {
     totalCount
     edges {

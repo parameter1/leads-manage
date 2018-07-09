@@ -9,5 +9,11 @@ export default ListController.extend({
       { key: 'name', label: 'Name' },
     ]);
     this.set('sortBy', 'externalSource.createdAt');
+
+    this.set('searchFields', [
+      { key: 'name', label: 'Name' },
+      { key: 'externalSource.identifier', label: 'Wufoo ID' },
+    ]);
+    this.set('searchBy', 'name');
   },
 });

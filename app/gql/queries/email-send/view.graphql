@@ -1,6 +1,6 @@
 #import 'leads-manage/gql/fragments/email-send-fragment'
 
-query emailSend($input: ModelIdInput!) {
+query ViewEmailSend($input: ModelIdInput!) {
   emailSend(input: $input) {
     ...EmailSendFragment
   }

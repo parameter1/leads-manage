@@ -1,6 +1,6 @@
 #import 'leads-manage/gql/fragments/email-category-list'
 
-query allEmailCategories($pagination: PaginationInput, $sort: EmailCategorySortInput) {
+query ListEmailCategories($pagination: PaginationInput, $sort: EmailCategorySortInput) {
   allEmailCategories(pagination: $pagination, sort: $sort) {
     totalCount
     edges {

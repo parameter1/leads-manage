@@ -4,13 +4,16 @@ import RouteSearchMixin from 'leads-manage/mixins/route-search-mixin';
 export default Mixin.create(RouteSearchMixin, {
   queryParams: {
     phrase: {
-      refreshModel: true
+      refreshModel: true,
+      replace: true,
     },
     searchType: {
-      refreshModel: true
+      refreshModel: true,
+      replace: true,
     },
     searchBy: {
-      refreshModel: true
+      refreshModel: true,
+      replace: true,
     },
     first: {
       refreshModel: true
@@ -27,12 +30,13 @@ export default Mixin.create(RouteSearchMixin, {
    *
    * @param {object} params
    */
-  async getResults({ query, queryKey }, { search, searchKey }, { first, sortBy, ascending, phrase, searchType, searchBy }) {
+  async getResults({ query, queryKey, queryVars }, { search, searchKey, searchVars }, { first, sortBy, ascending, phrase, searchType, searchBy }) {
     const pagination = { first };
     if (phrase) {
       return this.search({
         query: search,
         resultKey: searchKey,
+        vars: searchVars,
       }, {
         searchBy,
         phrase,
@@ -42,7 +46,7 @@ export default Mixin.create(RouteSearchMixin, {
     }
 
     const sort = { field: sortBy, order: ascending ? 1 : -1 };
-    const variables = { pagination, sort };
+    const variables = { pagination, sort, ...queryVars };
     if (!sortBy) delete variables.sort.field;
 
     this.getController().set('resultKey', queryKey);

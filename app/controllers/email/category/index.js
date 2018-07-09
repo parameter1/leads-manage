@@ -10,5 +10,10 @@ export default ListController.extend({
     ]);
     this.set('sortBy', 'fullName');
     this.set('ascending', false);
+
+    this.set('searchFields', [
+      { key: 'fullName', label: 'Name' },
+    ]);
+    this.set('searchBy', 'fullName');
   },
 });

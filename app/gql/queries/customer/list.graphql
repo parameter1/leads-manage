@@ -1,4 +1,4 @@
-query allCustomers($pagination: PaginationInput, $sort: CustomerSortInput) {
+query ListCustomers($pagination: PaginationInput, $sort: CustomerSortInput) {
   allCustomers(pagination: $pagination, sort: $sort) {
     totalCount
     edges {
