@@ -7,21 +7,14 @@ export default Controller.extend({
    */
   queryParams: null,
 
+  first: 20,
+
   phrase: '',
   searchType: 'contains',
   searchBy: 'name',
 
-  first: 20,
-  after: null,
-  ascending: false,
   sortBy: null,
-
-  /**
-   * Pagination
-   */
-  totalCount: 0,
-  hasNextPage: false,
-  endCursor: null,
+  ascending: false,
 
   isSortDisabled: computed('phrase.length', function() {
     return this.get('phrase.length') > 0;
@@ -29,7 +22,7 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-    this.set('queryParams', ['first', 'after', 'sortBy', 'ascending', 'phrase']);
+    this.set('queryParams', ['first', 'sortBy', 'ascending', 'phrase', 'seachType', 'searchBy']);
 
     // Should be overriden by the specific controller for different options.
     this.set('searchFields', [
