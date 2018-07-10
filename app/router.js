@@ -29,7 +29,9 @@ Router.map(function() {
 
     });
     this.route('urls', function() {
-      this.route('edit', { path: ':id' });
+      this.route('edit', { path: ':id' }, function() {
+        this.route('email-sends');
+      });
     });
     this.route('hosts');
   });
