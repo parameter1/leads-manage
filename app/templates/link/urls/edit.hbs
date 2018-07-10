@@ -1,0 +1,13 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "link.urls.index"}}{{entypo-icon "network"}} Manage Links{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{#if model.title}}{{ model.title }}{{else}}(No Title){{/if}}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<div class="card">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    {{extracted-url/manage model=model}}
+  </div>
+  <div class="card-footer"></div>
+</div>

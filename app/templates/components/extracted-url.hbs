@@ -7,20 +7,7 @@
         {{entypo-icon "warning" class="text-danger"}}
         {{errorMessage}}
       {{else}}
-        {{#if model.errorMessage}}
-          {{entypo-icon "warning" class="text-warning"}}
-          {{model.errorMessage}}
-        {{else}}
-          {{entypo-icon "link"}}
-          <a href="{{model.values.resolved}}" title={{model.meta.description}} target="_blank" rel="noopener noreferer">
-            {{#if model.title}}
-              {{{ model.title }}}
-            {{else}}
-              (No Title Found)
-            {{/if}}
-          </a>
-        {{/if}}
-        <small>({{model.host.value}})</small>
+        {{extracted-url/header model=model}}
       {{/if}}
     </h4>
   {{/if}}
@@ -33,47 +20,16 @@
       <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
     </div>
   {{else}}
-    <div class="form-group mb-3">
-      {{extracted-url/url
-        settingsDisabled=false
-        original=model.values.original
-        resolved=model.values.resolved
-        on-settings-toggle=(action "toggleSettings")
-      }}
-    </div>
-
-    <div class="row mb-3">
+    {{extracted-url/manage model=model isLoading=isLoading errorMessage=errorMessage}}
+    <div class="row mt-3">
       <div class="col">
-        {{extracted-url/types selected=model.linkType onChange=(action "setLinkType")}}
-      </div>
-    </div>
-
-    <div class="row mb-0">
-      <div class="col">
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" href="#tracking{{ model.id }}" data-toggle="tab" role="tab">
-              Tracking
-              <span class="badge badge-pill badge-primary ml-1">{{ assignmentCount }}</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#parameters{{ model.id }}" data-toggle="tab" role="tab">
-              Params to Add
-              <span class="badge badge-pill badge-primary ml-1">{{ paramsCount }}</span>
-            </a>
-          </li>
-        </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane active" id="tracking{{ model.id }}" role="tabpanel">
-            {{ partial "components/extracted-url/-tracking-pane" }}
-          </div>
-          <div class="tab-pane" id="parameters{{ model.id }}" role="tabpanel">
-             {{ partial "components/extracted-url/-parameters-pane" }}
-          </div>
-        </div>
-
+        <button class="btn btn-secondary" {{action "crawl" false}}>
+          {{entypo-icon "cycle"}} Crawl Again
+        </button>
+        <br>
+        <small>
+          Last retrieved: {{ moment-from-now model.lastCrawledDate }}
+        </small>
       </div>
     </div>
   {{/if}}
