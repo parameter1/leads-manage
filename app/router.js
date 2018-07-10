@@ -28,7 +28,9 @@ Router.map(function() {
     this.route('tracking', function() {
 
     });
-    this.route('urls');
+    this.route('urls', function() {
+      this.route('edit', { path: ':id' });
+    });
     this.route('hosts');
   });
   this.route('customer', function() {
