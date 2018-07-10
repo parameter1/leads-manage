@@ -28,6 +28,7 @@ export default Route.extend(RouteQueryManager, {
      */
     loading(transition) {
       const controller = this.controllerFor(this.get('routeName'));
+      controller.set('isLoading', true);
       transition.finally(() => controller.set('isLoading', false));
       return true;
     },
