@@ -1,6 +1,4 @@
 import ListController from '../../abstract-list';
-import { inject } from '@ember/service';
-import { computed } from '@ember/object';
 
 export default ListController.extend({
   init() {
