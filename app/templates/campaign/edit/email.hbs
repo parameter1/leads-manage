@@ -41,6 +41,13 @@
               <small class="form-text text-muted">Check the link types that should be included in the report.</small>
             </div>
 
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                {{input type="checkbox" checked=model.restrictToSentDate class="custom-control-input" id="restrict-to-sent-date" change=(action "updateRestrictToSentDate")}}
+                <label class="custom-control-label" for="restrict-to-sent-date">Restrict to Email Sent Dates?</label>
+              </div>
+            </div>
+
             <div class="d-flex justify-content-between">
               {{#link-to "campaign.edit.email.links" class="btn btn-primary" role="button"}}
                 {{entypo-icon "link"}} Manage Links ({{model.urlCount}})
