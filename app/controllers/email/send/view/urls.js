@@ -5,11 +5,12 @@ export default ListController.extend({
     this._super(...arguments);
 
     this.set('sortOptions', [
-      { key: 'updatedAt', label: 'Updated' },
-      { key: 'createdAt', label: 'Created' },
+      { key: 'lastCrawledDate', label: 'Crawled' },
       { key: 'title', label: 'Title' },
+      { key: 'values.resolved', label: 'Redireted URL' },
+      { key: 'values.original', label: 'Original URL' },
     ]);
-    this.set('sortBy', 'updatedAt');
+    this.set('sortBy', 'lastCrawledDate');
     this.set('ascending', false);
 
     this.set('searchFields', [
