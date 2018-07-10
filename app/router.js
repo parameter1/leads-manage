@@ -64,7 +64,9 @@ Router.map(function() {
       this.route('view', { path: ':id' });
     });
     this.route('send', function() {
-      this.route('view', { path: ':id' });
+      this.route('view', { path: ':id' }, function() {
+        this.route('urls');
+      });
     });
     this.route('category', function() {
       this.route('view', { path: ':id' });
