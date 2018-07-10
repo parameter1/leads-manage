@@ -17,6 +17,7 @@ export default ListController.extend({
       { key: 'emailAddress', label: 'Email' },
       { key: 'givenName', label: 'First Name' },
       { key: 'familyName', label: 'Last Name' },
+      { key: 'externalSource.identifier', label: 'ExactTarget ID' },
     ]);
     this.set('searchBy', 'emailAddress');
   },
