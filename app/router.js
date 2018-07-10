@@ -24,8 +24,12 @@ Router.map(function() {
     });
     this.route('disabled');
   });
-  this.route('link-tracking', function() {
+  this.route('link', function() {
+    this.route('tracking', function() {
 
+    });
+    this.route('urls');
+    this.route('hosts');
   });
   this.route('customer', function() {
     this.route('edit', { path: ':id' });
