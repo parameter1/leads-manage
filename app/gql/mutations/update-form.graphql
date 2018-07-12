@@ -1,7 +1,7 @@
-#import 'leads-manage/gql/fragments/form'
+#import 'leads-manage/gql/fragments/form/edit'
 
 mutation updateForm($input: UpdateFormInput!) {
 	updateForm(input: $input) {
-    ...FormFragment
+    ...FormEditFragment
 	}
 }
