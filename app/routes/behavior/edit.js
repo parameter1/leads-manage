@@ -50,6 +50,7 @@ export default Route.extend(RouteQueryManager, FormMixin, {
         const context = { ohBehaveToken };
         await this.get('apollo').mutate({ mutation, variables, context }, 'behaviorUpdateContentQuery');
         this.get('notify').info('Query successfully updated.');
+        await this.transitionTo('behavior.view', id);
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {
