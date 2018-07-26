@@ -65,6 +65,7 @@ Router.map(function() {
   });
   this.route('email', function() {
     this.route('deployment', function() {
+      this.route('create');
       this.route('view', { path: ':id' });
     });
     this.route('send', function() {
