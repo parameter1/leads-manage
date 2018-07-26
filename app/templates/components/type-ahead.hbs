@@ -1,5 +1,6 @@
 {{#if multiple}}
   {{#power-select-multiple
+    triggerClass=triggerClass
     search=(perform search)
     selected=selected
     placeholder=placeholder
@@ -15,6 +16,7 @@
   {{/power-select-multiple}}
 {{else}}
   {{#power-select
+    triggerClass=triggerClass
     search=(perform search)
     selected=selected
     placeholder=placeholder
