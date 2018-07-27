@@ -4,14 +4,6 @@
 {{/nav-breadcrumbs}}
 
 <div class="card model-form">
-  <div class="card-header"></div>
-  <div class="card-body">
-    <h5 class="card-title">Subject: {{ model.subject }}</h5>
-
-    <p class="mb-1">Preheader: {{model.preheader}}</p>
-    <p class="mb-1">Jobs Sent: {{model.sendCount}}</p>
-    <p class="mb-0">Category: {{#link-to "email.category.view" model.category.id}}{{model.category.fullName}}{{/link-to}}</p>
-  </div>
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills" role="tablist">
       <li class="nav-item">{{#link-to "email.deployment.edit.index" class="nav-link" role="tab"}}HTML{{/link-to}}</li>
