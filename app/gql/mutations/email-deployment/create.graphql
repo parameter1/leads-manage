@@ -1,0 +1,5 @@
+mutation CreateEmailDeployment($input: CreateEmailDeploymentInput!) {
+  createEmailDeployment(input: $input) {
+    id
+  }
+}
