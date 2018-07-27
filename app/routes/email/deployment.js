@@ -13,7 +13,7 @@ export default Route.extend(RouteQueryManager, {
       const variables = { search };
       try {
         const result = await this.get('apollo').query({ query: searchEmailCategories, variables }, 'searchEmailCategories');
-        return result.edges;
+        return result.edges.map(edge => edge.node);
       } catch (e) {
         this.get('graphErrors').show(e);
       }

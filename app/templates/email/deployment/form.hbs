@@ -17,9 +17,9 @@
         selected=model.category
         allowClear=false
         on-search=(route-action "searchCategories")
-        onChange=(action (mut model.category)) as |edge|
+        onChange=(action (mut model.category)) as |category|
       }}
-        {{edge.node.fullName}}
+        {{category.fullName}}
       {{/auto-complete}}
     </div>
   </div>
