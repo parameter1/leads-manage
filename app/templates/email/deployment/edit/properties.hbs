@@ -1,1 +1,8 @@
-<div class="card-body">Props</div>
+<form {{action "update" on="submit"}}>
+  <div class="card-body">
+    {{ partial "email/deployment/form" }}
+  </div>
+  <div class="card-footer">
+    {{model-save-button disabled=isActionRunning}}
+  </div>
+</form>
