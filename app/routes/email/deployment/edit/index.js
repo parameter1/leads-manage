@@ -19,7 +19,9 @@ export default Route.extend(RouteQueryManager, {
     willTransition(transition) {
       const controller = this.controllerFor(this.get('routeName'));
 
-      if (controller.get('hasHtmlChanged')) {
+      if (controller.get('isActionRunning')) {
+        transition.abort();
+      } else if (controller.get('hasHtmlChanged')) {
         if (!window.confirm('You have unsaved changes to your HTML. Are you sure you want to navigate away?')) {
           transition.abort();
         }
