@@ -2,14 +2,14 @@
   {{#if isLoading}}
     Crawling...
   {{else}}
-    <h4 class="mb-0">
+    <h5 class="mb-0">
       {{#if didError}}
         {{entypo-icon "warning" class="text-danger"}}
         {{errorMessage}}
       {{else}}
         {{extracted-url/header model=model}}
       {{/if}}
-    </h4>
+    </h5>
   {{/if}}
 </div>
 

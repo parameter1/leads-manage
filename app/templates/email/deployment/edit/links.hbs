@@ -1,0 +1,8 @@
+<div class="card-body pb-0">
+  {{#if hasFinished}}
+    <h4>{{#if results.length}}Found {{results.length}} Link(s){{else}}No links found.{{/if}}</h4>
+    {{#each results as |url|}}
+      {{extracted-url url=url}}
+    {{/each}}
+  {{/if}}
+</div>
