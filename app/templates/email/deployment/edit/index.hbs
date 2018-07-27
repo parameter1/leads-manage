@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="form-group mb-0">
       <label for="email-deployment-html">HTML {{required-field}}</label>
-      {{textarea id="email-deployment-html" class="form-control" value=model.ourHtml required=true rows=15}}
+      {{textarea id="email-deployment-html" disabled=isActionRunning class="form-control" value=model.ourHtml required=true rows=15}}
     </div>
   </div>
   <div class="card-footer">
