@@ -1,0 +1,16 @@
+fragment EmailDeploymentEditFragment on EmailDeployment {
+  id
+  name
+  subject
+  preheader
+  category {
+    id
+    name
+    fullName
+  }
+  sendCount
+  externalSource {
+    identifier
+    namespace
+  }
+}

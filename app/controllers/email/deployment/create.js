@@ -26,8 +26,8 @@ export default Controller.extend(FormMixin, {
       };
       const variables = { input };
       try {
-        const response = await this.get('apollo').mutate({ mutation, variables }, 'createEmailCategory');
-        this.transitionToRoute('email.deployment.index');
+        const response = await this.get('apollo').mutate({ mutation, variables }, 'createEmailDeployment');
+        this.transitionToRoute('email.deployment.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

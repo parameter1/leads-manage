@@ -66,7 +66,12 @@ Router.map(function() {
   this.route('email', function() {
     this.route('deployment', function() {
       this.route('create');
-      this.route('view', { path: ':id' });
+      this.route('edit', { path: ':id' }, function() {
+        // Index is the HTML view
+        this.route('properties'); // Edit the basic properties of the email.
+        this.route('sends'); // Sends from this deployment
+      })
+      // this.route('view', { path: ':id' });
     });
     this.route('send', function() {
       this.route('view', { path: ':id' }, function() {
