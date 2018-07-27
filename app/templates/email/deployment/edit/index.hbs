@@ -1,6 +1,11 @@
-<div class="card-body">
-  <div class="form-group">
-    <label for="email-deployment-html">HTML {{required-field}}</label>
-    {{textarea id="email-deployment-html" class="form-control" value=model.ourHtml required=true}}
+<form {{action "setHtml" on="submit"}}>
+  <div class="card-body">
+    <div class="form-group mb-0">
+      <label for="email-deployment-html">HTML {{required-field}}</label>
+      {{textarea id="email-deployment-html" class="form-control" value=model.ourHtml required=true rows=15}}
+    </div>
   </div>
-</div>
+  <div class="card-footer">
+    {{model-save-button disabled=saveDisabled}}
+  </div>
+</form>

@@ -68,6 +68,7 @@ Router.map(function() {
       this.route('create');
       this.route('edit', { path: ':id' }, function() {
         // Index is the HTML view
+        this.route('links'); // Handle link tracking
         this.route('properties'); // Edit the basic properties of the email.
         this.route('sends'); // Sends from this deployment
       })

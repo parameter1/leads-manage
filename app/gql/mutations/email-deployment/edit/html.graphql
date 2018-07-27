@@ -1,0 +1,6 @@
+mutation EditEmailDeploymentHtml($input: EmailDeploymentHtmlInput!) {
+  emailDeploymentHtml(input: $input) {
+    id
+    ourHtml
+  }
+}
