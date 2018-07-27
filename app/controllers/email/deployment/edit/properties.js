@@ -3,15 +3,16 @@ import { inject } from '@ember/service';
 import { get } from '@ember/object';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
-import mutation from 'leads-manage/gql/mutations/email-deployment/create';
+import mutation from 'leads-manage/gql/mutations/email-deployment/edit/properties';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
 
   actions: {
-    async create() {
+    async update() {
       this.startAction();
       const {
+        id,
         name,
         category,
         subject,
@@ -24,10 +25,10 @@ export default Controller.extend(FormMixin, {
         subject,
         preheader,
       };
-      const variables = { input: { payload } };
+      const variables = { input: { id, payload } };
       try {
-        const response = await this.get('apollo').mutate({ mutation, variables }, 'createEmailDeployment');
-        this.transitionToRoute('email.deployment.edit', response.id);
+        await this.get('apollo').mutate({ mutation, variables }, 'updateEmailDeployment');
+        this.get('notify').success('Properties saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/email-deployment/edit'
+
+mutation EditEmailDeploymentProperties($input: UpdateEmailDeploymentInput!) {
+  updateEmailDeployment(input: $input) {
+    ...EmailDeploymentEditFragment
+  }
+}
