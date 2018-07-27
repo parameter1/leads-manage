@@ -1,0 +1,6 @@
+query EditEmailDeploymentHtml($input: ModelIdInput!) {
+  emailDeployment(input: $input) {
+    id
+    ourHtml
+  }
+}
