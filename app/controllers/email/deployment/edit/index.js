@@ -5,9 +5,13 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import mutation from 'leads-manage/gql/mutations/email-deployment/edit/html';
 
-
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  editorLines: computed('isFullscreen', function() {
+    if (this.get('isFullscreen')) return null;
+    return 25;
+  }),
 
   hasHtmlChanged: computed('originalHtml', 'model.ourHtml', function() {
     return this.get('originalHtml') !== this.get('model.ourHtml');
@@ -19,6 +23,45 @@ export default Controller.extend(FormMixin, {
   }),
 
   actions: {
+    /**
+     *
+     * @param {*} editor
+     */
+    setEditor(editor) {
+      this.set('editor', editor);
+      const handler = () => {
+        if (document.webkitFullscreenElement === null) {
+          this.set('isFullscreen', false);
+        }
+      }
+
+      document.addEventListener('fullscreenchange', handler);
+      document.addEventListener('webkitfullscreenchange', handler);
+      document.addEventListener('mozfullscreenchange', handler);
+      document.addEventListener('msfullscreenchange', handler);
+    },
+
+    /**
+     *
+     */
+    fullscreen() {
+      const editor = this.get('editor');
+      const { container } = editor;
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } else if (container.mozRequestFullscreen) {
+        container.mozRequestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
+      }
+      this.set('isFullscreen', true);
+    },
+
+    /**
+     *
+     */
     async setHtml() {
       this.startAction();
       const {

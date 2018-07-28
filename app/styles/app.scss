@@ -28,6 +28,11 @@ pre.ace_editor {
   font-size: 0.9rem !important;
 }
 
+.ace_editor:-webkit-full-screen {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .search-type-button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
