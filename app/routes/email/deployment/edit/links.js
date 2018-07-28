@@ -10,7 +10,7 @@ export default Route.extend(RouteQueryManager, {
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'emailDeployment');
   },
 
-  setupController(controller, model) {
+  setupController(controller) {
     this._super(...arguments);
     controller.send('process');
   },
