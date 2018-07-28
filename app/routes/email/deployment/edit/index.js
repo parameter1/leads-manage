@@ -11,7 +11,7 @@ export default Route.extend(RouteQueryManager, {
   },
 
   setupController(controller, model) {
-    controller.set('originalHtml', model.get('ourHtml'));
+    controller.set('originalHtml', model.get('ourHtml') || '');
     this._super(...arguments);
   },
 
