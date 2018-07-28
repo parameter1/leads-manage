@@ -20,16 +20,18 @@
         {{/if}}
 
         {{#if user.permissions.links.list}}
-          <li class="nav-item dropdown">
+          <li class="nav-item">
+            {{#link-to "link.urls" class="nav-link"}}{{entypo-icon "link"}} Links{{/link-to}}
+          </li>
+          {{!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="linksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{entypo-icon "link"}} Links
             </a>
             <div class="dropdown-menu" aria-labelledby="linksDropdown">
               {{#link-to "link.tracking" class="dropdown-item d-flex justify-content-between"}}Track {{entypo-icon "code"}}{{/link-to}}
               {{#link-to "link.urls" class="dropdown-item d-flex justify-content-between"}}Manage {{entypo-icon "network"}}{{/link-to}}
-              {{!-- {{#link-to "email.category" class="dropdown-item d-flex justify-content-between"}}Host {{entypo-icon "tag"}}{{/link-to}} --}}
             </div>
-          </li>
+          </li> --}}
         {{/if}}
 
         {{#if user.permissions.identity.list}}
@@ -45,9 +47,9 @@
               {{entypo-icon "email"}} Email
             </a>
             <div class="dropdown-menu" aria-labelledby="navEmailDropdown">
-              {{#link-to "email.send" class="dropdown-item d-flex justify-content-between"}}Sends {{entypo-icon "paper-plane"}}{{/link-to}}
               {{#link-to "email.deployment" class="dropdown-item d-flex justify-content-between"}}Deployments {{entypo-icon "mail"}}{{/link-to}}
               {{#link-to "email.category" class="dropdown-item d-flex justify-content-between"}}Categories {{entypo-icon "tag"}}{{/link-to}}
+              {{#link-to "email.send" class="dropdown-item d-flex justify-content-between"}}Sends {{entypo-icon "paper-plane"}}{{/link-to}}
             </div>
           </li>
         {{/if}}
