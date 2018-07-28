@@ -17,4 +17,10 @@ export default ListController.extend({
     ]);
     this.set('searchBy', 'name');
   },
+
+  actions: {
+    create() {
+      this.transitionToRoute('email.deployment.create', { queryParams: { clone: null } });
+    }
+  },
 });

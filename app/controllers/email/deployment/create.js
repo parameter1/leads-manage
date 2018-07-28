@@ -6,6 +6,9 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import mutation from 'leads-manage/gql/mutations/email-deployment/create';
 
 export default Controller.extend(FormMixin, {
+  queryParams: ['clone'],
+  clone: null,
+
   apollo: inject(),
 
   actions: {

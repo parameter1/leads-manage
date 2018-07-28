@@ -31,6 +31,16 @@ export default Controller.extend(FormMixin, {
   actions: {
     /**
      *
+     */
+    copy() {
+      const queryParams = {
+        clone: this.get('model.id'),
+      };
+      this.transitionToRoute('email.deployment.create', { queryParams });
+    },
+
+    /**
+     *
      * @param {*} editor
      */
     setEditor(editor) {
