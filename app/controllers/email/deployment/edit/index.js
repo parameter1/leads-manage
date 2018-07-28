@@ -9,7 +9,6 @@ export default Controller.extend(FormMixin, {
   apollo: inject(),
 
   html: computed('model.ourHtml', function() {
-    console.info('HTML!');
     const html = this.get('model.ourHtml');
     if (!html) return '';
     return html;
