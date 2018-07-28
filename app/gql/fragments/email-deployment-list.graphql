@@ -3,6 +3,10 @@ fragment EmailDeploymentListFragment on EmailDeployment {
   name
   subject
   sendCount
+  category {
+    id
+    fullName
+  }
   externalSource {
     identifier
     namespace

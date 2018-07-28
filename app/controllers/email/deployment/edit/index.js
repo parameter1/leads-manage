@@ -8,13 +8,20 @@ import mutation from 'leads-manage/gql/mutations/email-deployment/edit/html';
 export default Controller.extend(FormMixin, {
   apollo: inject(),
 
+  html: computed('model.ourHtml', function() {
+    console.info('HTML!');
+    const html = this.get('model.ourHtml');
+    if (!html) return '';
+    return html;
+  }),
+
   editorLines: computed('isFullscreen', function() {
     if (this.get('isFullscreen')) return null;
     return 25;
   }),
 
-  hasHtmlChanged: computed('originalHtml', 'model.ourHtml', function() {
-    return this.get('originalHtml') !== this.get('model.ourHtml');
+  hasHtmlChanged: computed('originalHtml', 'html', function() {
+    return this.get('originalHtml') !== this.get('html');
   }),
 
   saveDisabled: computed('isActionRunning', 'hasHtmlChanged', function() {
@@ -77,6 +84,7 @@ export default Controller.extend(FormMixin, {
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'emailDeploymentHtml');
         this.set('originalHtml', response.ourHtml);
+        this.set('model.ourHtml', response.ourHtml);
         this.get('notify').success('HTML saved.');
       } catch (e) {
         this.get('graphErrors').show(e);

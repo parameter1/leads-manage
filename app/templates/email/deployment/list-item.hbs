@@ -9,8 +9,11 @@
     {{/if}}
   </div>
 
-  <p class="mb-1">{{item.subject}}</p>
-  <p class="mb-1">Jobs Sent: {{item.sendCount}}</p>
+  <h5 class="mb-2">{{item.subject}}</h5>
+
+  <p class="mb-0">{{item.category.fullName}}</p>
+  <p class="mb-2">Jobs Sent: {{item.sendCount}}</p>
+
   <small class="d-block">ID: {{item.id}}</small>
   {{#if item.externalSource.identifier}}
     <small class="d-block">From {{item.externalSource.namespace}}: {{item.externalSource.identifier}}</small>
