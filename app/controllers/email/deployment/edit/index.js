@@ -39,6 +39,10 @@ export default Controller.extend(FormMixin, {
       this.transitionToRoute('email.deployment.create', { queryParams });
     },
 
+    delete() {
+
+    },
+
     /**
      *
      * @param {*} editor

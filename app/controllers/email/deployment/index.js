@@ -21,6 +21,6 @@ export default ListController.extend({
   actions: {
     create() {
       this.transitionToRoute('email.deployment.create', { queryParams: { clone: null } });
-    }
+    },
   },
 });
