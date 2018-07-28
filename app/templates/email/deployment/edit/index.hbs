@@ -2,7 +2,19 @@
   <div class="card-body">
     <div class="form-group mb-0">
       <label for="email-deployment-html">HTML {{required-field}}</label>
-      {{textarea id="email-deployment-html" disabled=isActionRunning class="form-control" value=model.ourHtml required=true rows=15}}
+
+      {{ember-ace
+        lines=25
+        value=model.ourHtml
+        theme="ace/theme/chrome"
+        mode="ace/mode/html"
+        useSoftTabs=true
+        tabSize=2
+        useWrapMode=false
+        showPrintMargin=false
+        update=(action (mut model.ourHtml))
+      }}
+
     </div>
   </div>
   <div class="card-footer">

@@ -20,6 +20,14 @@ $modal-xl: 1100px !default;
 
 @import "z-depth";
 
+// Ace editor overrides
+pre.ace_editor {
+  margin-bottom: 0;
+}
+.ace_editor {
+  font-size: 0.9rem !important;
+}
+
 .search-type-button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

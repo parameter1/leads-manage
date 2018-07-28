@@ -11,6 +11,15 @@ module.exports = function(defaults) {
     babel: {
       plugins: ['transform-object-rest-spread'],
     },
+    ace: {
+      modes: ['html'],
+      workers: ['html'],
+      workerPath: '/app/assets/ace',
+      themes: ['chrome'],
+      useSoftTabs: true,
+      tabSize: 2,
+      useWrapMode: false,
+    },
   });
 
   // Bootstrap JS and source maps.
