@@ -7,11 +7,11 @@ fragment EmailDeploymentListFragment on EmailDeployment {
     id
     fullName
   }
+  createdAt
+  updatedAt
   externalSource {
     identifier
     namespace
     lastRetrievedAt
-    createdAt
-    updatedAt
   }
 }
