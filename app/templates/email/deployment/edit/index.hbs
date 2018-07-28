@@ -1,16 +1,16 @@
 <div class="card-body p-2 d-flex justify-content-between">
   <div class="d-flex flex-column">
-    <button type="button" class="btn btn-info" {{action "fullscreen"}}>{{entypo-icon "resize-full-screen"}} Fullscreen</button>
+    <button type="button" class="btn btn-info" disabled={{disabled}} {{action "fullscreen"}}>{{entypo-icon "resize-full-screen"}} Fullscreen</button>
   </div>
 
   <div class="d-flex flex-column align-items-end text-right">
     <div class="d-flex flex-row">
-      <button type="button" class="btn btn-dark" {{action "copy"}}>{{entypo-icon "copy"}} Copy</button>
+      <button type="button" class="btn btn-dark" disabled={{disabled}} {{action "copy"}}>{{entypo-icon "copy"}} Copy</button>
       {{confirm-button
         icon="trash"
         label="Delete"
         class="ml-1 btn-danger"
-        disabled=isActionRunning
+        disabled=disabled
         onConfirm=(action "delete")
       }}
     </div>
@@ -30,6 +30,8 @@
         tabSize=2
         useWrapMode=false
         showPrintMargin=false
+        disabled=disabled
+        readOnly=disabled
         update=(action (mut model.ourHtml))
         ready=(action "setEditor")
       }}

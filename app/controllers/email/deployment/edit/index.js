@@ -3,10 +3,15 @@ import { inject } from '@ember/service';
 import { computed } from '@ember/object';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
+import deleteEmailDeployment from 'leads-manage/gql/mutations/email-deployment/delete';
 import mutation from 'leads-manage/gql/mutations/email-deployment/edit/html';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  isDeleting: false,
+
+  disabled: computed.or('isDeleting', 'isActionRunning'),
 
   html: computed('model.ourHtml', function() {
     const html = this.get('model.ourHtml');
@@ -23,8 +28,8 @@ export default Controller.extend(FormMixin, {
     return this.get('originalHtml') !== this.get('html');
   }),
 
-  saveDisabled: computed('isActionRunning', 'hasHtmlChanged', function() {
-    if (this.get('isActionRunning') || !this.get('hasHtmlChanged')) return true;
+  saveDisabled: computed('disabled', 'hasHtmlChanged', function() {
+    if (this.get('disabled') || !this.get('hasHtmlChanged')) return true;
     return false;
   }),
 
@@ -39,8 +44,21 @@ export default Controller.extend(FormMixin, {
       this.transitionToRoute('email.deployment.create', { queryParams });
     },
 
-    delete() {
+    async delete() {
+      this.startAction();
+      const { id } = this.get('model');
+      const mutation = deleteEmailDeployment;
+      const variables = { input: { id } };
 
+      try {
+        await this.get('apollo').mutate({ mutation, variables }, 'deleteEmailDeployment');
+        this.endAction();
+        return this.transitionToRoute('email.deployment.index');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
     },
 
     /**

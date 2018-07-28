@@ -1,0 +1,3 @@
+mutation DeleteEmailDeployment($input: ModelIdInput!) {
+	deleteEmailDeployment(input: $input)
+}
