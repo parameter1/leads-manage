@@ -8,7 +8,9 @@ fragment EmailDeploymentEditFragment on EmailDeployment {
     name
     fullName
   }
-  sendCount
+  sends(pagination: { first :1 }, sort: { field: "sentDate", order: 1 }) {
+    totalCount
+  }
   externalSource {
     identifier
     namespace

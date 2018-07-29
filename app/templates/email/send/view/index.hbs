@@ -5,7 +5,7 @@
     Sent: {{moment-format model.sentDate 'MMM Do, YYYY @ h:mm a'}}
     ({{moment-from-now model.sentDate}})
   </p>
-  <p class="mb-0">Master Deployment: {{#link-to "email.deployment.view" model.deployment.id}}{{model.deployment.name}}{{/link-to}}</p>
+  <p class="mb-0">Master Deployment: {{#link-to "email.deployment.edit" model.deployment.id}}{{model.deployment.name}}{{/link-to}}</p>
   <hr>
   <h5 class="card-title">Metrics</h5>
   <table class="table table-responsive">

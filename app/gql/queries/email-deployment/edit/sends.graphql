@@ -1,0 +1,20 @@
+#import 'leads-manage/gql/fragments/email-send-list'
+
+query EditEmailDeploymentSends($input: ModelIdInput!, $pagination: PaginationInput, $sort: EmailSendSortInput) {
+  emailDeployment(input: $input) {
+    id
+    sends(pagination: $pagination, sort: $sort) {
+      totalCount
+      edges {
+        node {
+          ...EmailSendListFragment
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

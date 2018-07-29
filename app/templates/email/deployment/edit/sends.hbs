@@ -1,0 +1,26 @@
+{{#fetch-more
+  query=observable
+  edges=model.sends.edges
+  hasNextPage=model.sends.pageInfo.hasNextPage
+  endCursor=model.sends.pageInfo.endCursor
+  on-fetch-start=(route-action "showLoading")
+  on-fetch-end=(route-action "hideLoading")
+  resultKey=resultKey
+  applyToField=applyToField as |fetch|
+}}
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><h5 class="mb-0 text-muted">Total Results: {{model.sends.totalCount}}</h5></li>
+    {{#each fetch.nodes as |item|}}
+      {{partial "email/deployment/edit/sends/list-item"}}
+    {{/each}}
+  </ul>
+
+  <div class="card-footer border-0">
+    {{#if fetch.hasNextPage}}
+      <button class="btn btn-primary btn-block btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+        {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+      </button>
+    {{/if}}
+  </div>
+{{/fetch-more}}
+
