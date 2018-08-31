@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import { computed, get } from '@ember/object';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'div',

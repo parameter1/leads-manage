@@ -19,4 +19,12 @@ fragment CampaignViewFragment on Campaign {
     id
     enabled
   }
+  customer {
+    id
+    name
+    children {
+      id
+      name
+    }
+  }
 }

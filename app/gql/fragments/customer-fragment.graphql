@@ -3,6 +3,14 @@ fragment CustomerFragment on Customer {
   name
   description
   website
+  parent {
+    id
+    name
+  }
+  children {
+    id
+    name
+  }
   externalSource {
     identifier
     namespace
