@@ -73,6 +73,7 @@
               {{#power-select-multiple
                 options=excludeFieldOptions
                 selected=selectedFieldOptions
+                disabled=areExcludeFieldsDisabled
                 onchange=(action "updateExcludeFields")
                 closeOnSelect=false as |field|
               }}
@@ -92,6 +93,9 @@
       </div>
     </div>
   {{/if}}
+</div>
+<div class="card-footer text-right">
+  <a class="btn btn-success" role="button" href="/export/campaign/{{campaign.hash}}/leads">{{entypo-icon "download"}} Download Email Leads</a>
 </div>
 
 {{outlet}}

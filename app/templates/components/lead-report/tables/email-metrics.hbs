@@ -6,7 +6,8 @@
     <th>Unique Opens {{lead-report/tables/sort-field key="metrics.uniqueOpens" sortBy=sortBy ascending=ascending reset=false}}</th>
     <th>Unique Clicks {{lead-report/tables/sort-field key="metrics.uniqueClicks" sortBy=sortBy ascending=ascending reset=false}}</th>
     <th>Open Rate</th>
-    <th>Click Rate (O / D)</th>
+    <th>CTOR</th>
+    <th>CTR</th>
     <th># of Leads</th>
   </tr>
 </thead>
@@ -25,10 +26,8 @@
       <td>{{ format-number row.send.metrics.uniqueOpens format="0,0" }}</td>
       <td>{{ format-number row.send.metrics.uniqueClicks format="0,0" }}</td>
       <td>{{ format-number row.send.metrics.openRate format="00.0%" }}</td>
-      <td>
-        {{ format-number row.send.metrics.clickToOpenRate format="00.0%" }} /
-        {{ format-number row.send.metrics.clickToDeliveredRate format="00.0%" }}
-      </td>
+      <td>{{ format-number row.send.metrics.clickToOpenRate format="00.0%" }}</td>
+      <td>{{ format-number row.send.metrics.clickToDeliveredRate format="00.0%" }}</td>
       <td>{{ format-number row.identities format="0,0" }}</td>
     </tr>
   {{/each}}
@@ -40,10 +39,8 @@
     <th>{{ format-number totals.metrics.uniqueOpens format="0,0" }}</th>
     <th>{{ format-number totals.metrics.uniqueClicks format="0,0" }}</th>
     <th>{{ format-number totals.metrics.openRate format="00.0%" }}</th>
-    <th>
-      {{ format-number totals.metrics.clickToOpenRate format="00.0%" }} /
-      {{ format-number totals.metrics.clickToDeliveredRate format="00.0%" }}
-    </th>
+    <th>{{ format-number totals.metrics.clickToOpenRate format="00.0%" }}</th>
+    <th>{{ format-number totals.metrics.clickToDeliveredRate format="00.0%" }}</th>
     <th>&nbsp;</th>
   </tr>
 </tfoot>

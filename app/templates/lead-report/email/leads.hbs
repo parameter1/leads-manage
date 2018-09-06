@@ -15,7 +15,13 @@
     <div class="card-body pb-0">
       <div class="row">
         {{#each fetch.nodes as |item|}}
-          {{identity-card identity=item campaignId=campaign.id customerId=campaign.customer.id canEdit=false class="mb-4"}}
+          {{identity-card
+            identity=item
+            campaignId=campaign.id
+            customerId=campaign.customer.id
+            canEdit=false
+            class="mb-4"
+          }}
         {{/each}}
       </div>
     </div>

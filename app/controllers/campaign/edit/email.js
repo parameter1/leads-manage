@@ -20,12 +20,21 @@ export default Controller.extend(FormMixin, {
     return this.get('linkTypes.types').filter(type => !selected.includes(type));
   }),
 
+  isEditorial: computed('model.tags.@each.name', 'model.allowedLinkTypes.[]', function() {
+    const pr = this.get('model.tags').find(tag => tag.name === 'PR');
+    const editorialLink = this.get('model.allowedLinkTypes').includes('Editorial');
+    if (pr || editorialLink) return true;
+    return false;
+  }),
+
   excludeFieldOptions: computed('identityAttributes.getViewableFields', 'model.excludeFields', function() {
     const selected = this.get('model.excludeFields');
     return this.get('identityAttributes.getViewableFields').filter(o => !selected.includes(o.key));
   }),
 
-  selectedFieldOptions: computed('identityAttributes.getViewableFields', 'model.excludeFields', function() {
+  areExcludeFieldsDisabled: computed.reads('isEditorial'),
+
+  selectedFieldOptions: computed('identityAttributes.getViewableFields', 'model.excludeFields', 'isEditorial', function() {
     const selected = this.get('model.excludeFields');
     return this.get('identityAttributes.getViewableFields').filter(o => selected.includes(o.key));
   }),
