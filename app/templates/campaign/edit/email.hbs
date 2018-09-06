@@ -73,6 +73,7 @@
               {{#power-select-multiple
                 options=excludeFieldOptions
                 selected=selectedFieldOptions
+                disabled=areExcludeFieldsDisabled
                 onchange=(action "updateExcludeFields")
                 closeOnSelect=false as |field|
               }}
