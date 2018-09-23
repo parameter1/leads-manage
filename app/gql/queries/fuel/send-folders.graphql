@@ -1,0 +1,12 @@
+query FuelSendFolders {
+  Fuel_DataExtensionDataFolders {
+		ID
+		ObjectID
+		Name
+	}
+  Fuel_PublicationDataFolders {
+		ID
+		ObjectID
+		Name
+	}
+}

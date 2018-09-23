@@ -71,7 +71,9 @@ Router.map(function() {
         this.route('links'); // Handle link tracking
         this.route('preview'); // Preview the tracked html
         this.route('properties'); // Edit the basic properties of the email.
-        this.route('sends'); // Sends from this deployment
+        this.route('sends', function() {
+          this.route('create');
+        }); // Sends from this deployment
       })
       // this.route('view', { path: ':id' });
     });

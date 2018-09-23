@@ -1,0 +1,67 @@
+{{#bs-modal show=true size="large" backdrop="static" onHidden=(route-action "transitionTo" "email.deployment.edit.sends") as |modal|}}
+  {{#modal.header}}
+    <h5 class="modal-title">Send Email</h5>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header"><strong>Data Extensions</strong></div>
+          <div class="card-body">
+            {{#if areSendFoldersLoading}}
+              <small>Loading...</small>
+              {{progress-bar show=true}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header"><strong>Publication Lists</strong></div>
+          <div class="card-body">
+            {{#if areSendFoldersLoading}}
+              <small>Loading...</small>
+              {{progress-bar show=true}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card mt-3">
+          <div class="card-header"><strong>Selected</strong></div>
+          <div class="card-body">
+
+          </div>
+          <div class="card-footer">
+            <div class="custom-control custom-checkbox">
+              {{input
+                id="dedupe-emails"
+                type="checkbox"
+                class="custom-control-input"
+                name="dedupeEmails"
+                checked=true
+              }}
+              <label class="custom-control-label" for="dedupe-emails">De-deplicate by email address?</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+      </div>
+    </div>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{confirm-button
+      icon="cross"
+      label="Cancel"
+      class="btn-danger"
+      disabled=isActionRunning
+      onConfirm=(action modal.actions.hide)
+    }}
+  {{/modal.footer}}
+{{/bs-modal}}

@@ -15,12 +15,17 @@
     {{/each}}
   </ul>
 
-  <div class="card-footer border-0">
+  <div class="card-footer d-flex justify-content-between">
     {{#if fetch.hasNextPage}}
       <button class="btn btn-primary btn-block btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
         {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
       </button>
     {{/if}}
+    {{#link-to "email.deployment.edit.sends.create" class="btn btn-success" role="button"}}
+      {{entypo-icon "paper-plane"}} Create Send
+    {{/link-to}}
   </div>
 {{/fetch-more}}
+
+{{outlet}}
 
