@@ -7,6 +7,13 @@ export default Controller.extend({
     return true;
   }),
 
+  init() {
+    this._super(...arguments);
+    this.set('iframe', {
+      show: false,
+    });
+  },
+
   actions: {
     displayIframeModal(send) {
       this.set('iframe.title', get(send, 'name'));

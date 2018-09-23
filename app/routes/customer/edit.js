@@ -22,8 +22,8 @@ export default Route.extend(FormMixin, RouteQueryManager, {
     update(model) {
       this.startRouteAction();
       const mutation = updateCustomer;
-      const { id, name, description, website } = model;
-      const payload = { name, description, website };
+      const { id, name, description, website, parent } = model;
+      const payload = { name, description, website, parentId: parent.id };
       const input = { id, payload };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')

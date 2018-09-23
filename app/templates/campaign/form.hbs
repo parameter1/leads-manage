@@ -12,6 +12,14 @@
         onChange=(action (mut model.customer))
       }}
       <small class="form-text text-muted">Required. The customer to assign to this campaign.</small>
+      {{#if model.customer.children.length}}
+        <small class="form-text text-muted">
+          {{model.customer.name}} also includes the following companies:
+          {{#each model.customer.children as |child|}}
+            {{child.name}}
+          {{/each}}
+        </small>
+      {{/if}}
     </div>
 
     <div class="form-group">
