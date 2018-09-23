@@ -28,7 +28,7 @@ export default Service.extend({
    * @return {Promise}
    */
   extractFrom(html) {
-    const variables = { html };
+    const variables = { html: html || '' };
     const resultKey = 'extractUrlsFromHtml';
     return this.get('apollo').watchQuery({ query: extractUrlsFromHtml, variables, fetchPolicy: 'network-only' }, resultKey);
   },
