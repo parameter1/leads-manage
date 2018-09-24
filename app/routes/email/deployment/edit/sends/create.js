@@ -6,6 +6,7 @@ export default Route.extend({
       dedupeEmails: true,
       dataExtensions: [],
       publication: null,
+      exclusions: [],
     };
   },
 });

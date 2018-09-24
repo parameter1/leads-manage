@@ -1,0 +1,14 @@
+query DataFolderGroup($input: Fuel_ObjectIDInput!) {
+  Fuel_DataFolderGroup(input: $input) {
+		ObjectID
+		Name
+		Groups {
+			ObjectID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}

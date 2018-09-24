@@ -1,0 +1,14 @@
+query DataFolderList($input: Fuel_ObjectIDInput!) {
+  Fuel_DataFolderList(input: $input) {
+		ObjectID
+		Name
+		Lists {
+			ObjectID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}

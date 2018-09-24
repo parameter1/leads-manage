@@ -14,6 +14,8 @@ export default Controller.extend({
     return this.get('currentStep') < 2;
   }),
 
+  selectedExclusionIds: computed.mapBy('model.exclusions', 'id'),
+
   selectedExtensionIds: computed.mapBy('model.dataExtensions', 'id'),
 
   selectedPubId: computed.reads('model.publication.id'),
@@ -28,6 +30,12 @@ export default Controller.extend({
     setPublication(node, selected) {
       const value = selected.length ? node : null;
       this.set('model.publication', value);
+    },
+    addExclusion(node) {
+      this.get('model.exclusions').pushObject(node);
+    },
+    removeExclusion(node) {
+      this.get('model.exclusions').removeObject(node);
     },
     increaseStep() {
       this.set('currentStep', this.get('currentStep') + 1);

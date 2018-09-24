@@ -25,7 +25,7 @@ export default Component.extend(ComponentQueryManager, {
         id: ID,
         text: Name,
         children: false,
-        icon: 'entypo icon-list',
+        icon: 'entypo dot-single',
         state: { selected: ID === selected },
       };
     });

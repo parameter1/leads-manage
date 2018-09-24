@@ -74,12 +74,13 @@
           <div class="card">
             <div class="card-header">
               <strong>Exclusion Lists</strong>
-              <span class="badge badge-light">{{model.dataExtensions.length}}</span>
+              <span class="badge badge-light">{{model.exclusions.length}}</span>
             </div>
             <div class="card-body p-2 tree-view">
-              {{tree-views/data-extensions
-                on-select=(action "addDataExtension")
-                on-deselect=(action "removeDataExtension")
+              {{tree-views/exclusions
+                on-select=(action "addExclusion")
+                on-deselect=(action "removeExclusion")
+                selectedIds=selectedExclusionIds
               }}
             </div>
           </div>
@@ -91,8 +92,8 @@
             <div class="card-header"><strong>Selected</strong></div>
             <div class="card-body">
               <ul class="list-inline mb-0">
-                {{#each model.dataExtensions as |extension|}}
-                  <li class="list-inline-item">{{extension.text}}</li>
+                {{#each model.exclusions as |exclusion|}}
+                  <li class="list-inline-item">{{exclusion.text}}</li>
                 {{else}}
                   <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
                 {{/each}}

@@ -1,0 +1,6 @@
+query RootExclusionDataFolders {
+  Fuel_ExclusionDataFolders {
+		ObjectID
+		Name
+	}
+}
