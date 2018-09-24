@@ -18,7 +18,17 @@ export default Component.extend(ComponentQueryManager, {
   },
 
   mapPublications(Publications) {
-    return Publications.map(pub => ({ id: pub.ID, text: pub.Name, children: false, icon: 'entypo icon-list' }));
+    const selected = Number(this.get('selected'));
+    return Publications.map((pub) => {
+      const { ID, Name } = pub;
+      return {
+        id: ID,
+        text: Name,
+        children: false,
+        icon: 'entypo icon-list',
+        state: { selected: ID === selected },
+      };
+    });
   },
 
   async loadRoot(cb) {

@@ -7,6 +7,8 @@ import folderQuery from 'leads-manage/gql/queries/fuel/data-extension-folder';
 export default Component.extend(ComponentQueryManager, {
   init() {
     this._super(...arguments);
+    const selectedIds = this.get('selectedIds');
+    if (!Array.isArray(selectedIds)) this.set('selectedIds', []);
     this.set('checkboxOptions', {
       three_state: false,
     });
@@ -17,7 +19,11 @@ export default Component.extend(ComponentQueryManager, {
   },
 
   mapExtensions(DataExtensions) {
-    return DataExtensions.map(de => ({ id: de.ObjectID, text: de.Name, children: false, icon: 'entypo icon-database' }));
+    return DataExtensions.map((ext) => {
+      const { ObjectID, Name } = ext;
+      const selected = this.get('selectedIds').includes(ObjectID);
+      return { id: ObjectID, text: Name, children: false, icon: 'entypo icon-database', state: { selected } };
+    });
   },
 
   async loadRoot(cb) {

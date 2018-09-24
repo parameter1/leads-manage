@@ -3,72 +3,125 @@
     <h5 class="modal-title">Send Email</h5>
   {{/modal.header}}
   {{#modal.body}}
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header">
-            <strong>Data Extensions</strong>
-            <span class="badge badge-light">{{model.dataExtensions.length}}</span>
-          </div>
-          <div class="card-body p-2 tree-view">
-            {{tree-views/data-extensions
-              on-select=(action "addDataExtension")
-              on-deselect=(action "removeDataExtension")
-            }}
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header text-truncate">
-            <strong>Publication Lists</strong>
-            {{#if model.publication}}
-              <small class="d-inline-block text-muted">{{model.publication.text}}</small>
-            {{/if}}
-          </div>
-          <div class="card-body p-2 tree-view">
-            {{tree-views/publications
-              on-select=(action "setPublication")
-              on-deselect=(action "setPublication")
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card mt-3">
-          <div class="card-header"><strong>Selected</strong></div>
-          <div class="card-body">
-            <ul class="list-inline mb-0">
-              {{#each model.dataExtensions as |extension|}}
-                <li class="list-inline-item">{{extension.text}}</li>
-              {{else}}
-                <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
-              {{/each}}
-            </ul>
-          </div>
-          <div class="card-footer">
-            <div class="custom-control custom-checkbox">
-              {{input
-                id="dedupe-emails"
-                type="checkbox"
-                class="custom-control-input"
-                name="dedupeEmails"
-                checked=model.dedupeEmails
+    {{#if (eq currentStep 1)}}
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <strong>Data Extensions</strong>
+              <span class="badge badge-light">{{model.dataExtensions.length}}</span>
+            </div>
+            <div class="card-body p-2 tree-view">
+              {{tree-views/data-extensions
+                on-select=(action "addDataExtension")
+                on-deselect=(action "removeDataExtension")
+                selectedIds=selectedExtensionIds
               }}
-              <label class="custom-control-label" for="dedupe-emails">De-deplicate by email address?</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header text-truncate">
+              <strong>Publication Lists</strong>
+              {{#if model.publication}}
+                <small class="d-inline-block text-muted">{{model.publication.text}}</small>
+              {{/if}}
+            </div>
+            <div class="card-body p-2 tree-view">
+              {{tree-views/publications
+                on-select=(action "setPublication")
+                on-deselect=(action "setPublication")
+                selected=selectedPubId
+              }}
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
+      <div class="row">
+        <div class="col">
+          <div class="card mt-3">
+            <div class="card-header"><strong>Selected</strong></div>
+            <div class="card-body">
+              <ul class="list-inline mb-0">
+                {{#each model.dataExtensions as |extension|}}
+                  <li class="list-inline-item">{{extension.text}}</li>
+                {{else}}
+                  <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
+                {{/each}}
+              </ul>
+            </div>
+            <div class="card-footer">
+              <div class="custom-control custom-checkbox">
+                {{input
+                  id="dedupe-emails"
+                  type="checkbox"
+                  class="custom-control-input"
+                  name="dedupeEmails"
+                  checked=model.dedupeEmails
+                }}
+                <label class="custom-control-label" for="dedupe-emails">De-deplicate by email address?</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    {{/if}}
+
+    {{#if (eq currentStep 2)}}
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <strong>Exclusion Lists</strong>
+              <span class="badge badge-light">{{model.dataExtensions.length}}</span>
+            </div>
+            <div class="card-body p-2 tree-view">
+              {{tree-views/data-extensions
+                on-select=(action "addDataExtension")
+                on-deselect=(action "removeDataExtension")
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card mt-3">
+            <div class="card-header"><strong>Selected</strong></div>
+            <div class="card-body">
+              <ul class="list-inline mb-0">
+                {{#each model.dataExtensions as |extension|}}
+                  <li class="list-inline-item">{{extension.text}}</li>
+                {{else}}
+                  <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
   {{/modal.body}}
-  {{#modal.footer}}
+  {{#modal.footer class="d-flex justify-content-between"}}
+    <div class="btn-group btn pr-0">
+      <button class="btn btn-info clickable" disabled={{backDisabled}} {{action (action "decreaseStep")}}>
+        Back
+      </button>
+      <button class="btn btn-info clickable" disabled={{nextDisabled}} {{action (action "increaseStep")}}>
+        Next
+      </button>
+      {{!-- {{#if user.permissions.campaign.delete}}
+        {{confirm-button
+          icon="trash"
+          label="Delete"
+          class="btn-danger"
+          disabled=isActionRunning
+          onConfirm=(route-action "delete" model.id "campaign.index")
+        }}
+      {{/if}} --}}
+    </div>
+
     {{confirm-button
       icon="cross"
       label="Cancel"
