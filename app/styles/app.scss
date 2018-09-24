@@ -41,7 +41,12 @@ pre.ace_editor {
 // Overflow helpers for tree views.
 .tree-view {
   overflow: scroll;
-  max-height: 375px;
+  min-height: 350px;
+  max-height: 350px;
+}
+.jstree li.jstree-open > a.jstree-anchor > i.jstree-checkbox,
+.jstree li.jstree-closed > a.jstree-anchor > i.jstree-checkbox {
+    display:none;
 }
 
 .ember-power-calendar {

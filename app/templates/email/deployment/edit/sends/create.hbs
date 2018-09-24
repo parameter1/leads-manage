@@ -6,20 +6,23 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="card">
-          <div class="card-header"><strong>Data Extensions</strong></div>
+          <div class="card-header">
+            <strong>Data Extensions</strong>
+            <span class="badge badge-light">{{model.dataExtensions.length}}</span>
+          </div>
           <div class="card-body p-2 tree-view">
-            {{trees/data-extensions}}
+            {{trees/data-extensions
+              on-select=(action "addDataExtension")
+              on-deselect=(action "removeDataExtension")
+            }}
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="card">
           <div class="card-header"><strong>Publication Lists</strong></div>
-          <div class="card-body">
-            {{!-- {{#if areSendFoldersLoading}}
-              <small>Loading...</small>
-              {{progress-bar show=true}}
-            {{/if}} --}}
+          <div class="card-body p-2 tree-view">
+
           </div>
         </div>
       </div>
@@ -29,7 +32,13 @@
         <div class="card mt-3">
           <div class="card-header"><strong>Selected</strong></div>
           <div class="card-body">
-
+            <ul class="list-inline mb-0">
+              {{#each model.dataExtensions as |extension|}}
+                <li class="list-inline-item">{{extension.text}}</li>
+              {{else}}
+                <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
+              {{/each}}
+            </ul>
           </div>
           <div class="card-footer">
             <div class="custom-control custom-checkbox">
@@ -38,7 +47,7 @@
                 type="checkbox"
                 class="custom-control-input"
                 name="dedupeEmails"
-                checked=true
+                checked=model.dedupeEmails
               }}
               <label class="custom-control-label" for="dedupe-emails">De-deplicate by email address?</label>
             </div>
@@ -48,7 +57,6 @@
     </div>
     <div class="row">
       <div class="col">
-
       </div>
     </div>
   {{/modal.body}}

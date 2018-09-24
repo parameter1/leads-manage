@@ -5,9 +5,12 @@ import rootFolders from 'leads-manage/gql/queries/fuel/data-extension-folders';
 import folderQuery from 'leads-manage/gql/queries/fuel/data-extension-folder';
 
 export default Component.extend(ComponentQueryManager, {
+  checkboxOptions: {
+    three_state: false,
+  },
 
   mapFolders(SubFolders) {
-    return SubFolders.map(sub => ({ id: sub.ObjectID, text: sub.Name, children: true, icon: 'entypo icon-folder' }));
+    return SubFolders.map(sub => ({ id: sub.ObjectID, text: sub.Name, children: true, icon: 'entypo icon-folder', state: { disabled: true } }));
   },
 
   mapExtensions(DataExtensions) {
@@ -26,7 +29,8 @@ export default Component.extend(ComponentQueryManager, {
           id: ObjectID,
           text: Name,
           children,
-          icon: 'entypo icon-folder'
+          icon: 'entypo icon-folder',
+          state: { disabled: true },
         };
       });
       cb(nodes);
@@ -62,5 +66,15 @@ export default Component.extend(ComponentQueryManager, {
         this.loadChildren(obj.id, cb);
       }
     },
+    // eventDidCheckNode
+    select(node, selected) {
+      const fn = this.get('on-select');
+      if (typeof fn === 'function') return fn(node, selected);
+    },
+    // eventDidUncheckNode
+    deselect(node, selected) {
+      const fn = this.get('on-deselect');
+      if (typeof fn === 'function') return fn(node, selected);
+    }
   },
 });
