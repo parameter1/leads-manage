@@ -38,6 +38,12 @@ pre.ace_editor {
   border-bottom-right-radius: 0;
 }
 
+// Overflow helpers for tree views.
+.tree-view {
+  overflow: scroll;
+  max-height: 375px;
+}
+
 .ember-power-calendar {
   @include ember-power-calendar($cell-size: 35px);
 }
