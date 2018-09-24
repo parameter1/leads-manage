@@ -1,0 +1,14 @@
+query RootDataExtensionFolders {
+  Fuel_DataExtensionDataFolders {
+		ObjectID
+		Name
+		DataExtensions {
+			ObjectID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}

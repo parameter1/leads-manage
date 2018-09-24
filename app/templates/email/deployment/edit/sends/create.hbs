@@ -7,11 +7,8 @@
       <div class="col-lg-6">
         <div class="card">
           <div class="card-header"><strong>Data Extensions</strong></div>
-          <div class="card-body">
-            {{#if areSendFoldersLoading}}
-              <small>Loading...</small>
-              {{progress-bar show=true}}
-            {{/if}}
+          <div class="card-body p-2">
+            {{trees/data-extensions}}
           </div>
         </div>
       </div>
@@ -19,10 +16,10 @@
         <div class="card">
           <div class="card-header"><strong>Publication Lists</strong></div>
           <div class="card-body">
-            {{#if areSendFoldersLoading}}
+            {{!-- {{#if areSendFoldersLoading}}
               <small>Loading...</small>
               {{progress-bar show=true}}
-            {{/if}}
+            {{/if}} --}}
           </div>
         </div>
       </div>

@@ -1,0 +1,14 @@
+query DataFolderDataExtension($input: Fuel_ObjectIDInput!) {
+  Fuel_DataFolderDataExtension(input: $input) {
+		ObjectID
+		Name
+		DataExtensions {
+			ObjectID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}
