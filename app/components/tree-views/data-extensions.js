@@ -5,8 +5,11 @@ import rootFolders from 'leads-manage/gql/queries/fuel/data-extension-folders';
 import folderQuery from 'leads-manage/gql/queries/fuel/data-extension-folder';
 
 export default Component.extend(ComponentQueryManager, {
-  checkboxOptions: {
-    three_state: false,
+  init() {
+    this._super(...arguments);
+    this.set('checkboxOptions', {
+      three_state: false,
+    });
   },
 
   mapFolders(SubFolders) {

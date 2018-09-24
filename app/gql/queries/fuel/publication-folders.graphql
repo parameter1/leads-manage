@@ -1,0 +1,14 @@
+query RootPublicationFolders {
+  Fuel_PublicationDataFolders {
+		ObjectID
+		Name
+		Publications {
+			ID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}

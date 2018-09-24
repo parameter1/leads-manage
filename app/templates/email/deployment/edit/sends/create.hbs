@@ -11,7 +11,7 @@
             <span class="badge badge-light">{{model.dataExtensions.length}}</span>
           </div>
           <div class="card-body p-2 tree-view">
-            {{trees/data-extensions
+            {{tree-views/data-extensions
               on-select=(action "addDataExtension")
               on-deselect=(action "removeDataExtension")
             }}
@@ -20,9 +20,17 @@
       </div>
       <div class="col-lg-6">
         <div class="card">
-          <div class="card-header"><strong>Publication Lists</strong></div>
+          <div class="card-header text-truncate">
+            <strong>Publication Lists</strong>
+            {{#if model.publication}}
+              <small class="d-inline-block text-muted">{{model.publication.text}}</small>
+            {{/if}}
+          </div>
           <div class="card-body p-2 tree-view">
-
+            {{tree-views/publications
+              on-select=(action "setPublication")
+              on-deselect=(action "setPublication")
+            }}
           </div>
         </div>
       </div>

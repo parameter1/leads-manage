@@ -1,0 +1,14 @@
+query DataFolderPublication($input: Fuel_ObjectIDInput!) {
+  Fuel_DataFolderPublication(input: $input) {
+		ObjectID
+		Name
+		Publications {
+			ID
+			Name
+		}
+		SubFolders {
+			ObjectID
+			Name
+		}
+	}
+}

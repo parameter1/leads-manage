@@ -8,5 +8,9 @@ export default Controller.extend({
     removeDataExtension(node, selected) {
       this.get('model.dataExtensions').removeObject(node);
     },
+    setPublication(node, selected) {
+      const value = selected.length ? node : null;
+      this.set('model.publication', value);
+    },
   }
 });
