@@ -44,6 +44,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-json-module": "^0.0.3",
+    "ember-cli-jstree": "https://github.com/limit-zero/ember-cli-jstree.git",
     "ember-cli-moment-shim": "^3.6.0",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-sass": "^7.1.7",
