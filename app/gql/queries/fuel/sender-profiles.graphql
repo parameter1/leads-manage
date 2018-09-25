@@ -1,0 +1,7 @@
+query SenderProfiles {
+  Fuel_SenderProfiles {
+		ObjectID
+    FromName
+    FromAddress
+	}
+}

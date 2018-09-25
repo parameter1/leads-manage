@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label for="send-sender-profile">Send Email</label>
+      {{#power-select
+        options=sendTypes
+        onchange=(action (mut model.sendType))
+        selected=model.sendType
+        renderInPlace=true
+        searchEnabled=false
+        as |type|
+      }}
+        {{type}}
+      {{/power-select}}
+    </div>
+  </div>
+</div>
+
+{{#if (eq model.sendType "Later")}}
+  <div class="row">
+    <div class="col-lg-6">
+      <label>Date</label>
+      {{date-calendar selected=model.sendDate canClear=false minDate=minSendDate}}
+    </div>
+    <div class="col-lg-6">
+      <label>Time</label>
+      {{#power-select
+        options=sendTimes
+        onchange=(action (mut model.sendTime))
+        selected=model.sendTime
+        renderInPlace=true
+        searchEnabled=false
+        as |type|
+      }}
+        {{type}}
+      {{/power-select}}
+    </div>
+  </div>
+{{/if}}
+
+

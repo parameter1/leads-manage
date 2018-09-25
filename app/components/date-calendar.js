@@ -9,6 +9,8 @@ export default Component.extend({
 
   center: moment(),
 
+  canClear: true,
+
   disableRemove: computed('selected', function() {
     return this.get('selected') ? false : true;
   }),

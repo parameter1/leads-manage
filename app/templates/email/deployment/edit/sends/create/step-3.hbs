@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col">
+    <div class="form-group">
+      <label for="send-subject">Subject Line {{required-field}}</label>
+      {{input type="text" id="send-subject" required=true value=model.subject class="form-control"}}
+    </div>
+    <div class="form-group">
+      <label for="send-sender-profile">Sender Profile {{required-field}}</label>
+      {{#power-select
+        options=senderProfiles
+        onchange=(action (mut model.senderProfile))
+        selected=model.senderProfile
+        renderInPlace=true
+        as |profile|
+      }}
+        {{profile.FromName}}
+        <small class="d-inline text-muted">[{{profile.FromAddress}}]</small>
+      {{/power-select}}
+    </div>
+    <div class="form-group mb-0">
+      <div class="custom-control custom-checkbox">
+        {{input
+          id="is-test-send"
+          type="checkbox"
+          class="custom-control-input"
+          name="isTestSend"
+          checked=model.isTestSend
+        }}
+        <label class="custom-control-label" for="is-test-send">Is this a test send?</label>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,11 +5,13 @@
   onSelect=(action (mut selected) value="moment") as |calendar|}}
     {{calendar.nav}}
     {{calendar.days minDate=(readonly minDate) maxDate=(readonly maxDate)}}
-    <button
-      class="btn btn-sm btn-outline-primary mt-1 float-right"
-      disabled={{disableRemove}}
-      {{action "clearDate"}}
-    >
-      {{entypo-icon "cross"}} Clear
-    </button>
+    {{#if canClear}}
+      <button
+        class="btn btn-sm btn-outline-primary mt-1 float-right"
+        disabled={{disableRemove}}
+        {{action "clearDate"}}
+      >
+        {{entypo-icon "cross"}} Clear
+      </button>
+    {{/if}}
 {{/power-calendar}}
