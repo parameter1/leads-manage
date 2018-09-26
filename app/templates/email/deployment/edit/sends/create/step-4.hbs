@@ -20,14 +20,19 @@
   <div class="row">
     <div class="col-lg-6">
       <label>Date</label>
-      {{date-calendar selected=model.sendDate canClear=false minDate=minSendDate}}
+      {{date-calendar
+        selected=model.sendDateTime
+        canClear=false
+        minDate=minSendDate
+        onchange=(action "adjustSendDate")
+      }}
     </div>
     <div class="col-lg-6">
       <label>Time</label>
       {{#power-select
         options=sendTimes
-        onchange=(action (mut model.sendTime))
-        selected=model.sendTime
+        onchange=(action "adjustSendTime")
+        selected=sendTime
         renderInPlace=true
         searchEnabled=false
         as |type|

@@ -23,6 +23,14 @@ export default Component.extend({
     }
   },
   actions: {
+    setDate(value) {
+      const fn = this.get('onchange');
+      if (typeof fn === 'function') {
+        fn(value);
+      } else {
+        this.set('selected', value);
+      }
+    },
     clearDate() {
       this.set('selected', null);
     },

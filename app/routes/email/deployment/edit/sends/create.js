@@ -6,12 +6,12 @@ import { computed } from '@ember/object';
 import query from 'leads-manage/gql/queries/fuel/sender-profiles';
 
 export default Route.extend(RouteQueryManager, {
-  sendTime: computed(function() {
+  sendDateTime: computed(function() {
     const now = moment();
     if (now.format('mm') >= '30') {
-      return moment().endOf('hour').add(1, 'minute').format('h:mm A');
+      return moment().endOf('hour').add(1, 'minute').subtract(59, 'seconds');
     }
-    return moment().endOf('hour').subtract(29, 'minutes').format('h:mm A');
+    return moment().endOf('hour').subtract(29, 'minutes').subtract(59, 'seconds');
   }),
 
   model() {
@@ -26,8 +26,8 @@ export default Route.extend(RouteQueryManager, {
       isTestSend: false,
       senderProfile: null,
       sendType: 'Immediately',
-      sendDate: moment(),
-      sendTime: this.get('sendTime'),
+      sendDateTime: this.get('sendDateTime'),
+      defaultSendDateTime: this.sendDateTime,
     };
   },
 
