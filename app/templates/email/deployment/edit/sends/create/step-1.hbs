@@ -39,9 +39,13 @@
       <div class="card-body">
         <ul class="list-inline mb-0">
           {{#each model.dataExtensions as |extension|}}
-            <li class="list-inline-item">{{extension.text}}</li>
+            <span class="badge badge-pill badge-info">
+              <span class="h6 d-block m-1">{{extension.text}}</span>
+            </span>
           {{else}}
-            <li class="list-inline-item text-muted"><em>(None Selected)</em></li>
+            <span class="badge badge-pill badge-secondary">
+              <span class="h6 d-block m-1"><em>(None Selected)</em></span>
+            </span>
           {{/each}}
         </ul>
       </div>
