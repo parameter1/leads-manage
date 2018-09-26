@@ -41,8 +41,8 @@ pre.ace_editor {
 // Overflow helpers for tree views.
 .tree-view {
   overflow: scroll;
-  min-height: 350px;
-  max-height: 350px;
+  min-height: 325px;
+  max-height: 325px;
 }
 .jstree li.jstree-open > a.jstree-anchor > i.jstree-checkbox,
 .jstree li.jstree-closed > a.jstree-anchor > i.jstree-checkbox {
