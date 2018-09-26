@@ -22,7 +22,7 @@ export default Component.extend(ComponentQueryManager, {
     return DataExtensions.map((ext) => {
       const { ObjectID, Name } = ext;
       const selected = this.get('selectedIds').includes(ObjectID);
-      return { id: ObjectID, text: Name, children: false, icon: 'entypo dot-single', state: { selected } };
+      return { id: ObjectID, text: Name, children: false, icon: 'entypo icon-dot-single', state: { selected } };
     });
   },
 
