@@ -3,23 +3,23 @@
     <h5 class="modal-title">Send Email</h5>
   {{/modal.header}}
   {{#modal.body}}
-    {{#if (eq currentStep 1)}}
+    {{#if (eq model.step 1)}}
       {{partial "email/deployment/edit/sends/create/step-1"}}
     {{/if}}
 
-    {{#if (eq currentStep 2)}}
+    {{#if (eq model.step 2)}}
       {{partial "email/deployment/edit/sends/create/step-2"}}
     {{/if}}
 
-    {{#if (eq currentStep 3)}}
+    {{#if (eq model.step 3)}}
       {{partial "email/deployment/edit/sends/create/step-3"}}
     {{/if}}
 
-    {{#if (eq currentStep 4)}}
+    {{#if (eq model.step 4)}}
       {{partial "email/deployment/edit/sends/create/step-4"}}
     {{/if}}
 
-    {{#if (eq currentStep 5)}}
+    {{#if (eq model.step 5)}}
       {{partial "email/deployment/edit/sends/create/step-5"}}
     {{/if}}
   {{/modal.body}}

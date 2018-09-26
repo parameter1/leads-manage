@@ -3,10 +3,8 @@ import { computed } from '@ember/object';
 import moment from 'moment';
 
 export default Controller.extend({
-  currentStep: 1,
-
-  nextDisabled: computed('currentStep', 'model.{dataExtensions.length,subject.length,senderProfile,sendType,sendDateTime}', function() {
-    const step = this.get('currentStep');
+  nextDisabled: computed('model.{step,dataExtensions.length,subject.length,senderProfile,sendType,sendDateTime}', function() {
+    const step = this.get('model.step');
     if (step === 1) return !this.get('model.dataExtensions.length');
     if (step === 3) {
       return !this.get('model.subject.length') || !this.get('model.senderProfile');
@@ -20,8 +18,8 @@ export default Controller.extend({
     return false;
   }),
 
-  backDisabled: computed('currentStep', function() {
-    return this.get('currentStep') < 2;
+  backDisabled: computed('model.step', function() {
+    return this.get('model.step') < 2;
   }),
 
   selectedExclusionIds: computed.mapBy('model.exclusions', 'id'),
@@ -79,10 +77,10 @@ export default Controller.extend({
       this.get('model.exclusions').removeObject(node);
     },
     increaseStep() {
-      this.set('currentStep', this.get('currentStep') + 1);
+      this.set('model.step', this.get('model.step') + 1);
     },
     decreaseStep() {
-      this.set('currentStep', this.get('currentStep') - 1);
+      this.set('model.step', this.get('model.step') - 1);
     },
     adjustSendDate(date) {
       const newDate = moment(this.get('model.sendDateTime')).set({

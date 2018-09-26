@@ -18,6 +18,7 @@ export default Route.extend(RouteQueryManager, {
     const deployment = this.modelFor('email.deployment.edit');
     const { subject } = deployment;
     return {
+      step: 1,
       dedupeEmails: true,
       dataExtensions: [],
       publication: null,
