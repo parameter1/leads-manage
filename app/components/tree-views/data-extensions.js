@@ -1,10 +1,13 @@
 import Component from '@ember/component';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { inject } from '@ember/service';
 
 import rootFolders from 'leads-manage/gql/queries/fuel/data-extension-folders';
 import folderQuery from 'leads-manage/gql/queries/fuel/data-extension-folder';
 
 export default Component.extend(ComponentQueryManager, {
+  errorProcessor: inject(),
+
   init() {
     this._super(...arguments);
     const selectedIds = this.get('selectedIds');
@@ -28,7 +31,7 @@ export default Component.extend(ComponentQueryManager, {
 
   async loadRoot(cb) {
     try {
-      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'network-only' }, 'Fuel_DataExtensionDataFolders');
+      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'cache-and-network' }, 'Fuel_DataExtensionDataFolders');
       const nodes = results.map((r) => {
         const { ObjectID, Name, SubFolders, DataExtensions } = r;
         const subFolders = this.mapFolders(SubFolders);

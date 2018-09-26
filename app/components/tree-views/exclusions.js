@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { inject } from '@ember/service';
 
 import rootFolders from 'leads-manage/gql/queries/fuel/exclusion-folders';
 import deFolderQuery from 'leads-manage/gql/queries/fuel/data-extension-folder';
@@ -7,6 +8,8 @@ import listFolderQuery from 'leads-manage/gql/queries/fuel/list-folder';
 import groupFolderQuery from 'leads-manage/gql/queries/fuel/group-folder';
 
 export default Component.extend(ComponentQueryManager, {
+  errorProcessor: inject(),
+
   init() {
     this._super(...arguments);
     const selectedIds = this.get('selectedIds');
@@ -26,7 +29,7 @@ export default Component.extend(ComponentQueryManager, {
         icon: 'entypo icon-folder',
         li_attr: { __typename },
         state: { disabled: true },
-      }
+      };
     });
   },
 
@@ -47,7 +50,7 @@ export default Component.extend(ComponentQueryManager, {
 
   async loadRoot(cb) {
     try {
-      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'network-only' }, 'Fuel_ExclusionDataFolders');
+      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'cache-and-network' }, 'Fuel_ExclusionDataFolders');
       const nodes = results.map((r) => {
         const { ObjectID: id, Name: text, __typename } = r;
         return {
@@ -85,7 +88,7 @@ export default Component.extend(ComponentQueryManager, {
     }
 
     try {
-      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, type);
+      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'cache-and-network' }, type);
       const { SubFolders, [key]: Values } = result;
       const subFolders = this.mapFolders(SubFolders);
       const items = this.mapItems(Values);

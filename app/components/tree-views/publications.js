@@ -1,10 +1,13 @@
 import Component from '@ember/component';
 import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { inject } from '@ember/service';
 
 import rootFolders from 'leads-manage/gql/queries/fuel/publication-folders';
 import folderQuery from 'leads-manage/gql/queries/fuel/publication-folder';
 
 export default Component.extend(ComponentQueryManager, {
+  errorProcessor: inject(),
+
   init() {
     this._super(...arguments);
     this.set('checkboxOptions', {
@@ -33,7 +36,7 @@ export default Component.extend(ComponentQueryManager, {
 
   async loadRoot(cb) {
     try {
-      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'network-only' }, 'Fuel_PublicationDataFolders');
+      const results = await this.get('apollo').watchQuery({ query: rootFolders, fetchPolicy: 'cache-and-network' }, 'Fuel_PublicationDataFolders');
       const nodes = results.map((r) => {
         const { ObjectID, Name, SubFolders, Publications } = r;
         const subFolders = this.mapFolders(SubFolders);
@@ -59,7 +62,7 @@ export default Component.extend(ComponentQueryManager, {
     const input = { ObjectID: id };
     const variables = { input };
     try {
-      const result = await this.get('apollo').watchQuery({ query: folderQuery, variables, fetchPolicy: 'network-only' }, 'Fuel_DataFolderPublication');
+      const result = await this.get('apollo').watchQuery({ query: folderQuery, variables, fetchPolicy: 'cache-and-network' }, 'Fuel_DataFolderPublication');
       const { SubFolders, Publications } = result;
       const subFolders = this.mapFolders(SubFolders);
       const pubs = this.mapPublications(Publications);

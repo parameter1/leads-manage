@@ -33,7 +33,7 @@ export default Route.extend(RouteQueryManager, {
   },
 
   afterModel() {
-    return this.get('apollo').watchQuery({ query, fetchPolicy: 'network-only' }, 'Fuel_SenderProfiles').then((data) => {
+    return this.get('apollo').watchQuery({ query, fetchPolicy: 'cache-and-network' }, 'Fuel_SenderProfiles').then((data) => {
       this.controllerFor(this.get('routeName')).set('senderProfiles', data);
     });
   },
