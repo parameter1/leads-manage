@@ -1,0 +1,35 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item active=true}}{{entypo-icon "bar-graph"}} Email Reporting{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+<div class="row">
+  <div class="col">
+    <div class="card list-index">
+      <div class="card-header"></div>
+      <div class="card-body">
+
+        {{#power-calendar-range
+          center=center
+          selected=range
+
+          onCenterChange=(action (mut center) value="moment")
+          onSelect=(action "setRange" value="moment") as |calendar|}}
+            {{calendar.nav}}
+            {{calendar.days}}
+
+            {{!-- {{calendar.nav}}
+            {{calendar.days minDate=(readonly minDate) maxDate=(readonly maxDate)}}
+            <button
+              class="btn btn-sm btn-outline-primary mt-1 float-right"
+              disabled={{disableRemove}}
+              {{action "clearDate"}}
+            >
+              {{entypo-icon "cross"}} Clear
+            </button> --}}
+        {{/power-calendar-range}}
+
+      </div>
+      <div class="card-footer"></div>
+    </div>
+  </div>
+</div>

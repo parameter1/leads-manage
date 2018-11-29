@@ -75,6 +75,7 @@ Router.map(function() {
     this.route('category', function() {
       this.route('view', { path: ':id' });
     });
+    this.route('reporting');
   });
   this.route('form', function() {
     this.route('edit', { path: ':id' }, function() {
