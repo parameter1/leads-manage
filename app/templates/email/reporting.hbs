@@ -16,17 +16,75 @@
           onSelect=(action "setRange" value="moment") as |calendar|}}
             {{calendar.nav}}
             {{calendar.days}}
-
-            {{!-- {{calendar.nav}}
-            {{calendar.days minDate=(readonly minDate) maxDate=(readonly maxDate)}}
-            <button
-              class="btn btn-sm btn-outline-primary mt-1 float-right"
-              disabled={{disableRemove}}
-              {{action "clearDate"}}
-            >
-              {{entypo-icon "cross"}} Clear
-            </button> --}}
         {{/power-calendar-range}}
+        <button class="btn btn-success mt-3" disabled={{eq canSubmit false}} {{action "runReport"}}>{{entypo-icon "pie-chart"}} Run Report</button>
+
+
+        {{#if result}}
+          <div class="row mt-3">
+            <div class="col">
+              <h5>{{moment-format result.start "MMM Do, YYYY"}} through {{moment-format result.end "MMM Do, YYYY"}}</h5>
+
+              {{#each result.weeks as |week|}}
+                <div class="table-responsive">
+                  <table class="table table-sm table-striped">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Week</th>
+                        <th>Starting</th>
+                        <th>Category</th>
+                        <th># Sent</th>
+                        <th>Total Sent</th>
+                        <th>Total Delivered</th>
+                        <th>Total Unique Opens</th>
+                        <th>Total Unique Clicks</th>
+                        <th>Avg. Sent</th>
+                        <th>Avg. Delivered</th>
+                        <th>Avg. Unique Opens</th>
+                        <th>Avg. Unique Clicks</th>
+                        <th>Avg. Delivery Rate</th>
+                        <th>Avg. Unq Open Rate</th>
+                        <th>Avg. Unq CTR</th>
+                        <th>Avg. Unq CTOR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each week.categories as |c|}}
+                        {{log c}}
+                        <tr>
+                          <td>{{week.year}}</td>
+                          <td>{{week.number}}</td>
+                          <td>{{moment-format week.starting "MMM D"}}</td>
+                          <td>{{c.name}}</td>
+                          <td>{{c.deploymentCount}}</td>
+                          <td>{{format-number c.totalSent format="0,0"}}</td>
+                          <td>{{format-number c.totalDelivered format="0,0"}}</td>
+                          <td>{{format-number c.totalUniqueOpens format="0,0"}}</td>
+                          <td>{{format-number c.totalUniqueClicks format="0,0"}}</td>
+                          <td>{{format-number c.avgSent format="0,0"}}</td>
+                          <td>{{format-number c.avgDelivered format="0,0"}}</td>
+                          <td>{{format-number c.avgUniqueOpens format="0,0"}}</td>
+                          <td>{{format-number c.avgUniqueClicks format="0,0"}}</td>
+                          <td>{{format-number c.avgDeliveryRate format="00.0%"}}</td>
+                          <td>{{format-number c.avgUniqueOpenRate format="00.0%"}}</td>
+                          <td>{{format-number c.avgUniqueClickToDeliveredRate format="00.0%"}}</td>
+                          <td>{{format-number c.avgUniqueClickToOpenRate format="00.0%"}}</td>
+                        </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              {{else}}
+                <tr>
+                  <td class="text-center text-muted" colspan="17">No results found.</td>
+                </tr>
+              {{/each}}
+
+            </div>
+          </div>
+
+        {{/if}}
 
       </div>
       <div class="card-footer"></div>
