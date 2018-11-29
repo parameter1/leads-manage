@@ -2,12 +2,15 @@ query DataFolderGroup($input: Fuel_ObjectIDInput!) {
   Fuel_DataFolderGroup(input: $input) {
 		ObjectID
 		Name
+		ID
 		Groups {
 			ObjectID
+			CustomerKey
 			Name
 		}
 		SubFolders {
 			ObjectID
+			ID
 			Name
 		}
 	}

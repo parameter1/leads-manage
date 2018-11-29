@@ -16,9 +16,11 @@ export default Route.extend(RouteQueryManager, {
 
   model() {
     const deployment = this.modelFor('email.deployment.edit');
-    const { subject } = deployment;
+    const { subject, externalSource } = deployment;
+    const { identifier: emailId } = externalSource;
     return {
       step: 1,
+      emailId: Number(emailId),
       dedupeEmails: true,
       dataExtensions: [],
       publication: null,

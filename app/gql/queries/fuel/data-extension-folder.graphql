@@ -1,13 +1,16 @@
 query DataFolderDataExtension($input: Fuel_ObjectIDInput!) {
   Fuel_DataFolderDataExtension(input: $input) {
 		ObjectID
+		ID
 		Name
 		DataExtensions {
 			ObjectID
+			CustomerKey
 			Name
 		}
 		SubFolders {
 			ObjectID
+			ID
 			Name
 		}
 	}

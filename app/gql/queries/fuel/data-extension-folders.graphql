@@ -1,13 +1,16 @@
 query RootDataExtensionFolders {
   Fuel_DataExtensionDataFolders {
 		ObjectID
+		ID
 		Name
 		DataExtensions {
 			ObjectID
+			CustomerKey
 			Name
 		}
 		SubFolders {
 			ObjectID
+			ID
 			Name
 		}
 	}

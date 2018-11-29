@@ -25,6 +25,7 @@ module.exports = function(environment) {
       apiURL: '/graph',
     },
     behaviorAPI : {
+      // @todo THIS MUST BE CHANGED TO USE SERVER!
       propertyId: '5ae0d9270f265f923a9a72c4',
       key: 'bc2d3d2b-9e2c-40fb-addb-a454ded7bb80',
     },
