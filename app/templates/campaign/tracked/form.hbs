@@ -34,9 +34,9 @@
         placeholder="Begin typing to find a user..."
         type="user"
         field="givenName"
-        selected=model.user
+        selected=model.salesRep
         allowClear=false
-        onChange=(action (mut model.user))
+        onChange=(action (mut model.salesRep))
         as |user|
       }}
         {{user.givenName}} {{user.familyName}}

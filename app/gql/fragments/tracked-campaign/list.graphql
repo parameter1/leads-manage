@@ -1,0 +1,12 @@
+fragment TrackedCampaignListFragment on TrackedCampaign {
+  id
+  fullName
+  updatedAt
+  customer {
+    id
+    name
+  }
+  email {
+    id
+  }
+}

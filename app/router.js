@@ -56,6 +56,9 @@ Router.map(function() {
     this.route('create');
     this.route('tracked', function() {
       this.route('create');
+      this.route('edit', { path: ':id' }, function() {
+
+      });
     });
   });
   this.route('tracked-campaign', function() {
