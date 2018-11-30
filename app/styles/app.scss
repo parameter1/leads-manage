@@ -14,6 +14,17 @@ $modal-xl: 1100px !default;
   .modal-xl { max-width: $modal-xl; }
 }
 
+// Fluid container that acts like fixed. Main wrapper.
+@include media-breakpoint-up(xl) {
+  .container-fluid .col.main {
+    padding-left: 6.0rem;
+    padding-right: 6.0rem;
+  }
+}
+.container-fluid .col.main {
+  padding-bottom: 1rem;
+}
+
 @import 'ember-power-select/themes/bootstrap';
 @import "ember-power-select";
 @import "ember-power-calendar";
