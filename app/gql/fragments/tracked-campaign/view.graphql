@@ -4,6 +4,7 @@ fragment TrackedCampaignViewFragment on TrackedCampaign {
   ...TrackedCampaignListFragment
   name
   hash
+  notes
   range {
     start
     end

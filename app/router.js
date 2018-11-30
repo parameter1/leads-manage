@@ -57,7 +57,15 @@ Router.map(function() {
     this.route('tracked', function() {
       this.route('create');
       this.route('edit', { path: ':id' }, function() {
+        this.route('email', function() {
 
+        });
+        this.route('forms', function() {
+
+        });
+        this.route('video', function() {
+
+        });
       });
     });
   });
