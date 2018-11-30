@@ -9,10 +9,11 @@
   <div class="card model-form">
     <div class="card-header"></div>
     <div class="card-body">
-      {{!-- {{ partial "campaign/form" }} --}}
+      {{ partial "campaign/tracked/form" }}
     </div>
     <div class="card-footer">
-      {{!-- {{model-save-button disabled=isActionRunning}} --}}
+      {{model-save-button disabled=isActionRunning}}
+      {{required-field-desc class="mb-0 ml-2" tagName="span"}}
     </div>
   </div>
 </form>
