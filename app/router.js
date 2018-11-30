@@ -54,6 +54,12 @@ Router.map(function() {
       this.route('ads');
     });
     this.route('create');
+    this.route('tracked', function() {
+      this.route('create');
+    });
+  });
+  this.route('tracked-campaign', function() {
+    this.route('create');
   });
   this.route('tag', function() {
     this.route('edit', { path: ':id' });

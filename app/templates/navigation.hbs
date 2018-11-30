@@ -14,8 +14,14 @@
         {{/if}}
 
         {{#if user.permissions.campaign.list}}
-          <li class="nav-item">
-            {{#link-to "campaign" class="nav-link"}}{{entypo-icon "calendar"}} Campaigns{{/link-to}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="linksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{entypo-icon "calendar"}} Campaigns
+            </a>
+            <div class="dropdown-menu" aria-labelledby="linksDropdown">
+              {{#link-to "campaign.index" class="dropdown-item d-flex justify-content-between"}}Standard {{entypo-icon "clipboard"}}{{/link-to}}
+              {{#link-to "campaign.tracked.index" class="dropdown-item d-flex justify-content-between"}}Tracked {{entypo-icon "credit"}}{{/link-to}}
+            </div>
           </li>
         {{/if}}
 
