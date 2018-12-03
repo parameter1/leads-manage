@@ -38,7 +38,7 @@
       </div>
 
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <div class="custom-control custom-checkbox">
             {{input
               id="rollup-metrics"
@@ -48,6 +48,18 @@
               checked=model.rollupMetrics
             }}
             <label class="custom-control-label" for="rollup-metrics">Rollup Deployment Metrics?</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="custom-control custom-checkbox">
+            {{input
+              id="is-newsletter"
+              type="checkbox"
+              class="custom-control-input"
+              name="isNewsletter"
+              checked=model.isNewsletter
+            }}
+            <label class="custom-control-label" for="is-newsletter">Newsletter</label>
           </div>
         </div>
       </div>

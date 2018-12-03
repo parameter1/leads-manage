@@ -12,10 +12,10 @@ export default Route.extend(RouteQueryManager, FormMixin, {
   },
 
   actions: {
-    update({ id, rollupMetrics }) {
+    update({ id, rollupMetrics, isNewsletter }) {
       this.startRouteAction();
       const mutation = rollupCategoryMetrics;
-      const variables = { categoryId: id, rollupMetrics };
+      const variables = { categoryId: id, rollupMetrics, isNewsletter };
       return this.get('apollo').mutate({ mutation, variables }, 'rollupCategoryMetrics')
         .then(() => this.get('notify').info('Category successfully updated.'))
         .catch(e => this.get('graphErrors').show(e))
