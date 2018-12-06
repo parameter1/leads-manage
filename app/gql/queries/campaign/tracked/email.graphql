@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/campaign/tracked/email'
+
+query TrackedCampaignEditEmail($input: ModelIdInput!) {
+  trackedEmailCampaign(input: $input) {
+    ...TrackedEmailCampaignFragment
+  }
+}
