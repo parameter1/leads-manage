@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
 import FormMixin from 'leads-manage/mixins/form-mixin';
-// import { get } from '@ember/object';
+import { get } from '@ember/object';
 
 // import deleteCampaign from 'leads-manage/gql/mutations/campaign/delete';
 // import cloneCampaign from 'leads-manage/gql/mutations/campaign/clone';
-// import updateCampaign from 'leads-manage/gql/mutations/campaign/update';
+import updateOrder from 'leads-manage/gql/mutations/order/update';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
   model() {
@@ -13,34 +13,37 @@ export default Route.extend(FormMixin, RouteQueryManager, {
   },
 
   actions: {
-    async update() {
+    /**
+     *
+     * @param {object} params
+     */
+    async update({ id, customer, name, range, salesRep, notes }) {
+      this.startRouteAction();
+      const mutation = updateOrder;
+      const { start, end } = range;
 
+      const input = {
+        id,
+        customerId: get(customer || {}, 'id'),
+        salesRepId: get(salesRep || {}, 'id'),
+        name,
+        range: {
+          start: start ? start.valueOf() : undefined,
+          end: end ? end.valueOf() : undefined,
+        },
+        notes,
+
+      };
+      const variables = { input };
+      try {
+        await this.get('apollo').mutate({ mutation, variables }, 'updateOrder');
+        this.get('notify').info('Order successfully updated.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
     },
-  //   /**
-  //    *
-  //    * @param {object} params
-  //    */
-  //   async update({ id, customer, name, startDate, endDate, maxIdentities }) {
-  //     this.startRouteAction();
-  //     const mutation = updateCampaign;
-  //     const payload = {
-  //       customerId: get(customer || {}, 'id'),
-  //       name,
-  //       startDate: startDate ? startDate.valueOf() : undefined,
-  //       endDate: endDate ? endDate.valueOf() : undefined,
-  //       maxIdentities
-  //     };
-  //     const input = { id, payload };
-  //     const variables = { input };
-  //     try {
-  //       await this.get('apollo').mutate({ mutation, variables }, 'updateCampaign');
-  //       this.get('notify').info('Campaign successfully updated.');
-  //     } catch (e) {
-  //       this.get('graphErrors').show(e);
-  //     } finally {
-  //       this.endRouteAction();
-  //     }
-  //   },
 
   //   /**
   //    *

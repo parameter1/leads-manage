@@ -2,4 +2,5 @@
 
 fragment OrderViewFragment on Order {
   ...OrderListFragment
+  name
 }
