@@ -1,5 +1,5 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item active=true}}{{entypo-icon "credit"}} Tracked Campaigns{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{entypo-icon "credit"}} Orders{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
 {{beta-feature}}
@@ -24,7 +24,7 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
           {{#each fetch.nodes as |item|}}
-            {{partial "campaign/tracked/list-item"}}
+            {{partial "order/list-item"}}
           {{/each}}
         </ul>
 
@@ -42,4 +42,4 @@
   </div>
 </div>
 
-{{model-create-button icon="credit" title="Create Tracked Campaign" click=(route-action "transitionTo" "campaign.tracked.create")}}
+{{model-create-button icon="credit" title="Create Order" click=(route-action "transitionTo" "order.create")}}

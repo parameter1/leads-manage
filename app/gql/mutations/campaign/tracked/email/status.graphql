@@ -1,6 +1,0 @@
-mutation TrackedCampaignEditEmailStatus($input: TrackedCampaignStatusInput!) {
-  trackedEmailCampaignStatus(input: $input) {
-    id
-    enabled
-  }
-}

@@ -1,4 +1,0 @@
-fragment TrackedEmailCampaignFragment on TrackedEmailCampaign {
-  id
-  enabled
-}

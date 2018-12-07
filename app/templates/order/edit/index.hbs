@@ -1,6 +1,6 @@
 <form {{action (route-action "update" model) on="submit"}}>
   <div class="card-body">
-    {{ partial "campaign/tracked/form" }}
+    {{ partial "order/form" }}
   </div>
   <div class="card-footer d-flex justify-content-between">
     {{model-save-button disabled=isSaveDisabled}}
@@ -9,13 +9,13 @@
       {{!-- <button class="btn btn-info clickable" disabled={{isActionRunning}} {{action (route-action "clone" model.id)}}>
         {{entypo-icon "copy"}} Clone
       </button> --}}
-      {{!-- {{#if user.permissions.campaign.delete}}
+      {{!-- {{#if user.permissions.order.delete}}
         {{confirm-button
           icon="trash"
           label="Delete"
           class="btn-danger"
           disabled=isActionRunning
-          onConfirm=(route-action "delete" model.id "campaign.index")
+          onConfirm=(route-action "delete" model.id "order.index")
         }}
       {{/if}} --}}
     </div>

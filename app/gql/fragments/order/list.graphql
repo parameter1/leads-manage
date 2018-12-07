@@ -1,0 +1,19 @@
+fragment OrderListFragment on Order {
+  id
+  fullName
+  notes
+  range {
+    start
+    end
+  }
+  salesRep {
+    id
+    givenName
+    familyName
+  }
+  updatedAt
+  customer {
+    id
+    name
+  }
+}

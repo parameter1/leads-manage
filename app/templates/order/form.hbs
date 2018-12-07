@@ -11,7 +11,7 @@
         allowClear=false
         onChange=(action (mut model.customer))
       }}
-      <small class="form-text text-muted">The customer to assign to this campaign.</small>
+      <small class="form-text text-muted">The customer to assign to this order.</small>
       {{#if model.customer.children.length}}
         <small class="form-text text-muted">
           {{model.customer.name}} also includes the following companies:
@@ -23,9 +23,9 @@
     </div>
 
     <div class="form-group">
-      <label for="campaign-name">Name</label>
-      {{input type="text" value=model.name class="form-control" id="campaign-name" aria-describedby="campaign-name-help" placeholder="Campaign name"}}
-      <small id="campaign-name-help" class="form-text text-muted hide">The campaign name - should be descriptive (optional).</small>
+      <label for="order-name">Name</label>
+      {{input type="text" value=model.name class="form-control" id="order-name" aria-describedby="order-name-help" placeholder="Campaign name"}}
+      <small id="order-name-help" class="form-text text-muted hide">The order name - should be descriptive (optional).</small>
     </div>
 
     <div class="form-group">
@@ -41,13 +41,13 @@
       }}
         {{user.givenName}} {{user.familyName}}
       {{/type-ahead}}
-      <small class="form-text text-muted">The campaign sales representative.</small>
+      <small class="form-text text-muted">The sales representative for the order.</small>
     </div>
 
     <div class="form-group">
-      <label for="campaign-notes">Notes</label>
-      {{textarea value=model.notes rows="3" class="form-control" id="campaign-notes" aria-describedby="campaign-notes-help"}}
-      <small id="campaign-notes-help" class="form-text text-muted">Additional information about this campaign.</small>
+      <label for="order-notes">Notes</label>
+      {{textarea value=model.notes rows="3" class="form-control" id="order-notes" aria-describedby="order-notes-help"}}
+      <small id="order-notes-help" class="form-text text-muted">Additional information about this order.</small>
     </div>
 
   </div>
