@@ -97,7 +97,7 @@ form .progress {
   min-width: 100%;
 }
 
-.fixed-bottom.create {
+.fixed-bottom.create, .fixed-bottom.create button {
   left: inherit;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;

@@ -1,0 +1,13 @@
+{{#bs-modal show=true size="xl" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
+  {{#modal.header}}
+    <h5 class="modal-title">{{entypo-icon "email"}} Create Email Line Item</h5>
+    <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
+      {{entypo-icon "cross"}}
+    </button>
+  {{/modal.header}}
+  {{#modal.body}}
+
+  {{/modal.body}}
+  {{#modal.footer}}
+  {{/modal.footer}}
+{{/bs-modal}}
