@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/order/line-item/list'
+
+query AllLineItemsForOrder($input: AllLineItemsForOrderInput!, $pagination: PaginationInput, $sort: LineItemSortInput) {
+  allLineItemsForOrder(input: $input, pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...LineItemListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

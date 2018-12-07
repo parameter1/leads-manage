@@ -1,0 +1,6 @@
+fragment LineItemListFragment on LineItem {
+  id
+  type
+  name
+  updatedAt
+}

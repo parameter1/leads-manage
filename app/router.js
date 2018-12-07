@@ -44,7 +44,10 @@ Router.map(function() {
   });
   this.route('order', function() {
     this.route('edit', { path: ':id' }, function() {
-      this.route('line-items');
+      this.route('line-items', function() {
+        this.route('create');
+        this.route('edit', { path: ':line_item_id' });
+      });
     });
     this.route('create');
   });
