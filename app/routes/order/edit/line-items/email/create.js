@@ -12,6 +12,9 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       emailCategories: [],
       tags: [],
       linkTypes: ['(Not Set)', 'Advertising'],
+      requiredFields: [
+        { key: 'emailAddress', label: 'Email' },
+      ],
     }
   },
 });

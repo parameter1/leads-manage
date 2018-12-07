@@ -115,6 +115,33 @@
         <div class="card-header"><strong>Qualification Criteria</strong></div>
         <div class="card-body">
 
+          <div class="row">
+            <div class="col-lg-6">
+              <label>Required Fields {{required-field-label}}</label>
+              {{#power-select-multiple
+                triggerClass="form-control"
+                dropdownClass="in-modal-dropdown"
+                options=requiredFieldOptions
+                selected=model.requiredFields
+                onchange=(action (mut model.requiredFields))
+                closeOnSelect=false as |field|
+              }}
+                {{field.label}}
+              {{/power-select-multiple}}
+              <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Choose at least one.</small>
+            </div>
+            <div class="col-lg-6">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group mb-0">
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
