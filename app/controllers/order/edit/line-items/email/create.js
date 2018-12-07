@@ -10,7 +10,6 @@ export default Controller.extend(FormMixin, {
 
   linkTypeOptions: computed('linkTypes.types', 'model.linkTypes', function() {
     const selected = this.get('model.linkTypes');
-    console.log(selected, this.get('linkTypes.types'), this.get('linkTypes.types').filter(type => !selected.includes(type)))
     return this.get('linkTypes.types').filter(type => !selected.includes(type));
   }),
 });
