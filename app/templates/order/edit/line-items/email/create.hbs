@@ -55,7 +55,21 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label>Gather leads from the following email deployments...</label>
+                <label>Gather leads from the following email categories... {{required-field-label}}</label>
+                {{#type-ahead
+                  placeholder="Begin typing to find a category..."
+                  type="email-category"
+                  multiple=true
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  field="fullName"
+                  selected=model.emailCategories
+                  onChange=(action (mut model.emailCategories))
+                  closeOnSelect=false as |emailCategory|
+                }}
+                  {{emailCategory.fullName}}
+                {{/type-ahead}}
+                <small class="form-text text-muted">Select at least one. Individual email sends and links can be excluded later.</small>
               </div>
             </div>
           </div>
