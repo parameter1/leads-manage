@@ -5,9 +5,116 @@
       {{entypo-icon "cross"}}
     </button>
   {{/modal.header}}
-  {{#modal.body}}
+  <form>
+    {{#modal.body}}
+      <div class="card mb-3">
+        <div class="card-header"><strong>Details</strong></div>
+        <div class="card-body">
 
-  {{/modal.body}}
-  {{#modal.footer}}
-  {{/modal.footer}}
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group mb-lg-0">
+                <label for="line-item-name">Line Item Name</label>
+                {{input type="email" class="form-control" id="line-item-name" aria-describedby="line-item-name-help"}}
+                <small id="line-item-name-help" class="form-text text-muted">A descriptive name for this line item. It will appear in lists and on the dashboard (but not in reports).</small>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="form-group mb-lg-0">
+                <label for="line-item-total-leads">Total Leads {{required-field-label}}</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">#</span>
+                  </div>
+                  {{input type="number" min="1" class="form-control" required="true" id="line-item-total-leads" aria-describedby="line-item-total-leads-help"}}
+                </div>
+                <small id="line-item-total-leads-help" class="form-text text-muted">The number of qualified leads needed to fulfill this line item.</small>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="form-group mb-0">
+                <label for="line-item-value">Total Value {{required-field-label}}</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  {{input type="number" min="0" class="form-control" required="true" id="line-item-value" aria-describedby="line-item-value-help"}}
+                </div>
+                <small id="line-item-value-help" class="form-text text-muted">The <em>total</em> value of this line item, e.g. $2,000.</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header"><strong>Email Criteria</strong></div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label>Gather leads from the following email deployments...</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group mb-lg-0">
+                <label>Where links are tagged with...</label>
+                {{type-ahead
+                  placeholder="Begin typing to find a tag..."
+                  type="tag"
+                  multiple=true
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  selected=model.tags
+                  onChange=(action (mut model.tags))
+                }}
+                <small class="form-text text-muted">Leave empty to include all links.</small>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group mb-0">
+                <label>And links are set as...</label>
+                {{#power-select-multiple
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  options=linkTypeOptions
+                  selected=model.linkTypes
+                  onchange=(action (mut model.linkTypes))
+                  closeOnSelect=false as |linkType|
+                }}
+                  {{linkType}}
+                {{/power-select-multiple}}
+                <small class="form-text text-muted">Leaving empty will exclude <em>all</em> links and leads.</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><strong>Qualification Criteria</strong></div>
+        <div class="card-body">
+
+        </div>
+      </div>
+
+      {{!-- <label>Line Item Name</label>
+      <label>Line Item Value {{required-field-label}}</label>
+      <label>Number of Leads Required {{required-field-label}}</label>
+      <label>Gather leads from the following email deployments... {{required-field-label}}</label>
+      <label>Where links are tagged with...</label>
+      <label>Where links are set as...</label>
+      <label>Leads <em>must</em> have the following fields to qualify...</label>
+      <label><em>Hide</em> the following fields on reports...</label>
+      <label>Leads should be <em>excluded</em> when...</label> --}}
+    {{/modal.body}}
+    {{#modal.footer}}
+    {{/modal.footer}}
+  </form>
 {{/bs-modal}}
