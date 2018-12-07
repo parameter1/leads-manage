@@ -15,6 +15,9 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       requiredFields: [
         { key: 'emailAddress', label: 'Email' },
       ],
+      excludedFields: [
+
+      ],
     }
   },
 });
