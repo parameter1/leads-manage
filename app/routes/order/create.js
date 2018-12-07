@@ -41,7 +41,7 @@ export default Route.extend(RouteQueryManager, FormMixin, {
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'createOrder');
         this.get('notify').info('Order created successfully.');
-        this.transitionTo('order.edit', response.id);
+        this.transitionTo('order.edit.line-items', response.id);
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {
