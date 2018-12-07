@@ -14,8 +14,8 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group mb-lg-0">
-                <label for="line-item-name">Line Item Name</label>
-                {{input type="email" class="form-control" id="line-item-name" aria-describedby="line-item-name-help"}}
+                <label for="line-item-name">Line Item Name {{required-field-label}}</label>
+                {{input type="email" required="true" class="form-control" id="line-item-name" aria-describedby="line-item-name-help"}}
                 <small id="line-item-name-help" class="form-text text-muted">A descriptive name for this line item. It will appear in lists and on the dashboard (but not in reports).</small>
               </div>
             </div>
