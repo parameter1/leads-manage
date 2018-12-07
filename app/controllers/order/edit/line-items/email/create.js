@@ -39,4 +39,20 @@ export default Controller.extend(FormMixin, {
   //   const selected = this.get('model.excludedFields');
   //   return this.get('identityAttributes.getViewableFields').filter(o => selected.includes(o.key));
   // }),
+
+  actions: {
+    updateIdentityFilters(filters) {
+      const formatted = filters.map((filter) => {
+        const { key, label, matchType, terms } = filter;
+        return {
+          key,
+          label,
+          matchType,
+          terms,
+        };
+      });
+      console.log(formatted);
+      this.set('model.identityFilters', formatted);
+    },
+  },
 });

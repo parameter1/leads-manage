@@ -1,4 +1,4 @@
-{{#bs-modal show=true size="xl" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
+{{#bs-modal show=true size="xl" backdrop="static" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
   {{#modal.header}}
     <h5 class="modal-title">{{entypo-icon "email"}} Create Email Line Item</h5>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
@@ -117,56 +117,56 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <label>Required Fields {{required-field-label}}</label>
-              {{#power-select-multiple
-                triggerClass="form-control"
-                dropdownClass="in-modal-dropdown"
-                options=requiredFieldOptions
-                selected=model.requiredFields
-                onchange=(action (mut model.requiredFields))
-                closeOnSelect=false as |field|
-              }}
-                {{field.label}}
-              {{/power-select-multiple}}
-              <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Choose at least one.</small>
+              <div class="form-group">
+                 <label>Required Fields {{required-field-label}}</label>
+                {{#power-select-multiple
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  options=requiredFieldOptions
+                  selected=model.requiredFields
+                  onchange=(action (mut model.requiredFields))
+                  closeOnSelect=false as |field|
+                }}
+                  {{field.label}}
+                {{/power-select-multiple}}
+                <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Choose at least one.</small>
+              </div>
             </div>
             <div class="col-lg-6">
-              <label>Excluded Fields</label>
-              {{!-- @todo Need to determine two change this if editorial, and automatically block phone # --}}
-              {{#power-select-multiple
-                triggerClass="form-control"
-                dropdownClass="in-modal-dropdown"
-                options=excludedFieldOptions
-                selected=model.excludedFields
-                onchange=(action (mut model.excludedFields))
-                closeOnSelect=false as |field|
-              }}
-                {{field.label}}
-              {{/power-select-multiple}}
-              <small class="form-text text-muted">Select all fields you wish to hide on reports/exports.</small>
+              <div class="form-group">
+                <label>Excluded Fields</label>
+                {{!-- @todo Need to determine two change this if editorial, and automatically block phone # --}}
+                {{#power-select-multiple
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  options=excludedFieldOptions
+                  selected=model.excludedFields
+                  onchange=(action (mut model.excludedFields))
+                  closeOnSelect=false as |field|
+                }}
+                  {{field.label}}
+                {{/power-select-multiple}}
+                <small class="form-text text-muted">Select all fields you wish to hide on reports/exports.</small>
+              </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
               <div class="form-group mb-0">
-
+                {{campaign-identity-filter
+                  title="Leads will be excluded when..."
+                  triggerClass="form-control"
+                  dropdownClass="in-modal-dropdown"
+                  filters=model.identityFilters
+                  on-change=(action "updateIdentityFilters")
+                }}
               </div>
             </div>
           </div>
 
         </div>
       </div>
-
-      {{!-- <label>Line Item Name</label>
-      <label>Line Item Value {{required-field-label}}</label>
-      <label>Number of Leads Required {{required-field-label}}</label>
-      <label>Gather leads from the following email deployments... {{required-field-label}}</label>
-      <label>Where links are tagged with...</label>
-      <label>Where links are set as...</label>
-      <label>Leads <em>must</em> have the following fields to qualify...</label>
-      <label><em>Hide</em> the following fields on reports...</label>
-      <label>Leads should be <em>excluded</em> when...</label> --}}
     {{/modal.body}}
     {{#modal.footer}}
     {{/modal.footer}}

@@ -4,6 +4,7 @@ import { inject } from '@ember/service';
 export default Component.extend({
   identityAttributes: inject(),
 
+  title: 'Exclude Leads Where...',
   filters: null,
 
   classNames: ['card'],

@@ -16,8 +16,9 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         { key: 'emailAddress', label: 'Email' },
       ],
       excludedFields: [
-
+        { key: 'phoneNumber', label: 'Phone #' },
       ],
+      identityFilters: [],
     }
   },
 });

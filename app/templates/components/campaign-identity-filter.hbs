@@ -1,7 +1,9 @@
-<div class="card-header">Exclude Leads Where...</div>
+<div class="card-header">{{title}}</div>
 <div class="card-body">
   {{#each filters as |filter index|}}
     {{campaign-identity-filter/item
+      dropdownClass=dropdownClass
+      triggerClass=triggerClass
       label=filter.label
       terms=filter.terms
       matchType=filter.matchType

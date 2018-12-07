@@ -9,6 +9,8 @@
 </div>
 
 {{#power-select-multiple-with-create
+  dropdownClass=dropdownClass
+  triggerClass=triggerClass
   selected=terms
   searchMessage="Begin typing to create"
   oncreate=(action "addTerm")
