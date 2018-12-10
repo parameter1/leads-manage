@@ -17,20 +17,15 @@ export default Route.extend(FormMixin, RouteQueryManager, {
      *
      * @param {object} params
      */
-    async update({ id, customer, name, range, salesRep, notes }) {
+    async update({ id, customer, name, salesRep, notes }) {
       this.startRouteAction();
       const mutation = updateOrder;
-      const { start, end } = range;
 
       const input = {
         id,
         customerId: get(customer || {}, 'id'),
         salesRepId: get(salesRep || {}, 'id'),
         name,
-        range: {
-          start: start ? start.valueOf() : undefined,
-          end: end ? end.valueOf() : undefined,
-        },
         notes,
 
       };

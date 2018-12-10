@@ -1,7 +1,6 @@
 <div class="row">
 
-  <div class="col-md-7 col-lg-8">
-
+  <div class="col-lg-6">
     <div class="form-group">
       <label>Customer {{required-field-label}}</label>
       {{type-ahead
@@ -21,13 +20,19 @@
         </small>
       {{/if}}
     </div>
+  </div>
 
+  <div class="col-lg-6">
     <div class="form-group">
-      <label for="order-name">Name</label>
-      {{input type="text" value=model.name class="form-control" id="order-name" aria-describedby="order-name-help" placeholder="Campaign name"}}
-      <small id="order-name-help" class="form-text text-muted hide">The order name - should be descriptive (optional).</small>
+      <label for="order-name">Order Name {{required-field-label}}</label>
+      {{input type="text" required=true value=model.name class="form-control" id="order-name" aria-describedby="order-name-help"}}
+      <small id="order-name-help" class="form-text text-muted hide">The order name - should be descriptive.</small>
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-lg-6">
     <div class="form-group">
       <label>Sales Rep {{required-field-label}}</label>
       {{#type-ahead
@@ -43,17 +48,19 @@
       {{/type-ahead}}
       <small class="form-text text-muted">The sales representative for the order.</small>
     </div>
+  </div>
 
+  <div class="col-lg-6">
     <div class="form-group">
       <label for="order-notes">Notes</label>
       {{textarea value=model.notes rows="3" class="form-control" id="order-notes" aria-describedby="order-notes-help"}}
       <small id="order-notes-help" class="form-text text-muted">Additional information about this order.</small>
     </div>
-
   </div>
+</div>
 
-  <div class="col-md-5 col-lg-4">
-    <label>Date Range {{required-field-label}}</label>
+  {{!-- <div class="col-md-5 col-lg-4">
+    <label>Default Date Range {{required-field-label}}</label>
     {{#power-calendar-range
       center=center
       selected=model.range
@@ -63,6 +70,7 @@
         {{calendar.nav}}
         {{calendar.days}}
     {{/power-calendar-range}}
-  </div>
+    <small class="form-text text-muted">The default date range for line items in this order. Can also be change on a per line item basis.</small>
+  </div> --}}
 
-</div>
+

@@ -1,11 +1,8 @@
 fragment OrderListFragment on Order {
   id
+  name
   fullName
   notes
-  range {
-    start
-    end
-  }
   salesRep {
     id
     givenName

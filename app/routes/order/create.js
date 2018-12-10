@@ -20,21 +20,15 @@ export default Route.extend(RouteQueryManager, FormMixin, {
   },
 
   actions: {
-    async create({ customer, name, range, salesRep, notes }) {
+    async create({ customer, name, salesRep, notes }) {
       this.startRouteAction();
       const customerId = get(customer || {}, 'id');
       const salesRepId = get(salesRep || {}, 'id');
-
-      const { start, end } = range;
 
       const input = {
         customerId,
         salesRepId,
         name,
-        range: {
-          start: start ? start.valueOf() : undefined,
-          end: end ? end.valueOf() : undefined,
-        },
         notes,
       };
       const variables = { input };
