@@ -32,6 +32,7 @@ export default Service.extend(ObjectQueryManager, {
       perms.fullAccess();
     } else {
       perms.set('campaign', { create: true, edit: true, list: true });
+      perms.set('order', { create: true, edit: true, list: true });
     }
     return perms;
   }),
