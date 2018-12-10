@@ -13,12 +13,17 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       tags: [],
       linkTypes: ['(Not Set)', 'Advertising'],
       requiredFields: [
-        { key: 'emailAddress', label: 'Email' },
+       'emailAddress',
       ],
       excludedFields: [
-        { key: 'phoneNumber', label: 'Phone #' },
+        'phoneNumber',
       ],
       identityFilters: [],
     }
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.set('order', this.modelFor('order.edit'));
   },
 });

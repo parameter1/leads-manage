@@ -1,6 +1,6 @@
 {{#bs-modal show=true size="xl" backdrop="static" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
   {{#modal.header}}
-    <h5 class="modal-title">{{entypo-icon "email"}} Create Email Line Item</h5>
+    <h5 class="modal-title">{{entypo-icon "email"}} Create Email Line Item for <strong>{{order.fullName}}</strong></h5>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
       {{entypo-icon "cross"}}
     </button>
@@ -15,7 +15,7 @@
             <div class="col-lg-6">
               <div class="form-group mb-lg-0">
                 <label for="line-item-name">Line Item Name {{required-field-label}}</label>
-                {{input type="email" required="true" class="form-control" id="line-item-name" aria-describedby="line-item-name-help"}}
+                {{input type="email" required=true class="form-control" id="line-item-name" aria-describedby="line-item-name-help"}}
                 <small id="line-item-name-help" class="form-text text-muted">A descriptive name for this line item. It will appear in lists and on the dashboard (but not in reports).</small>
               </div>
             </div>
@@ -26,7 +26,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  {{input type="number" min="1" class="form-control" required="true" id="line-item-total-leads" aria-describedby="line-item-total-leads-help"}}
+                  {{input type="number" min="1" class="form-control" required=true id="line-item-total-leads" aria-describedby="line-item-total-leads-help"}}
                 </div>
                 <small id="line-item-total-leads-help" class="form-text text-muted">The number of qualified leads needed to fulfill this line item.</small>
               </div>
@@ -38,7 +38,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  {{input type="number" min="0" class="form-control" required="true" id="line-item-value" aria-describedby="line-item-value-help"}}
+                  {{input type="number" min="0" class="form-control" required=true id="line-item-value" aria-describedby="line-item-value-help"}}
                 </div>
                 <small id="line-item-value-help" class="form-text text-muted">The <em>total</em> value of this line item, e.g. $2,000.</small>
               </div>
@@ -55,7 +55,7 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label>Gather leads from the following email categories... {{required-field-label}}</label>
+                <label>Gather leads from the following email categories...</label>
                 {{#type-ahead
                   placeholder="Begin typing to find a category..."
                   type="email-category"
@@ -69,7 +69,7 @@
                 }}
                   {{emailCategory.fullName}}
                 {{/type-ahead}}
-                <small class="form-text text-muted">Select at least one. Individual email sends and links can be excluded later.</small>
+                <small class="form-text text-muted">Leaving empty will pull from <em>all</em> deployments. Individual email sends and links can be excluded later.</small>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
             </div>
             <div class="col-lg-6">
               <div class="form-group mb-0">
-                <label>And links are set as...</label>
+                <label>And links are set as... {{required-field-label}}</label>
                 {{#power-select-multiple
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
@@ -103,7 +103,7 @@
                 }}
                   {{linkType}}
                 {{/power-select-multiple}}
-                <small class="form-text text-muted">Leaving empty will exclude <em>all</em> links and leads.</small>
+                <small class="form-text text-muted">Choose at least once.</small>
               </div>
             </div>
           </div>
@@ -118,18 +118,18 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group">
-                 <label>Required Fields {{required-field-label}}</label>
+                 <label>Required Fields</label>
                 {{#power-select-multiple
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   options=requiredFieldOptions
-                  selected=model.requiredFields
-                  onchange=(action (mut model.requiredFields))
+                  selected=selectedRequiredFields
+                  onchange=(action "setRequiredFields")
                   closeOnSelect=false as |field|
                 }}
                   {{field.label}}
                 {{/power-select-multiple}}
-                <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Choose at least one.</small>
+                <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Email is always available.</small>
               </div>
             </div>
             <div class="col-lg-6">
@@ -140,8 +140,8 @@
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   options=excludedFieldOptions
-                  selected=model.excludedFields
-                  onchange=(action (mut model.excludedFields))
+                  selected=selectedExcludedFieldOptions
+                  onchange=(action "setExcludedFields")
                   closeOnSelect=false as |field|
                 }}
                   {{field.label}}
