@@ -92,7 +92,7 @@
               <div class="form-group">
                 <label>Gather leads from the following email categories...</label>
                 {{#type-ahead
-                  placeholder="Begin typing to find a category..."
+                  placeholder="Begin typing to find a category... e.g. ien or blasts"
                   type="email-category"
                   multiple=true
                   triggerClass="form-control"
@@ -114,7 +114,7 @@
               <div class="form-group mb-lg-0">
                 <label>Where links are tagged with...</label>
                 {{type-ahead
-                  placeholder="Begin typing to find a tag..."
+                  placeholder="Begin typing to find a tag... e.g. pr or video"
                   type="tag"
                   multiple=true
                   triggerClass="form-control"
@@ -164,11 +164,11 @@
             <div class="col">
               <div class="form-group mb-0">
                 {{campaign-identity-filter
-                  title="Leads will be excluded when..."
+                  title="Exclude leads when..."
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   filters=model.identityFilters
-                  on-change=(action "updateIdentityFilters")
+                  on-change=(action "setIdentityFilters")
                 }}
               </div>
             </div>
