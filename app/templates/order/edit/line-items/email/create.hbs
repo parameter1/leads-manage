@@ -62,7 +62,7 @@
                   selected=model.range
 
                   onCenterChange=(action (mut center) value="moment")
-                  onSelect=(action (mut model.range) value="moment") as |calendar|}}
+                  onSelect=(action "setDateRange" value="moment") as |calendar|}}
                     {{calendar.nav}}
                     {{calendar.days}}
                 {{/power-calendar-range}}
@@ -99,7 +99,7 @@
                   dropdownClass="in-modal-dropdown"
                   field="fullName"
                   selected=model.emailCategories
-                  onChange=(action (mut model.emailCategories))
+                  onChange=(action "setEmailCategories")
                   closeOnSelect=false as |emailCategory|
                 }}
                   {{emailCategory.fullName}}
@@ -120,25 +120,18 @@
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   selected=model.tags
-                  onChange=(action (mut model.tags))
+                  onChange=(action "setTags")
                 }}
                 <small class="form-text text-muted">Leave empty to include all links.</small>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group mb-0">
-                <label>And links are set as... {{required-field-label}}</label>
-                {{#power-select-multiple
-                  triggerClass="form-control"
+                {{line-item/link-types
                   dropdownClass="in-modal-dropdown"
-                  options=linkTypeOptions
-                  selected=model.linkTypes
-                  onchange=(action (mut model.linkTypes))
-                  closeOnSelect=false as |linkType|
+                  linkTypes=model.linkTypes
+                  onChange=(action "setLinkTypes")
                 }}
-                  {{linkType}}
-                {{/power-select-multiple}}
-                <small class="form-text text-muted">Choose at least once.</small>
               </div>
             </div>
           </div>
@@ -152,37 +145,18 @@
 
           <div class="row">
             <div class="col-lg-6">
-              <div class="form-group">
-                 <label>Required Fields</label>
-                {{#power-select-multiple
-                  triggerClass="form-control"
-                  dropdownClass="in-modal-dropdown"
-                  options=requiredFieldOptions
-                  selected=selectedRequiredFields
-                  onchange=(action "setRequiredFields")
-                  closeOnSelect=false as |field|
-                }}
-                  {{field.label}}
-                {{/power-select-multiple}}
-                <small class="form-text text-muted">Leads <em>must</em> have the selected fields to qualify. Email is always available.</small>
-              </div>
+              {{line-item/required-fields
+                dropdownClass="in-modal-dropdown"
+                requiredFields=model.requiredFields
+                onChange=(action "setRequiredFields")
+              }}
             </div>
             <div class="col-lg-6">
-              <div class="form-group">
-                <label>Excluded Fields</label>
-                {{!-- @todo Need to determine two change this if editorial, and automatically block phone # --}}
-                {{#power-select-multiple
-                  triggerClass="form-control"
-                  dropdownClass="in-modal-dropdown"
-                  options=excludedFieldOptions
-                  selected=selectedExcludedFieldOptions
-                  onchange=(action "setExcludedFields")
-                  closeOnSelect=false as |field|
-                }}
-                  {{field.label}}
-                {{/power-select-multiple}}
-                <small class="form-text text-muted">Select all fields you wish to hide on reports/exports.</small>
-              </div>
+              {{line-item/excluded-fields
+                dropdownClass="in-modal-dropdown"
+                excludedFields=model.excludedFields
+                onChange=(action "setExcludedFields")
+              }}
             </div>
           </div>
 
