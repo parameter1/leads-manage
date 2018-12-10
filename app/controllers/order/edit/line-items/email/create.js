@@ -5,6 +5,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+  graphErrors: inject(),
 
   isEditorial: computed('model.{tags.@each.name,linkTypes.[]}', function() {
     const pr = this.get('model.tags').find(tag => tag.name === 'PR');
@@ -16,6 +17,50 @@ export default Controller.extend(FormMixin, {
   actions: {
     async create() {
       this.startAction();
+      try {
+        const {
+          name,
+          requiredLeads,
+          totalValue,
+          range,
+          excludedFields,
+          requiredFields,
+          linkTypes,
+          tags,
+          emailCategories,
+          identityFilters,
+        } = this.get('model');
+
+        if (!linkTypes.length) {
+          throw new Error('Please select at least one link type.');
+        }
+        if (!range.start || !range.end) {
+          throw new Error('Please select a date range');
+        }
+
+        const input = {
+          orderId: this.get('order.id'),
+          name,
+          requiredLeads,
+          totalValue,
+          range: {
+            start: range.start.valueOf(),
+            end: range.end.valueOf(),
+          },
+          excludedFields,
+          requiredFields,
+          linkTypes,
+          tagIds: tags.map(t => t.id),
+          categoryIds: emailCategories.map(c => c.id),
+          identityFilters,
+        };
+        const variables = { input };
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+
     },
 
     setDateRange(range) {
