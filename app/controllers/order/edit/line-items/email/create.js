@@ -43,16 +43,7 @@ export default Controller.extend(FormMixin, {
     },
 
     setIdentityFilters(filters) {
-      const formatted = filters.map((filter) => {
-        const { key, label, matchType, terms } = filter;
-        return {
-          key,
-          label,
-          matchType,
-          terms,
-        };
-      });
-      this.set('model.identityFilters', formatted);
+      this.set('model.identityFilters', filters);
     },
   },
 });
