@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <div class="form-group mb-0">
+                  <div class="form-group">
                     <label for="line-item-value">Total Value {{required-field-label}}</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -52,6 +52,7 @@
                 </div>
 
               </div>
+
             </div>
             <div class="col-lg-6 col-xl-5 d-flex justify-content-center">
               <div class="form-group mb-0">
@@ -65,6 +66,16 @@
                     {{calendar.nav}}
                     {{calendar.days}}
                 {{/power-calendar-range}}
+                <p class="form-text mb-0 text-muted">
+                  {{#if (and model.range.start model.range.end)}}
+                    {{moment-format model.range.start "MMM Do, YYYY"}}
+                    -
+                    {{moment-format model.range.end "MMM Do, YYYY"}}
+                  {{else}}
+                    Select a date range...
+                  {{/if}}
+                </p>
+
               </div>
             </div>
 
