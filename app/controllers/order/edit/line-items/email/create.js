@@ -3,6 +3,8 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
 import { computed } from '@ember/object';
 
+import mutation from 'leads-manage/gql/mutations/order/line-item/create-email';
+
 export default Controller.extend(FormMixin, {
   apollo: inject(),
   graphErrors: inject(),
@@ -55,6 +57,10 @@ export default Controller.extend(FormMixin, {
           identityFilters,
         };
         const variables = { input };
+        const refetchQueries = ['AllLineItemsForOrder'];
+        await this.get('apollo').mutate({ mutation, variables, refetchQueries }, 'createEmailLineItem');
+        this.get('notify').info('Email line item created successfully.');
+        this.transitionToRoute('order.edit.line-items');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

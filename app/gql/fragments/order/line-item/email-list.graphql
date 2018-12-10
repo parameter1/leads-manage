@@ -1,0 +1,6 @@
+fragment EmailLineItemListFragment on EmailLineItem {
+  id
+  type
+  name
+  updatedAt
+}
