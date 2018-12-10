@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/order/line-item/email-list'
+
+mutation CreateEmailLineItem($input: CreateEmailLineItemInput!) {
+  createEmailLineItem(input: $input) {
+    ...EmailLineItemListFragment
+  }
+}

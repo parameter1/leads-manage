@@ -4,6 +4,7 @@ import { inject } from '@ember/service';
 export default Component.extend({
   identityAttributes: inject(),
 
+  title: 'Exclude Leads Where...',
   filters: null,
 
   classNames: ['card'],
@@ -20,7 +21,15 @@ export default Component.extend({
     },
     triggerChange() {
       const filters = this.get('filters');
-      this.get('on-change')(filters);
+      this.get('on-change')(filters.map((filter) => {
+        const { key, label, matchType, terms } = filter;
+        return {
+          key,
+          label,
+          matchType,
+          terms,
+        };
+      }));
     },
   },
 });

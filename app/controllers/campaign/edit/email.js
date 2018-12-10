@@ -107,16 +107,7 @@ export default Controller.extend(FormMixin, {
     async updateIdentityFilters(filters) {
       this.startAction();
       const id = this.get('model.id');
-      const formatted = filters.map((filter) => {
-        const { key, label, matchType, terms } = filter;
-        return {
-          key,
-          label,
-          matchType,
-          terms,
-        };
-      });
-      const input = { id, filters: formatted };
+      const input = { id, filters };
       const variables = { input };
 
       try {

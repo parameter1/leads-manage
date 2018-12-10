@@ -42,6 +42,25 @@ Router.map(function() {
   this.route('identity', function() {
     this.route('view', { path: ':id' });
   });
+  this.route('order', function() {
+    this.route('edit', { path: ':id' }, function() {
+      this.route('line-items', function() {
+        this.route('email', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' });
+        });
+        this.route('form', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' });
+        });
+        this.route('video', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' });
+        });
+      });
+    });
+    this.route('create');
+  });
   this.route('campaign', function() {
     this.route('edit', { path: ':id' }, function() {
       this.route('email', function() {
@@ -54,20 +73,6 @@ Router.map(function() {
       this.route('ads');
     });
     this.route('create');
-    this.route('tracked', function() {
-      this.route('create');
-      this.route('edit', { path: ':id' }, function() {
-        this.route('email', function() {
-
-        });
-        this.route('forms', function() {
-
-        });
-        this.route('video', function() {
-
-        });
-      });
-    });
   });
   this.route('tracked-campaign', function() {
     this.route('create');
