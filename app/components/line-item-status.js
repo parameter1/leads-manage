@@ -10,7 +10,7 @@ export default Component.extend({
   color: computed('status', function() {
     switch (this.get('status')) {
       case 'Completed':
-        return 'text-primary'
+        return 'text-danger'
       case 'Active':
         return 'text-success';
       case 'Pending':
