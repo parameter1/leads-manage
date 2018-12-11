@@ -23,29 +23,34 @@
       {{dashboard/data-card
         icon="credit"
         title="Value"
-        format="$0,0.[00]"
         value=model.totalValue
+        format="$0,0.[00]"
+        secondaryValue=model.cpl
+        secondaryFormat="$0,0.[00]"
+        secondarySuffix="CPL"
         color="text-info"
       }}
     </div>
     <div class="col-sm-6 col-lg-3 mb-3">
       {{dashboard/data-card
-        icon="direction"
-        title="CPL"
-        format="$0,0.[00]"
-        value=model.cpl
-        color="text-warning"
-      }}
-    </div>
-    <div class="col-sm-6 col-lg-3 mb-3">
-      {{dashboard/data-card
-        icon="area-graph"
+        icon="gauge"
         title="Fulfilled"
         format="0,0"
         secondaryFormat="0.[000]%"
         value=0
         secondaryValue=0
         color="text-success"
+      }}
+    </div>
+    <div class="col-sm-6 col-lg-3 mb-3">
+      {{dashboard/data-card
+        icon="block"
+        title="Scrubbed"
+        format="0,0"
+        secondaryFormat="0.[000]%"
+        value=0
+        secondaryValue=0
+        color="text-warning"
       }}
     </div>
   </div>
