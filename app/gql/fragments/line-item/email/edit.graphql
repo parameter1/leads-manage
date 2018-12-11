@@ -3,6 +3,7 @@ fragment EmailLineItemEditFragment on EmailLineItem {
   name
   requiredLeads
   totalValue
+  cpl
   range {
     start
     end

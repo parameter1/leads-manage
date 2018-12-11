@@ -1,5 +1,51 @@
 {{#bs-modal/body}}
-  <h5 class="text-muted mb-0">Coming Soon</h5>
+  <h4 class="mb-2">{{model.name}} ({{order.name}})</h4>
+  <h5 class="mb-2">Customer: {{order.customer.name}}</h5>
+  <p class="mb-3">
+    {{moment-format model.range.start "MMM Do, YYYY"}}
+    -
+    {{moment-format model.range.end "MMM Do, YYYY"}}
+  </p>
+  <div class="row">
+    <div class="col-sm-6 col-lg-3 mb-3">
+      {{dashboard/data-card
+        icon="hair-cross"
+        title="Required"
+        format="0,0"
+        value=model.requiredLeads
+        color="text-primary"
+      }}
+    </div>
+    <div class="col-sm-6 col-lg-3 mb-3">
+      {{dashboard/data-card
+        icon="credit"
+        title="Value"
+        format="$0,0.[00]"
+        value=model.totalValue
+        color="text-info"
+      }}
+    </div>
+    <div class="col-sm-6 col-lg-3 mb-3">
+      {{dashboard/data-card
+        icon="direction"
+        title="CPL"
+        format="$0,0.[00]"
+        value=model.cpl
+        color="text-warning"
+      }}
+    </div>
+    <div class="col-sm-6 col-lg-3 mb-3">
+      {{dashboard/data-card
+        icon="area-graph"
+        title="Fulfilled"
+        format="0,0"
+        secondaryFormat="0.[000]%"
+        value=0
+        secondaryValue=0
+        color="text-success"
+      }}
+    </div>
+  </div>
 {{/bs-modal/body}}
 {{#bs-modal/footer}}
 {{/bs-modal/footer}}
