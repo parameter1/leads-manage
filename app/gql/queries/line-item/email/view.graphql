@@ -1,6 +1,0 @@
-query ViewEmailOrder($input: ModelIdInput!) {
-  emailLineItem(input: $input) {
-    id
-    name
-  }
-}

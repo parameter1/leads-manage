@@ -37,10 +37,5 @@
     </button>
   {{/modal.header}}
   {{progress-bar class="progress-md" show=isActionRunning}}
-  {{#modal.body}}
-
-  {{/modal.body}}
-  {{progress-bar class="progress-md" show=isActionRunning}}
-  {{#modal.footer}}
-  {{/modal.footer}}
+  {{outlet}}
 {{/bs-modal}}

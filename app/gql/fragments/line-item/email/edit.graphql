@@ -1,0 +1,28 @@
+fragment EmailLineItemEditFragment on EmailLineItem {
+  id
+  name
+  requiredLeads
+  totalValue
+  range {
+    start
+    end
+  }
+  requiredFields
+  excludedFields
+  linkTypes
+  identityFilters {
+    id
+    key
+    label
+    matchType
+    terms
+  }
+  tags {
+    id
+    name
+  }
+  categories {
+    id
+    fullName
+  }
+}

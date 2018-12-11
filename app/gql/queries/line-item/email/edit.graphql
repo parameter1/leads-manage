@@ -1,0 +1,7 @@
+#import 'leads-manage/gql/fragments/line-item/email/edit'
+
+query EditEmailLineItem($input: ModelIdInput!) {
+  emailLineItem(input: $input) {
+    ...EmailLineItemEditFragment
+  }
+}
