@@ -1,6 +1,7 @@
 fragment EmailLineItemEditFragment on EmailLineItem {
   id
   name
+  status
   requiredLeads
   totalValue
   cpl
