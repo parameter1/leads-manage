@@ -1,6 +1,33 @@
 {{#bs-modal show=true size="xl" backdrop="static" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
   {{#modal.header}}
-    <h5 class="modal-title">{{entypo-icon "email"}} Edit Email Line Item: <strong>{{model.name}}</strong></h5>
+    {{!-- <h5 class="modal-title">{{entypo-icon "email"}} Edit Email Line Item: <strong>{{model.name}}</strong></h5> --}}
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.index" class="nav-link"}}
+          Overview
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.leads" class="nav-link"}}
+          Leads
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.deployments" class="nav-link"}}
+          Deployments
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.qualifications" class="nav-link"}}
+          Qualifications
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.details" class="nav-link"}}
+          Details
+        {{/link-to}}
+      </li>
+    </ul>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
       {{entypo-icon "cross"}}
     </button>

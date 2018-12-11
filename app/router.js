@@ -47,7 +47,12 @@ Router.map(function() {
       this.route('line-items', function() {
         this.route('email', function() {
           this.route('create');
-          this.route('edit', { path: ':line_item_id' });
+          this.route('edit', { path: ':line_item_id' }, function() {
+            this.route('leads');
+            this.route('deployments');
+            this.route('qualifications');
+            this.route('details');
+          });
         });
         this.route('form', function() {
           this.route('create');
