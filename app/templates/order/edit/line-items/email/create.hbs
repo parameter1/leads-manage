@@ -9,7 +9,7 @@
   <form {{action (action "create" model) on="submit"}}>
     {{#modal.body}}
       <div class="card mb-3">
-        <div class="card-header"><strong>Details</strong></div>
+        <div class="card-header"><strong>{{entypo-icon "list"}} Details</strong></div>
         <div class="card-body">
 
           <div class="row">
@@ -85,7 +85,7 @@
       </div>
 
       <div class="card mb-3">
-        <div class="card-header"><strong>Email Criteria</strong></div>
+        <div class="card-header"><strong>{{entypo-icon "mail"}} Email Criteria</strong></div>
         <div class="card-body">
 
           <div class="row">
@@ -99,11 +99,11 @@
                   triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   field="fullName"
-                  selected=model.emailCategories
-                  onChange=(action "setEmailCategories")
-                  closeOnSelect=false as |emailCategory|
+                  selected=model.categories
+                  onChange=(action "setCategories")
+                  closeOnSelect=false as |category|
                 }}
-                  {{emailCategory.fullName}}
+                  {{category.fullName}}
                 {{/type-ahead}}
                 <small class="form-text text-muted">Leaving empty will pull from <em>all</em> deployments. Individual email sends and links can be excluded later.</small>
               </div>
@@ -141,7 +141,7 @@
       </div>
 
       <div class="card">
-        <div class="card-header"><strong>Qualification Criteria</strong></div>
+        <div class="card-header"><strong>{{entypo-icon "check"}} Qualification Criteria</strong></div>
         <div class="card-body">
 
           <div class="row">

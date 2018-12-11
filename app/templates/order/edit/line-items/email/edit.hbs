@@ -1,15 +1,41 @@
 {{#bs-modal show=true size="xl" backdrop="static" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
   {{#modal.header}}
-    <h5 class="modal-title">{{entypo-icon "email"}} Edit Email Line Item: <strong>{{model.name}}</strong></h5>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.index" class="nav-link"}}
+          {{entypo-icon "pie-chart"}}
+          Overview
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.leads" class="nav-link"}}
+          {{entypo-icon "users"}}
+          Leads
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.deployments" class="nav-link"}}
+          {{entypo-icon "mail"}}
+          Deployments
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.qualifications" class="nav-link"}}
+          {{entypo-icon "check"}}
+          Qualifications
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "order.edit.line-items.email.edit.details" class="nav-link"}}
+          {{entypo-icon "list"}}
+          Details
+        {{/link-to}}
+      </li>
+    </ul>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
       {{entypo-icon "cross"}}
     </button>
   {{/modal.header}}
   {{progress-bar class="progress-md" show=isActionRunning}}
-  {{#modal.body}}
-
-  {{/modal.body}}
-  {{progress-bar class="progress-md" show=isActionRunning}}
-  {{#modal.footer}}
-  {{/modal.footer}}
+  {{outlet}}
 {{/bs-modal}}

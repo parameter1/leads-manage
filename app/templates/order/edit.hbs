@@ -1,6 +1,6 @@
 {{#nav-breadcrumbs as |crumbs|}}
   {{#crumbs.item}}{{#link-to "order.index"}}{{entypo-icon "credit"}} Orders{{/link-to}}{{/crumbs.item}}
-  {{#crumbs.item active=true}}{{ model.fullName }}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.fullName }} [ {{model.salesRep.givenName}} ]{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
 {{beta-feature}}
