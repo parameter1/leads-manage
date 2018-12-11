@@ -1,6 +1,6 @@
 {{#bs-modal/body}}
   <h4 class="mb-2">{{model.name}} ({{order.name}})</h4>
-  <h5 class="mb-2">Customer: {{order.customer.name}}</h5>
+  <h5 class="mb-2">Customer: {{order.customer.name}}, Rep: {{order.salesRep.givenName}}</h5>
   <p class="mb-3">
     {{moment-format model.range.start "MMM Do, YYYY"}}
     -
