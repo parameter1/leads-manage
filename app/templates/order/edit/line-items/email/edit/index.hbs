@@ -84,9 +84,9 @@
       </ul>
     </div>
     <div class="col-lg-6">
-      <h6 class="font-weight-bold">{{entypo-icon "check"}} Where subscribers have the following fields...</h6>
+      <h6 class="font-weight-bold">{{entypo-icon "check"}} Where subscribers must have the following fields...</h6>
       <ul class="list-group mb-3">
-        {{#each model.requiredFields as |field|}}
+        {{#each requiredFields as |field|}}
           <li class="list-group-item p-2 text-muted">{{field}}</li>
         {{else}}
           <li class="list-group-item p-2 text-muted"><em>No field requirements.</em></li>
@@ -95,13 +95,9 @@
 
       <h6 class="font-weight-bold">{{entypo-icon "remove-user"}} And are excluded when...</h6>
       <ul class="list-group mb-lg-0 mb-3">
-        {{log model.identityFilters}}
-        {{#each model.identityFilters as |filter|}}
+        {{#each identityFilters as |filter|}}
           <li class="list-group-item p-2 text-muted">
-            {{filter.key}} {{filter.matchType}}
-            {{#each filter.terms as |term|}}
-              {{term}}
-            {{/each}}
+            {{filter}}
           </li>
         {{else}}
           <li class="list-group-item p-2 text-muted"><em>No exclusion filters set.</em></li>
