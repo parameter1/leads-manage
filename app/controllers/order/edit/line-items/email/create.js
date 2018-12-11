@@ -29,7 +29,7 @@ export default Controller.extend(FormMixin, {
           requiredFields,
           linkTypes,
           tags,
-          emailCategories,
+          categories,
           identityFilters,
         } = this.get('model');
 
@@ -53,7 +53,7 @@ export default Controller.extend(FormMixin, {
           requiredFields,
           linkTypes,
           tagIds: tags.map(t => t.id),
-          categoryIds: emailCategories.map(c => c.id),
+          categoryIds: categories.map(c => c.id),
           identityFilters,
         };
         const variables = { input };
@@ -89,8 +89,8 @@ export default Controller.extend(FormMixin, {
       this.set('model.tags', tags);
     },
 
-    setEmailCategories(categories) {
-      this.set('model.emailCategories', categories)
+    setCategories(categories) {
+      this.set('model.categories', categories)
     },
 
     setIdentityFilters(filters) {
