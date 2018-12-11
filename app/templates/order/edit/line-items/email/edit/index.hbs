@@ -5,6 +5,9 @@
     {{moment-format model.range.start "MMM Do, YYYY"}}
     -
     {{moment-format model.range.end "MMM Do, YYYY"}}
+    {{#if startsEnds}}
+      ({{startsEnds}})
+    {{/if}}
   </p>
   <div class="row">
     <div class="col-sm-6 col-lg-3 mb-3">
