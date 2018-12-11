@@ -7,9 +7,15 @@
 
   <div class="d-flex flex-column text-right">
     <span class="text-uppercase">{{title}}</span>
-    <span class="h4 mb-0 {{color}}" title={{value}}>{{format-number value format=format}}</span>
+    <span class="h4 mb-0 {{color}}" title={{value}}>
+      {{format-number value format=format}}
+      {{if suffix suffix}}
+    </span>
     {{#if hasSecondaryValue}}
-      <span class="h5 mb-0 text-muted" title={{secondaryValue}}>{{format-number secondaryValue format=format2}}</span>
+      <span class="h5 mb-0 text-muted" title={{secondaryValue}}>
+        {{format-number secondaryValue format=format2}}
+        {{if secondarySuffix secondarySuffix}}
+      </span>
     {{else}}
       <span class="h5 mb-0 text-muted">&nbsp;</span>
     {{/if}}
