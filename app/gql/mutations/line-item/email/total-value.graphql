@@ -1,0 +1,6 @@
+mutation EmailLineItemTotalValue($input: EmailLineItemTotalValueInput!) {
+  emailLineItemTotalValue(input: $input) {
+    id
+    totalValue
+  }
+}
