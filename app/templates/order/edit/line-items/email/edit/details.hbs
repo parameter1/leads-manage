@@ -16,7 +16,7 @@
       <div class="row">
 
         <div class="col-6">
-          <div class="form-group mb-lg-0">
+          <div class="form-group">
             <label for="line-item-total-leads">Total Leads {{required-field-label}}</label>
             <div class="input-group">
               <div class="input-group-prepend">
@@ -40,6 +40,16 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="line-item-notes">Notes</label>
+            <textarea rows="3" onchange={{action "setNotes"}} class="form-control" id="line-item-notes" aria-describedby="line-item-notes-help">{{model.notes}}</textarea>
+            <small id="line-item-notes-help" class="form-text text-muted">Additional information about this line item.</small>
+          </div>
+        </div>
       </div>
 
     </div>

@@ -3,6 +3,7 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
 
 import nameMutation from 'leads-manage/gql/mutations/line-item/email/name';
+import notesMutation from 'leads-manage/gql/mutations/line-item/email/notes';
 import requiredLeadsMutation from 'leads-manage/gql/mutations/line-item/email/required-leads';
 import totalValueMutation from 'leads-manage/gql/mutations/line-item/email/total-value';
 import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-range';
@@ -21,6 +22,22 @@ export default Controller.extend(FormMixin, {
         const variables = { input };
         await this.get('apollo').mutate({ mutation: nameMutation, variables }, 'emailLineItemName');
         this.get('notify').info('Name saved.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    async setNotes(event) {
+      this.startAction();
+      try {
+        const { value } = event.target;
+        const id = this.get('model.id');
+        const input = { id, notes: value };
+        const variables = { input };
+        await this.get('apollo').mutate({ mutation: notesMutation, variables }, 'emailLineItemNotes');
+        this.get('notify').info('Notes saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
