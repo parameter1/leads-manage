@@ -8,9 +8,6 @@
       <div class="d-flex flex-row">
         <div class="d-flex flex-column">
           <h4 class="mb-1">{{entypo-icon "mail"}} {{item.name}}</h4>
-          <h5 class="mb-1">
-            {{line-item-status status=item.status}}
-          </h5>
           <p class="mb-1">
             Requires
             <strong>
@@ -32,6 +29,9 @@
 
     <div class="d-none d-sm-flex flex-column align-items-end text-right">
       <div>
+        <p class="mb-2">
+          {{line-item-status status=item.status}}
+        </p>
         {{line-item-date futureLabel="Starts" pastLabel="Started" date=item.range.start}}
         {{line-item-date class="mb-2" futureLabel="Ends" pastLabel="Ended" date=item.range.end}}
       </div>
