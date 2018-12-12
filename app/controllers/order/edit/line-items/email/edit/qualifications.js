@@ -2,24 +2,60 @@ import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
 
+import excludedFieldsMutation from 'leads-manage/gql/mutations/line-item/email/excluded-fields';
+import requiredFieldsMutation from 'leads-manage/gql/mutations/line-item/email/required-fields';
+import identityFiltersMutation from 'leads-manage/gql/mutations/line-item/email/identity-filters';
+
 export default Controller.extend(FormMixin, {
   apollo: inject(),
-  graphErrors: inject(),
 
   actions: {
-    setExcludedFields(fields) {
-      console.warn('implement setExcludedFields');
-      this.set('model.excludedFields', fields);
+    async setExcludedFields(fieldKeys) {
+      this.startAction();
+      const id = this.get('model.id');
+      const input = { id, excludedFields: fieldKeys };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: excludedFieldsMutation, variables }, 'emailLineItemExcludedFields');
+        this.get('notify').info('Fields successfully excluded.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
     },
 
-    setRequiredFields(fields) {
-      console.warn('implement setRequiredFields');
-      this.set('model.requiredFields', fields);
+    async setRequiredFields(fieldKeys) {
+      this.startAction();
+      const id = this.get('model.id');
+      const input = { id, requiredFields: fieldKeys };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: requiredFieldsMutation, variables }, 'emailLineItemRequiredFields');
+        this.get('notify').info('Required fields successfully set.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
     },
 
-    setIdentityFilters(filters) {
-      console.warn('implement setIdentityFilters');
-      this.set('model.identityFilters', filters);
+    async setIdentityFilters(filters) {
+      this.startAction();
+      const id = this.get('model.id');
+      const input = { id, filters };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: identityFiltersMutation, variables }, 'emailLineItemIdentityFilters');
+        this.get('notify').info('Identity filters saved.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
     },
   },
 });
