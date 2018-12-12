@@ -3,4 +3,8 @@ fragment EmailLineItemListFragment on EmailLineItem {
   type
   name
   updatedAt
+  range {
+    start
+    end
+  }
 }
