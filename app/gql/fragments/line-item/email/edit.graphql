@@ -1,6 +1,7 @@
 fragment EmailLineItemEditFragment on EmailLineItem {
   id
   name
+  notes
   status
   requiredLeads
   totalValue

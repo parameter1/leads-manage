@@ -31,6 +31,7 @@ export default Controller.extend(FormMixin, {
           tags,
           categories,
           identityFilters,
+          notes,
         } = this.get('model');
 
         if (!linkTypes.length) {
@@ -55,6 +56,7 @@ export default Controller.extend(FormMixin, {
           tagIds: tags.map(t => t.id),
           categoryIds: categories.map(c => c.id),
           identityFilters,
+          notes,
         };
         const variables = { input };
         const refetchQueries = ['AllLineItemsForOrder'];

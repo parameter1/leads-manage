@@ -1,0 +1,6 @@
+mutation EmailLineItemNotes($input: EmailLineItemNotesInput!) {
+  emailLineItemNotes(input: $input) {
+    id
+    notes
+  }
+}

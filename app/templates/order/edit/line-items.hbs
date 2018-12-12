@@ -14,7 +14,7 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
     {{#each fetch.nodes as |item|}}
-      {{partial "order/edit/line-items/list-item"}}
+      {{partial (concat "order/edit/line-items/" item.type "/list-item")}}
     {{/each}}
   </ul>
 
@@ -35,7 +35,7 @@
   <div class="dropdown-menu">
     {{#link-to "order.edit.line-items.email.create" class="dropdown-item d-flex justify-content-between"}}
       Email Line Item
-      {{entypo-icon "email"}}
+      {{entypo-icon "mail"}}
     {{/link-to}}
     {{#link-to "order.edit.line-items.form.create" class="dropdown-item d-flex justify-content-between"}}
       Form Line Item
