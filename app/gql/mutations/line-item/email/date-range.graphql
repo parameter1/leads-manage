@@ -5,5 +5,6 @@ mutation EmailLineItemDateRange($input: EmailLineItemDateRangeInput!) {
       start
       end
     }
+    status
   }
 }
