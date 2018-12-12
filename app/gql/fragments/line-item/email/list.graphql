@@ -2,9 +2,14 @@ fragment EmailLineItemListFragment on EmailLineItem {
   id
   type
   name
-  updatedAt
+  status
+  requiredLeads
+  totalValue
+  cpl
   range {
     start
     end
   }
+  createdAt
+  updatedAt
 }

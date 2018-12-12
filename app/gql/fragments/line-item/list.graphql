@@ -3,4 +3,5 @@ fragment LineItemListFragment on LineItem {
   type
   name
   updatedAt
+  createdAt
 }
