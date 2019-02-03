@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { isPresent } from '@ember/utils';
 import $ from 'jquery';
+import { Promise } from 'rsvp';
 
 export default Component.extend({
   classNames: ['modal'],
@@ -15,6 +16,7 @@ export default Component.extend({
   isShowing: false,
   isShown: false,
   isHiding: false,
+  isClosing: false,
   isHidden: true,
   isTransitioning: false,
 
@@ -52,9 +54,23 @@ export default Component.extend({
       this.$().modal('show');
     },
 
-    hide() {
+    /**
+     * Fires an explicit hide action via a close button.
+     * By default will set an isClosing flag, which is different than the modal being
+     * hidden by other means (transition between routes, etc.)
+     */
+    async hide(isClosing = true) {
+      const $obj = this.$();
       if (this.get('isTransitioning')) return;
+      this.set('isClosing', isClosing);
+
+      const promise = new Promise((resolve) => {
+        $obj.on('hidden.bs.modal', () => {
+          resolve();
+        });
+      });
       this.$().modal('hide');
+      return promise;
     },
   },
 
@@ -74,6 +90,8 @@ export default Component.extend({
     // Replace with the Ember hide() action.
     $obj.on('click.dismiss.bs.modal', (event) => {
       if ($(event.currentTarget).is(event.target) && true === this.get('backdrop')) {
+        // Flag that the modal is explicitally being closed by the user
+        this.set('isClosing', true);
         this.send('hide');
       }
     });
@@ -125,13 +143,18 @@ export default Component.extend({
       this.set('isHiding', false);
       this.set('isTransitioning', false);
       this.sendEvent('onHidden');
-      if (!this.get('isDestroyed')) this.set('show', false);
+      // If this is an explicit close, fire the `onClose` event.
+      if (this.get('isClosing')) this.sendEvent('onClose');
+      if (!this.get('isDestroyed')) {
+        this.set('show', false);
+        this.set('isClosing', false);
+      }
     });
   },
 
   sendEvent(name) {
     const fn = this.get(name);
-    if (fn && typeof fn === 'function') return fn();
+    if (fn && typeof fn === 'function') return fn(this);
   },
 
 });

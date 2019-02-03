@@ -9,11 +9,14 @@
       size=size
       contentClass=contentClass
       dialogClass=dialogClass
+      onHide=onHide
       onHidden=onHidden
-    as |wrapper|}}
+      onClose=onClose
+      onShow=onShow
+      onShown=onShown
+    as |wrapper|
+    }}
       {{yield wrapper}}
     {{/bs-modal/wrapper}}
   {{/ember-wormhole}}
 {{/if}}
-{{!-- onHide=onHide
-onHidden=onHidden --}}
