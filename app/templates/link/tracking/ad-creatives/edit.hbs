@@ -1,4 +1,4 @@
-{{#bs-modal show=true size="xl" backdrop="static" onHidden=(route-action "transitionTo" "link.tracking.ad-creatives.index") as |modal|}}
+{{#bs-modal show=true size="xl" backdrop="static" onClose=(route-action "transitionTo" "link.tracking.ad-creatives.index") as |modal|}}
   {{#modal.header}}
     <h5 class="modal-title">{{entypo-icon "code"}} Edit Ad Creative Tracker</h5>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">

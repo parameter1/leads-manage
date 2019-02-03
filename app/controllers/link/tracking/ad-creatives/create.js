@@ -9,7 +9,7 @@ export default Controller.extend(FormMixin, {
   apollo: inject(),
 
   actions: {
-    async create() {
+    async create(closeModal) {
       this.startAction();
       const { customer, tags, url, description } = this.get('model');
       const payload = {
@@ -24,6 +24,7 @@ export default Controller.extend(FormMixin, {
 
       try {
         const response = await this.get('apollo').mutate({ mutation, variables, refetchQueries }, 'createAdCreativeTracker');
+        await closeModal(false);
         await this.transitionToRoute('link.tracking.ad-creatives.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e);
