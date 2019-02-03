@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-
   to: 'bootstrap-modals',
   backdrop: true,
   fade: true,
@@ -11,5 +10,4 @@ export default Component.extend({
   size: null,
   contentClass: null,
   dislogClass: null,
-
 });
