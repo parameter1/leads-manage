@@ -1,19 +1,39 @@
-version: '3'
+version: '3.7'
+
+x-node-defaults: &node
+  tty: true
+  init: true
+  image: node:8.9.4
+  entrypoint: ["node"]
+  working_dir: /myapp
+  volumes:
+    - .:/myapp:cached
+    - ./node_modules:/myapp/node_modules:delegated
+    - yarn-cache:/.yarn-cache
+    # - tmp:/myapp/tmp
+  environment:
+    YARN_CACHE_FOLDER: /.yarn-cache
+    NODE_ENV: development
+
 services:
+  commands:
+    <<: *node
+    working_dir: /myapp
+    entrypoint: ["tail"]
+    command: ["-f", "/dev/null"]
+
   app:
-    tty: true
+    <<: *node
     image: danlynn/ember-cli:3.0.0
     ports:
-      - "${EMBER_SERVE_PORT-8285}:${EMBER_SERVE_PORT-8285}"
-      - "${EMBER_LIVER_PORT-8286}:${EMBER_LIVER_PORT-8286}"
-      - "${EMBER_TESTS_PORT-8287}:${EMBER_TESTS_PORT-8287}"
-    volumes:
-      - .:/myapp:cached
-      - ./node_modules:/myapp/node_modules:delegated
-      - tmp:/myapp/tmp
-      - yarn-cache:/.yarn-cache
+      - "8285:8285"
+      - "8286:8286"
+      - "8287:8287"
     restart: on-failure
-    entrypoint: "./node_modules/.bin/ember server --port ${EMBER_SERVE_PORT-8285} --live-reload-port ${EMBER_LIVER_PORT-8286} --proxy ${EMBER_GRAPH_PROXY-http://docker.for.mac.host.internal:8288}"
+    working_dir: /myapp
+    entrypoint: ["node_modules/.bin/ember"]
+    command: ["serve", "--port", "8285", "--live-reload-port", "8286", "--proxy", "http://docker.for.mac.host.internal:8288"]
+
 volumes:
   yarn-cache: {}
   tmp:
