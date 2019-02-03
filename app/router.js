@@ -26,7 +26,10 @@ Router.map(function() {
   });
   this.route('link', function() {
     this.route('tracking', function() {
-
+      this.route('ad-creatives', function() {
+        this.route('create');
+        this.route('edit', { path: ':id' });
+      });
     });
     this.route('urls', function() {
       this.route('edit', { path: ':id' }, function() {
