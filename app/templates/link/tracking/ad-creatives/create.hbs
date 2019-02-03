@@ -5,12 +5,11 @@
       {{entypo-icon "cross"}}
     </button>
   {{/modal.header}}
-  {{!-- {{progress-bar class="progress-md" show=isActionRunning}} --}}
-  <form {{action (action "create" model) on="submit"}}>
+  {{progress-bar class="progress-md" show=isActionRunning}}
+  <form {{action (action "create") on="submit"}}>
     {{#modal.body}}
       {{partial "link/tracking/ad-creatives/form"}}
     {{/modal.body}}
-    {{!-- {{progress-bar class="progress-md" show=isActionRunning}} --}}
     {{#modal.footer}}
       {{model-save-button disabled=isActionRunning}}
     {{/modal.footer}}

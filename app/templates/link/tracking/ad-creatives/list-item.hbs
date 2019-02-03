@@ -5,10 +5,10 @@
   <div class="d-flex w-100 justify-content-between">
     <h4 class="mb-1">{{item.customer.name}}</h4>
     {{#if item.updatedAt}}
-      <small>{{entypo-icon "clock "}} Updated {{moment-format item.updatedAt 'MMM Do, YYYY h:mm a'}}</small>
+      <small>{{entypo-icon "clock"}} Updated {{moment-format item.updatedAt 'MMM Do, YYYY h:mm a'}}</small>
     {{/if}}
   </div>
-  <p class="mb-0">Redirect URL: {{item.url}}</p>
+  <p class="mb-0">URL: {{item.url}}</p>
   <p class="mb-0">
     Tags:
     {{#each item.tags as |tag|}}
