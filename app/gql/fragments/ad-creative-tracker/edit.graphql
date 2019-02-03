@@ -10,4 +10,8 @@ fragment AdCreativeTrackerEditFragment on AdCreativeTracker {
     id
     name
   }
+  trackers {
+    click
+    impression
+  }
 }
