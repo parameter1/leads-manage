@@ -9,10 +9,10 @@
     <div class="card list-index">
       <div class="card-header"></div>
       <div class="card-body">
-        {{!-- {{partial "list-controls"}} --}}
+        {{partial "list-controls"}}
       </div>
 
-      {{!-- {{#fetch-more
+      {{#fetch-more
         query=observable
         edges=model.edges
         hasNextPage=model.pageInfo.hasNextPage
@@ -41,7 +41,7 @@
           {{/if}}
         </div>
 
-      {{/fetch-more}} --}}
+      {{/fetch-more}}
 
     </div>
   {{/modal.body}}
