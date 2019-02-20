@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
-    {{!-- <a class="btn btn-lg btn-success mb-3" role="button" href="/export/campaign/{{model.hash}}/ad-leads">{{entypo-icon "download"}} Download Ad Campaign Leads</a> --}}
-    {{!-- <div class="card">
+    <a class="btn btn-lg btn-success mb-3" role="button" href="/export/campaign/{{model.hash}}/ad-leads">{{entypo-icon "download"}} Download Ad Campaign Leads</a>
+    <div class="card">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs" role="tablist">
           <li class="nav-item">{{#link-to "lead-report.ads.leads" class="nav-link" role="tab"}}Leads{{/link-to}}</li>
@@ -9,7 +9,6 @@
         </ul>
       </div>
       {{outlet}}
-    </div> --}}
-    <h5 class="mb-0 card-title">No ad campaigns found for this campaign.</h5>
+    </div>
   </div>
 </div>
