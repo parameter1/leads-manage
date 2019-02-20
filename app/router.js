@@ -78,7 +78,10 @@ Router.map(function() {
       this.route('forms', function() {
         this.route('submissions', { path: ':form_id' });
       });
-      this.route('ads');
+      this.route('ads', function() {
+        this.route('trackers');
+        this.route('identities');
+      });
     });
     this.route('create');
   });
