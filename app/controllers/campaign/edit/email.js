@@ -20,7 +20,7 @@ export default Controller.extend(FormMixin, {
     return this.get('linkTypes.types').filter(type => !selected.includes(type));
   }),
 
-  isEditorial: computed('model.tags.@each.name', 'model.allowedLinkTypes.[]', function() {
+  isEditorial: computed('model.{tags.@each.name,allowedLinkTypes.[]}', function() {
     const pr = this.get('model.tags').find(tag => tag.name === 'PR');
     const editorialLink = this.get('model.allowedLinkTypes').includes('Editorial');
     if (pr || editorialLink) return true;
