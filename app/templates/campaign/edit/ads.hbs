@@ -9,5 +9,25 @@
     </div>
   </div>
   {{#if model.enabled}}
+    <div class="row mt-3">
+      <div class="col-lg-6 mnh-100">
+        <div class="card mnh-100">
+          <div class="card-header">
+            Ad Creative Rules
+          </div>
+          <div class="card-body">
+            <label for="tags">Only Include Ads Tagged With...</label>
+              {{type-ahead
+                placeholder="Begin typing to find a tag..."
+                type="tag"
+                multiple=true
+                selected=model.tags
+                onChange=(action "updateTags")
+              }}
+              <small class="form-text text-muted">Leave empty to include all ads.</small>
+          </div>
+        </div>
+      </div>
+    </div>
   {{/if}}
 </div>

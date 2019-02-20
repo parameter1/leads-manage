@@ -1,0 +1,9 @@
+mutation CampaignEditAdTags($input: AdCampaignTagsInput!) {
+  adCampaignTags(input: $input) {
+    id
+    tags {
+      id
+      name
+    }
+  }
+}

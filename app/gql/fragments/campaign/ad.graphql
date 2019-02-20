@@ -1,4 +1,16 @@
 fragment AdCampaignFragment on AdCampaign {
   id
+  tags {
+    id
+    name
+  }
+  excludeFields
+  identityFilters {
+    id
+    key
+    label
+    matchType
+    terms
+  }
   enabled
 }
