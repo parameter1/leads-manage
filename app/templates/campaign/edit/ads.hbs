@@ -28,6 +28,36 @@
           </div>
         </div>
       </div>
+
+      <div class="col-lg-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            Exclude Fields
+          </div>
+          <div class="card-body">
+            <div class="form-group mb-0">
+              <label>Hide The Selected Fields...</label>
+              {{#power-select-multiple
+                options=excludeFieldOptions
+                selected=selectedFieldOptions
+                disabled=false
+                onchange=(action "updateExcludeFields")
+                closeOnSelect=false as |field|
+              }}
+                {{field.label}}
+              {{/power-select-multiple}}
+              <small class="form-text text-muted">Check all fields you wish to exclude from reports.</small>
+            </div>
+
+          </div>
+        </div>
+
+        {{campaign-identity-filter
+          filters=model.identityFilters
+          on-change=(action "updateIdentityFilters")
+        }}
+
+      </div>
     </div>
   {{/if}}
 </div>
