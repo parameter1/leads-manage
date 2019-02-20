@@ -5,5 +5,6 @@ mutation CampaignEditAdTags($input: AdCampaignTagsInput!) {
       id
       name
     }
+    trackerCount
   }
 }

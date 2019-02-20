@@ -4,6 +4,7 @@ fragment AdCampaignFragment on AdCampaign {
     id
     name
   }
+  trackerCount
   excludeFields
   identityFilters {
     id
