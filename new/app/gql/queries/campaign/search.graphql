@@ -1,0 +1,17 @@
+#import 'leads-manage/gql/fragments/campaign/list'
+
+query SearchCampaigns($pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
+  searchCampaigns(pagination: $pagination, search: $search, options: $options) {
+    totalCount
+    edges {
+      node {
+        ...CampaignListFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

@@ -1,0 +1,20 @@
+fragment CustomerFragment on Customer {
+  id
+  name
+  description
+  website
+  parent {
+    id
+    name
+  }
+  children {
+    id
+    name
+  }
+  externalSource {
+    identifier
+    namespace
+  }
+  createdAt
+  updatedAt
+}
