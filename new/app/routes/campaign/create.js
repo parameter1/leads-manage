@@ -34,8 +34,8 @@ export default Route.extend(RouteQueryManager, FormMixin, {
       const variables = { input };
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'createCampaign');
+        await this.transitionTo('campaign.edit', response.id);
         this.get('notify').info('Campaign created successfully.');
-        this.transitionTo('campaign.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {

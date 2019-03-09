@@ -50,8 +50,8 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       const variables = { input: { id } };
       try {
         await this.get('apollo').mutate({ mutation, variables }, 'deleteCampaign');
+        await this.transitionTo(routeName);
         this.get('notify').info('Campaign successfully deleted.');
-        this.transitionTo(routeName)
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
@@ -69,8 +69,8 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       const variables = { input: { id } };
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'cloneCampaign');
+        await this.transitionTo('campaign.edit', response.id);
         this.get('notify').info('Campaign successfully cloned.');
-        this.transitionTo('campaign.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
