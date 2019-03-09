@@ -11,7 +11,7 @@ import userQuery from 'leads-manage/gql/queries/user/search';
 import tagQuery from 'leads-manage/gql/queries/tag/search';
 
 export default Component.extend(ComponentQueryManager, {
-  errorProcessor: inject(),
+  errorProcessor: inject('graph-errors'),
 
   closeOnSelect: true,
   allowClear: true,
