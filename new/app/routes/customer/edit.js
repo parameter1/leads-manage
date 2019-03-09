@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { RouteQueryManager } from 'ember-apollo-client';
+import { get } from '@ember/object';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import query from 'leads-manage/gql/queries/customer/view';
@@ -23,7 +24,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
       this.startRouteAction();
       const mutation = updateCustomer;
       const { id, name, description, website, parent } = model;
-      const payload = { name, description, website, parentId: parent.id };
+      const payload = { name, description, website, parentId: get(parent || {}, 'id') || null };
       const input = { id, payload };
       const variables = { input };
       return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')
