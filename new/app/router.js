@@ -7,6 +7,127 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('login');
+  this.route('lead-report', { path: 'lead-report/:hash' }, function() {
+    this.route('email', { path: '/'}, function() {
+      this.route('metrics', { path: '/' });
+      this.route('leads');
+      this.route('activity');
+      this.route('export');
+    });
+    this.route('forms', function() {
+      this.route('submissions', { path: ':form_id' });
+    });
+    this.route('ads', function() {
+      this.route('leads', { path: '/' });
+      this.route('export');
+    });
+    this.route('disabled');
+  });
+  this.route('link', function() {
+    this.route('tracking', function() {
+      this.route('ad-creatives', function() {
+        this.route('create');
+        this.route('edit', { path: ':id' });
+      });
+    });
+    this.route('urls', function() {
+      this.route('edit', { path: ':id' }, function() {
+        this.route('email-sends');
+      });
+    });
+    this.route('hosts');
+  });
+  this.route('customer', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
+  this.route('identity', function() {
+    this.route('view', { path: ':id' });
+  });
+  this.route('order', function() {
+    this.route('edit', { path: ':id' }, function() {
+      this.route('line-items', function() {
+        this.route('email', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' }, function() {
+            this.route('leads');
+            this.route('deployments');
+            this.route('qualifications');
+            this.route('details');
+          });
+        });
+        this.route('form', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' });
+        });
+        this.route('video', function() {
+          this.route('create');
+          this.route('edit', { path: ':line_item_id' });
+        });
+      });
+    });
+    this.route('create');
+  });
+  this.route('campaign', function() {
+    this.route('edit', { path: ':id' }, function() {
+      this.route('email', function() {
+        this.route('links');
+        this.route('identities');
+      });
+      this.route('forms', function() {
+        this.route('submissions', { path: ':form_id' });
+      });
+      this.route('ads', function() {
+        this.route('trackers');
+        this.route('identities');
+      });
+    });
+    this.route('create');
+  });
+  this.route('tracked-campaign', function() {
+    this.route('create');
+  });
+  this.route('tag', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
+  this.route('user', function() {
+    this.route('edit', { path: ':id' });
+    this.route('create');
+  });
+  this.route('email', function() {
+    this.route('deployment', function() {
+      this.route('view', { path: ':id' });
+    });
+    this.route('send', function() {
+      this.route('view', { path: ':id' }, function() {
+        this.route('urls');
+      });
+    });
+    this.route('category', function() {
+      this.route('view', { path: ':id' });
+    });
+    this.route('reporting');
+  });
+  this.route('form', function() {
+    this.route('edit', { path: ':id' }, function() {
+      this.route('entries');
+    });
+    this.route('create');
+  });
+  this.route('behavior', function() {
+    this.route('edit', { path: ':id/edit' });
+    this.route('view', { path: ':id' }, function() {
+      this.route('run');
+      this.route('results', function() {
+        this.route('rows', { path: ':result_id' }, function() {
+          this.route('exports');
+        });
+      });
+    });
+    this.route('create');
+  });
 });
 
 export default Router;
