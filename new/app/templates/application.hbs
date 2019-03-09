@@ -1,5 +1,13 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{notifications/-container position="top-right"}}
 
-{{outlet}}
+{{!-- {{#if displayNav}}
+  {{partial "navigation"}}
+{{/if}} --}}
+
+<div class="container-fluid mb-3">
+  <div class="row">
+    <div class="col main">
+      {{outlet}}
+    </div>
+  </div>
+</div>
