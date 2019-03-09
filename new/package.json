@@ -21,6 +21,8 @@
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-link-context": "^1.0.15",
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.3.1",
     "broccoli-asset-rev": "^2.7.0",
@@ -60,6 +62,7 @@
     "ember-welcome-page": "^3.2.0",
     "ember-wormhole": "^0.5.5",
     "eslint-plugin-ember": "^5.2.0",
+    "graphql": "^14.1.1",
     "highcharts": "^7.0.3",
     "loader.js": "^4.7.0",
     "numeral": "^2.0.6",
