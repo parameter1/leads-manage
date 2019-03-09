@@ -73,9 +73,11 @@
                   selected=model.range
 
                   onCenterChange=(action (mut center) value="moment")
-                  onSelect=(action "setDateRange" value="moment") as |calendar|}}
-                    {{calendar.nav}}
-                    {{calendar.days}}
+                  onSelect=(action "setDateRange" value="moment")
+                  as |calendar|
+                }}
+                  {{calendar.nav}}
+                  {{calendar.days}}
                 {{/power-calendar-range}}
                 <p class="form-text mb-0 text-muted">
                   {{#if (and model.range.start model.range.end)}}

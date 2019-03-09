@@ -31,7 +31,7 @@
       <tbody>
         {{#each model.sends as |send|}}
           <tr>
-            <td>{{#link-to "email.send.view" send.id}}{{ moment-format send.sentDate 'MM/DD/YYYY h:mma' }}{{/link-to}}</td>
+            <td>{{#link-to "email.send.view" send.id}}{{ moment-format send.sentDate "MM/DD/YYYY h:mma" }}{{/link-to}}</td>
             <td>{{#if send.isTestSend}}Yes{{else}}No{{/if}}</td>
             <td>{{ format-number send.metrics.sent format="0,0" }}</td>
             <td>{{ format-number send.metrics.delivered format="0,0" }}</td>
@@ -69,4 +69,3 @@
     </table>
   </div>
 </div>
-

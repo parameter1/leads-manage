@@ -8,8 +8,8 @@
         value=html
         id="html"
         aria-describedby="htmlHelp"
-        paste=(action 'handlePaste')
-        focusIn=(action 'selectAll')
+        paste=(action "handlePaste")
+        focusIn=(action "selectAll")
         disabled=processing
       }}
       <small id="htmlHelp" class="form-text">Paste HTML to process and track links.</small>
@@ -37,7 +37,7 @@
       id="trackedHtml"
       aria-describedby="trackedHtmlHelp"
       readonly=true
-      focusIn=(action 'selectAll')
+      focusIn=(action "selectAll")
       disabled=processing
     }}
     <small id="trackedHtmlHelp" class="form-text">Copy this HTML and place in your email client.</small>
@@ -59,6 +59,3 @@
 
   {{/if}}
 {{/if}}
-
-
-

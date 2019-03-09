@@ -11,11 +11,12 @@
         {{#power-calendar-range
           center=center
           selected=range
-
           onCenterChange=(action (mut center) value="moment")
-          onSelect=(action "setRange" value="moment") as |calendar|}}
-            {{calendar.nav}}
-            {{calendar.days}}
+          onSelect=(action "setRange" value="moment")
+          as |calendar|
+        }}
+          {{calendar.nav}}
+          {{calendar.days}}
         {{/power-calendar-range}}
         <button class="btn btn-success mt-3" disabled={{eq canSubmit false}} {{action "runReport"}}>{{entypo-icon "pie-chart"}} Run Report</button>
 
@@ -51,7 +52,6 @@
                     </thead>
                     <tbody>
                       {{#each week.categories as |c|}}
-                        {{log c}}
                         <tr>
                           <td>{{week.year}}</td>
                           <td>{{week.number}}</td>

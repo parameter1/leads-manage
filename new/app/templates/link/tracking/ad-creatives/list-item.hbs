@@ -5,7 +5,7 @@
   <div class="d-flex w-100 justify-content-between">
     <h4 class="mb-1">{{item.customer.name}}</h4>
     {{#if item.updatedAt}}
-      <small>{{entypo-icon "clock"}} Updated {{moment-format item.updatedAt 'MMM Do, YYYY h:mm a'}}</small>
+      <small>{{entypo-icon "clock"}} Updated {{moment-format item.updatedAt "MMM Do, YYYY h:mm a"}}</small>
     {{/if}}
   </div>
   <p class="mb-0">URL: {{item.url}}</p>
@@ -18,6 +18,6 @@
     {{/each}}
   </p>
   <p class="mb-1">Description: {{if item.description item.description "(none)"}}</p>
-  
+
   <small>ID: {{item.id}}</small>
 {{/link-to}}
