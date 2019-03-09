@@ -3,7 +3,7 @@ import { isArray } from '@ember/array';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 
 import customerQuery from 'leads-manage/gql/queries/customer/search';
 import emailCategoryQuery from 'leads-manage/gql/queries/email-category/search';

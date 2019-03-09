@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import identityActivation from 'leads-manage/gql/mutations/identity/activation';

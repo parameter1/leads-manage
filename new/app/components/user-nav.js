@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 
 import updateCurrentUserProfile from 'leads-manage/gql/mutations/update-current-user-profile';
