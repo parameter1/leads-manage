@@ -1,9 +1,0 @@
-mutation extractedUrlTags($input: ExtractedUrlTagsInput!) {
-	extractedUrlTags(input: $input) {
-		id
-		tags {
-			id
-			name
-		}
-	}
-}

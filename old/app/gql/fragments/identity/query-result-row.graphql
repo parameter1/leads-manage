@@ -1,4 +1,0 @@
-fragment IdentityQueryResultRow on Identity {
-  id
-  emailAddress
-}

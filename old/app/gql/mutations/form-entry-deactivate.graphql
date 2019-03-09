@@ -1,6 +1,0 @@
-mutation formEntryDeactivate($input: ModelIdInput!) {
-	formEntryDeactivate(input: $input) {
-    id
-    inactive
-	}
-}

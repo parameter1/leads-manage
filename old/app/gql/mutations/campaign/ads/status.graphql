@@ -1,6 +1,0 @@
-mutation CampaignEditAdStatus($input: CampaignStatusInput!) {
-  adCampaignStatus(input: $input) {
-    id
-    enabled
-  }
-}

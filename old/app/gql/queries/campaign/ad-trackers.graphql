@@ -1,7 +1,0 @@
-#import 'leads-manage/gql/fragments/campaign/ad-tracker'
-
-query CampaignEditAdTrackers($input: ModelIdInput!) {
-  adCampaign(input: $input) {
-    ...AdCampaignTrackersFragment
-  }
-}

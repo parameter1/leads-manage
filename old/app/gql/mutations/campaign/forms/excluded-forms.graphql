@@ -1,9 +1,0 @@
-mutation CampaignEditFormExcludedForms($input: FormCampaignExcludedFormsInput!) {
-  formCampaignExcludedForms(input: $input) {
-    id
-    forms(refreshEntries: false) {
-      id
-      active
-    }
-  }
-}

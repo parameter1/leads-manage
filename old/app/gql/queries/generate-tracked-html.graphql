@@ -1,3 +1,0 @@
-query GenerateTrackedHtml($html: String!) {
-  generateTrackedHtml(html: $html)
-}

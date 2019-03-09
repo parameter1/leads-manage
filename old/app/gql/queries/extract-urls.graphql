@@ -1,3 +1,0 @@
-query ExtractUrls($html: String!) {
-  extractUrlsFromHtml(html: $html)
-}

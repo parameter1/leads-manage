@@ -1,7 +1,0 @@
-#import 'leads-manage/gql/fragments/form/edit'
-
-query FormEdit($input: FormInput!) {
-  form(input: $input) {
-    ...FormEditFragment
-  }
-}

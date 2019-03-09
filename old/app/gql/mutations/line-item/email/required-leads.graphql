@@ -1,7 +1,0 @@
-mutation EmailLineItemRequiredLeads($input: EmailLineItemRequiredLeadsInput!) {
-  emailLineItemRequiredLeads(input: $input) {
-    id
-    requiredLeads
-    cpl
-  }
-}

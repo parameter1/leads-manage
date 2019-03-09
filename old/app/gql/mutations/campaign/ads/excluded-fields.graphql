@@ -1,6 +1,0 @@
-mutation CampaignEditAdExcludedFields($input: AdCampaignExcludedFieldsInput!) {
-  adCampaignExcludedFields(input: $input) {
-    id
-    excludeFields
-  }
-}

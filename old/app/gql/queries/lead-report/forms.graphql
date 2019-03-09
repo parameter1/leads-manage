@@ -1,6 +1,0 @@
-query LeadReportForms($hash: String!) {
-  reportForms(hash: $hash) {
-    id
-    name
-  }
-}
