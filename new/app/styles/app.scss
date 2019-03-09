@@ -2,4 +2,124 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/simplex/bootswatch";
 
+
+// Fluid container that acts like fixed. Main wrapper.
+@include media-breakpoint-up(xl) {
+  .container-fluid .col.main {
+    padding-left: 6.0rem;
+    padding-right: 6.0rem;
+  }
+}
+.container-fluid .col.main {
+  padding-bottom: 1rem;
+}
+
+// @import "power-select";
 @import "ember-power-select";
+.in-modal-dropdown {
+  z-index: 1100;
+}
+
+.ember-power-select-trigger {
+  padding: 2px;
+}
+
+.ember-power-select-option {
+  padding: 2px 8px;
+}
+
+@import "ember-power-calendar";
+
+@import "z-depth";
+
+.search-type-button {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ember-power-calendar {
+  @include ember-power-calendar($cell-size: 35px);
+}
+
+body.transitioning {
+  cursor: progress;
+}
+
+a[data-ember-action]:not(:disabled),
+.clickable {
+    cursor: pointer;
+}
+
+// Add styling to ember-notify alerts
+.ember-notify.alert {
+  box-shadow: $z-depth-2;
+  border: none !important;
+}
+
+.highcharts-credits {
+  display: none !important;
+}
+
+.progress-md {
+  border-radius: 0 !important;
+  height: 0.5rem;
+}
+
+.main.progress {
+  border-radius: 0 !important;
+  height: 0.3rem;
+}
+
+.dropdown-menu {
+  box-shadow: $z-depth-2;
+  border: none !important;
+}
+
+.card.list-index {
+  box-shadow: $z-depth-1;
+  border: none !important;
+}
+
+.card.model-form {
+  box-shadow: $z-depth-1;
+  border: none !important;
+}
+
+form .progress {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.mnh-100 {
+  min-height: 100%;
+}
+
+.mnw-100 {
+  min-width: 100%;
+}
+
+.fixed-bottom.create, .fixed-bottom.create button {
+  left: inherit;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  box-shadow: $z-depth-1-half;
+}
+
+.modal-content {
+  border: 0;
+  box-shadow: $z-depth-3;
+}
+
+.truncate {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
