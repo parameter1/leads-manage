@@ -60,6 +60,7 @@
     "ember-welcome-page": "^3.2.0",
     "ember-wormhole": "^0.5.5",
     "eslint-plugin-ember": "^5.2.0",
+    "highcharts": "^7.0.3",
     "loader.js": "^4.7.0",
     "numeral": "^2.0.6",
     "qunit-dom": "^0.8.0",
