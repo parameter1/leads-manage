@@ -4,7 +4,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'leads-manage',
     environment,
-    rootURL: '/',
+    rootURL: '/app',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -20,14 +20,21 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    apollo: {
+      apiURL: '/graph',
+    },
+    behaviorAPI : {
+      propertyId: '5ae0d9270f265f923a9a72c4',
+      key: 'bc2d3d2b-9e2c-40fb-addb-a454ded7bb80',
+    },
   };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
