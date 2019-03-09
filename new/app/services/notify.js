@@ -10,7 +10,7 @@ export default NotificationsService.extend({
 
   info(message, options) {
     return this._super(message, assign({
-      cssClasses: 'z-depth-3 bg-primary mb-3',
+      cssClasses: 'z-depth-3 bg-info mb-3',
     }, options));
   },
 
