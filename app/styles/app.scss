@@ -13,8 +13,7 @@
   padding-bottom: 1rem;
 }
 
-@import "ember-power-select/themes/bootstrap";
-@import "ember-power-select";
+@import "power-select";
 .in-modal-dropdown {
   z-index: 1100;
 }
