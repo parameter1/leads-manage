@@ -61,8 +61,8 @@ export default Controller.extend(FormMixin, {
         const variables = { input };
         const refetchQueries = ['AllLineItemsForOrder'];
         await this.get('apollo').mutate({ mutation, variables, refetchQueries }, 'createEmailLineItem');
+        await this.transitionToRoute('order.edit.line-items');
         this.get('notify').info('Email line item created successfully.');
-        this.transitionToRoute('order.edit.line-items');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
