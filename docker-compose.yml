@@ -1,42 +1,49 @@
 version: '3.7'
 
-x-node-defaults: &node
+x-env-defaults: &env
+  YARN_CACHE_FOLDER: /.yarn-cache
+  NODE_ENV: development
+
+x-ember-defaults: &ember
   tty: true
   init: true
-  image: node:8.9.4
-  entrypoint: ["node"]
+  image: danlynn/ember-cli:3.8.1
+  entrypoint: ["bash"]
   working_dir: /myapp
   volumes:
     - .:/myapp:cached
     - ./node_modules:/myapp/node_modules:delegated
     - yarn-cache:/.yarn-cache
-    # - tmp:/myapp/tmp
   environment:
-    YARN_CACHE_FOLDER: /.yarn-cache
-    NODE_ENV: development
+    <<: *env
 
 services:
   commands:
-    <<: *node
-    working_dir: /myapp
+    <<: *ember
     entrypoint: ["tail"]
     command: ["-f", "/dev/null"]
 
-  app:
-    <<: *node
-    image: danlynn/ember-cli:3.0.0
+  terminal:
+    <<: *ember
+    entrypoint: ["/bin/bash"]
+
+  yarn:
+    <<: *ember
+    entrypoint: ["yarn"]
+
+  ember:
+    <<: *ember
+    entrypoint: ["node_modules/.bin/ember"]
+
+  manage:
+    <<: *ember
+    entrypoint: ["node_modules/.bin/ember"]
+    command: ["serve", "--port", "8285", "--live-reload-port", "8286", "--proxy", "http://host.docker.internal:8288"]
+    restart: on-failure
     ports:
       - "8285:8285"
       - "8286:8286"
       - "8287:8287"
-    restart: on-failure
-    working_dir: /myapp
-    entrypoint: ["node_modules/.bin/ember"]
-    command: ["serve", "--port", "8285", "--live-reload-port", "8286", "--proxy", "http://docker.for.mac.host.internal:8288"]
 
 volumes:
   yarn-cache: {}
-  tmp:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs

@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
-import LoadingMixin from 'leads-manage/mixins/loading-mixin';
+import ActionMixin from 'leads-manage/mixins/action-mixin';
+import { get } from '@ember/object';
 
-export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManager, {
+export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   session: inject(),
 
   setupController(controller, model) {
@@ -21,12 +21,16 @@ export default Route.extend(LoadingMixin, ApplicationRouteMixin, RouteQueryManag
       this.hideLoading();
     },
 
-    /**
-     *
-     * @param {string} name The route name to transition to.
-     */
     transitionTo(name) {
-      this.transitionTo(name);
+      return this.transitionTo(name);
+    },
+
+    transitionWithModel(routeName, model) {
+      return this.transitionTo(routeName, get(model, 'id'));
+    },
+
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
 
     /**

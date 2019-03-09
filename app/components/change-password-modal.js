@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 
 import changeUserPassword from 'leads-manage/gql/mutations/change-user-password';
 

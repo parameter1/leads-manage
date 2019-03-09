@@ -5,7 +5,7 @@
   <div class="d-flex w-100 justify-content-between">
     <h4 class="mb-1">{{item.name}} ({{item.status}})</h4>
     {{#if item.sentDate}}
-      <small>{{entypo-icon "clock "}} Sent {{moment-format item.sentDate 'MMM Do, YYYY h:mm a'}}</small>
+      <small>{{entypo-icon "clock "}} Sent {{moment-format item.sentDate "MMM Do, YYYY h:mm a"}}</small>
     {{/if}}
   </div>
 

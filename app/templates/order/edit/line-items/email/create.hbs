@@ -73,9 +73,11 @@
                   selected=model.range
 
                   onCenterChange=(action (mut center) value="moment")
-                  onSelect=(action "setDateRange" value="moment") as |calendar|}}
-                    {{calendar.nav}}
-                    {{calendar.days}}
+                  onSelect=(action "setDateRange" value="moment")
+                  as |calendar|
+                }}
+                  {{calendar.nav}}
+                  {{calendar.days}}
                 {{/power-calendar-range}}
                 <p class="form-text mb-0 text-muted">
                   {{#if (and model.range.start model.range.end)}}
@@ -106,7 +108,6 @@
                   placeholder="Begin typing to find a category... e.g. ien or blasts"
                   type="email-category"
                   multiple=true
-                  triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   field="fullName"
                   selected=model.categories
@@ -128,7 +129,6 @@
                   placeholder="Begin typing to find a tag... e.g. pr or video"
                   type="tag"
                   multiple=true
-                  triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   selected=model.tags
                   onChange=(action "setTags")
@@ -176,7 +176,6 @@
               <div class="form-group mb-0">
                 {{campaign-identity-filter
                   title="Exclude leads when..."
-                  triggerClass="form-control"
                   dropdownClass="in-modal-dropdown"
                   filters=model.identityFilters
                   on-change=(action "setIdentityFilters")

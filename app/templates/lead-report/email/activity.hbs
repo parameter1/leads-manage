@@ -21,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each fetch.nodes as |node index|}}
+          {{#each fetch.nodes as |node|}}
             <tr>
               <td>{{moment-format node.last "MMM Do, YYYY @ h:mma"}}</td>
               <td>
@@ -63,7 +63,7 @@
 {{/fetch-more}}
 
 {{#bs-modal show=isIdentityModalOpen as |modal|}}
-  {{#modal.header as |header|}}
+  {{#modal.header}}
     <h5 class="modal-title">Lead Information</h5>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
       {{entypo-icon "cross"}}
@@ -77,4 +77,3 @@
 {{/bs-modal}}
 
 {{iframe-modal show=iframe.show src=iframe.src title=iframe.title}}
-

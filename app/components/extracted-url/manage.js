@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 import { computed, get } from '@ember/object';
 import { inject } from '@ember/service';
 

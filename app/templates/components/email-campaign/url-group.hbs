@@ -5,9 +5,9 @@
         {{input type="checkbox" checked=isUrlActive change=(action "toggleUrlGroupActive")}}
       </div>
     </div>
-    <input type="text" readonly class="form-control" value="{{urlGroup.url.values.resolved}}" aria-label="Text input with checkbox">
+    <input type="text" readonly class="form-control" value={{urlGroup.url.values.resolved}} aria-label="Text input with checkbox">
     <div class="input-group-append">
-      <a class="btn btn-info" role="button" title="View Link in New Window" target="_blank" rel="noopener noreferer" href="{{urlGroup.url.values.resolved}}">{{entypo-icon "eye"}}</a>
+      <a class="btn btn-info" role="button" title="View Link in New Window" target="_blank" rel="noopener noreferer" href={{urlGroup.url.values.resolved}}>{{entypo-icon "eye"}}</a>
     </div>
   </div>
 </div>

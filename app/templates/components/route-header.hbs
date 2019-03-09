@@ -1,7 +1,7 @@
 <div class="col">
   {{#if (has-block)}}
     {{yield (hash
-      title=(component 'route-header/title')
+      title=(component "route-header/title")
     )}}
   {{else}}
     {{#route-header/title}}{{title}}{{/route-header/title}}

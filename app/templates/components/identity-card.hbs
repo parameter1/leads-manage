@@ -26,14 +26,14 @@
             {{identity-card/action
               labelSuffix="Globally"
               inactive=_isInactiveGlobally
-              on-click=(action 'toggleGlobalActivation')
+              on-click=(action "toggleGlobalActivation")
             }}
           {{/if}}
           {{#if customerId}}
-            {{identity-card/action labelSuffix="for Customer" inactive=_isInactiveCustomer on-click=(action 'toggleCustomerActivation')}}
+            {{identity-card/action labelSuffix="for Customer" inactive=_isInactiveCustomer on-click=(action "toggleCustomerActivation")}}
           {{/if}}
           {{#if campaignId}}
-            {{identity-card/action labelSuffix="for Campaign" inactive=_isInactiveCampaign on-click=(action 'toggleCampaignActivation')}}
+            {{identity-card/action labelSuffix="for Campaign" inactive=_isInactiveCampaign on-click=(action "toggleCampaignActivation")}}
           {{/if}}
         </div>
       </div>

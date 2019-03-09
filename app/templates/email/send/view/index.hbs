@@ -1,8 +1,8 @@
 <div class="card-body">
-  <h5 class="card-title">Subject: {{ model.subject }} (<a href="{{model.url}}" target="_blank" rel="noopener noreferrer">Preview</a>)</h5>
+  <h5 class="card-title">Subject: {{ model.subject }} (<a href={{model.url}} target="_blank" rel="noopener noreferrer">Preview</a>)</h5>
   <p class="mb-1">From: {{model.fromName}}</p>
   <p class="mb-1">
-    Sent: {{moment-format model.sentDate 'MMM Do, YYYY @ h:mm a'}}
+    Sent: {{moment-format model.sentDate "MMM Do, YYYY @ h:mm a"}}
     ({{moment-from-now model.sentDate}})
   </p>
   <p class="mb-0">Master Deployment: {{#link-to "email.deployment.view" model.deployment.id}}{{model.deployment.name}}{{/link-to}}</p>
@@ -39,7 +39,7 @@
   <p class="mb-0">
     <span class="font-weight-bold">Last Retrieved:</span>
     {{#if model.externalSource.lastRetrievedAt}}
-      {{moment-format model.externalSource.lastRetrievedAt 'MMM Do, YYYY @ h:mm a'}}
+      {{moment-format model.externalSource.lastRetrievedAt "MMM Do, YYYY @ h:mm a"}}
       ({{moment-from-now model.externalSource.lastRetrievedAt}})
     {{else}}
       Never

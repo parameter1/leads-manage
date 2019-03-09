@@ -5,7 +5,7 @@
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{#if item.title}}{{{item.title}}}{{else}}(No Title){{/if}}</h5>
     {{#if item.lastCrawledDate}}
-      <small>{{entypo-icon "clock"}} Crawled {{moment-format item.lastCrawledDate 'MMM Do, YYYY h:mm a'}}</small>
+      <small>{{entypo-icon "clock"}} Crawled {{moment-format item.lastCrawledDate "MMM Do, YYYY h:mm a"}}</small>
     {{/if}}
   </div>
 

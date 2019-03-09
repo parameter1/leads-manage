@@ -9,8 +9,8 @@ const App = Application.extend({
   Resolver,
   // eslint-disable-next-line ember/avoid-leaking-state-in-ember-objects
   customEvents: {
-    paste: 'paste'
-  }
+    paste: 'paste',
+  },
 });
 
 loadInitializers(App, config.modulePrefix);

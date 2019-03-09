@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject } from '@ember/service';
 import { isArray } from '@ember/array';
 import { computed } from '@ember/object';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 
 import urlParamsMutation from 'leads-manage/gql/mutations/extracted-url-params';
 import hostParamsMutation from 'leads-manage/gql/mutations/extracted-host-params';

@@ -1,28 +1,6 @@
 import Mixin from '@ember/object/mixin';
-import LoadingMixin from 'leads-manage/mixins/loading-mixin';
+import ActionMixin from 'leads-manage/mixins/action-mixin';
 
-export default Mixin.create(LoadingMixin, {
-  isActionRunning: false,
+export default Mixin.create(ActionMixin, {
 
-  startAction() {
-    this.showLoading();
-    this.set('isActionRunning', true);
-  },
-
-  endAction() {
-    this.set('isActionRunning', false);
-    this.hideLoading();
-  },
-
-  startRouteAction() {
-    this.showLoading();
-    const controller = this.controllerFor(this.get('routeName'));
-    controller.set('isActionRunning', true);
-  },
-
-  endRouteAction() {
-    const controller = this.controllerFor(this.get('routeName'));
-    controller.set('isActionRunning', false);
-    this.hideLoading();
-  },
 });

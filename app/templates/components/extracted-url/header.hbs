@@ -3,7 +3,7 @@
   {{model.errorMessage}}
 {{else}}
   {{entypo-icon "link"}}
-  <a href="{{model.values.resolved}}" title={{model.meta.description}} target="_blank" rel="noopener noreferer">
+  <a href={{model.values.resolved}} title={{model.meta.description}} target="_blank" rel="noopener noreferer">
     {{#if model.title}}
       {{{ model.title }}}
     {{else}}

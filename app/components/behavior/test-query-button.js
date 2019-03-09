@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 import LoadingMixin from 'leads-manage/mixins/loading-mixin';
 
 import query from 'leads-manage/gql/queries/behavior/content-query/test';

@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { get } from '@ember/object';
 
@@ -34,8 +34,8 @@ export default Route.extend(RouteQueryManager, FormMixin, {
       const variables = { input };
       try {
         const response = await this.get('apollo').mutate({ mutation, variables }, 'createCampaign');
+        await this.transitionTo('campaign.edit', response.id);
         this.get('notify').info('Campaign created successfully.');
-        this.transitionTo('campaign.edit', response.id);
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {

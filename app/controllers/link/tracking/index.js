@@ -18,7 +18,7 @@ export default Controller.extend(LoadingMixin, {
    * The loading service
    */
   // loading: service(),
-  errorProcessor: inject(),
+  errorProcessor: inject('graph-errors'),
 
   /**
    * Determines if the pasted/entered HTML is currently being processed by the backend.

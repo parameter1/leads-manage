@@ -7,13 +7,13 @@
     {{/if}}
     {{#if showTitle}}
       <small class="card-text text-muted">
-        <a href="{{ form.previewUrl }}" target="_blank" rel="nopener noreferrer">{{ form.name }}</a>
+        <a href={{ form.previewUrl }} target="_blank" rel="nopener noreferrer">{{ form.name }}</a>
       </small>
     {{/if}}
     {{#if showEntryNo}}
       <small class="card-text">Entry No: {{ entry.identifier }}</small>
     {{/if}}
-    <small class="card-text text-muted mb-2">{{moment-format entry.submittedAt 'MMM Do, YYYY @ h:mma'}}</small>
+    <small class="card-text text-muted mb-2">{{moment-format entry.submittedAt "MMM Do, YYYY @ h:mma"}}</small>
 
     {{#each _filteredFields as |field|}}
       {{#if (get entry.values field.ID)}}
@@ -29,7 +29,7 @@
           {{entypo-icon "cog"}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          {{identity-card/action labelSuffix="for Form" inactive=entry.inactive on-click=(action 'toggleActivation')}}
+          {{identity-card/action labelSuffix="for Form" inactive=entry.inactive on-click=(action "toggleActivation")}}
         </div>
       </div>
     {{/if}}

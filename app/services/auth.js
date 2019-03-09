@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import ObjectQueryManager from 'ember-apollo-client/mixins/object-query-manager';
+import { ObjectQueryManager } from 'ember-apollo-client';
 
 import checkSession from 'leads-manage/gql/queries/check-session';
 import deleteSession from 'leads-manage/gql/mutations/delete-session';

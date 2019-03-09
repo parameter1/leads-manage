@@ -1,18 +1,7 @@
 @import "node_modules/bootswatch/dist/simplex/variables";
-
-$modal-xl: 1100px !default;
-
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/simplex/bootswatch";
 
-// Add xl modal, per https://github.com/twbs/bootstrap/pull/19925
-@include media-breakpoint-up(lg) {
-  .modal-xl { max-width: $modal-lg; }
-}
-
-@include media-breakpoint-up(xl) {
-  .modal-xl { max-width: $modal-xl; }
-}
 
 // Fluid container that acts like fixed. Main wrapper.
 @include media-breakpoint-up(xl) {
@@ -25,6 +14,7 @@ $modal-xl: 1100px !default;
   padding-bottom: 1rem;
 }
 
+// @import "power-select";
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 .in-modal-dropdown {

@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
 import { computed, get } from '@ember/object';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 
 import urlCustomerMutation from 'leads-manage/gql/mutations/extracted-url-customer';
 import urlTagsMutation from 'leads-manage/gql/mutations/extracted-url-tags';

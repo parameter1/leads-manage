@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 import { getObservable } from 'ember-apollo-client';
 import { inject } from '@ember/service';
 

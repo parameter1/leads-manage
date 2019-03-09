@@ -3,7 +3,7 @@ import { isArray } from '@ember/array';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
-import ComponentQueryManager from 'ember-apollo-client/mixins/component-query-manager';
+import { ComponentQueryManager } from 'ember-apollo-client';
 
 import customerQuery from 'leads-manage/gql/queries/customer/search';
 import emailCategoryQuery from 'leads-manage/gql/queries/email-category/search';
@@ -11,7 +11,7 @@ import userQuery from 'leads-manage/gql/queries/user/search';
 import tagQuery from 'leads-manage/gql/queries/tag/search';
 
 export default Component.extend(ComponentQueryManager, {
-  errorProcessor: inject(),
+  errorProcessor: inject('graph-errors'),
 
   closeOnSelect: true,
   allowClear: true,

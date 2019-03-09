@@ -1,7 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { inject } from '@ember/service';
 import { getObservable } from 'ember-apollo-client';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 
 export default Mixin.create(RouteQueryManager, {
   /**

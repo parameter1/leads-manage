@@ -1,9 +1,8 @@
 import ApolloService from 'ember-apollo-client/services/apollo';
-import { computed, get } from '@ember/object';
 import { inject } from '@ember/service';
+import { computed, get } from '@ember/object';
 import { setContext } from 'apollo-link-context';
 import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
-import { Promise } from 'rsvp';
 import introspectionQueryResultData from 'leads-manage/gql/fragment-types';
 
 export default ApolloService.extend({
@@ -24,7 +23,6 @@ export default ApolloService.extend({
 
   link: computed(function() {
     const httpLink = this._super(...arguments);
-
     const authLink = setContext((request, context) => {
       return this._runAuthorize(request, context);
     });
@@ -46,5 +44,4 @@ export default ApolloService.extend({
       resolve({ headers })
     });
   }
-
 });

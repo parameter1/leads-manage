@@ -1,5 +1,5 @@
 node {
-  def nodeBuilder = docker.image("danlynn/ember-cli:3.0.0")
+  def nodeBuilder = docker.image("danlynn/ember-cli:3.8.1")
   nodeBuilder.pull()
 
   try {

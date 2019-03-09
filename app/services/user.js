@@ -1,6 +1,6 @@
 import Service, { inject } from '@ember/service';
 import { computed } from '@ember/object';
-import ObjectQueryManager from 'ember-apollo-client/mixins/object-query-manager';
+import { ObjectQueryManager } from 'ember-apollo-client';
 import Permissions from 'leads-manage/objects/permissions';
 
 export default Service.extend(ObjectQueryManager, {
@@ -37,11 +37,15 @@ export default Service.extend(ObjectQueryManager, {
     return perms;
   }),
 
-  logout() {
+  async logout() {
     const loader = this.get('loadingDisplay');
     loader.show();
-    return this.get('session').invalidate()
-      .finally(loader.hide())
-    ;
+    try {
+      await this.get('session').invalidate();
+    } catch (e) {
+      this.get('graphErrors').show(e);
+    } finally {
+      loader.hide();
+    }
   }
 });

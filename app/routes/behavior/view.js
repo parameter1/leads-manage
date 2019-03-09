@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
 import query from 'leads-manage/gql/queries/behavior/content-query/view';

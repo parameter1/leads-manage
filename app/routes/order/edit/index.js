@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { get } from '@ember/object';
 

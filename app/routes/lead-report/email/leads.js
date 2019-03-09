@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { getObservable } from 'ember-apollo-client';
-import RouteQueryManager from 'ember-apollo-client/mixins/route-query-manager';
+import { RouteQueryManager } from 'ember-apollo-client';
 
 import query from 'leads-manage/gql/queries/lead-report/email-identities';
 
