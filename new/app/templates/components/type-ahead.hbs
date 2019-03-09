@@ -8,7 +8,8 @@
     onchange=(if onChange onChange (action (mut selected)))
     closeOnSelect=closeOnSelect
     disabled=disabled
-    as |model|}}
+    as |model|
+  }}
     {{#if (has-block)}}
       {{ yield model }}
     {{else}}
@@ -26,11 +27,12 @@
     closeOnSelect=closeOnSelect
     disabled=disabled
     onchange=(if onChange onChange (action (mut selected)))
-    as |model|}}
-      {{#if (has-block)}}
-        {{ yield model }}
-      {{else}}
-        {{ model.name }}
-      {{/if}}
+    as |model|
+  }}
+    {{#if (has-block)}}
+      {{ yield model }}
+    {{else}}
+      {{ model.name }}
+    {{/if}}
   {{/power-select}}
 {{/if}}
