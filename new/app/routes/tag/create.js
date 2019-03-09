@@ -17,16 +17,19 @@ export default Route.extend(FormMixin, RouteQueryManager, {
   },
 
   actions: {
-    create({ name }) {
+    async create({ name }) {
       this.startRouteAction();
       const payload = { name };
       const variables = { input: { payload } };
-      return this.get('apollo').mutate({ mutation, variables }, 'createTag')
-        .then(response => this.transitionTo('tag.edit', response.id))
-        .then(() => this.get('notify').info('Tag created successfully.'))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.endRouteAction())
-      ;
+      try {
+        const response = await this.get('apollo').mutate({ mutation, variables }, 'createTag');
+        await this.transitionTo('tag.edit', response.id);
+        this.get('notify').info('Tag created successfully.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
     },
   },
 });

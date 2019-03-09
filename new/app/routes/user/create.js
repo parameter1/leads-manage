@@ -19,7 +19,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
   },
 
   actions: {
-    create({
+    async create({
       email,
       givenName,
       familyName,
@@ -37,12 +37,15 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         role,
       };
       const variables = { input: { payload } };
-      return this.get('apollo').mutate({ mutation, variables }, 'createUser')
-        .then(response => this.transitionTo('user.edit', response.id))
-        .then(() => this.get('notify').info('User created successfully.'))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.endRouteAction())
-      ;
+      try {
+        const response = await this.get('apollo').mutate({ mutation, variables }, 'createUser');
+        await this.transitionTo('user.edit', response.id);
+        this.get('notify').info('User created successfully.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
     },
   },
 });

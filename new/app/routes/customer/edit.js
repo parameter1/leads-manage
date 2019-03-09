@@ -20,29 +20,35 @@ export default Route.extend(FormMixin, RouteQueryManager, {
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'customer');
   },
   actions: {
-    update(model) {
+    async update(model) {
       this.startRouteAction();
       const mutation = updateCustomer;
       const { id, name, description, website, parent } = model;
       const payload = { name, description, website, parentId: get(parent || {}, 'id') || null };
       const input = { id, payload };
       const variables = { input };
-      return this.get('apollo').mutate({ mutation, variables }, 'updateCustomer')
-        .then(() => this.get('notify').info('Customer successfully updated.'))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.endRouteAction())
-      ;
+      try {
+        await this.get('apollo').mutate({ mutation, variables }, 'updateCustomer');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
     },
-    delete(id, routeName) {
+
+    async delete(id, routeName) {
       this.startRouteAction();
       const mutation = deleteCustomer;
       const variables = { input: { id } };
-      return this.get('apollo').mutate({ mutation, variables }, 'deleteCustomer')
-        .then(() => this.get('notify').info('Customer successfully deleted.'))
-        .then(() => this.transitionTo(routeName))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.endRouteAction())
-      ;
+      try {
+        await this.get('apollo').mutate({ mutation, variables }, 'deleteCustomer');
+        await this.transitionTo(routeName);
+        this.get('notify').info('Customer successfully deleted.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endRouteAction();
+      }
     },
   },
 });
