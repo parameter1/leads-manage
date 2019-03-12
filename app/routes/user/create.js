@@ -5,13 +5,6 @@ import FormMixin from 'leads-manage/mixins/form-mixin';
 import mutation from 'leads-manage/gql/mutations/create-user';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
-  beforeModel(transition) {
-    if (!this.user.get('permissions.user.create')) {
-     transition.abort();
-     this.transitionTo('index');
-    }
-  },
-
   model() {
     return {
       role: 'Restricted',

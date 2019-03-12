@@ -6,25 +6,21 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      {{#if user.permissions.customer.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "customer" class="nav-link"}}{{entypo-icon "v-card"}} Customers{{/link-to}}
         </li>
       {{/if}}
 
-      {{#if user.permissions.order.list}}
-        <li class="nav-item">
-          {{#link-to "order" class="nav-link"}}{{entypo-icon "credit"}} Orders{{/link-to}}
-        </li>
-      {{/if}}
+      <li class="nav-item">
+        {{#link-to "order" class="nav-link"}}{{entypo-icon "credit"}} Orders{{/link-to}}
+      </li>
 
-      {{#if user.permissions.campaign.list}}
-        <li class="nav-item">
-          {{#link-to "campaign" class="nav-link"}}{{entypo-icon "calendar"}} Campaigns{{/link-to}}
-        </li>
-      {{/if}}
+      <li class="nav-item">
+        {{#link-to "campaign" class="nav-link"}}{{entypo-icon "calendar"}} Campaigns{{/link-to}}
+      </li>
 
-      {{#if user.permissions.links.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="linksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{entypo-icon "link"}} Links
@@ -37,14 +33,14 @@
         </li>
       {{/if}}
 
-      {{#if user.permissions.identity.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "identity" class="nav-link"}}{{entypo-icon "users"}} Leads{{/link-to}}
         </li>
       {{/if}}
 
 
-      {{#if user.permissions.email.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navEmailDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{entypo-icon "email"}} Email
@@ -57,22 +53,22 @@
           </div>
         </li>
       {{/if}}
-      {{#if user.permissions.tag.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "tag" class="nav-link"}}{{entypo-icon "price-tag"}} Tags{{/link-to}}
         </li>
       {{/if}}
-      {{#if user.permissions.forms.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "form" class="nav-link"}}{{entypo-icon "text-document"}} Forms{{/link-to}}
         </li>
       {{/if}}
-      {{#if user.permissions.behavior.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "behavior" class="nav-link"}}{{entypo-icon "hair-cross"}} Behavior{{/link-to}}
         </li>
       {{/if}}
-      {{#if user.permissions.users.list}}
+      {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "user" class="nav-link"}}{{entypo-icon "user"}} Users{{/link-to}}
         </li>

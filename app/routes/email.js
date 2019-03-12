@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   beforeModel(transition) {
-    if (!this.user.get('permissions.email.list')) {
+    if (!this.user.get('isAdmin')) {
      transition.abort();
      this.transitionTo('index');
     }

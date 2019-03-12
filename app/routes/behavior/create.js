@@ -8,13 +8,6 @@ import mutation from 'leads-manage/gql/mutations/behavior/content-query/create';
 export default Route.extend(RouteQueryManager, FormMixin, {
   ohBehaveToken: inject(),
 
-  beforeModel(transition) {
-    if (!this.user.get('permissions.behavior.create')) {
-     transition.abort();
-     this.transitionTo('index');
-    }
-  },
-
   model() {
     return { criteria: [] };
   },

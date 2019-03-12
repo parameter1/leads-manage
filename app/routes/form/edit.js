@@ -8,13 +8,6 @@ import deleteForm from 'leads-manage/gql/mutations/delete-form';
 import updateForm from 'leads-manage/gql/mutations/update-form';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
-  beforeModel(transition) {
-    if (!this.user.get('permissions.form.edit')) {
-     transition.abort();
-     this.transitionTo('index');
-    }
-  },
-
   model({ id }) {
     const variables = { input: { id } };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'form');
