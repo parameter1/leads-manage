@@ -9,7 +9,7 @@
       <button class="btn btn-info clickable" disabled={{isActionRunning}} {{action (route-action "clone" model.id)}}>
         {{entypo-icon "copy"}} Clone
       </button>
-      {{#if user.permissions.campaign.delete}}
+      {{#if user.isAdmin}}
         {{confirm-button
           icon="trash"
           label="Delete"

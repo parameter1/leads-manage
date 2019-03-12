@@ -9,7 +9,7 @@ export default Service.extend({
   getViewableFields: computed('fields.[]', function() {
     return this.get('fields').filter((field) => {
       if (get(field, 'adminOnly')) {
-        return this.get('user.permissions.campaign.admin-fields') ? true : false;
+        return this.get('user.isAdmin') ? true : false;
       } else {
         return true;
       }

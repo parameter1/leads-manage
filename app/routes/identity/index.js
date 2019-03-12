@@ -7,17 +7,6 @@ import search from 'leads-manage/gql/queries/identity/search';
 export default Route.extend(ListRouteMixin, {
   /**
    *
-   * @param {Transition} transition
-   */
-  beforeModel(transition) {
-    if (!this.user.get('permissions.identity.list')) {
-     transition.abort();
-     this.transitionTo('index');
-    }
-  },
-
-  /**
-   *
    * @param {object} params
    */
   model({ first, sortBy, ascending, phrase, searchType, searchBy }) {

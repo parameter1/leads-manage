@@ -22,7 +22,7 @@
           {{entypo-icon "cog"}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          {{#if user.permissions.lead-campaign.deactivateGlobally}}
+          {{#if user.isAdmin}}
             {{identity-card/action
               labelSuffix="Globally"
               inactive=_isInactiveGlobally

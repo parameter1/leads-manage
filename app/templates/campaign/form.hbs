@@ -30,7 +30,7 @@
 
     <div class="form-group mb-0">
       <label for="maxIdentities">Maximum Leads</label>
-      {{#if user.permissions.lead-campaign.unlimitedLeads}}
+      {{#if user.isAdmin}}
         {{input type="number" min=0 value=model.maxIdentities class="form-control" id="maxIdentities" aria-describedby="maxIdentitiesHelp" placeholder="Max Leads"}}
         <small id="maxIdentitiesHelp" class="form-text text-muted">A 0 value will allow unlimited leads.</small>
       {{else}}

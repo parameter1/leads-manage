@@ -1,7 +1,7 @@
 import Service, { inject } from '@ember/service';
 import { computed } from '@ember/object';
 import { ObjectQueryManager } from 'ember-apollo-client';
-import Permissions from 'leads-manage/objects/permissions';
+// import Permissions from 'leads-manage/objects/permissions';
 
 export default Service.extend(ObjectQueryManager, {
   loadingDisplay: inject(),
@@ -23,18 +23,8 @@ export default Service.extend(ObjectQueryManager, {
     return roles.includes(role);
   },
 
-  permissions: computed('role', function() {
-    const perms = Permissions.create();
-    const role = this.get('role');
-    if (!role) return perms;
-
-    if (this.roleIs('Administrator')) {
-      perms.fullAccess();
-    } else {
-      perms.set('campaign', { create: true, edit: true, list: true });
-      perms.set('order', { create: true, edit: true, list: true });
-    }
-    return perms;
+  isAdmin: computed('role', function() {
+    return this.get('role') === 'Administrator';
   }),
 
   async logout() {

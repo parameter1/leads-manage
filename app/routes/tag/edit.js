@@ -7,13 +7,6 @@ import deleteTag from 'leads-manage/gql/mutations/delete-tag';
 import updateTag from 'leads-manage/gql/mutations/update-tag';
 
 export default Route.extend(FormMixin, RouteQueryManager, {
-  beforeModel(transition) {
-    if (!this.user.get('permissions.tag.edit')) {
-     transition.abort();
-     this.transitionTo('index');
-    }
-  },
-
   model({ id }) {
     const variables = { input: { id } };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'tag');
