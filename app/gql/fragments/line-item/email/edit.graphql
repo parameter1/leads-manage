@@ -6,13 +6,15 @@ fragment EmailLineItemEditFragment on EmailLineItem {
   requiredLeads
   totalValue
   cpl
-  fulfilled {
-    total
-    rate
-  }
-  scrubbed {
-    total
-    rate
+  progress {
+    qualified {
+      total
+      rate
+    }
+    scrubbed {
+      total
+      rate
+    }
   }
   range {
     start

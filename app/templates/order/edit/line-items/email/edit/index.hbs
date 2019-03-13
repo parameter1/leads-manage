@@ -35,11 +35,11 @@
     <div class="col-sm-6 col-lg-3 mb-4">
       {{dashboard/data-card
         icon="gauge"
-        title="Fulfilled"
+        title="Qualified"
         format="0,0"
         secondaryFormat="0.[0]%"
-        value=model.fulfilled.total
-        secondaryValue=model.fulfilled.rate
+        value=model.progress.qualified.total
+        secondaryValue=model.progress.qualified.rate
         color="text-success"
       }}
     </div>
@@ -49,8 +49,8 @@
         title="Scrubbed"
         format="0,0"
         secondaryFormat="0.[0]%"
-        value=model.scrubbed.total
-        secondaryValue=model.scrubbed.rate
+        value=model.progress.scrubbed.total
+        secondaryValue=model.progress.scrubbed.rate
         color="text-warning"
       }}
     </div>
