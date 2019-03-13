@@ -1,6 +1,8 @@
 import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
+import moment from 'moment';
 import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 
 import nameMutation from 'leads-manage/gql/mutations/line-item/email/name';
 import notesMutation from 'leads-manage/gql/mutations/line-item/email/notes';
@@ -10,6 +12,15 @@ import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-r
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  dateRange: computed('model.range.{start,end}', function() {
+    const start = this.get('model.range.start');
+    const end = this.get('model.range.end');
+    return {
+      start: start ? moment(start) : null,
+      end: end ? moment(end) : null,
+    };
+  }),
 
   actions: {
     async setName(event) {

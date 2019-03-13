@@ -1,7 +1,7 @@
 {{progress-bar class="progress-md" show=isActionRunning}}
 {{#bs-modal/body}}
   <h4 class="mb-2">{{model.name}} ({{order.name}}) [ {{line-item-status status=model.status}} ]</h4>
-  <h5 class="mb-2">Customer: {{order.customer.name}}, Rep: {{order.salesRep.givenName}}</h5>
+  <h5 class="mb-2">Customer: {{order.customer.name}}, Rep: {{order.salesRep.givenName}} {{order.salesRep.familyName}}</h5>
   <p class="mb-4">
     {{moment-format model.range.start "MMM Do, YYYY"}}
     -
@@ -35,11 +35,11 @@
     <div class="col-sm-6 col-lg-3 mb-4">
       {{dashboard/data-card
         icon="gauge"
-        title="Fulfilled"
+        title="Qualified"
         format="0,0"
         secondaryFormat="0.[0]%"
-        value=0
-        secondaryValue=0
+        value=model.progress.qualified.total
+        secondaryValue=model.progress.qualified.rate
         color="text-success"
       }}
     </div>
@@ -49,8 +49,8 @@
         title="Scrubbed"
         format="0,0"
         secondaryFormat="0.[0]%"
-        value=0
-        secondaryValue=0
+        value=model.progress.scrubbed.total
+        secondaryValue=model.progress.scrubbed.rate
         color="text-warning"
       }}
     </div>
