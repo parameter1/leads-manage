@@ -58,7 +58,7 @@
         <label>Date Range {{required-field-label}}</label>
         {{#power-calendar-range
           center=center
-          selected=model.range
+          selected=dateRange
 
           onCenterChange=(action (mut center) value="moment")
           onSelect=(action "setDateRange" value="moment")
