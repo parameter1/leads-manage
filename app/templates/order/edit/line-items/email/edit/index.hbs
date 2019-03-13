@@ -14,7 +14,7 @@
     <div class="col-sm-6 col-lg-3 mb-4">
       {{dashboard/data-card
         icon="hair-cross"
-        title="Required"
+        title="Goal"
         format="0,0"
         value=model.requiredLeads
         color="text-primary"
@@ -35,22 +35,24 @@
     <div class="col-sm-6 col-lg-3 mb-4">
       {{dashboard/data-card
         icon="gauge"
-        title="Qualified"
-        format="0,0"
-        secondaryFormat="0.[0]%"
-        value=model.progress.qualified.total
-        secondaryValue=model.progress.qualified.rate
+        title="% Complete"
+        format="0.[0]%"
+        secondaryFormat="0,0"
+        value=model.progress.qualified.rate
+        secondaryValue=model.progress.qualified.total
+        secondarySuffix="Leads"
         color="text-success"
       }}
     </div>
     <div class="col-sm-6 col-lg-3 mb-4">
       {{dashboard/data-card
         icon="block"
-        title="Scrubbed"
-        format="0,0"
-        secondaryFormat="0.[0]%"
-        value=model.progress.scrubbed.total
-        secondaryValue=model.progress.scrubbed.rate
+        title="Avg. Scrub Rate"
+        format="0.[0]%"
+        secondaryFormat="0,0"
+        value=model.progress.scrubbed.rate
+        secondaryValue=model.progress.scrubbed.total
+        secondarySuffix="Leads"
         color="text-warning"
       }}
     </div>
