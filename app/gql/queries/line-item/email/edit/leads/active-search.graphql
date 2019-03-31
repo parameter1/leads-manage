@@ -1,6 +1,6 @@
 #import 'leads-manage/gql/fragments/identity/view'
 
-query EditEmailLineItemSearchActiveLeads($id: String!, $pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
+query EditEmailLineItemSearchActiveLeads($input: ModelIdInput!, $pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
   searchEmailLineItemActiveIdentities(input: $input, pagination: $pagination, search: $search, options: $options) {
     totalCount
     edges {
