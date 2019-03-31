@@ -62,6 +62,10 @@ export default Component.extend(ComponentQueryManager, FormMixin, {
     return this.get('identity.inactive') ? true : false;
   }),
 
+  hasRefetchQueries: computed('refetchQueries.length', function() {
+    return this.get('refetchQueries.length') > 0;
+  }),
+
   actions: {
     /**
      *
@@ -94,8 +98,13 @@ export default Component.extend(ComponentQueryManager, FormMixin, {
       const input = { identityId, customerId, active: !inactive };
       const variables = { input };
 
+      const criteria = { mutation: identityCustomerActivation, variables };
+      if (this.get('hasRefetchQueries')) {
+        criteria.refetchQueries = this.get('refetchQueries');
+      }
+
       try {
-        await this.get('apollo').mutate({ mutation: identityCustomerActivation, variables }, 'identityCustomerActivation');
+        await this.get('apollo').mutate(criteria, 'identityCustomerActivation');
         this.get('notify').info('Customer identity activation set.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -115,8 +124,13 @@ export default Component.extend(ComponentQueryManager, FormMixin, {
       const input = { identityId, campaignId, active: !inactive };
       const variables = { input };
 
+      const criteria = { mutation: identityCampaignActivation, variables };
+      if (this.get('hasRefetchQueries')) {
+        criteria.refetchQueries = this.get('refetchQueries');
+      }
+
       try {
-        await this.get('apollo').mutate({ mutation: identityCampaignActivation, variables }, 'identityCampaignActivation');
+        await this.get('apollo').mutate(criteria, 'identityCampaignActivation');
         this.get('notify').info('Campaign identity activation set.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -136,8 +150,15 @@ export default Component.extend(ComponentQueryManager, FormMixin, {
       const input = { identityId, lineItemId, active: !inactive };
       const variables = { input };
 
+      const criteria = { mutation: identityLineItemActivation, variables };
+      if (this.get('hasRefetchQueries')) {
+        criteria.refetchQueries = this.get('refetchQueries');
+      }
+
       try {
-        await this.get('apollo').mutate({ mutation: identityLineItemActivation, variables }, 'identityLineItemActivation');
+        await this.get('apollo').mutate(criteria, 'identityLineItemActivation');
+        const fn = this.get('on-line-item-activation');
+        if (typeof fn === 'function') await fn();
         this.get('notify').info('Line Item identity activation set.');
       } catch (e) {
         this.get('graphErrors').show(e);

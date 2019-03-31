@@ -20,4 +20,7 @@ fragment IdentityViewFragment on Identity {
   inactiveCampaigns {
     id
   }
+  inactiveLineItems {
+    id
+  }
 }

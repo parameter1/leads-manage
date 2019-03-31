@@ -24,6 +24,15 @@ export default Controller.extend(FormMixin, {
     return this.get('id_phrase.length') > 0;
   }),
 
+  hasSearched: computed('id_phrase.length', function() {
+    return this.get('id_phrase.length') > 0;
+  }),
+
+  refetchQueries: computed('hasSearched', function() {
+    if (this.get('hasSearched')) return ['EditEmailLineItemSearchActiveLeads'];
+    return ['EditEmailLineItemActiveLeads'];
+  }),
+
   init() {
     this._super(...arguments);
     this.set('queryParams', ['id_first', 'id_sortBy', 'id_ascending', 'id_phrase', 'id_searchType', 'id_searchBy']);
