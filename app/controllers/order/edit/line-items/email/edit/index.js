@@ -1,10 +1,13 @@
 import Controller from '@ember/controller';
+import FormMixin from 'leads-manage/mixins/form-mixin';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 import moment from 'moment';
 
-export default Controller.extend({
+export default Controller.extend(FormMixin, {
   identityAttributes: inject(),
+
+  isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
 
   requiredFields: computed('identityAttributes.getViewableFields', 'model.requiredFields.[]', function() {
     const selected = this.get('model.requiredFields');

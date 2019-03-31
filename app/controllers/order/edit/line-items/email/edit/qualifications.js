@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 
 import excludedFieldsMutation from 'leads-manage/gql/mutations/line-item/email/excluded-fields';
 import requiredFieldsMutation from 'leads-manage/gql/mutations/line-item/email/required-fields';
@@ -8,6 +9,8 @@ import identityFiltersMutation from 'leads-manage/gql/mutations/line-item/email/
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
 
   actions: {
     async setExcludedFields(fieldKeys) {

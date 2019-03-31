@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 
 import linkTypesMutation from 'leads-manage/gql/mutations/line-item/email/link-types';
 import tagsMutation from 'leads-manage/gql/mutations/line-item/email/tags';
@@ -8,6 +9,8 @@ import categoriesMutation from 'leads-manage/gql/mutations/line-item/email/categ
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
 
   actions: {
     async setLinkTypes(linkTypes) {
