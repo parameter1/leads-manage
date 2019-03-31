@@ -46,7 +46,7 @@
 
   <div class="row">
     {{#each fetch.nodes as |item|}}
-      {{identity-card identity=item campaignId=campaign.id customerId=customerId canEdit=true class="mb-4"}}
+      {{identity-card identity=item lineItemId=lineItemId customerId=customerId canEdit=true class="mb-4"}}
     {{/each}}
   </div>
 

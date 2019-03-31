@@ -55,6 +55,7 @@ export default Route.extend(RouteSearchMixin, {
     this._super(controller, model);
     const order = this.modelFor('order.edit');
     controller.set('customerId', order.get('customer.id'));
+    controller.set('lineItemId', this.modelFor('order.edit.line-items.email.edit'));
   },
 
   /**
