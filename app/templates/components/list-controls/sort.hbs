@@ -1,7 +1,6 @@
 {{#if options.length}}
   <div class="btn-group {{directionClass}}" role="group">
     {{#list-controls/button
-      id="dropdown-sort-type"
       disabled=disabled
       class=(concat "dropdown-toggle" " " buttonClass)
       data-toggle="dropdown"
@@ -11,7 +10,7 @@
       <span class="d-none d-sm-inline">{{selected.label}}</span>
     {{/list-controls/button}}
 
-    <div class="dropdown-menu {{alignmentClass}}" aria-labelledby="dropdown-sort-type">
+    <div class="dropdown-menu {{alignmentClass}}">
       {{#each filteredOptions as |option|}}
         <a class="dropdown-item" href="javascript:void(0)" {{action "sortBy" option.key}}>{{option.label}}</a>
       {{/each}}
