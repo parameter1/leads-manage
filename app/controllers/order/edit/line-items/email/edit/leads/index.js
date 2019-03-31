@@ -1,7 +1,5 @@
-// import ListController from 'leads-manage/controllers/abstract-list';
 import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
-// import ListControllerMixin from 'leads-manage/mixins/list-controller-mixin';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
 
