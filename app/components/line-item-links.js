@@ -4,6 +4,7 @@ import { ComponentQueryManager } from 'ember-apollo-client';
 import ActionMixin from 'leads-manage/mixins/action-mixin';
 
 import query from 'leads-manage/gql/queries/line-item/email/edit/deployments/links';
+import emailLineItemExcludedUrls from 'leads-manage/gql/mutations/line-item/email/excluded-urls';
 
 export default Component.extend(ComponentQueryManager, ActionMixin, {
   lineItemId: null,
@@ -27,5 +28,35 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
         this.set('isLoading', false);
       }
     },
+
+    async updateExcludedUrls() {
+      this.startAction();
+      const id = this.get('lineItemId');
+      const excludedUrls = [];
+
+      this.get('urlGroups').forEach((urlGroup) => {
+        const urlId = urlGroup.url.id;
+        urlGroup.deploymentGroups.forEach((depGroup) => {
+          depGroup.sendGroups.forEach((sendGroup) => {
+            excludedUrls.push({
+              urlId,
+              sendId: sendGroup.send.id,
+              active: sendGroup.active,
+            })
+          });
+        });
+      });
+      const input = { id, excludedUrls };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: emailLineItemExcludedUrls, variables }, 'emailLineItemExcludedUrls');
+        this.get('notify').info('Line item email links successfully excluded.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    }
   },
 });

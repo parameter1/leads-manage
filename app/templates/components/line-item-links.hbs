@@ -8,5 +8,9 @@
 </button>
 
 {{#if hasLoaded}}
-  <p>Show Links...</p>
+  {{#each urlGroups as |urlGroup|}}
+    {{email-line-item/url-group class="mt-3" urlGroup=urlGroup on-change=(action "updateExcludedUrls")}}
+  {{else}}
+    <p class="mt-3 mb-0">No links found for the selected line item criteria.</p>
+  {{/each}}
 {{/if}}
