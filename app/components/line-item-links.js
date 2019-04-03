@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
 import { ComponentQueryManager } from 'ember-apollo-client';
 import ActionMixin from 'leads-manage/mixins/action-mixin';
 
@@ -34,7 +33,7 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
       const id = this.get('lineItemId');
       const excludedUrls = [];
 
-      this.get('urlGroups').forEach((urlGroup) => {
+      this.get('results.urlGroups').forEach((urlGroup) => {
         const urlId = urlGroup.url.id;
         urlGroup.deploymentGroups.forEach((depGroup) => {
           depGroup.sendGroups.forEach((sendGroup) => {
