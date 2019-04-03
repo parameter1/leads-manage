@@ -6,16 +6,6 @@ query EditEmailLineItemIndex($input: ModelIdInput!) {
     requiredLeads
     totalValue
     cpl
-    progress {
-      qualified {
-        total
-        rate
-      }
-      scrubbed {
-        total
-        rate
-      }
-    }
     range {
       start
       end

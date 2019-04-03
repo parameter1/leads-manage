@@ -1,4 +1,4 @@
-{{progress-bar class="progress-md" show=isActionRunning}}
+{{progress-bar class="progress-md" show=isLoading}}
 {{#bs-modal/body}}
   <h4 class="mb-2">{{model.name}} ({{order.name}}) [ {{line-item-status status=model.status}} ]</h4>
   <h5 class="mb-2">Customer: {{order.customer.name}}, Rep: {{order.salesRep.givenName}} {{order.salesRep.familyName}}</h5>
@@ -10,17 +10,17 @@
       ({{startsEnds}})
     {{/if}}
   </p>
-  <div class="row">
-    <div class="col-sm-6 col-lg-3 mb-4">
+  {{#line-item-progress class="row" lineItemId=model.id as |progress|}}
+    <div class="col-sm-6 col-xl-3 mb-4">
       {{dashboard/data-card
         icon="hair-cross"
         title="Goal"
         format="0,0"
         value=model.requiredLeads
-        color="text-primary"
+        color="primary"
       }}
     </div>
-    <div class="col-sm-6 col-lg-3 mb-4">
+    <div class="col-sm-6 col-xl-3 mb-4">
       {{dashboard/data-card
         icon="credit"
         title="Value"
@@ -29,34 +29,36 @@
         secondaryValue=model.cpl
         secondaryFormat="$0,0.[00]"
         secondarySuffix="CPL"
-        color="text-info"
+        color="info"
       }}
     </div>
-    <div class="col-sm-6 col-lg-3 mb-4">
+    <div class="col-sm-6 col-xl-3 mb-4">
       {{dashboard/data-card
+        isLoading=progress.isActionRunning
         icon="gauge"
-        title="% Complete"
+        title="% Fulfilled"
         format="0.[0]%"
         secondaryFormat="0,0"
-        value=model.progress.qualified.rate
-        secondaryValue=model.progress.qualified.total
+        value=progress.qualified.rate
+        secondaryValue=progress.qualified.total
         secondarySuffix="Leads"
-        color="text-success"
+        color="success"
       }}
     </div>
-    <div class="col-sm-6 col-lg-3 mb-4">
+    <div class="col-sm-6 col-xl-3 mb-4">
       {{dashboard/data-card
+        isLoading=progress.isActionRunning
         icon="block"
         title="Avg. Scrub Rate"
         format="0.[0]%"
         secondaryFormat="0,0"
-        value=model.progress.scrubbed.rate
-        secondaryValue=model.progress.scrubbed.total
+        value=progress.scrubbed.rate
+        secondaryValue=progress.scrubbed.total
         secondarySuffix="Leads"
-        color="text-warning"
+        color="warning"
       }}
     </div>
-  </div>
+  {{/line-item-progress}}
   <div class="row">
     <div class="col-lg-6">
       <h6 class="font-weight-bold">{{entypo-icon "mail"}} Collecting leads from...</h6>

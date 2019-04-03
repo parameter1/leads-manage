@@ -1,0 +1,16 @@
+<button class="btn btn-primary" type="button" disabled={{isActionRunning}} {{action "load"}}>
+  {{entypo-icon "link"}}
+  {{#if isLoading}}
+    Loading Links...
+  {{else}}
+    Manage Links
+  {{/if}}
+</button>
+
+{{#if hasLoaded}}
+  {{#each results.urlGroups as |urlGroup|}}
+    {{email-line-item/url-group class="mt-3" urlGroup=urlGroup on-change=(action "updateExcludedUrls")}}
+  {{else}}
+    <p class="mt-3 mb-0">No links found for the selected line item criteria.</p>
+  {{/each}}
+{{/if}}

@@ -51,7 +51,10 @@ Router.map(function() {
         this.route('email', function() {
           this.route('create');
           this.route('edit', { path: ':line_item_id' }, function() {
-            this.route('leads');
+            this.route('leads', function() {
+              this.route('index');
+              this.route('deactivated');
+            });
             this.route('deployments');
             this.route('qualifications');
             this.route('details');

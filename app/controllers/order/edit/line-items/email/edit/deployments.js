@@ -1,13 +1,18 @@
 import Controller from '@ember/controller';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 
 import linkTypesMutation from 'leads-manage/gql/mutations/line-item/email/link-types';
 import tagsMutation from 'leads-manage/gql/mutations/line-item/email/tags';
 import categoriesMutation from 'leads-manage/gql/mutations/line-item/email/categories';
 
+const refetchQueries = ['EditEmailLineItemDeploymentLinks'];
+
 export default Controller.extend(FormMixin, {
   apollo: inject(),
+
+  isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
 
   actions: {
     async setLinkTypes(linkTypes) {
@@ -17,7 +22,7 @@ export default Controller.extend(FormMixin, {
       const variables = { input };
 
       try {
-        await this.get('apollo').mutate({ mutation: linkTypesMutation, variables }, 'emailLineItemLinkTypes');
+        await this.get('apollo').mutate({ mutation: linkTypesMutation, variables, refetchQueries }, 'emailLineItemLinkTypes');
         this.get('notify').info('Link types saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -34,7 +39,7 @@ export default Controller.extend(FormMixin, {
       const variables = { input };
 
       try {
-        await this.get('apollo').mutate({ mutation: tagsMutation, variables }, 'emailLineItemTags');
+        await this.get('apollo').mutate({ mutation: tagsMutation, variables, refetchQueries }, 'emailLineItemTags');
         this.get('notify').info('Tags saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -51,7 +56,7 @@ export default Controller.extend(FormMixin, {
       const variables = { input };
 
       try {
-        await this.get('apollo').mutate({ mutation: categoriesMutation, variables }, 'emailLineItemCategories');
+        await this.get('apollo').mutate({ mutation: categoriesMutation, variables, refetchQueries }, 'emailLineItemCategories');
         this.get('notify').info('Email categories saved.');
       } catch (e) {
         this.get('graphErrors').show(e);

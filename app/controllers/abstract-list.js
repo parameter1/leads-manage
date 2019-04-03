@@ -22,7 +22,7 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-    this.set('queryParams', ['first', 'sortBy', 'ascending', 'phrase', 'seachType', 'searchBy']);
+    this.set('queryParams', ['first', 'sortBy', 'ascending', 'phrase', 'searchType', 'searchBy']);
 
     // Should be overriden by the specific controller for different options.
     this.set('searchFields', [

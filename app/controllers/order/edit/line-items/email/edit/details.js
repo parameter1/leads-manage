@@ -13,6 +13,8 @@ import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-r
 export default Controller.extend(FormMixin, {
   apollo: inject(),
 
+  isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
+
   dateRange: computed('model.range.{start,end}', function() {
     const start = this.get('model.range.start');
     const end = this.get('model.range.end');

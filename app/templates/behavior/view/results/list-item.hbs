@@ -4,11 +4,11 @@
 }}
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-0">
-      {{moment-format item.startDate 'MMM D, YYYY'}} - {{moment-format item.endDate 'MMM D, YYYY'}}
+      {{moment-format item.startDate "MMM D, YYYY"}} - {{moment-format item.endDate "MMM D, YYYY"}}
     </h5>
     <div class="text-right">
       {{#if item.ranAt}}
-        <small class="d-block" title="{{moment-format item.ranAt 'MMM Do, YYYY h:mm a'}}">
+        <small class="d-block" title={{moment-format item.ranAt "MMM Do, YYYY h:mm a"}}>
           {{entypo-icon "clock"}} Ran {{moment-from-now item.ranAt}}
         </small>
       {{/if}}

@@ -1,4 +1,4 @@
-{{progress-bar class="progress-md" show=isActionRunning}}
+{{progress-bar class="progress-md" show=isLoading}}
 {{#bs-modal/body}}
   <div class="row">
     <div class="col">
@@ -46,6 +46,6 @@
       </div>
     </div>
   </div>
+
+  {{line-item-links lineItemId=model.id isActionRunning=isActionRunning}}
 {{/bs-modal/body}}
-{{#bs-modal/footer}}
-{{/bs-modal/footer}}

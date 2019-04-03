@@ -35,6 +35,9 @@
           {{#if campaignId}}
             {{identity-card/action labelSuffix="for Campaign" inactive=_isInactiveCampaign on-click=(action "toggleCampaignActivation")}}
           {{/if}}
+          {{#if lineItemId}}
+            {{identity-card/action labelSuffix="for Line Item" inactive=_isInactiveLineItem on-click=(action "toggleLineItemActivation")}}
+          {{/if}}
         </div>
       </div>
     {{/if}}
