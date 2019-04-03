@@ -19,7 +19,7 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
 
       try {
         const results = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'emailLineItem');
-        this.set('urlGroups', get(results, 'urlGroups'));
+        this.set('results', results);
         this.set('hasLoaded', true);
       } catch (e) {
         this.get('graphErrors').show(e);
