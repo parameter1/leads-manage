@@ -1,0 +1,12 @@
+<button class="btn btn-primary" type="button" disabled={{isActionRunning}} {{action "load"}}>
+  {{entypo-icon "link"}}
+  {{#if isLoading}}
+    Loading Links...
+  {{else}}
+    Manage Links
+  {{/if}}
+</button>
+
+{{#if hasLoaded}}
+  <p>Show Links...</p>
+{{/if}}

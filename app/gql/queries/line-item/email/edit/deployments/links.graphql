@@ -1,0 +1,33 @@
+query EditEmailLineItemDeploymentLinks($input: ModelIdInput!) {
+  emailLineItem(input: $input) {
+    id
+    urlGroups {
+      id
+      url {
+        id
+        title
+        values {
+          resolved
+        }
+      }
+      deploymentGroups {
+        deployment {
+          id
+          name
+        }
+        sendGroups {
+          id
+          active
+          send {
+            id
+            sentDate
+            subject
+            metrics {
+              sent
+            }
+          }
+        }
+      }
+    }
+  }
+}
