@@ -1,5 +1,21 @@
 import Route from '@ember/routing/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import ListRouteMixin from 'leads-manage/mixins/list-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+import query from 'leads-manage/gql/queries/line-item/list';
+import search from 'leads-manage/gql/queries/line-item/search';
+
+export default Route.extend(ListRouteMixin, {
+  /**
+   *
+   * @param {object} params
+   */
+  model({ first, sortBy, ascending, phrase, searchType, searchBy }) {
+    return this.getResults({
+      query,
+      queryKey: 'allLineItems',
+    }, {
+      search,
+      searchKey: 'searchLineItems',
+    }, { first, sortBy, ascending, phrase, searchType, searchBy });
+  },
 });

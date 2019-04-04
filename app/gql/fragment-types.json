@@ -1,1 +1,1 @@
-{"__schema":{"types":[{"kind":"UNION","name":"BehaviorContentQueryItem","possibleTypes":[{"name":"BehaviorTaxonomy"},{"name":"BehaviorSection"},{"name":"BehaviorCompany"}]}]}}
+{"__schema":{"types":[{"kind":"INTERFACE","name":"LineItem","possibleTypes":[{"name":"EmailLineItem"}]},{"kind":"UNION","name":"BehaviorContentQueryItem","possibleTypes":[{"name":"BehaviorTaxonomy"},{"name":"BehaviorSection"},{"name":"BehaviorCompany"}]}]}}
