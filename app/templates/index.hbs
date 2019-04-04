@@ -4,12 +4,144 @@
 
 {{beta-feature}}
 
-<div class="card model-form">
-  <div class="card-header"></div>
-  <div class="card-body">
-    {{!-- {{ partial "campaign/form" }} --}}
+
+{{#fetch-more
+  query=observable
+  edges=model.edges
+  hasNextPage=model.pageInfo.hasNextPage
+  endCursor=model.pageInfo.endCursor
+  on-fetch-start=(route-action "showLoading")
+  on-fetch-end=(route-action "hideLoading")
+  resultKey=resultKey as |fetch|
+}}
+  {{#each fetch.nodes as |item|}}
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4>
+          {{#if (eq item.type "email")}}
+            {{entypo-icon "mail"}}
+          {{/if}}
+          {{item.order.customer.name}}
+          &ndash;
+          {{#link-to "order.edit" item.order.id}}{{item.order.name}}{{/link-to}}
+          &ndash;
+          {{#link-to "order.edit.line-items.email.edit" item.order.id item.id}}{{item.name}}{{/link-to}}
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <h5 class="mb-2">
+            {{line-item-status status=item.status}}
+          </h5>
+          <p>Rep: {{item.order.salesRep.givenName}} {{item.order.salesRep.familyName}}</p>
+
+          {{line-item-date futureLabel="Starts" pastLabel="Started" date=item.range.start}}
+          {{line-item-date class="mb-2" futureLabel="Ends" pastLabel="Ended" date=item.range.end}}
+        </div>
+        {{#line-item-progress class="row" lineItemId=item.id as |progress|}}
+          <div class="col-sm-6 col-xl-3 mb-4">
+            {{dashboard/data-card
+              icon="hair-cross"
+              title="Goal"
+              format="0,0"
+              value=item.requiredLeads
+              color="primary"
+            }}
+          </div>
+          <div class="col-sm-6 col-xl-3 mb-4">
+            {{dashboard/data-card
+              icon="credit"
+              title="Value"
+              value=item.totalValue
+              format="$0,0.[00]"
+              secondaryValue=item.cpl
+              secondaryFormat="$0,0.[00]"
+              secondarySuffix="CPL"
+              color="info"
+            }}
+          </div>
+          <div class="col-sm-6 col-xl-3 mb-4">
+            {{dashboard/data-card
+              isLoading=progress.isActionRunning
+              icon="gauge"
+              title="% Fulfilled"
+              format="0.[0]%"
+              secondaryFormat="0,0"
+              value=progress.qualified.rate
+              secondaryValue=progress.qualified.total
+              secondarySuffix="Leads"
+              color="success"
+            }}
+          </div>
+          <div class="col-sm-6 col-xl-3 mb-4">
+            {{dashboard/data-card
+              isLoading=progress.isActionRunning
+              icon="block"
+              title="Avg. Scrub Rate"
+              format="0.[0]%"
+              secondaryFormat="0,0"
+              value=progress.scrubbed.rate
+              secondaryValue=progress.scrubbed.total
+              secondarySuffix="Leads"
+              color="warning"
+            }}
+          </div>
+        {{/line-item-progress}}
+        <p class="mb-0 text-muted">
+          Notes: {{#if item.notes}}{{item.notes}}{{else}}(none){{/if}}
+        </p>
+      </div>
+    </div>
+  {{/each}}
+{{/fetch-more}}
+
+
+
+{{!--
+{{#fetch-more
+  query=observable
+  edges=model.edges
+  hasNextPage=model.pageInfo.hasNextPage
+  endCursor=model.pageInfo.endCursor
+  on-fetch-start=(route-action "showLoading")
+  on-fetch-end=(route-action "hideLoading")
+  resultKey=resultKey as |fetch|
+}}
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
+    {{#each fetch.nodes as |item|}}
+      {{partial (concat "order/edit/line-items/" item.type "/list-item")}}
+    {{/each}}
+  </ul>
+
+  <div class="card-footer border-0">
+    {{#if fetch.hasNextPage}}
+      <button class="btn btn-primary btn-lg" disabled={{fetch.isFetching}} {{action fetch.actions.loadMore}}>
+        {{entypo-icon "download"}} {{#if fetch.isFetching}}Loading...{{else}}Load More{{/if}}
+      </button>
+    {{/if}}
   </div>
-  <div class="card-footer">
-    {{!-- {{model-save-button disabled=isActionRunning}} --}}
+
+{{/fetch-more}}
+
+<div class="btn-group dropup fixed-bottom create">
+  <button type="button" title="Create Line Item" class="btn btn-lg btn-success float-right dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{entypo-icon "plus"}}{{entypo-icon "list"}}
+  </button>
+  <div class="dropdown-menu">
+    {{#link-to "order.edit.line-items.email.create" class="dropdown-item d-flex justify-content-between"}}
+      Email Line Item
+      {{entypo-icon "mail"}}
+    {{/link-to}}
+    {{#link-to "order.edit.line-items.form.create" class="dropdown-item d-flex justify-content-between"}}
+      Form Line Item
+      {{entypo-icon "text-document"}}
+    {{/link-to}}
+    {{#link-to "order.edit.line-items.video.create" class="dropdown-item d-flex justify-content-between"}}
+      Video Line Item
+      {{entypo-icon "video"}}
+    {{/link-to}}
   </div>
 </div>
+
+{{outlet}} --}}
