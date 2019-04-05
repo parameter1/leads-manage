@@ -11,6 +11,7 @@ export default Route.extend(RouteQueryManager, {
    */
   async model({ first, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
+    controller.set('lineitem', this.modelFor('reports.line-items'));
 
     const hash = this.modelFor('reports.line-items').get('hash');
     const pagination = { first };
