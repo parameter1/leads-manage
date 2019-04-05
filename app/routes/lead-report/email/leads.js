@@ -9,7 +9,7 @@ export default Route.extend(RouteQueryManager, {
    *
    * @param {object} params
    */
-  model({ first, sortBy, ascending }) {
+  async model({ first, sortBy, ascending }) {
     const controller = this.controllerFor(this.get('routeName'));
 
     controller.set('campaign', this.modelFor('campaign.edit'));
@@ -21,12 +21,12 @@ export default Route.extend(RouteQueryManager, {
     const variables = { hash, pagination, sort };
     if (!sortBy) delete variables.sort.field;
 
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailIdentities')
-      .then((result) => {
-        controller.set('observable', getObservable(result));
-        return result;
-      })
-      .catch(e => this.get('graphErrors').show(e))
-    ;
+    try {
+      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailIdentities');
+      controller.set('observable', getObservable(result));
+      return result;
+    } catch (e) {
+      this.get('graphErrors').show(e)
+    }
   },
 });
