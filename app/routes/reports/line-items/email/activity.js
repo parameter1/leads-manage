@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { getObservable } from 'ember-apollo-client';
 import { RouteQueryManager } from 'ember-apollo-client';
 
-import query from 'leads-manage/gql/queries/lead-report/email-activity';
+import query from 'leads-manage/gql/queries/reports/line-items/email/activity';
 
 export default Route.extend(RouteQueryManager, {
   /**
@@ -12,13 +12,13 @@ export default Route.extend(RouteQueryManager, {
   async model() {
     const controller = this.controllerFor(this.get('routeName'));
 
-    controller.set('campaign', this.modelFor('lead-report'));
+    controller.set('lineitem', this.modelFor('reports.line-items'));
 
-    const hash = this.modelFor('lead-report').get('hash');
+    const hash = this.modelFor('reports.line-items').get('hash');
     const variables = { hash };
 
     try {
-      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailActivity');
+      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'emailLineItemActivityReport');
       controller.set('observable', getObservable(result));
       return result;
     } catch(e) {

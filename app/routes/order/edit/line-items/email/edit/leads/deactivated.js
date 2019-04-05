@@ -37,7 +37,7 @@ export default Route.extend(RouteSearchMixin, {
     id_searchType: searchType,
     id_searchBy: searchBy,
   }) {
-    const id = this.modelFor('order.edit.line-items.email.edit');
+    const { id } = this.modelFor('order.edit.line-items.email.edit');
     const vars = { input: { id } };
 
     return this.getResults({

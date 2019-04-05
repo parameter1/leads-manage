@@ -5,6 +5,7 @@ query AllLineItems($input: AllLineItemsInput, $pagination: PaginationInput, $sor
     edges {
       node {
         id
+        hash
         name
         notes
         type

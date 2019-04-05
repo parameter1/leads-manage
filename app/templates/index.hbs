@@ -91,6 +91,11 @@
           Notes: {{#if item.notes}}{{item.notes}}{{else}}(none){{/if}}
         </p>
       </div>
+      <div class="card-footer text-align-right">
+        {{#link-to (concat "reports.line-items." item.type) item.hash class="btn btn-info" role="button"}}
+          {{entypo-icon "pie-chart"}} Report
+        {{/link-to}}
+      </div>
     </div>
   {{/each}}
 {{/fetch-more}}

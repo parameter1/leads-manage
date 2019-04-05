@@ -1,5 +1,6 @@
 fragment LineItemListFragment on LineItem {
   id
+  hash
   type
   name
   notes
