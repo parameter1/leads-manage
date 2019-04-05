@@ -5,4 +5,13 @@ export default Route.extend({
     this._super(...arguments);
     this.controllerFor('application').set('displayNav', false);
   },
+
+  actions: {
+    willTransition(transition) {
+      const { targetName } = transition;
+      if (targetName.indexOf('reports') !== 0) {
+        this.controllerFor('application').set('displayNav', true);
+      }
+    },
+  },
 });

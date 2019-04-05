@@ -1,0 +1,24 @@
+#import 'leads-manage/gql/fragments/email-send-metrics'
+
+query EmailLineItemReportMetrics($hash: String!, $sort: EmailLineItemMetricsReportSortInput!) {
+  emailLineItemMetricsReport(hash: $hash, sort: $sort) {
+    sends {
+      send {
+        id
+        url
+        name
+        metrics {
+          ...EmailSendMetricsFragment
+        }
+        sentDate
+      }
+      identities
+    }
+    totals {
+      identities
+      metrics {
+        ...EmailSendMetricsFragment
+      }
+    }
+  }
+}
