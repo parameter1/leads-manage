@@ -9,7 +9,7 @@ export default Route.extend(RouteQueryManager, {
    *
    * @param {object} params
    */
-  model() {
+  async model() {
     const controller = this.controllerFor(this.get('routeName'));
 
     controller.set('campaign', this.modelFor('lead-report'));
@@ -17,12 +17,12 @@ export default Route.extend(RouteQueryManager, {
     const hash = this.modelFor('lead-report').get('hash');
     const variables = { hash };
 
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailActivity')
-      .then((result) => {
-        controller.set('observable', getObservable(result));
-        return result;
-      })
-      .catch(e => this.get('graphErrors').show(e))
-    ;
+    try {
+      const result = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailActivity');
+      controller.set('observable', getObservable(result));
+      return result;
+    } catch(e) {
+      this.get('graphErrors').show(e);
+    }
   },
 });
