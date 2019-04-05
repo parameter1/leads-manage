@@ -1,0 +1,15 @@
+query LineItemReportHash($input: LineItemByHashInput!) {
+  lineItemByHash(input: $input) {
+    id
+    name
+    type
+    order {
+      id
+      name
+      customer {
+        id
+        name
+      }
+    }
+  }
+}

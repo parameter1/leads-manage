@@ -1,5 +1,6 @@
 query EditEmailLineItem($input: ModelIdInput!) {
   emailLineItem(input: $input) {
     id
+    hash
   }
 }
