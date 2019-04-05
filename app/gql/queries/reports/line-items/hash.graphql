@@ -16,5 +16,8 @@ query LineItemReportHash($input: LineItemByHashInput!) {
       start
       end
     }
+    ... on EmailLineItem {
+      excludedFields
+    }
   }
 }
