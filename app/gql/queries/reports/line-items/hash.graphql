@@ -11,5 +11,9 @@ query LineItemReportHash($input: LineItemByHashInput!) {
         name
       }
     }
+    range {
+      start
+      end
+    }
   }
 }

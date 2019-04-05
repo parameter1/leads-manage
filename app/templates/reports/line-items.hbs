@@ -1,1 +1,8 @@
-{{outlet}}
+<div class="row my-4">
+  <div class="col">
+    <h2>{{model.order.name}} &ndash; {{model.name}}</h2>
+    <h3>{{model.order.customer.name}}</h3>
+    <h4>{{moment-format model.range.start "MMM Do, YYYY"}} &ndash; {{moment-format model.range.end "MMM Do, YYYY"}}</h4>
+    {{outlet}}
+  </div>
+</div>
