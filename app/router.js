@@ -12,6 +12,9 @@ Router.map(function() {
     this.route('line-items', { path: 'line-items/:hash' }, function() {
       this.route('email', function() {
         this.route('metrics', { path: '/' });
+        this.route('leads');
+        this.route('activity');
+        this.route('export');
       })
     });
   });
