@@ -7,4 +7,10 @@
   </ul>
 </div>
 {{progress-bar show=isLoading class="progress-md"}}
+<div class="card-body pb-0">
+  <a class="btn btn-lg btn-success mb-1" role="button" href="/export/line-item/{{model.hash}}/email/leads">{{entypo-icon "download"}} Download Email Leads</a>
+  <small class="text-muted d-block">
+    Note: Metrics reflect total clicks. Employee clicks for testing purposes and bad email addresses are removed from customer lead reports.
+  </small>
+</div>
 {{outlet}}
