@@ -2,7 +2,10 @@
   <div class="col">
     <h2>{{model.order.name}} &ndash; {{model.name}}</h2>
     <h3>{{model.order.customer.name}}</h3>
-    <h4>{{moment-format model.range.start "MMM Do, YYYY"}} &ndash; {{moment-format model.range.end "MMM Do, YYYY"}}</h4>
-    {{outlet}}
+    <h4 class="mb-3">{{moment-format model.range.start "MMM Do, YYYY"}} &ndash; {{moment-format model.range.end "MMM Do, YYYY"}}</h4>
+
+    <div class="card model-form">
+      {{outlet}}
+    </div>
   </div>
 </div>

@@ -38,7 +38,7 @@
   {{/modal.header}}
   {{outlet}}
   {{#bs-modal/footer}}
-    {{#link-to "reports.line-items" model.hash class="btn btn-lg btn-info" role="button"}}
+    {{#link-to (concat "reports.line-items." item.type) model.hash class="btn btn-lg btn-info" role="button"}}
       {{entypo-icon "pie-chart"}} Report
     {{/link-to}}
   {{/bs-modal/footer}}

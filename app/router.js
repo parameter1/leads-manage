@@ -10,7 +10,9 @@ Router.map(function() {
   this.route('login');
   this.route('reports', function() {
     this.route('line-items', { path: 'line-items/:hash' }, function() {
-      this.route('metrics', { path: '/' });
+      this.route('email', function() {
+        this.route('metrics', { path: '/' });
+      })
     });
   });
   this.route('lead-report', { path: 'lead-report/:hash' }, function() {
