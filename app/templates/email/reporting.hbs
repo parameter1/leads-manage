@@ -37,15 +37,14 @@
                         <th>Category</th>
                         <th># Sent</th>
                         <th>Total Sent</th>
-                        <th>Total Delivered</th>
-                        <th>Total Unique Opens</th>
-                        <th>Total Unique Clicks</th>
                         <th>Avg. Sent</th>
                         <th>Avg. Delivered</th>
-                        <th>Avg. Unique Opens</th>
-                        <th>Avg. Unique Clicks</th>
                         <th>Avg. Delivery Rate</th>
+                        <th>Total Unique Opens</th>
+                        <th>Avg. Unique Opens</th>
                         <th>Avg. Unq Open Rate</th>
+                        <th>Total Unique Clicks</th>
+                        <th>Avg. Unique Clicks</th>
                         <th>Avg. Unq CTR</th>
                         <th>Avg. Unq CTOR</th>
                       </tr>
@@ -59,15 +58,14 @@
                           <td>{{c.name}}</td>
                           <td>{{c.deploymentCount}}</td>
                           <td>{{format-number c.totalSent format="0,0"}}</td>
-                          <td>{{format-number c.totalDelivered format="0,0"}}</td>
-                          <td>{{format-number c.totalUniqueOpens format="0,0"}}</td>
-                          <td>{{format-number c.totalUniqueClicks format="0,0"}}</td>
                           <td>{{format-number c.avgSent format="0,0"}}</td>
                           <td>{{format-number c.avgDelivered format="0,0"}}</td>
-                          <td>{{format-number c.avgUniqueOpens format="0,0"}}</td>
-                          <td>{{format-number c.avgUniqueClicks format="0,0"}}</td>
                           <td>{{format-number c.avgDeliveryRate format="00.0%"}}</td>
+                          <td>{{format-number c.totalUniqueOpens format="0,0"}}</td>
+                          <td>{{format-number c.avgUniqueOpens format="0,0"}}</td>
                           <td>{{format-number c.avgUniqueOpenRate format="00.0%"}}</td>
+                          <td>{{format-number c.totalUniqueClicks format="0,0"}}</td>
+                          <td>{{format-number c.avgUniqueClicks format="0,0"}}</td>
                           <td>{{format-number c.avgUniqueClickToDeliveredRate format="00.0%"}}</td>
                           <td>{{format-number c.avgUniqueClickToOpenRate format="00.0%"}}</td>
                         </tr>
