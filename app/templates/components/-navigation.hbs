@@ -8,13 +8,21 @@
     <ul class="navbar-nav mr-auto">
       {{#if user.isAdmin}}
         <li class="nav-item">
+          {{#link-to "dashboard" class="nav-link"}}{{entypo-icon "blackboard"}} Dashboard{{/link-to}}
+        </li>
+      {{/if}}
+
+      {{#if user.isAdmin}}
+        <li class="nav-item">
           {{#link-to "customer" class="nav-link"}}{{entypo-icon "v-card"}} Customers{{/link-to}}
         </li>
       {{/if}}
 
-      <li class="nav-item">
-        {{#link-to "order" class="nav-link"}}{{entypo-icon "credit"}} Orders{{/link-to}}
-      </li>
+      {{#if user.isAdmin}}
+        <li class="nav-item">
+          {{#link-to "order" class="nav-link"}}{{entypo-icon "credit"}} Orders{{/link-to}}
+        </li>
+      {{/if}}
 
       <li class="nav-item">
         {{#link-to "campaign" class="nav-link"}}{{entypo-icon "calendar"}} Campaigns{{/link-to}}

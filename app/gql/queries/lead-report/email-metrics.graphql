@@ -13,9 +13,14 @@ query LeadReportEmailMetrics($hash: String!, $sort: ReportEmailMetricsSortInput!
         sentDate
       }
       identities
+      clicks
+      advertiserClickRate
     }
     totals {
       identities
+      sends
+      clicks
+      advertiserClickRate
       metrics {
         ...EmailSendMetricsFragment
       }

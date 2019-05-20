@@ -25,4 +25,9 @@ export default Route.extend(RouteQueryManager, {
 
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'reportEmailMetrics');
   },
+
+  setupController(controller, model) {
+    controller.set('campaign', this.modelFor('lead-report'));
+    this._super(controller, model);
+  },
 });

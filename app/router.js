@@ -8,6 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('login');
+  this.route('dashboard');
   this.route('reports', function() {
     this.route('line-items', { path: 'line-items/:hash' }, function() {
       this.route('email', function() {
