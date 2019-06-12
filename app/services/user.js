@@ -27,6 +27,15 @@ export default Service.extend(ObjectQueryManager, {
     return this.get('role') === 'Administrator';
   }),
 
+  isMember: computed('role', function() {
+    return this.get('role') === 'Member';
+  }),
+
+  isAtLeastMember: computed('isAdmin', 'isMember', function() {
+    if (this.get('isAdmin')) return true;
+    return this.get('isMember');
+  }),
+
   async logout() {
     const loader = this.get('loadingDisplay');
     loader.show();
