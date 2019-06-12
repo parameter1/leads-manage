@@ -18,7 +18,7 @@
         </li>
       {{/if}}
 
-      {{#if user.isAdmin}}
+      {{#if user.isAtLeastMember}}
         <li class="nav-item">
           {{#link-to "order" class="nav-link"}}{{entypo-icon "credit"}} Orders{{/link-to}}
         </li>
