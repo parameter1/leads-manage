@@ -1,6 +1,9 @@
 language: node_js
 node_js: "10.13"
 cache: yarn
+matrix:
+  allow_failures:
+  - node_js: "10.13"
 deploy:
   -
     provider: script
