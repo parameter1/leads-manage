@@ -16,6 +16,18 @@ export default Controller.extend(ComponentQueryManager, LoadingMixin, {
     return false;
   }),
 
+  start: computed('range.start', function() {
+    const start = this.get('range.start');
+    if (!start) return start;
+    return start.valueOf();
+  }),
+
+  end: computed('range.end', function() {
+    const end = this.get('range.end');
+    if (!end) return end;
+    return end.valueOf();
+  }),
+
   init() {
     this._super(...arguments);
     this.set('range', {
