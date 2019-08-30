@@ -48,19 +48,20 @@
       {{/if}}
 
 
-      {{#if user.isAdmin}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navEmailDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{entypo-icon "email"}} Email
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navEmailDropdown">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navEmailDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{entypo-icon "email"}} Email
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navEmailDropdown">
+          {{#if user.isAdmin}}
             {{#link-to "email.send" class="dropdown-item d-flex justify-content-between"}}Sends {{entypo-icon "paper-plane"}}{{/link-to}}
             {{#link-to "email.deployment" class="dropdown-item d-flex justify-content-between"}}Deployments {{entypo-icon "mail"}}{{/link-to}}
             {{#link-to "email.category" class="dropdown-item d-flex justify-content-between"}}Categories {{entypo-icon "tag"}}{{/link-to}}
-            {{#link-to "email.reporting" class="dropdown-item d-flex justify-content-between"}}Reporting {{entypo-icon "bar-graph"}}{{/link-to}}
-          </div>
-        </li>
-      {{/if}}
+          {{/if}}
+          {{#link-to "email.reporting" class="dropdown-item d-flex justify-content-between"}}Reporting {{entypo-icon "bar-graph"}}{{/link-to}}
+        </div>
+      </li>
+
       {{#if user.isAdmin}}
         <li class="nav-item">
           {{#link-to "tag" class="nav-link"}}{{entypo-icon "price-tag"}} Tags{{/link-to}}
