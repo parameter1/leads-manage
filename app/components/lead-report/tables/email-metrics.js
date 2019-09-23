@@ -10,8 +10,9 @@ export default Component.extend({
   displayDelivered: computed('displayDeliveredMetrics', 'sends.@each.send.isNewsletter', function() {
     if (this.get('displayDeliveredMetrics')) return true;
     const sends = this.get('sends');
-    const newsletters = sends.map(({ send }) => send.isNewsletter);
-    return !newsletters.every(v => v === true);
+    const hasNewsletters = sends.map(({ send }) => send.isNewsletter).some(v => v === true);
+    if (hasNewsletters) return false;
+    return true;
   }),
 
   init() {
