@@ -14,6 +14,7 @@ fragment IdentityViewFragment on Identity {
   attributes
   fieldCount
   inactive
+  domainExcluded
   inactiveCustomers {
     id
   }

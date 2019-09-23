@@ -16,16 +16,17 @@
       {{/if}}
       {{#if user.isAdmin}}
         <p class="card-text mt-3 mb-1">
-          {{identity-card/badge inactive=item.inactive}}
+          {{identity-card/badge inactive=item.inactive domainExcluded=item.domainExcluded}}
         </p>
         <div class="dropup align-self-end">
-          <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-info dropdown-toggle" disabled={{item.domainExcluded}} type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{entypo-icon "cog"}}
           </button>
           <div class="dropdown-menu dropdown-menu-right">
+            {{log (or item.domainExcluded item.inactive)}}
             {{identity-card/action
               labelSuffix="Globally"
-              inactive=item.inactive
+              inactive=(or item.domainExcluded item.inactive)
               on-click=(action "toggleGlobalActivation" item)
             }}
           </div>

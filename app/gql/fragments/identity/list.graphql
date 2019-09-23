@@ -8,6 +8,7 @@ fragment IdentityListFragment on Identity {
   createdAt
   updatedAt
   inactive
+  domainExcluded
   externalSource {
     identifier
     namespace
