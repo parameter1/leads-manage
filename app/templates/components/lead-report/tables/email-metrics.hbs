@@ -2,7 +2,9 @@
   <tr>
     <th>Name {{lead-report/tables/sort-field key="name" sortBy=sortBy ascending=ascending reset=false}}</th>
     <th>Date {{lead-report/tables/sort-field key="sentDate" sortBy=sortBy ascending=ascending reset=false}}</th>
-    {{!-- <th>Delivered {{lead-report/tables/sort-field key="metrics.delivered" sortBy=sortBy ascending=ascending reset=false}}</th> --}}
+    {{#if displayDelivered}}
+      <th>Delivered {{lead-report/tables/sort-field key="metrics.delivered" sortBy=sortBy ascending=ascending reset=false}}</th>
+    {{/if}}
     <th>Unique Opens {{lead-report/tables/sort-field key="metrics.uniqueOpens" sortBy=sortBy ascending=ascending reset=false}}</th>
     <th>Unique Clicks {{lead-report/tables/sort-field key="metrics.uniqueClicks" sortBy=sortBy ascending=ascending reset=false}}</th>
     <th>Open Rate</th>
@@ -24,7 +26,9 @@
         {{/if}}
       </td>
       <td>{{moment-format row.send.sentDate "MMM Do, YYYY @ h:mma"}}</td>
-      {{!-- <td>{{ format-number row.send.metrics.delivered format="0,0" }}</td> --}}
+      {{#if displayDelivered}}
+        <td>{{ format-number row.send.metrics.delivered format="0,0" }}</td>
+      {{/if}}
       <td>{{ format-number row.send.metrics.uniqueOpens format="0,0" }}</td>
       <td>{{ format-number row.send.metrics.uniqueClicks format="0,0" }}</td>
       <td>{{ format-number row.send.metrics.openRate format="00.0%" }}</td>
@@ -40,7 +44,9 @@
   <tr>
     <th>Total Emails: {{ format-number totals.sends format="0,0" }}</th>
     <th>&nbsp;</th>
-    {{!-- <th>{{ format-number totals.metrics.delivered format="0,0" }}</th> --}}
+    {{#if displayDelivered}}
+      <th>{{ format-number totals.metrics.delivered format="0,0" }}</th>
+    {{/if}}
     <th>{{ format-number totals.metrics.uniqueOpens format="0,0" }}</th>
     <th>{{ format-number totals.metrics.uniqueClicks format="0,0" }}</th>
     <th>{{ format-number totals.metrics.openRate format="00.0%" }}</th>

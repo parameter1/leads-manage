@@ -27,6 +27,7 @@
         <h5>Statistics per Email</h5>
         <div class="table-responsive">
           {{lead-report/tables/email-metrics
+            displayDeliveredMetrics=campaign.email.displayDeliveredMetrics
             sends=model.sends
             totals=model.totals
             sortBy=sortBy

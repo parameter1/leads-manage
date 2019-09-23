@@ -11,6 +11,7 @@ query LeadReportEmailMetrics($hash: String!, $sort: ReportEmailMetricsSortInput!
           ...EmailSendMetricsFragment
         }
         sentDate
+        isNewsletter
       }
       identities
       clicks
