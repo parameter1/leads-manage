@@ -8,6 +8,7 @@ fragment EmailCampaignFragment on EmailCampaign {
   urlCount
   excludeFields
   restrictToSentDate
+  displayDeliveredMetrics
   allowedLinkTypes
   identityFilters {
     id
