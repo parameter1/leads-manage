@@ -48,6 +48,13 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                {{input type="checkbox" checked=model.displayDeliveredMetrics class="custom-control-input" id="delivered-metrics" change=(action "updateDisplayDeliveredMetrics")}}
+                <label class="custom-control-label" for="delivered-metrics">Include delivered metrics?</label>
+              </div>
+            </div>
+
             <div class="d-flex justify-content-between">
               {{#link-to "campaign.edit.email.links" class="btn btn-primary" role="button"}}
                 {{entypo-icon "link"}} Manage Links ({{model.urlCount}})

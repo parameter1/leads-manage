@@ -9,6 +9,7 @@ import emailCampaignExcludedFields from 'leads-manage/gql/mutations/campaign/ema
 import emailCampaignIdentityFilters from 'leads-manage/gql/mutations/campaign/email/identity-filters';
 import emailCampaignStatus from 'leads-manage/gql/mutations/campaign/email/status';
 import emailCampaignRestrictSentDate from 'leads-manage/gql/mutations/campaign/email/restrict-sent-date';
+import emailCampaignDisplayDeliveredMetrics from 'leads-manage/gql/mutations/campaign/email/display-delivered-metrics';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
@@ -155,6 +156,27 @@ export default Controller.extend(FormMixin, {
       try {
         await this.get('apollo').mutate({ mutation: emailCampaignRestrictSentDate, variables }, 'emailCampaignRestrictSentDate');
         this.get('notify').info('Campaign sent date rules set successfully.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    /**
+     *
+     */
+    async updateDisplayDeliveredMetrics(event) {
+      this.startAction();
+      const { target } = event;
+      const { checked } = target;
+      const id = this.get('model.id');
+      const input = { id, displayDeliveredMetrics: checked };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: emailCampaignDisplayDeliveredMetrics, variables }, 'emailCampaignDisplayDeliveredMetrics');
+        this.get('notify').info('Campaign delivered metrics rule successfully applied.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

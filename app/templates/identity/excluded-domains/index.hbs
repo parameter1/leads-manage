@@ -1,22 +1,11 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item active=true}}{{entypo-icon "users"}} Leads{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{entypo-icon "email"}} Excluded Email Domains{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
 <div class="row">
   <div class="col">
     <div class="card list-index">
-      <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-          <li class="nav-item">
-            {{#link-to "identity.excluded-domains.index" class="nav-link"}}
-              Manage Excluded Domains
-            {{/link-to}}
-          </li>
-        </ul>
-      </div>
-      <div class="card-body">
-        {{partial "list-controls"}}
-      </div>
+      <div class="card-header"></div>
 
       {{#fetch-more
         query=observable
@@ -28,9 +17,9 @@
         resultKey=resultKey as |fetch|
       }}
         <ul class="list-group list-group-flush">
-          <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
+          <li class="list-group-item"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
           {{#each fetch.nodes as |item|}}
-            {{partial "identity/list-item"}}
+            {{partial "identity/excluded-domains/list-item"}}
           {{/each}}
         </ul>
 
@@ -47,3 +36,5 @@
     </div>
   </div>
 </div>
+
+{{model-create-button icon="email" title="Create Excluded Email Domain" click=(route-action "transitionTo" "identity.excluded-domains.create")}}

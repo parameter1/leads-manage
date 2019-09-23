@@ -13,6 +13,7 @@ fragment CampaignHashFragment on Campaign {
     id
     enabled
     excludeFields
+    displayDeliveredMetrics
   }
   forms {
     id

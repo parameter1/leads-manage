@@ -2,7 +2,7 @@
   <div class="card-body d-flex flex-column">
     {{#if canEdit}}
       <p class="card-text mb-1">
-        {{identity-card/badge inactive=_isInactive}}
+        {{identity-card/badge inactive=_isInactive domainExcluded=identity.domainExcluded}}
       </p>
     {{/if}}
     <small class="card-text text-muted">{{ identity.emailAddress }}</small>
@@ -18,7 +18,7 @@
 
     {{#if canEdit}}
       <div class="dropup mt-auto align-self-end">
-        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-info dropdown-toggle" disabled={{identity.domainExcluded}} type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{entypo-icon "cog"}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">

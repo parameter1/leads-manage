@@ -1,11 +1,19 @@
 import Component from '@ember/component';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'table',
   classNames: ['table', 'table-striped', 'table-sm'],
 
   title: null,
+
+  displayDelivered: computed('displayDeliveredMetrics', 'sends.@each.send.isNewsletter', function() {
+    if (this.get('displayDeliveredMetrics')) return true;
+    const sends = this.get('sends');
+    const hasNewsletters = sends.map(({ send }) => send.isNewsletter).some(v => v === true);
+    if (hasNewsletters) return false;
+    return true;
+  }),
 
   init() {
     this._super(...arguments);

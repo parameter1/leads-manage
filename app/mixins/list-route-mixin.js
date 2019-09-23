@@ -30,7 +30,7 @@ export default Mixin.create(RouteSearchMixin, {
    *
    * @param {object} params
    */
-  async getResults({ query, queryKey, queryVars }, { search, searchKey, searchVars }, { first, sortBy, ascending, phrase, searchType, searchBy }) {
+  async getResults({ query, queryKey, queryVars } = {}, { search, searchKey, searchVars } = {}, { first, sortBy, ascending, phrase, searchType, searchBy } = {}) {
     const pagination = { first };
     if (phrase) {
       return this.search({
