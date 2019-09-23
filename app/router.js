@@ -55,6 +55,10 @@ Router.map(function() {
   });
   this.route('identity', function() {
     this.route('view', { path: ':id' });
+    this.route('excluded-domains', function() {
+      this.route('edit', { path: ':excluded_domain_id' });
+      this.route('create');
+    })
   });
   this.route('order', function() {
     this.route('edit', { path: ':id' }, function() {
