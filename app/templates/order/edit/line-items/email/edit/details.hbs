@@ -52,6 +52,17 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox">
+              {{input type="checkbox" checked=model.displayOnDashboard class="custom-control-input" id="display-on-dashboard" change=(action "setDisplayOnDashboard")}}
+              <label class="custom-control-label" for="display-on-dashboard">Display on Dashboard?</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="col-lg-6 col-xl-5 d-flex justify-content-center">
       <div class="form-group mb-0">

@@ -5,6 +5,7 @@ query EditEmailLineItemDetails($input: ModelIdInput!) {
     requiredLeads
     totalValue
     notes
+    displayOnDashboard
     range {
       start
       end

@@ -1,0 +1,7 @@
+
+mutation EmailLineItemDisplayOnDashboard($input: EmailLineItemDisplayOnDashboardInput!) {
+  emailLineItemDisplayOnDashboard(input: $input) {
+    id
+    displayOnDashboard
+  }
+}

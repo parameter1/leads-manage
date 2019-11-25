@@ -9,6 +9,7 @@ import notesMutation from 'leads-manage/gql/mutations/line-item/email/notes';
 import requiredLeadsMutation from 'leads-manage/gql/mutations/line-item/email/required-leads';
 import totalValueMutation from 'leads-manage/gql/mutations/line-item/email/total-value';
 import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-range';
+import displayOnDashboardMutation from 'leads-manage/gql/mutations/line-item/email/display-on-dashboard';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
@@ -87,6 +88,22 @@ export default Controller.extend(FormMixin, {
         const variables = { input };
         await this.get('apollo').mutate({ mutation: totalValueMutation, variables }, 'emailLineItemTotalValue');
         this.get('notify').info('Total value saved.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    async setDisplayOnDashboard(event) {
+      this.startAction();
+      try {
+        const { checked } = event.target;
+        const id = this.get('model.id');
+        const input = { id, displayOnDashboard: checked };
+        const variables = { input };
+        await this.get('apollo').mutate({ mutation: displayOnDashboardMutation, variables }, 'emailLineItemName');
+        this.get('notify').info('Dashboard display saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
