@@ -16,6 +16,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         'phoneNumber',
       ],
       identityFilters: [],
+      displayOnDashboard: true,
     }
   },
 

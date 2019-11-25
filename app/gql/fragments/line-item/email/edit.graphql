@@ -3,6 +3,7 @@ fragment EmailLineItemEditFragment on EmailLineItem {
   name
   notes
   status
+  displayOnDashboard
   requiredLeads
   totalValue
   cpl
