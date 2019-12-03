@@ -128,6 +128,9 @@ Router.map(function() {
     });
     this.route('reporting');
   });
+  this.route('video', function() {
+    this.route('edit', { path: ':id' });
+  });
   this.route('form', function() {
     this.route('edit', { path: ':id' }, function() {
       this.route('entries');
