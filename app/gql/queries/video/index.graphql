@@ -1,0 +1,18 @@
+
+#import 'leads-manage/gql/fragments/video/index'
+
+query VideoIndex($pagination: PaginationInput, $sort: VideoSortInput) {
+  allVideos(pagination: $pagination, sort: $sort) {
+    totalCount
+    edges {
+      node {
+        ...VideoIndexFragment
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
