@@ -64,6 +64,11 @@
 
       {{#if user.isAdmin}}
         <li class="nav-item">
+          {{#link-to "video" class="nav-link"}}{{entypo-icon "video-camera"}} Videos{{/link-to}}
+        </li>
+      {{/if}}
+      {{#if user.isAdmin}}
+        <li class="nav-item">
           {{#link-to "tag" class="nav-link"}}{{entypo-icon "price-tag"}} Tags{{/link-to}}
         </li>
       {{/if}}
