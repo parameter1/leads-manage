@@ -1,0 +1,63 @@
+{{#nav-breadcrumbs as |crumbs|}}
+  {{#crumbs.item}}{{#link-to "video.index"}}{{entypo-icon "video-camera"}} Videos{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
+{{/nav-breadcrumbs}}
+
+
+<div class="card model-form">
+  <div class="card-header">
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="form-source">Source</label>
+          {{input id="form-source" type="text" required=true value=model.externalSource.namespace disabled=true class="form-control"}}
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="form-identifier">Identifier</label>
+          {{input id="form-identifier"
+            type="text"
+            required=true
+            value=model.externalSource.identifier
+            disabled=true
+            class="form-control"
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group mb-0">
+          <label>Customer</label>
+          {{type-ahead
+            placeholder="Begin typing to find a customer..."
+            type="customer"
+            selected=model.customer
+            onChange=(action (mut model.customer))
+          }}
+          <small class="form-text text-muted">The customer to assign to this video.</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {{!-- <div class="card-footer d-flex justify-content-between">
+    {{model-save-button disabled=isActionRunning}}
+
+    <div class="btn-group btn pr-0">
+      {{confirm-button
+        icon="trash"
+        label="Delete"
+        class="btn-danger"
+        disabled=isActionRunning
+        onConfirm=(route-action "delete" model.id "form.index")
+      }}
+    </div>
+  </div> --}}
+</div>
