@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('login');
   this.route('dashboard', function() {
     this.route('completed');
+    this.route('archived');
   });
   this.route('reports', function() {
     this.route('line-items', { path: 'line-items/:hash' }, function() {
