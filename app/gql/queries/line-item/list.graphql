@@ -9,6 +9,7 @@ query AllLineItems($input: AllLineItemsInput, $pagination: PaginationInput, $sor
         name
         notes
         type
+        archived
         ... on EmailLineItem {
           order {
             id

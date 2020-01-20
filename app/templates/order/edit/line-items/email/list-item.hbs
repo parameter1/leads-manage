@@ -23,7 +23,7 @@
             ({{format-number item.cpl format="$0,0.[00]"}} CPL)
           </p>
           <p class="mb-1">
-            Display On Dashboard? {{#if item.displayOnDashboard}}<span class="text-success">Yes</span>{{else}}<span class="text-warning">No</span>{{/if}}
+            Archived? {{#if item.archived}}<span class="text-warning">Yes</span>{{else}}<span class="text-success">No</span>{{/if}}
           </p>
           <p class="mb-1 text-muted">
             Notes: {{#if item.notes}}{{item.notes}}{{else}}(none){{/if}}

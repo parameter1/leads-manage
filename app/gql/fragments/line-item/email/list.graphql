@@ -4,7 +4,7 @@ fragment EmailLineItemListFragment on EmailLineItem {
   name
   notes
   status
-  displayOnDashboard
+  archived
   requiredLeads
   totalValue
   cpl

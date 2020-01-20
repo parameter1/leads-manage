@@ -9,7 +9,7 @@ import notesMutation from 'leads-manage/gql/mutations/line-item/email/notes';
 import requiredLeadsMutation from 'leads-manage/gql/mutations/line-item/email/required-leads';
 import totalValueMutation from 'leads-manage/gql/mutations/line-item/email/total-value';
 import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-range';
-import displayOnDashboardMutation from 'leads-manage/gql/mutations/line-item/email/display-on-dashboard';
+import archivedMutation from 'leads-manage/gql/mutations/line-item/email/archived';
 
 export default Controller.extend(FormMixin, {
   apollo: inject(),
@@ -95,15 +95,15 @@ export default Controller.extend(FormMixin, {
       }
     },
 
-    async setDisplayOnDashboard(event) {
+    async setArchived(event) {
       this.startAction();
       try {
         const { checked } = event.target;
         const id = this.get('model.id');
-        const input = { id, displayOnDashboard: checked };
+        const input = { id, archived: checked };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: displayOnDashboardMutation, variables }, 'emailLineItemName');
-        this.get('notify').info('Dashboard display saved.');
+        await this.get('apollo').mutate({ mutation: archivedMutation, variables }, 'emailLineItemName');
+        this.get('notify').info('Archived flag saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
