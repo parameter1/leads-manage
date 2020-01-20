@@ -6,7 +6,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      {{#if user.isAdmin}}
+      {{#if user.isAtLeastMember}}
         <li class="nav-item">
           {{#link-to "dashboard" class="nav-link"}}{{entypo-icon "blackboard"}} Dashboard{{/link-to}}
         </li>
