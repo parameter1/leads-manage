@@ -10,7 +10,7 @@ export default Route.extend(ListRouteMixin, {
    * @param {object} params
    */
   model({ first, sortBy, ascending, phrase, searchType, searchBy }) {
-    const input = { dashboardStatus: 'archived' };
+    const input = { dashboardStatus: 'completed' };
     return this.getResults({
       query,
       queryKey: 'allLineItems',

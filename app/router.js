@@ -9,7 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login');
   this.route('dashboard', function() {
-    this.route('archive');
+    this.route('completed');
   });
   this.route('reports', function() {
     this.route('line-items', { path: 'line-items/:hash' }, function() {
