@@ -1,0 +1,17 @@
+<div class="card-body">
+  {{#fetch-more
+    query=observable
+    edges=model.edges
+    hasNextPage=model.pageInfo.hasNextPage
+    endCursor=model.pageInfo.endCursor
+    on-fetch-start=(route-action "showLoading")
+    on-fetch-end=(route-action "hideLoading")
+    resultKey=resultKey as |fetch|
+  }}
+    {{#each fetch.nodes as |item|}}
+      {{partial "dashboard/item"}}
+    {{else}}
+      No results found.
+    {{/each}}
+  {{/fetch-more}}
+</div>
