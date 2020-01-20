@@ -2,6 +2,7 @@ fragment LineItemListFragment on LineItem {
   id
   hash
   type
+  archived
   name
   notes
   updatedAt

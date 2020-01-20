@@ -74,9 +74,19 @@
       Notes: {{#if item.notes}}{{item.notes}}{{else}}(none){{/if}}
     </p>
   </div>
-  <div class="card-footer text-align-right">
+  <div class="card-footer d-flex justify-content-between">
     {{#link-to (concat "reports.line-items." item.type) item.hash class="btn btn-info" role="button"}}
       {{entypo-icon "pie-chart"}} Report
     {{/link-to}}
+
+    <div class="custom-control custom-checkbox">
+      {{confirm-button
+        icon="archive"
+        label=(if item.archived "Unarchive" "Archive")
+        class="btn-danger"
+        disabled=isActionRunning
+        onConfirm=(route-action "toggleLineItemArchive" item.id item.archived)
+      }}
+    </div>
   </div>
 </div>
