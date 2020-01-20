@@ -6,5 +6,5 @@ fragment LineItemListFragment on LineItem {
   notes
   updatedAt
   createdAt
-  displayOnDashboard
+  archived
 }
