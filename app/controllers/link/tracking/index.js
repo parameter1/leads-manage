@@ -50,6 +50,11 @@ export default Controller.extend(LoadingMixin, {
    */
   urlProcessor: inject(),
 
+  /**
+   * Whether to use the new tracking engine.
+   */
+  useNewTracking: false,
+
   init() {
     this._super(...arguments);
     this.set('results', []);
@@ -81,7 +86,7 @@ export default Controller.extend(LoadingMixin, {
     async createTrackedHtml() {
       this.showLoading();
       try {
-        const result = await this.get('urlProcessor').generateTrackedHtml(this.get('html'));
+        const result = await this.get('urlProcessor').generateTrackedHtml(this.get('html'), this.useNewTracking);
         this.set('trackedResult', result);
       } catch (e) {
         this.get('errorProcessor').show(e);

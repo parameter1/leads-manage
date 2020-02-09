@@ -39,8 +39,8 @@ export default Service.extend({
    * @param {string} html
    * @return {Promise}
    */
-  generateTrackedHtml(html) {
-    const variables = { html };
+  generateTrackedHtml(html, useNewTracking = false) {
+    const variables = { html, useNewTracking };
     const resultKey = 'generateTrackedHtml';
     return this.get('apollo').query({ query: generateTrackedHtml, variables, fetchPolicy: 'network-only' }, resultKey);
   },
