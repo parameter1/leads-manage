@@ -9,7 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login');
   this.route('dashboard', function() {
-    this.route('completed');
+    this.route('fulfilled');
     this.route('archived');
   });
   this.route('reports', function() {
