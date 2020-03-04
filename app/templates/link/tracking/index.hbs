@@ -16,19 +16,26 @@
     </div>
   </div>
 
-  <div class="card-footer">
-    <button class="btn btn-lg btn-success" disabled={{eq canProcess false}} {{action "process"}}>
-      {{entypo-icon "upload-to-cloud"}} Process
-    </button>
-    <button class="btn btn-lg btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
-      {{entypo-icon "cross"}} Clear
-    </button>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <div>
+      <button class="btn btn-lg btn-success" disabled={{eq canProcess false}} {{action "process"}}>
+        {{entypo-icon "upload-to-cloud"}} Process
+      </button>
+      <button class="btn btn-lg btn-warning" disabled={{eq canProcess false}} {{action "clear"}}>
+        {{entypo-icon "cross"}} Clear
+      </button>
+    </div>
   </div>
 </div>
 
 
 {{#if trackedResult}}
   <h4 class="mt-4">Tracked HTML</h4>
+  {{#if this.useNewTracking}}
+    <div class="alert alert-info">
+      Note: this HTML was tracked using the <strong>new</strong> tracking method.
+    </div>
+  {{/if}}
   <div class="form-group">
     {{textarea
       rows="8"
@@ -52,9 +59,16 @@
 
 
     {{#if results.length}}
-      <button class="btn btn-lg btn-success" {{action "createTrackedHtml"}}>
-        {{entypo-icon "edit"}} Generate HTML
-      </button>
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <button class="btn btn-lg btn-success" {{action "createTrackedHtml"}}>
+          {{entypo-icon "edit"}} Generate HTML
+        </button>
+
+        <button class="btn btn-lg btn-success" disabled={{true}} {{action "createTrackedHtml" true}}>
+          {{entypo-icon "edit"}} Generate HTML (New Tracking)
+        </button>
+      </div>
+
     {{/if}}
 
   {{/if}}
