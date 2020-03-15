@@ -12,9 +12,13 @@ export default Component.extend({
 
   customerId: null, // required;
 
-  options: computed('customerId', function() {
+  options: computed('customerId', async function() {
     const variables = { customerId: this.get('customerId') };
-    const promise = this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allForms');
-    return promise.then(({ edges }) => edges.map(edge => edge.node));
+    try {
+      const { edges } = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allForms');
+      return  edges.map(edge => edge.node);
+    } catch(e) {
+      this.get('graphErrors').show(e);
+    }
   }),
 });
