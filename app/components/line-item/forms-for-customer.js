@@ -1,24 +1,20 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
-import { computed } from '@ember/object';
+
+import query from 'leads-manage/gql/queries/form/for-customer';
 
 export default Component.extend({
+  apollo: inject(),
+  graphErrors: inject(),
+
   classNames: ['form-group'],
 
-  // options: computed('linkTypeService.types', 'linkTypes', function() {
-  //   const selected = this.get('linkTypes');
-  //   return this.get('linkTypeService.types').filter(type => !selected.includes(type));
-  // }),
+  customerId: null, // required;
 
   init() {
     this._super(...arguments);
-    this.set('options', []);
+    const variables = { customerId: this.get('customerId') };
+    const promise = this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allForms').then(({ edges }) => edges.map(edge => edge.node));
+    this.set('options', promise);
   },
-
-  actions: {
-    onChange(linkTypes) {
-      this.get('onChange')(linkTypes);
-    },
-  },
-
 });
