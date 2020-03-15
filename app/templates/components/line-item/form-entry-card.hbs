@@ -10,14 +10,15 @@
     {{/if}}
     <small class="card-text text-muted mb-2">{{moment-format entry.submittedAt "MMM Do, YYYY @ h:mma"}}</small>
 
-    {{!-- {{#each _filteredFields as |field|}}
-      {{#if (get entry.values field.ID)}}
+    {{#each entry.values as |data|}}
+      {{#if data.value}}
         <div class="mb-2">
-          <small class="d-block">{{ field.Title }}</small>
-          <p class="card-text mb-0">{{ get entry.values field.ID }}</p>
+          <small class="d-block">{{ data.field.title }}</small>
+          <p class="card-text mb-0">{{ data.value }}</p>
         </div>
       {{/if}}
     {{/each}}
+
     {{#if canEdit}}
       <div class="dropup mt-auto align-self-end">
         <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,6 +28,6 @@
           {{identity-card/action labelSuffix="for Form" inactive=entry.inactive on-click=(action "toggleActivation")}}
         </div>
       </div>
-    {{/if}} --}}
+    {{/if}}
   </div>
 </div>

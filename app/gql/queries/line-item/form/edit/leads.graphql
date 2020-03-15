@@ -1,4 +1,4 @@
-query EditFormLineItemLeads($input: FormLineItemLeadsQueryInput!, $pagination: PaginationInput = { first: 25 }, $sort: FormEntrySortInput = {}) {
+query EditFormLineItemLeads($input: FormLineItemLeadsQueryInput!, $pagination: PaginationInput = { first: 28 }, $sort: FormEntrySortInput = {}) {
   formLineItemLeads(input: $input, pagination: $pagination, sort: $sort) {
     totalCount
     edges {
@@ -7,7 +7,7 @@ query EditFormLineItemLeads($input: FormLineItemLeadsQueryInput!, $pagination: P
         identifier
         submittedAt
         inactive
-        wufooValues {
+        values: wufooValues {
           field {
             id
             title
