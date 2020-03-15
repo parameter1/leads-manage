@@ -28,7 +28,9 @@
         </div>
       </div>
     {{/modal.body}}
+    {{progress-bar class="progress-md" show=isActionRunning}}
+    {{#modal.footer}}
+      {{model-save-button disabled=isActionRunning}}
+    {{/modal.footer}}
   </form>
-  {{#modal.footer}}
-  {{/modal.footer}}
 {{/bs-modal}}
