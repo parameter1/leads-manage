@@ -84,7 +84,7 @@ Router.map(function() {
         this.route('form', function() {
           this.route('create');
           this.route('edit', { path: ':line_item_id' }, function() {
-
+            this.route('details');
           });
         });
         this.route('video', function() {

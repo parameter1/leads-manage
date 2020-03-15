@@ -3,7 +3,7 @@ import { RouteQueryManager } from 'ember-apollo-client';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 
-import archivedMutation from 'leads-manage/gql/mutations/line-item/email/archived';
+import archivedMutation from 'leads-manage/gql/mutations/line-item/archived';
 
 export default Route.extend(AuthenticatedRouteMixin, FormMixin, RouteQueryManager, {
   beforeModel(transition) {
@@ -19,7 +19,7 @@ export default Route.extend(AuthenticatedRouteMixin, FormMixin, RouteQueryManage
       try {
         const input = { id, archived: !archived };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: archivedMutation, variables }, 'emailLineItemName');
+        await this.get('apollo').mutate({ mutation: archivedMutation, variables }, 'lineItemArchived');
         this.get('notify').info('Archived flag saved.');
         await this.refresh();
       } catch (e) {

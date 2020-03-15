@@ -1,6 +1,0 @@
-mutation EmailLineItemName($input: EmailLineItemNameInput!) {
-  emailLineItemName(input: $input) {
-    id
-    name
-  }
-}
