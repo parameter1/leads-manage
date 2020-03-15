@@ -1,0 +1,11 @@
+<label>Customer Form</label>
+{{#power-select
+  dropdownClass=dropdownClass
+  options=options
+  selected=selected
+  onchange=(action "onChange")
+  closeOnSelect=true as |field|
+}}
+  {{field.label}}
+{{/power-select}}
+<small class="form-text text-muted">Leads will be generated from submissions to this form.</small>
