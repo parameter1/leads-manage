@@ -1,13 +1,20 @@
 {{#bs-modal show=true size="xl" onHidden=(route-action "transitionTo" "order.edit.line-items") as |modal|}}
   {{#modal.header}}
-    <h5 class="modal-title">{{entypo-icon "text-document"}} Create Form Line Item</h5>
+    <h5 class="modal-title">{{entypo-icon "text-document"}} Create MQL Line Item for <strong>{{order.fullName}}</strong></h5>
     <button {{action modal.actions.hide}} type="button" class="close" aria-label="Close">
       {{entypo-icon "cross"}}
     </button>
   {{/modal.header}}
-  {{#modal.body}}
-    <h4 class="mb-0">Coming Soon</h4>
-  {{/modal.body}}
+  {{progress-bar class="progress-md" show=isActionRunning}}
+  <form {{action (action "create" model) on="submit"}}>
+    {{#modal.body}}
+      {{line-item/details-card
+        class="mb-3"
+        model=model
+        onDateChange=(action "setDateRange")
+      }}
+    {{/modal.body}}
+  </form>
   {{#modal.footer}}
   {{/modal.footer}}
 {{/bs-modal}}
