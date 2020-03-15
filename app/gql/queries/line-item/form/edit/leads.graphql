@@ -1,0 +1,23 @@
+query EditFormLineItemLeads($input: FormLineItemLeadsQueryInput!) {
+  formLineItemLeads(input: $input) {
+    totalCount
+    edges {
+      node {
+        id
+        identifier
+        submittedAt
+        wufooValues {
+          field {
+            id
+            title
+          }
+          value
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}

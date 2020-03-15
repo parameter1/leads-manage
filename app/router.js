@@ -85,6 +85,10 @@ Router.map(function() {
           this.route('create');
           this.route('edit', { path: ':line_item_id' }, function() {
             this.route('details');
+            this.route('leads', function() {
+              this.route('index');
+              this.route('deactivated');
+            });
           });
         });
         this.route('video', function() {
