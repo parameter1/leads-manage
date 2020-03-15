@@ -8,4 +8,11 @@ fragment LineItemListFragment on LineItem {
   updatedAt
   createdAt
   archived
+  requiredLeads
+  totalValue
+  cpl
+  range {
+    start
+    end
+  }
 }
