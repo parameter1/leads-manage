@@ -13,6 +13,20 @@
         model=model
         onDateChange=(action "setDateRange")
       }}
+      <div class="card">
+        <div class="card-header">
+          {{entypo-icon "text-document"}} Form
+        </div>
+        <div class="card-body">
+          {{line-item/forms-for-customer
+            class="mb-0"
+            customerId=order.customer.id
+            selected=model.form
+            dropdownClass="in-modal-dropdown"
+            onChange=(action "setForm")
+          }}
+        </div>
+      </div>
     {{/modal.body}}
   </form>
   {{#modal.footer}}

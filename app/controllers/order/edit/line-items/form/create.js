@@ -14,5 +14,9 @@ export default Controller.extend(FormMixin, {
     setDateRange(range) {
       this.set('model.range', range);
     },
+
+    setForm(form) {
+      this.set('model.form', form);
+    }
   },
 });
