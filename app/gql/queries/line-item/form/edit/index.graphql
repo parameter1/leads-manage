@@ -18,5 +18,11 @@ query EditFormLineItemIndex($input: ModelIdInput!) {
         identifier
       }
     }
+    choiceFilters {
+      id
+      fieldId
+      title
+      choices
+    }
   }
 }

@@ -74,5 +74,18 @@
         </li>
       </ul>
     </div>
+
+    <div class="col-lg-6">
+      <h6 class="font-weight-bold">{{entypo-icon "check"}} And must have the following choices...</h6>
+      <ul class="list-group mb-lg-0 mb-3">
+        {{#each choiceFilters as |filter|}}
+          <li class="list-group-item p-2 text-muted">
+            {{filter}}
+          </li>
+        {{else}}
+          <li class="list-group-item p-2 text-muted"><em>No choice filters set.</em></li>
+        {{/each}}
+      </ul>
+    </div>
   </div>
 {{/bs-modal/body}}
