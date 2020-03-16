@@ -11,7 +11,55 @@
       ({{startsEnds}})
     {{/if}}
   </p>
-  {{!-- Add progress here --}}
+  {{#line-item-progress class="row" lineItemId=model.id as |progress|}}
+    <div class="col-sm-6 col-xl-3 mb-4">
+      {{dashboard/data-card
+        icon="hair-cross"
+        title="Goal"
+        format="0,0"
+        value=model.requiredLeads
+        color="primary"
+      }}
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-4">
+      {{dashboard/data-card
+        icon="credit"
+        title="Value"
+        value=model.totalValue
+        format="$0,0.[00]"
+        secondaryValue=model.cpl
+        secondaryFormat="$0,0.[00]"
+        secondarySuffix="CPL"
+        color="info"
+      }}
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-4">
+      {{dashboard/data-card
+        isLoading=progress.isActionRunning
+        icon="gauge"
+        title="% Fulfilled"
+        format="0.[0]%"
+        secondaryFormat="0,0"
+        value=progress.qualified.rate
+        secondaryValue=progress.qualified.total
+        secondarySuffix="Leads"
+        color="success"
+      }}
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-4">
+      {{dashboard/data-card
+        isLoading=progress.isActionRunning
+        icon="block"
+        title="Avg. Scrub Rate"
+        format="0.[0]%"
+        secondaryFormat="0,0"
+        value=progress.scrubbed.rate
+        secondaryValue=progress.scrubbed.total
+        secondarySuffix="Leads"
+        color="warning"
+      }}
+    </div>
+  {{/line-item-progress}}
 
   <div class="row">
     <div class="col-lg-6">
