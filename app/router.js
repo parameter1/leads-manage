@@ -19,7 +19,10 @@ Router.map(function() {
         this.route('leads');
         this.route('activity');
         this.route('export');
-      })
+      });
+      this.route('form', function() {
+
+      });
     });
   });
   this.route('lead-report', { path: 'lead-report/:hash' }, function() {
@@ -80,7 +83,14 @@ Router.map(function() {
         });
         this.route('form', function() {
           this.route('create');
-          this.route('edit', { path: ':line_item_id' });
+          this.route('edit', { path: ':line_item_id' }, function() {
+            this.route('details');
+            this.route('leads', function() {
+              this.route('index');
+              this.route('deactivated');
+            });
+            this.route('qualifications');
+          });
         });
         this.route('video', function() {
           this.route('create');

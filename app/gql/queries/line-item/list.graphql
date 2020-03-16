@@ -7,30 +7,28 @@ query AllLineItems($input: AllLineItemsInput, $pagination: PaginationInput, $sor
         id
         hash
         name
+        status
         notes
+        requiredLeads
+        totalValue
+        cpl
+        range {
+          start
+          end
+        }
         type
         archived
-        ... on EmailLineItem {
-          order {
+        order {
+          id
+          name
+          customer {
             id
             name
-            customer {
-              id
-              name
-            }
-            salesRep {
-              id
-              givenName
-              familyName
-            }
           }
-          status
-          requiredLeads
-          totalValue
-          cpl
-          range {
-            start
-            end
+          salesRep {
+            id
+            givenName
+            familyName
           }
         }
       }

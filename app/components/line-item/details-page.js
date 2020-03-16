@@ -1,18 +1,20 @@
-import Controller from '@ember/controller';
+import Component from '@ember/component';
 import FormMixin from 'leads-manage/mixins/form-mixin';
 import moment from 'moment';
 import { inject } from '@ember/service';
 import { computed } from '@ember/object';
 
-import nameMutation from 'leads-manage/gql/mutations/line-item/email/name';
-import notesMutation from 'leads-manage/gql/mutations/line-item/email/notes';
-import requiredLeadsMutation from 'leads-manage/gql/mutations/line-item/email/required-leads';
-import totalValueMutation from 'leads-manage/gql/mutations/line-item/email/total-value';
-import dateRangeMutation from 'leads-manage/gql/mutations/line-item/email/date-range';
-import archivedMutation from 'leads-manage/gql/mutations/line-item/email/archived';
+import archivedMutation from 'leads-manage/gql/mutations/line-item/archived';
+import dateRangeMutation from 'leads-manage/gql/mutations/line-item/date-range';
+import nameMutation from 'leads-manage/gql/mutations/line-item/name';
+import notesMutation from 'leads-manage/gql/mutations/line-item/notes';
+import requiredLeadsMutation from 'leads-manage/gql/mutations/line-item/required-leads';
+import totalValueMutation from 'leads-manage/gql/mutations/line-item/total-value';
 
-export default Controller.extend(FormMixin, {
+export default Component.extend(FormMixin, {
   apollo: inject(),
+
+  classNames: ['row'],
 
   isLoading: computed.or('loadingDisplay.isShowing', 'isActionRunning'),
 
@@ -34,7 +36,7 @@ export default Controller.extend(FormMixin, {
         const id = this.get('model.id');
         const input = { id, name: value };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: nameMutation, variables }, 'emailLineItemName');
+        await this.get('apollo').mutate({ mutation: nameMutation, variables }, 'lineItemName');
         this.get('notify').info('Name saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -50,7 +52,7 @@ export default Controller.extend(FormMixin, {
         const id = this.get('model.id');
         const input = { id, notes: value };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: notesMutation, variables }, 'emailLineItemNotes');
+        await this.get('apollo').mutate({ mutation: notesMutation, variables }, 'lineItemNotes');
         this.get('notify').info('Notes saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -68,7 +70,7 @@ export default Controller.extend(FormMixin, {
         const id = this.get('model.id');
         const input = { id, requiredLeads: value };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: requiredLeadsMutation, variables }, 'emailLineItemRequiredLeads');
+        await this.get('apollo').mutate({ mutation: requiredLeadsMutation, variables }, 'lineItemRequiredLeads');
         this.get('notify').info('Total required leads saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -86,7 +88,7 @@ export default Controller.extend(FormMixin, {
         const id = this.get('model.id');
         const input = { id, totalValue };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: totalValueMutation, variables }, 'emailLineItemTotalValue');
+        await this.get('apollo').mutate({ mutation: totalValueMutation, variables }, 'lineItemTotalValue');
         this.get('notify').info('Total value saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -102,7 +104,7 @@ export default Controller.extend(FormMixin, {
         const id = this.get('model.id');
         const input = { id, archived: checked };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation: archivedMutation, variables }, 'emailLineItemName');
+        await this.get('apollo').mutate({ mutation: archivedMutation, variables }, 'lineItemArchived');
         this.get('notify').info('Archived flag saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
@@ -127,7 +129,7 @@ export default Controller.extend(FormMixin, {
         };
         const variables = { input };
         try {
-          await this.get('apollo').mutate({ mutation: dateRangeMutation, variables }, 'emailLineItemDateRange');
+          await this.get('apollo').mutate({ mutation: dateRangeMutation, variables }, 'lineItemDateRange');
           this.get('notify').info('Date range saved.');
         } catch (e) {
           this.get('graphErrors').show(e);

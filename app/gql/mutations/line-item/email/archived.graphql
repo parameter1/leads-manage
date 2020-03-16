@@ -1,7 +1,0 @@
-
-mutation EmailLineItemArchived($input: EmailLineItemArchivedInput!) {
-  emailLineItemArchived(input: $input) {
-    id
-    archived
-  }
-}

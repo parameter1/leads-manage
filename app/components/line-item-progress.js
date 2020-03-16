@@ -3,7 +3,7 @@ import { get } from '@ember/object';
 import { ComponentQueryManager } from 'ember-apollo-client';
 import ActionMixin from 'leads-manage/mixins/action-mixin';
 
-import query from 'leads-manage/gql/queries/line-item/email/edit/progress';
+import query from 'leads-manage/gql/queries/line-item/progress';
 
 export default Component.extend(ComponentQueryManager, ActionMixin, {
   init() {
@@ -21,7 +21,7 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
     const input = { id: this.get('lineItemId') };
     const variables = { input };
     try {
-      const results = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'emailLineItem');
+      const results = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'lineItem');
       this.set('qualified', get(results, 'progress.qualified'));
       this.set('scrubbed', get(results, 'progress.scrubbed'));
     } catch (e) {

@@ -3,12 +3,14 @@
     <h4>
       {{#if (eq item.type "email")}}
         {{entypo-icon "mail"}}
+      {{else if (eq item.type "form")}}
+        {{entypo-icon "text-document"}}
       {{/if}}
       {{item.order.customer.name}}
       &ndash;
       {{#link-to "order.edit" item.order.id}}{{item.order.name}}{{/link-to}}
       &ndash;
-      {{#link-to "order.edit.line-items.email.edit" item.order.id item.id}}{{item.name}}{{/link-to}}
+      {{#link-to (concat "order.edit.line-items." item.type ".edit") item.order.id item.id}}{{item.name}}{{/link-to}}
     </h4>
   </div>
   <div class="card-body">
