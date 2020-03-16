@@ -7,7 +7,7 @@ import query from 'leads-manage/gql/queries/line-item/form/edit/leads';
 export default Route.extend(RouteQueryManager, RouteObservableMixin, {
   async model() {
     const { id } = this.modelFor('order.edit.line-items.form.edit');
-    const variables = { input: { id } };
+    const variables = { input: { id, refresh: true } };
     const queryKey = 'formLineItemLeads';
     this.getController().set('resultKey', queryKey);
     const response = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, queryKey);
