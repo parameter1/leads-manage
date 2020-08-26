@@ -15,6 +15,12 @@ export default Component.extend({
     return true;
   }),
 
+  displayUniqueClicks: computed('sends.@each.send.isNewsletter', function() {
+    const sends = this.get('sends');
+    console.log(sends);
+    return sends.every(({ send }) => send.isNewsletter);
+  }),
+
   init() {
     this._super(...arguments);
     this.set('iframe', {
