@@ -11,11 +11,17 @@ query EmailLineItemReportMetrics($hash: String!, $sort: EmailLineItemMetricsRepo
           ...EmailSendMetricsFragment
         }
         sentDate
+        isNewsletter
       }
       identities
+      clicks
+      advertiserClickRate
     }
     totals {
       identities
+      sends
+      clicks
+      advertiserClickRate
       metrics {
         ...EmailSendMetricsFragment
       }
