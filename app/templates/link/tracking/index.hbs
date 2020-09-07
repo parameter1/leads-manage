@@ -60,12 +60,8 @@
 
     {{#if results.length}}
       <div class="d-flex justify-content-between align-items-center w-100">
-        <button class="btn btn-lg btn-success" {{action "createTrackedHtml"}}>
+        <button class="btn btn-lg btn-success" {{action "createTrackedHtml" true}}>
           {{entypo-icon "edit"}} Generate HTML
-        </button>
-
-        <button class="btn btn-lg btn-success" disabled={{true}} {{action "createTrackedHtml" true}}>
-          {{entypo-icon "edit"}} Generate HTML (New Tracking)
         </button>
       </div>
 
