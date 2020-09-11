@@ -4,6 +4,10 @@ fragment EmailCampaignFragment on EmailCampaign {
     id
     name
   }
+  excludedTags {
+    id
+    name
+  }
   enabled
   urlCount
   excludeFields

@@ -23,7 +23,7 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <div class="form-group mb-lg-0">
+      <div class="form-group">
         <label>Where links are tagged with...</label>
         {{type-ahead
           placeholder="Begin typing to find a tag... e.g. pr or video"
@@ -36,6 +36,23 @@
         <small class="form-text text-muted">Leave empty to include all links.</small>
       </div>
     </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label>Exclude links that are tagged with...</label>
+        {{type-ahead
+          placeholder="Begin typing to find a tag... e.g. pr or video"
+          type="tag"
+          multiple=true
+          dropdownClass="in-modal-dropdown"
+          selected=model.excludedTags
+          onChange=(action "setExcludedTags")
+        }}
+        <small class="form-text text-muted">Leave empty to include all links.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-lg-6">
       <div class="form-group mb-0">
         {{line-item/link-types

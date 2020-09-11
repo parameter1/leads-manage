@@ -4,6 +4,7 @@ import { inject } from '@ember/service';
 import { computed } from '@ember/object';
 
 import emailCampaignTags from 'leads-manage/gql/mutations/campaign/email/tags';
+import emailCampaignExcludedTags from 'leads-manage/gql/mutations/campaign/email/excluded-tags';
 import emailCampaignLinkTypes from 'leads-manage/gql/mutations/campaign/email/link-types';
 import emailCampaignExcludedFields from 'leads-manage/gql/mutations/campaign/email/excluded-fields';
 import emailCampaignIdentityFilters from 'leads-manage/gql/mutations/campaign/email/identity-filters';
@@ -55,6 +56,27 @@ export default Controller.extend(FormMixin, {
       try {
         await this.get('apollo').mutate({ mutation: emailCampaignTags, variables }, 'emailCampaignTags');
         this.get('notify').info('Campaign tags set successfully.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    /**
+     *
+     * @param {*} tags
+     */
+    async updateExcludedTags(tags) {
+      this.startAction();
+      const id = this.get('model.id');
+      const tagIds = tags.map(tag => tag.id);
+      const input = { id, tagIds };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: emailCampaignExcludedTags, variables }, 'emailCampaignExcludedTags');
+        this.get('notify').info('Campaign tags successfully excluded.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {
