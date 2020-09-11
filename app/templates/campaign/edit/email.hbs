@@ -29,6 +29,17 @@
             </div>
 
             <div class="form-group">
+              <label for="excludedTags"><em>Exclude</em> Links Tagged With...</label>
+              {{type-ahead
+                placeholder="Begin typing to find a tag..."
+                type="tag"
+                multiple=true
+                selected=model.excludedTags
+                onChange=(action "updateExcludedTags")
+              }}
+            </div>
+
+            <div class="form-group">
               <label>Only Include Links Set As...</label>
               {{#power-select-multiple
                 options=linkTypeOptions

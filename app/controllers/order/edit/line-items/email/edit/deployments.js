@@ -5,6 +5,7 @@ import { computed } from '@ember/object';
 
 import linkTypesMutation from 'leads-manage/gql/mutations/line-item/email/link-types';
 import tagsMutation from 'leads-manage/gql/mutations/line-item/email/tags';
+import excludedTagsMutation from 'leads-manage/gql/mutations/line-item/email/excluded-tags';
 import categoriesMutation from 'leads-manage/gql/mutations/line-item/email/categories';
 
 const refetchQueries = ['EditEmailLineItemDeploymentLinks'];
@@ -41,6 +42,23 @@ export default Controller.extend(FormMixin, {
       try {
         await this.get('apollo').mutate({ mutation: tagsMutation, variables, refetchQueries }, 'emailLineItemTags');
         this.get('notify').info('Tags saved.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    async setExcludedTags(tags) {
+      this.startAction();
+      const id = this.get('model.id');
+      const tagIds = tags.map(tag => tag.id);
+      const input = { id, tagIds };
+      const variables = { input };
+
+      try {
+        await this.get('apollo').mutate({ mutation: excludedTagsMutation, variables, refetchQueries }, 'emailLineItemExcludedTags');
+        this.get('notify').info('Tag exclusions saved.');
       } catch (e) {
         this.get('graphErrors').show(e);
       } finally {

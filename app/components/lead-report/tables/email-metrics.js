@@ -17,7 +17,6 @@ export default Component.extend({
 
   displayUniqueClicks: computed('sends.@each.send.isNewsletter', function() {
     const sends = this.get('sends');
-    console.log(sends);
     return sends.every(({ send }) => send.isNewsletter);
   }),
 
