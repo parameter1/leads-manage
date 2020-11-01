@@ -23,13 +23,25 @@
             {{/power-calendar-range}}
 
             <div class="form-group mt-3">
-              <label for="tags">Only report on links tagged with...</label>
+              <label for="tags">Only return links tagged with...</label>
               {{type-ahead
                 placeholder="Begin typing to find a tag..."
                 type="tag"
                 multiple=true
                 selected=tags
                 onChange=(action (mut tags))
+              }}
+              <small class="form-text text-muted">Leave empty to include all links.</small>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="tags">Only return links assgined to customers...</label>
+              {{type-ahead
+                placeholder="Begin typing to find a customer..."
+                type="customer"
+                multiple=true
+                selected=customers
+                onChange=(action (mut customers))
               }}
               <small class="form-text text-muted">Leave empty to include all links.</small>
             </div>
@@ -48,11 +60,9 @@
           </div>
         </div>
 
-        {{#if result}}
+        {{#if showResults}}
           <div class="row mt-3">
             <div class="col">
-              <h5>{{moment-format result.start "MMM Do, YYYY"}} through {{moment-format result.end "MMM Do, YYYY"}}</h5>
-
               <div class="table-responsive">
                 <table class="table table-sm table-striped">
                   <thead>
