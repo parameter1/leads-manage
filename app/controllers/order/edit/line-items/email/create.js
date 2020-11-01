@@ -44,8 +44,8 @@ export default Controller.extend(FormMixin, {
         const input = {
           orderId: this.get('order.id'),
           name,
-          requiredLeads,
-          totalValue,
+          requiredLeads: parseInt(requiredLeads, 10),
+          totalValue: parseFloat(totalValue, 10),
           range: {
             start: range.start.valueOf(),
             end: range.end.valueOf(),

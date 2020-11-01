@@ -140,6 +140,7 @@ Router.map(function() {
       this.route('view', { path: ':id' });
     });
     this.route('reporting');
+    this.route('click-events');
   });
   this.route('video', function() {
     this.route('edit', { path: ':id' });

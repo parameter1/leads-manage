@@ -22,7 +22,7 @@ export default Route.extend(RouteQueryManager, FormMixin, {
         name,
         startDate: startDate ? startDate.valueOf() : undefined,
         endDate: endDate ? endDate.valueOf() : undefined,
-        maxIdentities
+        maxIdentities: parseInt(maxIdentities, 10),
       };
       const variables = { input };
       try {
