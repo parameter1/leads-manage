@@ -17,6 +17,10 @@ export default Controller.extend(ComponentQueryManager, LoadingMixin, {
     return false;
   }),
 
+  showResults: computed('isRunning', 'result', function() {
+    return Boolean(this.get('result') && !this.get('isRunning'));
+  }),
+
   start: computed('range.start', function() {
     const start = this.get('range.start');
     if (!start) return start;
