@@ -36,6 +36,7 @@ export default Controller.extend(ComponentQueryManager, LoadingMixin, {
       end: moment().endOf('week'),
     });
     this.set('tags', []);
+    this.set('customers', []);
   },
 
   actions: {
@@ -61,6 +62,7 @@ export default Controller.extend(ComponentQueryManager, LoadingMixin, {
           start: this.get('start'),
           end: this.get('end'),
           tagIds: this.get('tags').map((tag) => tag.id),
+          customerIds: this.get('customers').map((customer) => customer.id),
           includeNewsletters: this.get('includeNewsletters'),
         };
         const variables = { input };
