@@ -1,7 +1,7 @@
 #import 'leads-manage/gql/fragments/campaign/list'
 
-query SearchCampaigns($pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
-  searchCampaigns(pagination: $pagination, search: $search, options: $options) {
+query SearchCampaigns($input: SearchCampaignsQueryInput = {}, $pagination: PaginationInput, $search: TypeAheadInput!, $options: TypeAheadOptionsInput) {
+  searchCampaigns(input: $input, pagination: $pagination, search: $search, options: $options) {
     totalCount
     edges {
       node {
