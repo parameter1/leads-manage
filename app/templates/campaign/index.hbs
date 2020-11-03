@@ -15,19 +15,46 @@
               <div class="card">
                 <div class="card-header font-weight-bold">Filters</div>
                 <div class="card-body">
-                  <div class="form-group mb-0">
-                    <label for="filter.customers">Customer</label>
+                  <div class="form-group">
+                    <label for="filter.customers">Customer(s)</label>
                     {{type-ahead
                       placeholder="Begin typing to find a customer..."
                       type="customer"
                       multiple=true
                       selected=customers
+                      disabled=routeLoading
                       onChange=(action "setCustomers")
                     }}
                   </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{filters/date-range
+                          label="Starting Between"
+                          start=starting.start
+                          end=starting.end
+                          disabled=routeLoading
+                          onChange=(action "setStartingRange")
+                        }}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{filters/date-range
+                          label="Ending Between"
+                          start=ending.start
+                          end=ending.end
+                          disabled=routeLoading
+                          onChange=(action "setEndingRange")
+                        }}
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                  <button class="btn btn-primary" disabled={{not hasActiveFilters}} {{action "clearFilters"}}>Clear All</button>
+                  <button class="btn btn-primary" disabled={{clearButtonDisabled}} {{action "clearFilters"}}>Clear All</button>
                 </div>
               </div>
             </div>
