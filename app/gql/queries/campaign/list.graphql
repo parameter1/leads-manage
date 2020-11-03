@@ -1,7 +1,7 @@
 #import 'leads-manage/gql/fragments/campaign/list'
 
-query ListCampaigns($pagination: PaginationInput, $sort: CampaignSortInput) {
-  allCampaigns(pagination: $pagination, sort: $sort) {
+query ListCampaigns($input: AllCampaignsQueryInput = {}, $pagination: PaginationInput, $sort: CampaignSortInput) {
+  allCampaigns(input: $input, pagination: $pagination, sort: $sort) {
     totalCount
     edges {
       node {
