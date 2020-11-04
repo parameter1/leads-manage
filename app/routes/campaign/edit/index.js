@@ -25,7 +25,7 @@ export default Route.extend(FormMixin, RouteQueryManager, {
         name,
         startDate: startDate ? startDate.valueOf() : undefined,
         endDate: endDate ? endDate.valueOf() : undefined,
-        maxIdentities
+        maxIdentities: parseInt(maxIdentities, 10),
       };
       const input = { id, payload };
       const variables = { input };
