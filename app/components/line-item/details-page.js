@@ -68,7 +68,7 @@ export default Component.extend(FormMixin, {
         const requiredLeads = Number(value);
         if (!requiredLeads || requiredLeads < 1) throw new Error('The total number of leads is required..');
         const id = this.get('model.id');
-        const input = { id, requiredLeads: value };
+        const input = { id, requiredLeads: parseInt(value, 10) };
         const variables = { input };
         await this.get('apollo').mutate({ mutation: requiredLeadsMutation, variables }, 'lineItemRequiredLeads');
         this.get('notify').info('Total required leads saved.');
@@ -86,7 +86,7 @@ export default Component.extend(FormMixin, {
         const totalValue = Number(value);
         if (totalValue < 0) throw new Error('The total value must be 0 or greater.');
         const id = this.get('model.id');
-        const input = { id, totalValue };
+        const input = { id, totalValue: parseFloat(value, 10) };
         const variables = { input };
         await this.get('apollo').mutate({ mutation: totalValueMutation, variables }, 'lineItemTotalValue');
         this.get('notify').info('Total value saved.');
