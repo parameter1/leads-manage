@@ -6,7 +6,11 @@
     </button>
   {{/modal.header}}
   {{#modal.body}}
-    {{email-campaign/url-groups model=model}}
+    {{email-campaign/url-groups
+      urlGroups=model.urlGroups
+      disabled=isActionRunning
+      on-change=(action "updateExcludedUrls")
+    }}
   {{/modal.body}}
   {{#modal.footer}}
   {{/modal.footer}}
