@@ -1,0 +1,22 @@
+<div class="d-flex">
+  <div class="ml-auto">
+    <button type="button" class="btn btn-secondary mr-2" disabled={{isActionRunning}} {{action "selectAll"}}>
+      Select All
+    </button>
+    <button type="button" class="btn btn-secondary" disabled={{isActionRunning}} {{action "deselectAll"}}>
+      Deselect All
+    </button>
+  </div>
+
+</div>
+{{#each urlGroups as |urlGroup|}}
+  {{email-campaign/url-group
+    class="mt-3"
+    urlGroup=urlGroup
+    shouldSelectAll=shouldSelectAll
+    shouldDeselectAll=shouldDeselectAll
+    on-change=(action "updateExcludedUrls")
+  }}
+{{else}}
+  <p class="mt-3 mb-0">No links found for the selected campaign criteria.</p>
+{{/each}}
