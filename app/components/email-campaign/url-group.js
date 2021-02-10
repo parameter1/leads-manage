@@ -5,6 +5,8 @@ export default Component.extend({
   classNames: ['card'],
   urlGroup: null,
 
+  disabled: false,
+
   allSendGroups: computed('urlGroup.deploymentGroups.[]', function() {
     return this.get('urlGroup.deploymentGroups').reduce((acc, dep) => acc.concat(dep.sendGroups), []);
   }),

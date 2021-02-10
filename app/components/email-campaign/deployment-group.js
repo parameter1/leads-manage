@@ -4,6 +4,7 @@ import { computed, set } from '@ember/object';
 export default Component.extend({
   classNames: ['card'],
   deploymentGroup: null,
+  disabled: false,
 
   isDeploymentActive: computed('deploymentGroup.sendGroups.@each.active', function() {
     return this.get('deploymentGroup.sendGroups').reduce((bool, sg) => sg.active ? true : bool, false);
