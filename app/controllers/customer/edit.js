@@ -49,7 +49,7 @@ export default Controller.extend(ActionMixin, {
         this.startAction();
         const variables = { input: { id: this.get('model.id') } };
         await this.get('apollo').mutate({ mutation: deleteCustomer, variables }, 'deleteCustomer');
-        await this.transitionToRoute('customer.index');
+        await this.transitionToRoute('customer.list');
         this.get('notify').info('Customer successfully deleted.');
       } catch (e) {
         this.get('graphErrors').show(e);
