@@ -9,5 +9,14 @@
     {{/if}}
   </div>
 
+  {{#if item.linkedAdvertisers.length}}
+    <p class="my-1">
+      GAM Advertisers:
+      {{#each item.linkedAdvertisers as |advertiser|}}
+        <span>{{ advertiser.name }}</span>
+      {{/each}}
+    </p>
+  {{/if}}
+
   <small>ID: {{item.id}}</small>
 {{/link-to}}

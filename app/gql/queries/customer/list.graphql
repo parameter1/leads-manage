@@ -10,6 +10,10 @@ query ListCustomers($pagination: PaginationInput, $sort: CustomerSortInput) {
         externalSource {
           identifier
         }
+        linkedAdvertisers {
+          id
+          name
+        }
       }
       cursor
     }
