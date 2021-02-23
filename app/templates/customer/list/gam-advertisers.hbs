@@ -2,11 +2,11 @@
   {{partial "gam-list-controls"}}
 </div>
 
-{{!-- {{#fetch-more
+{{#gam-fetch-more
   query=observable
-  edges=model.edges
+  nodes=model.nodes
   hasNextPage=model.pageInfo.hasNextPage
-  endCursor=model.pageInfo.endCursor
+  nextOffset=model.pageInfo.nextOffset
   on-fetch-start=(route-action "showLoading")
   on-fetch-end=(route-action "hideLoading")
   resultKey=resultKey as |fetch|
@@ -14,7 +14,7 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item pt-0"><h5 class="mb-0 text-muted">Total Results: {{model.totalCount}}</h5></li>
     {{#each fetch.nodes as |item|}}
-      {{partial "customer/list-item"}}
+      {{partial "customer/list/gam-advertisers/list-item"}}
     {{/each}}
   </ul>
 
@@ -26,4 +26,4 @@
     {{/if}}
   </div>
 
-{{/fetch-more}} --}}
+{{/gam-fetch-more}}
