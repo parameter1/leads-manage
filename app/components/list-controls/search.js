@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'form',
@@ -9,6 +10,10 @@ export default Component.extend({
     const onSubmit = this.get('onSubmit');
     if (onSubmit) onSubmit(this.get('value'));
   },
+
+  hasSearchType: computed.bool('searchType'),
+
+  searchTypeDisabled: computed.not('hasSearchType'),
 
   /**
    * The search type.
