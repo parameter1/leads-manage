@@ -6,7 +6,6 @@ export default Component.extend({
   uniqueTags: computed.uniqBy('mergedTags', 'id'),
 
   activeCustomer: computed('item.{customer.id,host.customer.id}', function() {
-    console.log(this.get('item.customer.id'), this.get('item.host.customer'));
     if (this.get('item.customer.id')) return this.get('item.customer');
     return this.get('item.host.customer');
   }),
