@@ -57,7 +57,9 @@ Router.map(function() {
   });
   this.route('customer', function() {
     this.route('list', { path: '' }, function() {
-      this.route('gam-advertisers');
+      this.route('gam-advertisers', function() {
+        this.route('link', { path: ':company_id' })
+      });
     });
     this.route('edit', { path: ':id' });
     this.route('create');
