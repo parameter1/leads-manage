@@ -1,0 +1,10 @@
+query ViewGAMAdvertiser($input: GAMAdvertiserQueryInput!) {
+  GAMAdvertiser(input: $input) {
+    id
+    name
+    customer {
+      id
+      name
+    }
+  }
+}

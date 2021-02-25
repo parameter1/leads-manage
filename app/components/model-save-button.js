@@ -3,7 +3,7 @@ import Component from '@ember/component';
 export default Component.extend({
   tagName: 'button',
   classNames: ['btn', 'btn-lg', 'btn-success'],
-  attributeBindings: ['disabled', 'type'],
+  attributeBindings: ['disabled', 'type', 'form'],
 
   disabled: false,
   type: 'submit',

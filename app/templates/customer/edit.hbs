@@ -1,9 +1,9 @@
 {{#nav-breadcrumbs as |crumbs|}}
-  {{#crumbs.item}}{{#link-to "customer.index"}}{{entypo-icon "v-card"}} Customers{{/link-to}}{{/crumbs.item}}
+  {{#crumbs.item}}{{#link-to "customer.list"}}{{entypo-icon "v-card"}} Customers{{/link-to}}{{/crumbs.item}}
   {{#crumbs.item active=true}}{{ model.name }}{{/crumbs.item}}
 {{/nav-breadcrumbs}}
 
-<form {{action (route-action "update" model) on="submit"}}>
+<form {{action (action "update") on="submit"}}>
   <div class="card model-form">
     <div class="card-header"></div>
     <div class="card-body">
@@ -18,7 +18,7 @@
           label="Delete"
           class="btn-danger"
           disabled=isActionRunning
-          onConfirm=(route-action "delete" model.id "customer.index")
+          onConfirm=(action "delete")
         }}
       </div>
     </div>

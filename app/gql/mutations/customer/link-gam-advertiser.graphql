@@ -1,0 +1,12 @@
+mutation LinkGAMAdvertiser($input: LinkGAMAdvertiserToCustomerMutationInput!) {
+  linkGAMAdvertiserToCustomer(input: $input) {
+    id
+    linkedAdvertisers {
+      id
+      customer {
+        id
+        name
+      }
+    }
+  }
+}
