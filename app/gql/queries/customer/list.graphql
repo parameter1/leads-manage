@@ -11,8 +11,10 @@ query ListCustomers($pagination: PaginationInput, $sort: CustomerSortInput) {
           identifier
         }
         linkedAdvertisers {
-          id
-          name
+          nodes {
+            id
+            name
+          }
         }
       }
       cursor
