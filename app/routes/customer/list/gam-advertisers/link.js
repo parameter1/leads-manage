@@ -7,6 +7,6 @@ export default Route.extend(RouteQueryManager, {
   model({ company_id }) {
     const input = { id: company_id };
     const variables = { input };
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'cache-and-network' }, 'GAMAdvertiser');
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'cache-and-network' }, 'gam_company');
   },
 });

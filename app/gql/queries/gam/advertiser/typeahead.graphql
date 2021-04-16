@@ -1,5 +1,5 @@
 query GAMAdvertiserTypeahead($phrase: String!) {
-  GAMAdvertisers(input: {
+  listGAMAdvertisers(input: {
     search: { field: NAME, phrase: $phrase }
     sort: { field: NAME, order: ASC }
     limit: 50
