@@ -39,6 +39,7 @@ Router.map(function() {
       this.route('leads', { path: '/' });
       this.route('export');
     });
+    this.route('ad-metrics');
     this.route('disabled');
   });
   this.route('link', function() {

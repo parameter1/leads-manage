@@ -8,6 +8,12 @@ fragment CampaignHashFragment on Campaign {
   customer {
     id
     name
+    linkedAdvertisers {
+      nodes {
+        id
+        name
+      }
+    }
   }
   email {
     id

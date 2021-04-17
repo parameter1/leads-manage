@@ -13,6 +13,7 @@ export default Route.extend(RouteQueryManager, {
     if (model.get('email.enabled')) return;
     if (model.get('forms.enabled')) return this.transitionTo('lead-report.forms');
     if (model.get('ads.enabled')) return this.transitionTo('lead-report.ads');
+    if (model.get('customer.linkedAdvertisers.nodes.length')) return this.transitionTo('lead-report.ad-metrics');
     return this.transitionTo('lead-report.disabled');
   },
 
