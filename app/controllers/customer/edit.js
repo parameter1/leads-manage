@@ -28,7 +28,7 @@ export default Controller.extend(ActionMixin, {
           description: model.description,
           website: model.website,
           parentId: get(model.parent || {}, 'id') || null,
-          gamAdvertiserIds: model.linkedAdvertisers.nodes.map((advertiser) => advertiser.id),
+          gamAdvertiserIds: model.linkedAdvertisers.googleAdManager.nodes.map((advertiser) => advertiser.id),
         };
         const input = { id: model.id, payload };
         const variables = { input };

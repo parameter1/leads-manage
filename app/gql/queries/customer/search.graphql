@@ -11,9 +11,11 @@ query SearchCustomers($pagination: PaginationInput, $search: TypeAheadInput!, $o
           identifier
         }
         linkedAdvertisers {
-          nodes {
-            id
-            name
+          googleAdManager {
+            nodes {
+              id
+              name
+            }
           }
         }
       }

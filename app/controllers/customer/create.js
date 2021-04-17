@@ -18,7 +18,7 @@ export default Controller.extend(ActionMixin, {
           description: model.description,
           website: model.website,
           parentId: get(model.parent || {}, 'id') || null,
-          gamAdvertiserIds: model.linkedAdvertisers.map((advertiser) => advertiser.id),
+          gamAdvertiserIds: model.linkedAdvertisers.googleAdManager.map((advertiser) => advertiser.id),
         };
         const variables = { input: { payload } };
         const response = await this.get('apollo').mutate({ mutation, variables }, 'createCustomer');

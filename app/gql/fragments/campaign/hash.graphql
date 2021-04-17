@@ -9,9 +9,11 @@ fragment CampaignHashFragment on Campaign {
     id
     name
     linkedAdvertisers {
-      nodes {
-        id
-        name
+      googleAdManager {
+        nodes {
+          id
+          name
+        }
       }
     }
   }

@@ -2,11 +2,13 @@ mutation LinkGAMAdvertiser($input: LinkGAMAdvertiserToCustomerMutationInput!) {
   linkGAMAdvertiserToCustomer(input: $input) {
     id
     linkedAdvertisers {
-      nodes {
-        id
-        customer {
+      googleAdManager {
+        nodes {
           id
-          name
+          customer {
+            id
+            name
+          }
         }
       }
     }
