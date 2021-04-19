@@ -132,3 +132,58 @@ form .progress {
 .video-contents-container {
   max-width: 50vw;
 }
+
+.pacing-bar-container {
+  padding: 1px;
+}
+
+.pacing-bar-total {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 16px;
+  width: 100%;
+  outline-style: solid;
+  outline-width: 1px;
+}
+
+.pacing-bar-total-danger {
+  background-color: #fce8e6;
+  outline-color: #a50e0e;
+}
+
+.pacing-bar-total-warning {
+  background-color: #fcf6e6;
+  outline-color: #a57d0e;
+}
+
+.pacing-bar-total-success {
+  background-color: #e6fceb;
+  outline-color: #0da631;
+}
+
+.pacing-bar-actual {
+  // width: 35.068%; // this needs to be computed!
+  height: 16px;
+}
+
+.pacing-bar-actual-danger {
+  background-color: #ea4335;
+}
+
+.pacing-bar-actual-warning {
+  background-color: #ebbb36;
+}
+
+.pacing-bar-actual-success {
+  background-color: #36eb60;
+}
+
+.pacing-bar-expected {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  top: -2px;
+  // left: 62.7027%; // this needs to be computed!
+  background-color: #5f6368;
+}
