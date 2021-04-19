@@ -46,16 +46,11 @@
         }}
       </div>
       <div class="col-sm-6 col-xl-3 mb-4">
-        {{dashboard/data-card
+        {{dashboard/fulfilled-leads
           isLoading=progress.isActionRunning
-          icon="gauge"
-          title="% Fulfilled"
-          format="0.[0]%"
-          secondaryFormat="0,0"
-          value=progress.qualified.rate
-          secondaryValue=progress.qualified.total
-          secondarySuffix="Leads"
-          color="success"
+          rate=progress.qualified.rate
+          total=progress.qualified.total
+          pacing=progress.pacing
         }}
       </div>
       <div class="col-sm-6 col-xl-3 mb-4">
