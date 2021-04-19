@@ -1,7 +1,10 @@
-#import 'leads-manage/gql/fragments/video/edit'
-
-query VideoEdit($input: ModelIdInput!) {
-  video(input: $input) {
-    ...VideoEditFragment
+query brightcoveCMSVideos($input: BrightcoveCMSVideoQueryInput!) {
+  brightcoveCMSVideo(input: $input) {
+    id
+    name
+    customer {
+      id
+      name
+    }
   }
 }

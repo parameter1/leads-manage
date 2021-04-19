@@ -7,14 +7,42 @@
     <div class="card list-index">
       <div class="card-header"></div>
       <div class="card-body">
-        {{partial "list-controls"}}
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-12 col-lg-7">
+                {{list-controls/search
+                  phrase=searchPhrase
+                  fields=searchFields
+                  searchBy=searchField
+                  onSubmit=(action "search")
+                }}
+              </div>
+
+              <div class="col-12 col-lg-5 mt-3 mt-lg-0">
+                {{!-- Fix menu alignment, once https://github.com/twbs/bootstrap/pull/26255 is merged --}}
+                <div class="btn-toolbar float-md-right" role="toolbar" aria-label="Filter Toolbar">
+                  {{list-controls/sort
+                    class="mr-2"
+                    options=sortOptions
+                    ascending=ascending
+                    sortBy=sortField
+                    disabled=isSortDisabled
+                    alignment="right"
+                  }}
+                  {{list-controls/limit options=limitOptions limit=limit alignment="right"}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {{#fetch-more
+      {{#fetch-more-offset
         query=observable
-        edges=model.edges
+        nodes=model.nodes
         hasNextPage=model.pageInfo.hasNextPage
-        endCursor=model.pageInfo.endCursor
+        nextOffset=model.pageInfo.nextOffset
         on-fetch-start=(route-action "showLoading")
         on-fetch-end=(route-action "hideLoading")
         resultKey=resultKey as |fetch|
@@ -33,8 +61,7 @@
             </button>
           {{/if}}
         </div>
-
-      {{/fetch-more}}
+      {{/fetch-more-offset}}
 
     </div>
   </div>

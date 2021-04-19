@@ -2,7 +2,7 @@
   {{partial "gam-list-controls"}}
 </div>
 
-{{#gam-fetch-more
+{{#fetch-more-offset
   query=observable
   nodes=model.nodes
   hasNextPage=model.pageInfo.hasNextPage
@@ -26,6 +26,6 @@
     {{/if}}
   </div>
 
-{{/gam-fetch-more}}
+{{/fetch-more-offset}}
 
 {{outlet}}
