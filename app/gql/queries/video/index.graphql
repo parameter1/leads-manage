@@ -1,18 +1,20 @@
-
-#import 'leads-manage/gql/fragments/video/index'
-
-query VideoIndex($pagination: PaginationInput, $sort: VideoSortInput) {
-  allVideos(pagination: $pagination, sort: $sort) {
+query VideoIndex($input: BrightcoveCMSVideosQueryInput!) {
+  brightcoveCMSVideos(input: $input) {
     totalCount
-    edges {
-      node {
-        ...VideoIndexFragment
+    nodes {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      publishedAt
+      images(input: { type: "thumbnail" }) {
+        src
       }
-      cursor
     }
     pageInfo {
       hasNextPage
-      endCursor
+      nextOffset
     }
   }
 }
