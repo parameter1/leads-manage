@@ -11,6 +11,10 @@ query VideoIndex($input: BrightcoveCMSVideosQueryInput!) {
       images(input: { type: "thumbnail" }) {
         src
       }
+      customer {
+        id
+        name
+      }
     }
     pageInfo {
       hasNextPage

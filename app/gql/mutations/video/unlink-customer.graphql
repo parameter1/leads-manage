@@ -1,0 +1,3 @@
+mutation VideoUnlinkCustomer($input: UnlinkBrightcoveVideoFromCustomersMutationInput!) {
+  unlinkBrightcoveVideoFromCustomers(input: $input)
+}

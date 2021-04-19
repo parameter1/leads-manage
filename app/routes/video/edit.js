@@ -4,26 +4,30 @@ import { RouteQueryManager } from 'ember-apollo-client';
 import ActionMixin from 'leads-manage/mixins/action-mixin';
 
 import query from 'leads-manage/gql/queries/video/edit';
-import videoCustomer from 'leads-manage/gql/mutations/video/customer';
+import link from 'leads-manage/gql/mutations/video/customer';
+import unlink from 'leads-manage/gql/mutations/video/unlink-customer';
 
 export default Route.extend(RouteQueryManager, ActionMixin, {
   model({ id }) {
     const variables = { input: { id } };
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'video');
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'brightcoveCMSVideo');
   },
 
   actions: {
-    update({ id, customer }) {
-      this.startRouteAction();
-      const mutation = videoCustomer;
-      const customerId = customer ? get(customer, 'id') : undefined;
-      const input = { videoId: id, customerId };
-      const variables = { input };
-      return this.get('apollo').mutate({ mutation, variables }, 'videoCustomer')
-        .then(() => this.get('notify').info('Video successfully updated.'))
-        .catch(e => this.get('graphErrors').show(e))
-        .finally(() => this.endRouteAction())
-      ;
+    async update({ id, customer }) {
+      try {
+        this.startRouteAction();
+        const customerId = customer ? get(customer, 'id') : undefined;
+        const mutation = customerId ? link : unlink;
+        const resultKey = customerId ? 'linkBrightcoveVideoToCustomer' : 'unlinkBrightcoveVideoFromCustomers';
+        const input = { videoId: id, ...(customerId && { customerId }) };
+        const variables = { input };
+        await this.get('apollo').mutate({ mutation, variables }, resultKey);
+      } catch (e) {
+        this.get('graphErrors').show(e)
+      } finally {
+        this.endRouteAction()
+      }
     },
   }
 });
