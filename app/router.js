@@ -119,6 +119,9 @@ Router.map(function() {
         this.route('trackers');
         this.route('identities');
       });
+      this.route('ad-metrics', function() {
+
+      });
     });
     this.route('create');
   });
