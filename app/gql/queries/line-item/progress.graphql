@@ -10,6 +10,17 @@ query LineItemProgress($input: ModelIdInput!) {
         total
         rate
       }
+      pacing {
+        totalDays
+        requiredLeadsPerDay
+        daysElapsed
+        currentLeadsPerDay
+        pacingRate
+        leadsShouldBeAtPct
+        leadsShouldBeAt
+        leadsCurrentlyAtPct
+        leadsCurrentlyAt
+      }
     }
   }
 }

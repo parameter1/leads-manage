@@ -10,6 +10,7 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
     this._super(...arguments);
     this.set('qualified', {});
     this.set('scrubbed', {});
+    this.set('pacing', {});
   },
 
   didInsertElement() {
@@ -24,6 +25,7 @@ export default Component.extend(ComponentQueryManager, ActionMixin, {
       const results = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'lineItem');
       this.set('qualified', get(results, 'progress.qualified'));
       this.set('scrubbed', get(results, 'progress.scrubbed'));
+      this.set('pacing', get(results, 'progress.pacing'));
     } catch (e) {
       this.get('graphErrors').show(e);
     } finally {
