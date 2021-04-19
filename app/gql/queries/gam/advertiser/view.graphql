@@ -1,5 +1,5 @@
-query ViewGAMAdvertiser($input: GAMAdvertiserQueryInput!) {
-  GAMAdvertiser(input: $input) {
+query ViewGAMAdvertiser($input: GAM_SingleRecordQueryInput!) {
+  gam_company(input: $input) {
     id
     name
     customer {

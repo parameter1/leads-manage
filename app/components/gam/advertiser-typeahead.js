@@ -24,7 +24,7 @@ export default Component.extend(ComponentQueryManager, {
     const filterFrom = isArray(selected) ? selected : [selected];
     yield timeout(this.get('timeout'));
 
-    return this.get('apollo').watchQuery({ query, variables }, 'GAMAdvertisers.nodes')
+    return this.get('apollo').watchQuery({ query, variables }, 'listGAMAdvertisers.nodes')
       .then((nodes) => nodes.filter((node) => filterFrom.filterBy('id', node.id).length === 0))
       .catch((e) => this.get('errorProcessor').show(e))
     ;

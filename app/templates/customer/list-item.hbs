@@ -9,10 +9,10 @@
     {{/if}}
   </div>
 
-  {{#if item.linkedAdvertisers.length}}
+  {{#if item.linkedAdvertisers.googleAdManager.nodes.length}}
     <p class="my-1">
       GAM Advertisers:
-      {{#each item.linkedAdvertisers as |advertiser|}}
+      {{#each item.linkedAdvertisers.googleAdManager.nodes as |advertiser|}}
         <span>{{ advertiser.name }}</span>
       {{/each}}
     </p>

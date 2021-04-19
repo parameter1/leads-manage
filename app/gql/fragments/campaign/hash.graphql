@@ -8,6 +8,14 @@ fragment CampaignHashFragment on Campaign {
   customer {
     id
     name
+    linkedAdvertisers {
+      googleAdManager {
+        nodes {
+          id
+          name
+        }
+      }
+    }
   }
   email {
     id
@@ -23,5 +31,9 @@ fragment CampaignHashFragment on Campaign {
     id
     enabled
     excludeFields
+  }
+  adMetrics {
+    id
+    enabled
   }
 }

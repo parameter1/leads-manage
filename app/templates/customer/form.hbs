@@ -45,12 +45,12 @@
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <label>Link GAM Advertiser(s)</label>
+      <label>Linked GAM Advertiser(s)</label>
       {{gam/advertiser-typeahead
         multiple=true
         placeholder="Begin typing to find an advertiser..."
-        selected=model.linkedAdvertisers
-        onChange=(action (mut model.linkedAdvertisers))
+        selected=model.linkedAdvertisers.googleAdManager.nodes
+        onChange=(action (mut model.linkedAdvertisers.googleAdManager.nodes))
       }}
     </div>
   </div>

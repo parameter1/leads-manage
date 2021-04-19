@@ -17,7 +17,7 @@ export default Route.extend(ListRouteMixin, {
   } = {}) {
     return this.getResults({
       query,
-      queryKey: 'GAMAdvertisers',
+      queryKey: 'listGAMAdvertisers',
     }, {
       limit,
       sortField,

@@ -18,6 +18,9 @@
           {{#if model.ads.enabled}}
             <li class="nav-item">{{#link-to "lead-report.ads" class="nav-link" role="tab"}}Pre-Rolls{{/link-to}}</li>
           {{/if}}
+          {{#if displayAdMetrics}}
+            <li class="nav-item">{{#link-to "lead-report.ad-metrics" class="nav-link" role="tab"}}Ad Metrics{{/link-to}}</li>
+          {{/if}}
         </ul>
       </div>
       {{progress-bar show=isLoading class="progress-md"}}

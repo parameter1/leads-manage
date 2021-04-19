@@ -16,8 +16,12 @@ fragment CustomerFragment on Customer {
     namespace
   }
   linkedAdvertisers {
-    id
-    name
+    googleAdManager {
+      nodes {
+        id
+        name
+      }
+    }
   }
   createdAt
   updatedAt

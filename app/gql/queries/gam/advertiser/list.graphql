@@ -1,5 +1,5 @@
-query ListGAMAdvertisers($input: GAMAdvertisersQueryInput!) {
-  GAMAdvertisers(input: $input) {
+query ListGAMAdvertisers($input: ListGAMAdvertisersQueryInput!) {
+  listGAMAdvertisers(input: $input) {
     totalCount
     nodes {
       id

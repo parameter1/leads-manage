@@ -11,8 +11,12 @@ query ListCustomers($pagination: PaginationInput, $sort: CustomerSortInput) {
           identifier
         }
         linkedAdvertisers {
-          id
-          name
+          googleAdManager {
+            nodes {
+              id
+              name
+            }
+          }
         }
       }
       cursor

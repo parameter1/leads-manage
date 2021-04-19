@@ -5,6 +5,19 @@ query SearchCustomers($pagination: PaginationInput, $search: TypeAheadInput!, $o
       node {
         id
         name
+        createdAt
+        updatedAt
+        externalSource {
+          identifier
+        }
+        linkedAdvertisers {
+          googleAdManager {
+            nodes {
+              id
+              name
+            }
+          }
+        }
       }
       cursor
     }
