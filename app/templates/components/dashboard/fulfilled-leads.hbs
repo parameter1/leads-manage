@@ -1,5 +1,5 @@
 <div class="card-body">
-  <div class="d-flex flex-row justify-content-between mb-2">
+  <div class="d-flex flex-row justify-content-between align-items-center">
     <div class="d-flex flex-column">
       <span class="h1 mb-0 my-auto text-success">
         {{entypo-icon "gauge"}}
@@ -24,6 +24,7 @@
   </div>
   {{#unless isLoading}}
     {{line-item-pacing
+      class="mt-2"
       leadsShouldBeAtPct=pacing.leadsShouldBeAtPct
       leadsShouldBeAt=pacing.leadsShouldBeAt
       leadsCurrentlyAtPct=pacing.leadsCurrentlyAtPct
