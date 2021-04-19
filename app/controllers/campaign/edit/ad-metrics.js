@@ -3,11 +3,15 @@ import ActionMixin from 'leads-manage/mixins/action-mixin';
 import { inject } from '@ember/service';
 
 import adMetricsExcludedGAMLineItemIds from 'leads-manage/gql/mutations/campaign/ad-metrics/excluded-gam-line-item-ids';
+import adMetricsCampaignStatus from 'leads-manage/gql/mutations/campaign/ad-metrics/status';
 
 export default Controller.extend(ActionMixin, {
   apollo: inject(),
 
   actions: {
+    /**
+     *
+     */
     async toggleExcludedGAMLineItem(lineItem, isExcluded) {
       try {
         this.startAction();
@@ -28,8 +32,22 @@ export default Controller.extend(ActionMixin, {
         this.endAction();
       }
     },
-    updateStatus() {
-      console.log('update status!');
+
+    /**
+     *
+     */
+    async updateStatus(event) {
+      try {
+        this.startAction();
+        const { checked } = event.target;
+        const variables = { input: { id: this.get('model.id'), enabled: checked } };
+        await this.get('apollo').mutate({ mutation: adMetricsCampaignStatus, variables }, 'campaign');
+        this.get('notify').info('Campaign status set successfully.');
+      } catch (e) {
+        this.get('graphErrors').show(e);
+      } finally {
+        this.endAction();
+      }
     }
   },
 });

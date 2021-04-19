@@ -32,4 +32,8 @@ fragment CampaignHashFragment on Campaign {
     enabled
     excludeFields
   }
+  adMetrics {
+    id
+    enabled
+  }
 }
