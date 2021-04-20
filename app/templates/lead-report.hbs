@@ -21,6 +21,9 @@
           {{#if displayAdMetrics}}
             <li class="nav-item">{{#link-to "lead-report.ad-metrics" class="nav-link" role="tab"}}Ad Metrics{{/link-to}}</li>
           {{/if}}
+          {{#if displayVideoMetrics}}
+            <li class="nav-item">{{#link-to "lead-report.video-metrics" class="nav-link" role="tab"}}Video Metrics{{/link-to}}</li>
+          {{/if}}
         </ul>
       </div>
       {{progress-bar show=isLoading class="progress-md"}}

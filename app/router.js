@@ -40,6 +40,7 @@ Router.map(function() {
       this.route('export');
     });
     this.route('ad-metrics');
+    this.route('video-metrics');
     this.route('disabled');
   });
   this.route('link', function() {

@@ -16,6 +16,13 @@ fragment CampaignHashFragment on Campaign {
         }
       }
     }
+    linkedVideos {
+      brightcove {
+        nodes {
+          id
+        }
+      }
+    }
   }
   email {
     id
@@ -33,6 +40,10 @@ fragment CampaignHashFragment on Campaign {
     excludeFields
   }
   adMetrics {
+    id
+    enabled
+  }
+  videoMetrics {
     id
     enabled
   }
