@@ -122,6 +122,9 @@ Router.map(function() {
       this.route('ad-metrics', function() {
 
       });
+      this.route('video-metrics', function() {
+
+      });
     });
     this.route('create');
   });
