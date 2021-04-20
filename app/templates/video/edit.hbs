@@ -26,14 +26,15 @@
 
         <div class="col-6">
           <div class="form-group mb-0">
-            <label>Customer</label>
+            <label>Customers</label>
             {{type-ahead
+              multiple=true
               placeholder="Begin typing to find a customer..."
               type="customer"
-              selected=model.customer
-              onChange=(action (mut model.customer))
+              selected=model.customers
+              onChange=(action (mut model.customers))
             }}
-            <small class="form-text text-muted">The customer to assign to this video.</small>
+            <small class="form-text text-muted">The customer(s) to assign to this video.</small>
           </div>
         </div>
       </div>
