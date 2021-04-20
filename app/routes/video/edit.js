@@ -1,11 +1,9 @@
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
 import { RouteQueryManager } from 'ember-apollo-client';
 import ActionMixin from 'leads-manage/mixins/action-mixin';
 
 import query from 'leads-manage/gql/queries/video/edit';
 import link from 'leads-manage/gql/mutations/video/customer';
-import unlink from 'leads-manage/gql/mutations/video/unlink-customer';
 
 export default Route.extend(RouteQueryManager, ActionMixin, {
   model({ id }) {
@@ -14,15 +12,14 @@ export default Route.extend(RouteQueryManager, ActionMixin, {
   },
 
   actions: {
-    async update({ id, customer }) {
+    async update({ id, customers }) {
       try {
         this.startRouteAction();
-        const customerId = customer ? get(customer, 'id') : undefined;
-        const mutation = customerId ? link : unlink;
-        const resultKey = customerId ? 'linkBrightcoveVideoToCustomer' : 'unlinkBrightcoveVideoFromCustomers';
-        const input = { videoId: id, ...(customerId && { customerId }) };
+        const customerIds = customers ? customers.map((c) => c.id) : [];
+        const mutation = link;
+        const input = { videoId: id, customerIds };
         const variables = { input };
-        await this.get('apollo').mutate({ mutation, variables }, resultKey);
+        await this.get('apollo').mutate({ mutation, variables }, 'linkBrightcoveVideoToCustomers');
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {

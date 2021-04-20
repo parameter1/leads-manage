@@ -1,5 +1,3 @@
-mutation VideoEditCustomer($input: LinkBrightcoveVideoToCustomerMutationInput!) {
-  linkBrightcoveVideoToCustomer(input: $input) {
-    id
-  }
+mutation VideoEditCustomer($input: LinkBrightcoveVideoToCustomersMutationInput!) {
+  linkBrightcoveVideoToCustomers(input: $input)
 }

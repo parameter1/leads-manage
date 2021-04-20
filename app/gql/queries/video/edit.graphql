@@ -2,7 +2,7 @@ query brightcoveCMSVideos($input: BrightcoveCMSVideoQueryInput!) {
   brightcoveCMSVideo(input: $input) {
     id
     name
-    customer {
+    customers {
       id
       name
     }
