@@ -28,7 +28,13 @@
                     <td>{{ row.Dimension.LINE_ITEM_NAME }}</td>
                     <td>{{ row.Dimension.LINE_ITEM_TYPE }}</td>
                     <td>{{ gam-line-item-date row.DimensionAttribute.LINE_ITEM_START_DATE_TIME }}</td>
-                    <td>{{ gam-line-item-date row.DimensionAttribute.LINE_ITEM_END_DATE_TIME }}</td>
+                    <td>
+                      {{#if (eq row.DimensionAttribute.LINE_ITEM_END_DATE_TIME "Unlimited")}}
+                        Unlimited
+                      {{else}}
+                        {{ gam-line-item-date row.DimensionAttribute.LINE_ITEM_END_DATE_TIME }}
+                      {{/if}}
+                    </td>
                     <td>{{ row.Dimension.CREATIVE_TYPE }}</td>
                     <td>{{ row.Dimension.CREATIVE_SIZE }}</td>
                     <td>{{ format-number row.Column.AD_SERVER_IMPRESSIONS "0,0" }}</td>
