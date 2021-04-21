@@ -29,15 +29,20 @@ fragment CampaignHashFragment on Campaign {
     enabled
     excludeFields
     displayDeliveredMetrics
+    hasEmailSends
   }
   forms {
     id
     enabled
+    forms(refreshEntries: false) {
+      id
+    }
   }
   ads {
     id
     enabled
     excludeFields
+    hasIdentities
   }
   adMetrics {
     id

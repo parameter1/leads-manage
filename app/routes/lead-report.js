@@ -10,9 +10,9 @@ export default Route.extend(RouteQueryManager, {
   },
 
   afterModel(model) {
-    if (model.get('email.enabled')) return;
-    if (model.get('forms.enabled')) return this.transitionTo('lead-report.forms');
-    if (model.get('ads.enabled')) return this.transitionTo('lead-report.ads');
+    if (model.get('email.enabled') && model.get('email.hasEmailSends')) return;
+    if (model.get('forms.enabled') && model.get('forms.forms.length')) return this.transitionTo('lead-report.forms');
+    if (model.get('ads.enabled') && model.get('ads.hasIdentities')) return this.transitionTo('lead-report.ads');
     if (model.get('customer.linkedAdvertisers.googleAdManager.nodes.length') && model.get('adMetrics.enabled')) return this.transitionTo('lead-report.ad-metrics');
     if (model.get('customer.linkedVideos.brightcove.nodes.length') && model.get('videoMetrics.enabled')) return this.transitionTo('lead-report.video-metrics');
     return this.transitionTo('lead-report.disabled');
