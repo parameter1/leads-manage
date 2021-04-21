@@ -9,13 +9,13 @@
     <div class="card model-form">
       <div class="card-header">
         <ul class="nav nav-pills card-header-pills" role="tablist">
-          {{#if model.email.enabled}}
+          {{#if displayEmail}}
             <li class="nav-item">{{#link-to "lead-report.email" class="nav-link" role="tab"}}Email Deployments{{/link-to}}</li>
           {{/if}}
-          {{#if model.forms.enabled}}
+          {{#if displayForms}}
             <li class="nav-item">{{#link-to "lead-report.forms" class="nav-link" role="tab"}}Form Submissions{{/link-to}}</li>
           {{/if}}
-          {{#if model.ads.enabled}}
+          {{#if displayAds}}
             <li class="nav-item">{{#link-to "lead-report.ads" class="nav-link" role="tab"}}Pre-Rolls{{/link-to}}</li>
           {{/if}}
           {{#if displayAdMetrics}}
